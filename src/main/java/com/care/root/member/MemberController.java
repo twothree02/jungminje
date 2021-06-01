@@ -1,5 +1,10 @@
 package com.care.root.member;
 
-public class MemberController {
+import org.springframework.stereotype.Controller;
 
+@Controller
+public class MemberController {
+	public void test() {
+		
+	}
 }
