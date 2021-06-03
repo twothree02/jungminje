@@ -35,7 +35,7 @@ public class MemberController implements MemberSessionName {
 		if(result == 0) {
 			session.setAttribute(LOGIN, request.getParameter("inputId"));
 			System.out.println("로그인 성공");
-			return "#";
+			return "main";
 		}
 		System.out.println("로그인 실패");
 		return "redirect:login";
