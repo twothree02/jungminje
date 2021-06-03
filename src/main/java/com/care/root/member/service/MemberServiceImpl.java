@@ -27,13 +27,11 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public String findId(HttpServletRequest request) {
+	public String findId(String name, String tel) {
 		// 암호화 되기 전 코드, 암호화 완료 시 수정 필요!
 		System.out.println("서비스");
-		System.out.println(request.getParameter("inputName"));
-		System.out.println(request.getParameter("inputTel"));
-		MemberDTO dto = mapper.findId(request.getParameter("inputName"), request.getParameter("inputTel"));
-		return dto.getId();
+		String id = mapper.findId(name, tel);
+		return id;
 	}
 	
 }
