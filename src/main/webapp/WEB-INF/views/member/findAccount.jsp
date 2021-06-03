@@ -15,6 +15,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 	crossorigin="anonymous"></script>
 
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	function findId(){
 		$.ajax({
@@ -56,7 +57,7 @@
 										</div>
 										<div
 											class="d-flex align-items-center justify-content-between mt-4 mb-0">
-											<input type = "submit" class="btn btn-primary" onclick="findId()" value = "아이디 찾기">
+											<input type = "button" class="btn btn-primary" onclick="findId()" value = "아이디 찾기">
 										</div>
 									</form>
 								</div>
@@ -98,26 +99,6 @@
 
 			</main>
 		</div>
-		
-		<!-- 
-		<div id = "modal_wrap">
-			<div id = "first">
-				<div style = "width:200px; margin: 0 auto; padding-top: 20px;">
-					<form id = "frm" method = "post">
-						<input type = "hidden" name = "write_no" value = "${personalData.writeNo}">
-						<b>답글 작성 페이지</b>
-						<b>작성자 : ${login}</b><hr>
-						<b>제목</b><br><input type = "text" id = "title" size = "30" name = "title"><hr>
-						<b>내용</b><br>
-						<textarea rows="5" cols="30" name = "content"></textarea>
-						<hr>
-						<button type = "button" onclick="rep()">답글</button>
-						<button type = "button" onclick="slide_hide()">취소</button>
-					</form>
-				</div>
-			</div>
-		</div>
-		 -->
 		
 		<div id="layoutAuthentication_footer">
 			<footer class="py-4 bg-light mt-auto">
