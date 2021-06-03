@@ -15,7 +15,7 @@
 		select * from member_test where id = #{id} 
 	</select>
 	
-	<select id="findId" resultType="String">
+	<select id="findId" resultMap="member">
 		select id from member_test where name = #{name} and tel = #{tel}
 	</select>
 </mapper>

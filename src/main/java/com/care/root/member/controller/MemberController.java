@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.care.root.member.service.MemberService;
@@ -44,8 +45,8 @@ public class MemberController {
 	}
 	
 	@PostMapping(value="findId", produces = "application/json; charset=utf-8")
-	public String findId(@PathVariable String inputName, @PathVariable String inputTel, Model model) {
-		String id = ms.findId(inputName, inputTel);
+	public String findId(HttpServletRequest request, Model model) {
+		String id = ms.findId(request);
 //		model.addAttribute("id", id);
 //		model.addAttribute("name", request.getParameter("inputName"));
 		return "{\"result\":\"success\"}";

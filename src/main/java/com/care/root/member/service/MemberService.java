@@ -4,5 +4,5 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface MemberService {
 	public int loginChk(HttpServletRequest request);
-	public String findId(String name, String tel);
+	public String findId(HttpServletRequest request);
 }
