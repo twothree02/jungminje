@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 div {
-	border: 1px solid black;
+	/* border: 1px solid black; */
 }
 
 .title {
@@ -117,86 +117,7 @@ div {
 				<button type="button" class="btn btn-secondary" onclick="location.href='${contextPath }/root/student/totalInquiry_T'">등록/장학</button>
 			</div>
 		</div>
-			<div class="content">
-				<div class="badge1">
-				<span class="badge badge-success">기본정보</span>
-				</div>
-				<div class="ContentTable1" style="display: flex;">
-				<div class="infoTable2">
-			
-							<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">주민등록 번호</th>
-							<td scope="col">890124-1254854</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<th scope="row">우편 발송 여부</th>
-							<td>Y/N</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			
-						<div class="infoTable3">
-			
-							<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">지 도 교 수</th>
-							<td scope="col">아무개</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<th scope="row">SMS 발송 여부</th>
-							<td>Y/N</td>
-						</tr>
-					</tbody>
-				</table>
-			
-			</div>
-				</div>
-
-				<div class="badge2">
-				<span class="badge badge-success">연락처</span>
-				</div>
-				<div class="ContentTable2" style="display: flex;">
-				<div class="infoTable4">
-			
-							<table class="table">
-					<thead>
-
-					</thead>
-						<tr>
-							<th scope="col">전   화</th>
-							<td scope="col">01012341234</td>
-						</tr>
-					<tbody>
-					</tbody>
-				</table>
-			</div>
-			
-						<div class="infoTable5">
-			
-							<table class="table">
-					<thead>
-
-					</thead>
-					<tbody>
-							<tr>
-							<th scope="col">주   소</th>
-							<td scope="col">경기도 군포시 산본동 산골짜기 다람쥐</td>
-						</tr>
-					</tbody>
-				</table>
-			
-			</div>
-				</div>
-			
-			</div>
+			<div class="content"></div>
 
 		</div>
 </body>

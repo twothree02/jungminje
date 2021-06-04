@@ -13,6 +13,24 @@ public class StudentController {
 			return "student/totalInquiry";
 		}
 		
+		@RequestMapping("totalInquiry_C")
+		public String totalInquiry_C() {
+			
+			return "student/totalInquiry_C";
+		}
+		
+		@RequestMapping("totalInquiry_G")
+		public String totalInquiry_G() {
+			
+			return "student/totalInquiry_G";
+		}
+		
+		@RequestMapping("totalInquiry_T")
+		public String totalInquiry_T() {
+			
+			return "student/totalInquiry_T";
+		}
+		
 		@RequestMapping("classRequest")
 		public String classRequest() {
 			
