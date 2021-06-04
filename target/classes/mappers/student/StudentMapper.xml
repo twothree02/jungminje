@@ -3,6 +3,32 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.care.root.student.dao.StudentDAO">
-
+	<resultMap type="com.care.root.student.dto.StudentInfoDTO" id="info">
+		<result property="idNum" column="ID_NUM"/>
+		<result property="name" column="NAME"/>
+		<result property="residentNum" column="RESIDENT_NUM"/>	
+		<result property="phoneNum" column="PHONE_NUM"/>
+		<result property="telNum" column="TEL_NUM"/>
+		<result property="addr" column="ADDR"/>	
+		<result property="detailAddr" column="DETAIL_ADDR"/>
+		<result property="email" column="EMAIL"/>
+		<result property="major" column="MAJOR"/>
+		<result property="grade" column="GRADE"/>
+		<result property="classInfo" column="CLASS"/>
+		<result property="country" column="COUNTRY"/>
+		<result property="mentor" column="MENTOR"/>
+		<result property="zipcodeSend" column="ZIPCODE_SEND"/>
+		<result property="smsSend" column="SMS_SEND"/>
+		<result property="position" column="POSITION"/>
+		<result property="imageFile" column="IMAGE_FILE"/>
+		<result property="officeAddr" column="OFFICE_ADDR"/>
+		<result property="bank" column="BANK"/>
+		<result property="accountNum" column="ACCOUNT_NUM"/>
+		
+	</resultMap>
+	
+	<select id="studentInfo" resultMap="info">
+		select * from member_info where id_num = #{id}
+	</select>
 	
 </mapper>	

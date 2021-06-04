@@ -12,7 +12,7 @@
 	</resultMap>
 	
 	<select id="loginChk" resultMap="member">
-		select * from member_test where id = #{id} 
+		select * from member_info where id_num = #{id}
 	</select>
 	
 	<select id="findId" resultType="String">

@@ -1,5 +1,7 @@
 package com.care.root.student.dao;
 
-public interface StudentDAO {
+import com.care.root.student.dto.StudentInfoDTO;
 
+public interface StudentDAO {
+	public StudentInfoDTO studentInfo(String id);
 }

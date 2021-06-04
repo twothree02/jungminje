@@ -48,35 +48,37 @@ div {
 </head>
 <body>
 	<c:import url="../default/studentheader.jsp" />
-	<div class="wrap">
+	<div class="wrap" style="overflow: auto;">
 		<div class="title">
 			<h1>종합정보 조회</h1>
 		</div>
 		<div class="memberInfo">
 			<div class="imgDiv">
+			<c:if test="${info.imageFile == 'nan'}">
 				<img class="navbar-brand rounded-circle"
 					src="../resources/img/nan.png" width=150px; height=150px; style="margin-left: 15px; margin-right: 15px;">
+			</c:if>
 			</div>
 			<div class="infoTable">
 				<table class="table">
 					<thead>
 						<tr>
 							<th scope="col">학    번</th>
-							<td scope="col">123456</td>
+							<td scope="col">${info.idNum}</td>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<th scope="row">휴 대 폰</th>
-							<td>Mark</td>
+							<td>${info.phoneNum}</td>
 						</tr>
 						<tr>
 							<th scope="row">이 메 일</th>
-							<td>Jacob</td>
+							<td>${info.email}</td>
 						</tr>
 						<tr>
 							<th scope="row">학년 - 반</th>
-							<td>Larry</td>
+							<td>${info.grade}-${info.classInfo}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -87,21 +89,21 @@ div {
 					<thead>
 						<tr>
 							<th scope="col">이   름</th>
-							<td scope="col">123456</td>
+							<td scope="col">${info.name }</td>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<th scope="row">생 년 월 일</th>
-							<td>Mark</td>
+							<td>${info.birthDate}</td>
 						</tr>
 						<tr>
 							<th scope="row">학   과</th>
-							<td>Jacob</td>
+							<td>${info.major }</td>
 						</tr>
 						<tr>
 							<th scope="row">국   적</th>
-							<td>Larry</td>
+							<td>${info.country }</td>
 						</tr>
 					</tbody>
 				</table>
@@ -128,13 +130,13 @@ div {
 					<thead>
 						<tr>
 							<th scope="col">주민등록 번호</th>
-							<td scope="col">890124-1254854</td>
+							<td scope="col">${info.residentNum}</td>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<th scope="row">우편 발송 여부</th>
-							<td>Y/N</td>
+							<td>${info.zipcodeSend}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -146,13 +148,13 @@ div {
 					<thead>
 						<tr>
 							<th scope="col">지 도 교 수</th>
-							<td scope="col">아무개</td>
+							<td scope="col">${info.mentor}</td>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<th scope="row">SMS 발송 여부</th>
-							<td>Y/N</td>
+							<td>${info.smsSend}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -172,7 +174,7 @@ div {
 					</thead>
 						<tr>
 							<th scope="col">전   화</th>
-							<td scope="col">01012341234</td>
+							<td scope="col">${info.telNum }</td>
 						</tr>
 					<tbody>
 					</tbody>
@@ -188,7 +190,7 @@ div {
 					<tbody>
 							<tr>
 							<th scope="col">주   소</th>
-							<td scope="col">경기도 군포시 산본동 산골짜기 다람쥐</td>
+							<td scope="col">${info.addr}/${info.detailAddr}</td>
 						</tr>
 					</tbody>
 				</table>
