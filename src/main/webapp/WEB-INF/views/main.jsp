@@ -29,8 +29,8 @@
 				</tr>
 				<tr>
 					<th style="padding-right: 20px;"><button type="button"
-							class="btn btn-secondary">로그아웃</button></th>
-					<th><button type="button" class="btn btn-secondary">정보수정</button></th>
+							class="btn btn-secondary" onclick="location.href='<%=request.getContextPath()%>/logout'">로그아웃</button></th>
+					<th><button type="button" class="btn btn-secondary" onclick="location.href='<%=request.getContextPath()%>/modifyInfo'">정보수정</button></th>
 				</tr>
 			</table>
 		</div>
