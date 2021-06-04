@@ -42,7 +42,7 @@
 						<thead class="thead-dark">
 							<tr>
 								<th>공지사항</th>
-								<th style="text-align: right;"><a href="#">more</a></th>
+								<th style="text-align: right;"><a href="portalList">more</a></th>
 							</tr>
 						</thead>
 						<tbody>

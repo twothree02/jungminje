@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class BoardController {
 
+	
+	
+	
 	@RequestMapping("studentMain")
 	public String studentMain() {
 		return "student/studentMain";
@@ -20,4 +23,8 @@ public class BoardController {
 	public String professorMain() {
 		return "professor/professorMain";
 	}
+	
+	
+		
+
 }
