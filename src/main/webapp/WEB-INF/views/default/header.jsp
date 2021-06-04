@@ -25,63 +25,18 @@
 			src="resources/img/5.jpg" width=80px; height=80px;></a>
 
 		<!-- Links -->
-		<ul class="navbar-nav">
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#" id="navbardrop"
-				data-toggle="dropdown"> 게시판 </a>
-				<div class="dropdown-menu">
-					<a class="dropdown-item" href="${contextPath }/board/noties">공지사항</a>
-					<a class="dropdown-item" href="#">학사공지</a> <a class="dropdown-item"
-						href="${contextPath }/board/portal">포털공지</a> <a
-						class="dropdown-item" href="${contextPath }/board/academic">학사일정</a>
-				</div></li>
-		</ul>
-		<ul class="navbar-nav">
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#" id="navbardrop"
-				data-toggle="dropdown"> 마이페이지 </a>
-				<div class="dropdown-menu">
-					<a class="dropdown-item" href="${contextPath }/student/infoChk">종합정보조회</a>
-					<a class="dropdown-item" href="${contextPath }/student/academicChk">학사관리</a> <a
-						class="dropdown-item" href="${contextPath }/student/classChk">수강신청</a> 
-						<a class="dropdown-item"href="${contextPath }/student/chkGrade">성적조회</a>
-				</div></li>
-		</ul>
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+			<ul class="navbar-nav">
+			
+				<li class="nav-item"><a class="nav-link" href="studentMain">마이페이지</a></li>
+				<li class="nav-item"><a class="nav-link" href="professorMain">종합관리시스템(교수)</a></li>
+				<li class="nav-item"><a class="nav-link"  href="adminMain">종한관리시스템(행정)</a>
+				</li>
+			</ul>
+		</nav>
+		</nav>	
 
-		<ul class="navbar-nav">
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#" id="navbardrop"
-				data-toggle="dropdown"> 종합관리시스템(교수) </a>
-				<div class="dropdown-menu">
-					<a class="dropdown-item"
-						href="${contextPath }/professor/professorMain">교직원정보</a> <a
-						class="dropdown-item" href="${contextPath }/professor/stuInfo">학생정보</a>
-					<a class="dropdown-item" href="#">성적입력</a> <a class="dropdown-item"
-						href="${contextPath }/professor/timeTable">시간표</a> <a
-						class="dropdown-item"
-						href="${contextPath }/professor/staffNetwork">연락망</a>
-				</div></li>
-		</ul>
-
-
-
-		<ul class="navbar-nav">
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#" id="navbardrop"
-				data-toggle="dropdown"> 종합관리시스템(행정) </a>
-				<div class="dropdown-menu">
-					<a class="dropdown-item" href="${contextPath}/admin/adminInfo">교직원정보</a>
-					<a class="dropdown-item" href="${contextPath }/admin/stuManagement">학생관리</a>
-					<a class="dropdown-item" href="#">등록관리</a> <a class="dropdown-item"
-						href="${contextPath }/admin/timeTable">시간표관리</a> <a
-						class="dropdown-item" href="${contextPath }/admin/staffNetwork">연락망</a>
-				</div></li>
-		</ul>
-
-
-
-
-	</nav>
+		
 
 
 
