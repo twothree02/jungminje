@@ -4,18 +4,26 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.care.root.member.dao.MemberDAO">
 	<resultMap type="com.care.root.member.dto.MemberDTO" id="member">
-		<result property="id" column="id"/>
+		<result property="idNum" column="id_num"/>
 		<result property="name" column="name"/>
-		<result property="tel" column="tel"/>
-		<result property="email" column="email"/>
 		<result property="pw" column="pw"/>
+		<result property="phoneNum" column="phone_num"/>
+		<result property="email" column="email"/>
 	</resultMap>
 	
 	<select id="loginChk" resultMap="member">
-		select * from member_test where id = #{id} 
+		select * from member_info where id_num = #{id} 
 	</select>
 	
 	<select id="findId" resultType="String">
-		select id from member_test where name = #{name} and tel = #{tel}
+		select id_num from member_info where name = #{name} and phone_num = #{phone}
 	</select>
-</mapper>	
+	
+	<select id="findPw" resultMap="member">
+		select pw, name from member_info where id_num = #{id} and email = #{email}
+	</select>
+	
+	<update id="tempPw">
+		update member_info set pw = #{tempPw} where id_num = #{id}
+	</update>
+</mapper>

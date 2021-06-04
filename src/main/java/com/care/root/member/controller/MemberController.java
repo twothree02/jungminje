@@ -3,11 +3,11 @@ package com.care.root.member.controller;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,8 +49,23 @@ public class MemberController implements MemberSessionName {
 
 	@PostMapping(value="findId", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String findId(@RequestBody Map <String,Object> map, Model model) {
-		String id = ms.findId((String)map.get("inputName"),(String)map.get("inputTel"));
+	public String findId(@RequestBody Map <String,Object> map) {
+		String id = ms.findId((String)map.get("inputName"), (String)map.get("inputPhone"));
 		return "{\"result\":\"" + id + "\"}";
+	}
+	
+	@PostMapping(value="findPw", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String findPw(@RequestBody Map <String,Object> map, HttpServletRequest request,  HttpServletResponse response) {
+		String tempPw = ms.findPw((String)map.get("inputId"), (String)map.get("inputEmail"), request, response);
+		return "{\"result\":\"" + tempPw + "\"}";
+	}
+	
+	/** 로그아웃 */
+	@GetMapping("logout")
+	public String logout(HttpSession session, HttpServletResponse response) {
+		ms.logout(session, response);
+		session.invalidate();
+		return "redirect:login";
 	}
 }

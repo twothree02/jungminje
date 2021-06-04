@@ -10,9 +10,9 @@
 		   <!-- 히카리 커넥션풀 빈 등록 -->
    <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
       <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-      <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe" />
-      <property name="username" value="kyc" />
-      <property name="password" value="0000" />
+      <property name="jdbcUrl" value="jdbc:oracle:thin:@210.221.253.215:1521:xe" />
+      <property name="username" value="final_3" />
+      <property name="password" value="final_3" />
    </bean>   
    <!-- 히카리 데이터소스 빈 등록 -->   
    <bean id="ds" class="com.zaxxer.hikari.HikariDataSource">
@@ -27,10 +27,9 @@
  
    <!-- 마이바티스 xml파일과 dao빈 연결  -->
    <mybatis-spring:scan base-package="com.care.root.member.dao"/>
-   <mybatis-spring:scan base-package="com.care.root.board"/>
-   <mybatis-spring:scan base-package="com.care.root.officer"/>
-   <mybatis-spring:scan base-package="com.care.root.professor"/>
-	<mybatis-spring:scan base-package="com.care.root.student"/>
+   <mybatis-spring:scan base-package="com.care.root.board.dao"/>
+   <mybatis-spring:scan base-package="com.care.root.officer.dao"/>
+   <mybatis-spring:scan base-package="com.care.root.professor.dao"/>
+	<mybatis-spring:scan base-package="com.care.root.student.dao"/>
 		
 </beans>
-
