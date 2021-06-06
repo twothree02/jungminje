@@ -11,8 +11,8 @@ import com.care.root.professor.service.ProfessorService;
 @RequestMapping("professor")
 public class ProfessorController {
 	@Autowired ProfessorService ps;
-	@GetMapping("student_info")
-	public String studentInfo() {
-		return "professor/studentInfo";
+	@GetMapping("all_student")
+	public String allStudent() {
+		return "professor/allStudent";
 	}
 }

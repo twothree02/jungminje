@@ -30,7 +30,7 @@
            
   
                         <li class="nav-item"><a class="nav-link" href="#!">교직원정보</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/professor/student_info">
+                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/professor/all_student">
                         학생정보</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">성적 입력</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">시간표</a></li>
