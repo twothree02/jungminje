@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 div {
-	border: 1px solid black;
+	/* border: 1px solid black; */
 }
 
 .title {
@@ -29,7 +29,7 @@ div {
 
 .menuBar {
 	width: 100%;
-	height: 8%;
+	height: 6.5%;
 	margin :auto;
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
@@ -120,7 +120,7 @@ div {
 			</div>
 		</div>
 			<div class="content">
-				<div class="badge1">
+				<div class="badge1" style="margin-top: 10px;">
 				<span class="badge badge-success">기본정보</span>
 				</div>
 				<div class="ContentTable1" style="display: flex;">
@@ -160,8 +160,9 @@ div {
 				</table>
 			
 			</div>
+			
 				</div>
-
+<hr>
 				<div class="badge2">
 				<span class="badge badge-success">연락처</span>
 				</div>

@@ -20,7 +20,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   
  <style type="text/css">
- .wrap{border: 1px solid black; width:900px; height:700px; margin: auto; }
+ .wrap{/* border: 1px solid black; */ width:1000px; height:900px; margin: auto; }
  </style>
     </head>
     <body>

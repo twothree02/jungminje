@@ -29,7 +29,7 @@ div {
 
 .menuBar {
 	width: 100%;
-	height: 8%;
+	height: 6.5%;
 	margin :auto;
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
@@ -121,7 +121,7 @@ div {
 			</div>
 		</div>
 			<div class="content">
-		<table class="table" style="margin-top: 7px;">
+		<table class="table" style="margin-top: 7px; text-align: center;">
 			<thead class="thead-dark">
 				<tr>
 					<th>번호</th>
