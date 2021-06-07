@@ -10,6 +10,7 @@ public class ProfessorDTO {
 	private String addr;
 	private String detailAddr;
 	private String email;
+	private String major;
 	private int grade;
 	private String class_;
 	private String country;
@@ -22,6 +23,12 @@ public class ProfessorDTO {
 	private String bank;
 	private String accountNum;
 	
+	public String getMajor() {
+		return major;
+	}
+	public void setMajor(String major) {
+		this.major = major;
+	}
 	public String getIdNum() {
 		return idNum;
 	}
