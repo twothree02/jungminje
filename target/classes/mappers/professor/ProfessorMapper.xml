@@ -28,7 +28,7 @@
 	</resultMap>
 	
   	<select id="getJuniorList" resultMap="professor">
-		select * from member_info where position = #{position}
+		select * from member_info where position = #{position} and grade = #{grade}
 	</select>
   
   

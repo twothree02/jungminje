@@ -12,8 +12,8 @@ import com.care.root.professor.dto.ProfessorDTO;
 public class ProfessorServiceImpl implements ProfessorService{
 	@Autowired ProfessorDAO pm;
 	@Override
-	public ArrayList<ProfessorDTO> getJuniorList(String position) {
-		return pm.getJuniorList(position);
+	public ArrayList<ProfessorDTO> getJuniorList(String position, String grade) {
+		return pm.getJuniorList(position, grade);
 	}
 	
 }

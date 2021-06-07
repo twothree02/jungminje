@@ -24,8 +24,10 @@ public class ProfessorController {
 	@PostMapping(value = "junior_list", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public ArrayList<ProfessorDTO> juniorList() {
+		//나중에 학과별로도 구분지어줘야 한다면 넣어줄 것.
 		String position = "학생";
-		System.out.println("확인 메시지"); //안 넘어오고 있다.
+		String grade = "1";
+		//System.out.println("확인 메시지"); //안 넘어오고 있다.
 		
 //		ArrayList<ProfessorDTO> list = new ArrayList<ProfessorDTO>();
 //		for(int i=0;i<3;i++) {
@@ -34,6 +36,6 @@ public class ProfessorController {
 //		list.add(dto);
 //		}
 //		return list;
-		return ps.getJuniorList(position);
+		return ps.getJuniorList(position, grade);
 	}
 }
