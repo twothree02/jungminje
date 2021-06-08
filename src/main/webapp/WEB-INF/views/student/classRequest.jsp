@@ -7,10 +7,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
- div{/* border: 1px solid black; */}
+ div{ /* border: 1px solid black; */ }
  .title{}
  .title2{text-align: right;}
- .content{width:90%; height: 70%; margin: auto;}
+ .content{width:90%; height: 50%; margin: auto; overflow: auto;}
  .confirm{width:90%; height: 20%; display: flex; flex-direction: column; margin: auto; margin-top: 50px;}
 </style>
 </head>
@@ -70,7 +70,7 @@
     <input type="checkbox" class="form-check-input" value="agree">상기 내용에 동의하며, 해당과목을 수강신청 합니다.
     </label>
     </div>
-    <div align="center">
+    <div align="center" style="margin-top: 5px;">
     <button type="button" class="btn btn-secondary">수강신청</button>
     </div>
     </form>

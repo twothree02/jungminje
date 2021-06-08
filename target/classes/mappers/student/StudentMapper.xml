@@ -27,6 +27,7 @@
 		<result property="gradeSemester" column="GRADE_SEMESTER"/>	
 
 	</resultMap>
+	
 	<resultMap type="com.care.root.student.dto.SubjectDTO" id="subject">
 		<result property="major" column="MAJOR_SEMESTER"/>
 		<result property="subjectName" column="SUBJECT_NAME"/>
@@ -38,6 +39,18 @@
 	
 	</resultMap>
 	
+	<resultMap type="com.care.root.student.dto.TuitionInfoDTO" id="tuition">
+		<result property="grade101" column="GRADE_101"/>
+		<result property="grade102" column="GRADE_102"/>
+		<result property="grade201" column="GRADE_201"/>		
+		<result property="grade202" column="GRADE_202"/>
+		<result property="paymentStu" column="PAYMENT_STU"/>
+		<result property="payment" column="PAYMENT"/>
+		<result property="regStart" column="REG_START"/>
+		<result property="regEnd" column="REG_END"/>
+	
+	</resultMap>
+	
 	<select id="studentInfo" resultMap="info">
 		select * from member_info where id_num = #{id}
 	</select>
@@ -45,5 +58,30 @@
 	<select id="subjectInfo" resultMap="subject">
 		select * from subject_all where MAJOR_SEMESTER = #{major} and #{gradeSemester} >= GRADE_SEMESTER order by GRADE_SEMESTER asc
 	</select>
+	
+ 	<select id="tuitionInfo" resultMap="tuition">
+		select * from TUITION where id_num = #{id}
+	</select>
+	
+	<update id="tutionPayMent">
+	update member_info set BANK = #{bank}, ACCOUNT_NUM = #{account} where ID_NUM=#{idNum}
+	</update>
+	
+ 	<update id="tuitionSaveA">
+	update tuition set GRADE_101 = 'Y', PAYMENT_STU = 'Y' where ID_NUM = #{id}
+	</update>
+	
+	<update id="tuitionSaveB">
+	update tuition set GRADE_102 = 'Y', PAYMENT_STU = 'Y' where ID_NUM = #{id}
+	</update>
+	
+	<update id="tuitionSaveC">
+	update tuition set GRADE_201 = 'Y', PAYMENT_STU = 'Y' where ID_NUM = #{id}
+	</update>
+	
+	<update id="tuitionSaveD">
+	update tuition set GRADE_202 = 'Y', PAYMENT_STU = 'Y' where ID_NUM = #{id}
+	</update>
+	
 	
 </mapper>	

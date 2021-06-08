@@ -12,6 +12,19 @@
  .infomation{width:90%; height: 50%; overflow: auto; margin: auto; margin-top: 20px; border: 1px solid black;}
  .payment{width:90%; height: 20%; margin: auto; margin-top: 20px;}
 </style>
+<script type="text/javascript">
+	function payment(){
+		var str = document.getElementById("account").value;
+		if(document.getElementById("bankSelect").value == 0 || str.length == 0){
+			alert('은행 정보를 정확히 입력하세요.');
+			document.getElementById("account").focus();	
+		}else{
+			pay.submit();
+		}
+			
+	}
+</script>
+	
 </head>
 <body>
 <c:import url="../default/studentheader.jsp" />
@@ -20,6 +33,7 @@
 <div class="title">
 <h1>등록금 관리</h1>
 </div>
+<c:if test="${tuitionInfo.paymentStu == 'N' && tuitionInfo.payment == 'Y'}">
 <div class="content" align="center">
 	<table class="table" style="text-align: center;">
 						<thead class="thead-dark">
@@ -33,11 +47,11 @@
 						</thead>
 						<tbody>
 						<tr>
-							<td>경영학과/101</td>
-							<td>홍길동</td>
+							<td>${studentInfo.major}/${studentInfo.gradeSemester}</td>
+							<td>${studentInfo.name}</td>
 							<td>300 만원</td>
-							<td>N</td>
-							<td>2021.06.18 ~ 2021.06.30</td>
+							<td>${tuitionInfo.paymentStu}</td>
+							<td>${tuitionInfo.regStart }~${ tuitionInfo.regEnd}</td>
 						</tr>
 					</tbody>
 					</table>
@@ -65,7 +79,7 @@
 <div>
 <h5 style="text-decoration: underline;">환불계좌 입력</h5>
 </div>
-<form action="" id="payment" method="post">
+<form action="tuitionPayment" id="pay" method="post">
 <table class="table" style="text-align: center;">
 						<thead class="thead-dark">
 							<tr>
@@ -77,25 +91,36 @@
 						<tr>
 							<td style="width: 100px;">
 								<div class="input-group mb-3" style="width: 200px;">
-									<select class="custom-select" id="bankSelet">
+									<select class="custom-select" id="bankSelect" name="bankSelect">
 										<option value="0" selected >은행선택</option>
-										<option value="1">국민은행</option>
-										<option value="2">신한은행</option>
-										<option value="3">카카오뱅크</option>
-										<option value="4">우리은행</option>
-										<option value="5">케이뱅크</option>
+										<option value="국민은행">국민은행</option>
+										<option value="신한은행">신한은행</option>
+										<option value="카카오뱅크">카카오뱅크</option>
+										<option value="우리은행">우리은행</option>
+										<option value="케이뱅크">케이뱅크</option>
+										<option value="농협">농협</option>
+										<option value="우체국">우체국</option>
+										<option value="수협">수협</option>
+										
 									</select>
 								</div>
 							</td>
-							<td><input type="text" class="form-control form-control" placeholder="계좌번호 입력"></td>
+							<td><input type="text" class="form-control form-control" placeholder="계좌번호 입력" id="account" name="account"></td>
 						</tr>
 					</tbody>
 					</table>
     <div align="center">
-    <button type="button" class="btn btn-secondary">수강신청</button>
+    <button type="button" class="btn btn-secondary" onclick="payment()">계좌등록</button>
     </div>
     </form>
 </div>
+</c:if>
+<c:if test="${tuitionInfo.paymentStu == 'Y' && tuitionInfo.payment == 'Y'}">
+<h3>등록금이 납부가 완료되었습니다.</h3>
+</c:if>
+<c:if test="${tuitionInfo.payment == 'N'}">
+<h3>등록금 납부 기간이 아닙니다.</h3>
+</c:if>
 </div>
 </body>
 </html>
