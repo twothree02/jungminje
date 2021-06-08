@@ -27,8 +27,28 @@
 		<result property="accountNum" column="account_num"/>
 	</resultMap>
 	
+	<resultMap type="com.care.root.professor.dto.GradeInfoDTO" id="gradeInfo">
+		<result property="idNum" column="id_num"/>
+		<result property="name" column="name"/>
+		<result property="majorSeme" column="major_semester"/>
+		<result property="subjectName" column="subject_name"/>
+		<result property="grade" column="grade"/>
+		<result property="score" column="score"/>
+		<result property="profName" column="prof_name"/>
+		<result property="receivedCred" column="received_cred"/>
+		<result property="applicationCred" column="application_cred"/>		
+	</resultMap>
+	
   	<select id="getJuniorList" resultMap="professor">
 		select * from member_info where position = #{position} and grade = #{grade}
+	</select>
+	
+	<select id="getSeniorList" resultMap="professor">
+		select * from member_info where position = #{position} and grade = #{grade}
+	</select>
+	
+	<select id="getGradeInfo" resultMap="gradeInfo">
+		select * from grade_info where subject_name = #{lecName}
 	</select>
   
   
