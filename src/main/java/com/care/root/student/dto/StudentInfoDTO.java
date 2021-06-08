@@ -22,7 +22,9 @@ public class StudentInfoDTO {
 	private String officeAddr;
 	private String bank;
 	private String accountNum;
+	private int gradeSemester;
 	
+
 	public String getIdNum() {
 		return idNum;
 	}
@@ -149,7 +151,12 @@ public class StudentInfoDTO {
 	public void setAccountNum(String accountNum) {
 		this.accountNum = accountNum;
 	}
-	
+	public int getGradeSemester() {
+		return gradeSemester;
+	}
+	public void setGradeSemester(int gradeSemester) {
+		this.gradeSemester = gradeSemester;
+	}
 	
 	
 }

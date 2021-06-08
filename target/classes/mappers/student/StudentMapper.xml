@@ -23,12 +23,27 @@
 		<result property="imageFile" column="IMAGE_FILE"/>
 		<result property="officeAddr" column="OFFICE_ADDR"/>
 		<result property="bank" column="BANK"/>
-		<result property="accountNum" column="ACCOUNT_NUM"/>
-		
+		<result property="accountNum" column="ACCOUNT_NUM"/>	
+		<result property="gradeSemester" column="GRADE_SEMESTER"/>	
+
+	</resultMap>
+	<resultMap type="com.care.root.student.dto.SubjectDTO" id="subject">
+		<result property="major" column="MAJOR_SEMESTER"/>
+		<result property="subjectName" column="SUBJECT_NAME"/>
+		<result property="professor" column="PROF_NAME"/>		
+		<result property="classRoom" column="CLASSROOM"/>
+		<result property="lectureTime" column="LECTURE_TIME"/>
+		<result property="year" column="YEAR"/>
+		<result property="gradeSemester" column="GRADE_SEMESTER"/>
+	
 	</resultMap>
 	
 	<select id="studentInfo" resultMap="info">
 		select * from member_info where id_num = #{id}
+	</select>
+	
+	<select id="subjectInfo" resultMap="subject">
+		select * from subject_all where MAJOR_SEMESTER = #{major} and #{gradeSemester} >= GRADE_SEMESTER order by GRADE_SEMESTER asc
 	</select>
 	
 </mapper>	

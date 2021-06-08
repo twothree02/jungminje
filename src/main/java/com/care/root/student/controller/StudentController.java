@@ -29,7 +29,7 @@ public class StudentController implements MemberSessionName{
 		@RequestMapping("totalInquiry_C")
 		public String totalInquiry_C(Model model, HttpSession session) {
 			String id = (String) session.getAttribute(LOGIN);
-			ss.studentInfo(model, id);
+			ss.subjectInfo(model, id);
 			return "student/totalInquiry_C";
 		}
 		

@@ -120,59 +120,39 @@ div {
 				<button type="button" class="btn btn-secondary" onclick="location.href='${contextPath }/root/student/totalInquiry_T'">등록/장학</button>
 			</div>
 		</div>
-			<div class="content">
-		<table class="table" style="margin-top: 7px; text-align: center;">
+			<div class="content" style="display: flex;">
+		<table class="table" style="margin-top: 7px; text-align: center; width: 80px;">
 			<thead class="thead-dark">
 				<tr>
 					<th>번호</th>
+				</tr>
+			</thead>
+			<tbody>
+			<c:forEach var="num" begin="1" end="${repeat}">
+				<tr>
+					<td>${num}</td>
+				</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<table class="table" style="margin-top: 7px; text-align: center;">
+			<thead class="thead-dark">
+				<tr>
+					<th>학과_학기</th>
 					<th>교과목</th>
 					<th>강의실</th>
 					<th>교 수</th>
 				</tr>
 			</thead>
 			<tbody>
+			<c:forEach var="list" items="${subject}" >
 				<tr>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-					<td>john@example.com</td>
+					<td>${list.major}-${list.gradeSemester}</td>
+					<td>${list.subjectName}</td>
+					<td>${list.classRoom}</td>
+					<td>${list.professor}</td>
 				</tr>
-				<tr>
-					<td>Mary</td>
-					<td>Moe</td>
-					<td>mary@example.com</td>
-					<td>mary@example.com</td>
-				</tr>
-				<tr>
-					<td>July</td>
-					<td>Dooley</td>
-					<td>july@example.com</td>
-					<td>july@example.com</td>
-				</tr>
-				<tr>
-					<td>July</td>
-					<td>Dooley</td>
-					<td>july@example.com</td>
-					<td>july@example.com</td>
-				</tr>
-				<tr>
-					<td>July</td>
-					<td>Dooley</td>
-					<td>july@example.com</td>
-					<td>july@example.com</td>
-				</tr>
-				<tr>
-					<td>July</td>
-					<td>Dooley</td>
-					<td>july@example.com</td>
-					<td>july@example.com</td>
-				</tr>
-				<tr>
-					<td>July</td>
-					<td>Dooley</td>
-					<td>july@example.com</td>
-					<td>july@example.com</td>
-				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 		</div>
