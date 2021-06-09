@@ -25,6 +25,7 @@
 		<result property="bank" column="BANK"/>
 		<result property="accountNum" column="ACCOUNT_NUM"/>	
 		<result property="gradeSemester" column="GRADE_SEMESTER"/>	
+		<result property="classReq" column="CLASS_REQ"/>	
 
 	</resultMap>
 	
@@ -55,8 +56,16 @@
 		select * from member_info where id_num = #{id}
 	</select>
 	
-	<select id="subjectInfo" resultMap="subject">
+	<select id="subjectInfoA" resultMap="subject">
 		select * from subject_all where MAJOR_SEMESTER = #{major} and #{gradeSemester} >= GRADE_SEMESTER order by GRADE_SEMESTER asc
+	</select>
+	
+	<select id="subjectInfoB" resultMap="subject">
+		select * from subject_all where MAJOR_SEMESTER = #{major} and #{gradeSemester} > GRADE_SEMESTER order by GRADE_SEMESTER asc
+	</select>
+	
+	<select id="subjectInfoC" resultMap="subject">
+		select * from subject_all where MAJOR_SEMESTER = #{major} and #{gradeSemester} = GRADE_SEMESTER order by GRADE_SEMESTER asc
 	</select>
 	
  	<select id="tuitionInfo" resultMap="tuition">
@@ -81,6 +90,10 @@
 	
 	<update id="tuitionSaveD">
 	update tuition set GRADE_202 = 'Y', PAYMENT_STU = 'Y' where ID_NUM = #{id}
+	</update>
+	
+	<update id="classReq">
+	update member_info set CLASS_REQ = #{classReq} where ID_NUM = #{id}
 	</update>
 	
 	

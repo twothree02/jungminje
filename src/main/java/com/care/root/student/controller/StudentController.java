@@ -54,9 +54,19 @@ public class StudentController implements MemberSessionName{
 		}
 		
 		@RequestMapping("classRequest")
-		public String classRequest() {
+		public String classRequest(Model model, HttpSession session) {
+			String id = (String) session.getAttribute(LOGIN);
+			ss.classRequest(model, id);
 			
 			return "student/classRequest";
+		}
+		
+		@PostMapping("classReqChk")
+		public String classReqChk(HttpSession session) {
+			String id = (String) session.getAttribute(LOGIN);
+			ss.classReqChk(id);
+			
+			return "redirect:classRequest";
 		}
 		
 		@RequestMapping("gradeInquiry")

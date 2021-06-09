@@ -23,7 +23,9 @@ public class StudentInfoDTO {
 	private String bank;
 	private String accountNum;
 	private int gradeSemester;
+	private int classReq;
 	
+
 
 	public String getIdNum() {
 		return idNum;
@@ -157,6 +159,11 @@ public class StudentInfoDTO {
 	public void setGradeSemester(int gradeSemester) {
 		this.gradeSemester = gradeSemester;
 	}
-	
+	public int getClassReq() {
+		return classReq;
+	}
+	public void setClassReq(int classReq) {
+		this.classReq = classReq;
+	}
 	
 }

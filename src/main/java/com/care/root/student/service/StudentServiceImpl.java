@@ -37,10 +37,21 @@ public class StudentServiceImpl implements StudentService{
 			StudentInfoDTO dto = mapper.studentInfo(id);
 			String birthDate = dto.getResidentNum().substring(0, 6);
 			dto.setBirthDate(birthDate);
-			ArrayList<SubjectDTO> list = mapper.subjectInfo(dto.getGradeSemester(), dto.getMajor());
+			ArrayList<SubjectDTO> list = null;
+			if(dto.getGradeSemester() == dto.getClassReq()) {
+				list = mapper.subjectInfoA(dto.getGradeSemester(), dto.getMajor());
+			}else {
+				list = mapper.subjectInfoB(dto.getGradeSemester(), dto.getMajor());
+			}
+			
 			model.addAttribute("info", dto);
 			model.addAttribute("subject", list);
-			model.addAttribute("repeat", list.size());
+			if(list.size() == 0) {
+				model.addAttribute("repeat", 1);
+			}else {
+				model.addAttribute("repeat", list.size());
+			}
+			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -95,6 +106,19 @@ public class StudentServiceImpl implements StudentService{
 			 * "<script>alert('계좌번호가 등록에 실패하였습니다.');</script>"; }
 			 */
 		return message;
+	}
+	@Override
+	public void classRequest(Model model, String id) {
+		StudentInfoDTO infoDTO = mapper.studentInfo(id);
+		ArrayList<SubjectDTO> list =  mapper.subjectInfoC(infoDTO.getGradeSemester(), infoDTO.getMajor());
+		model.addAttribute("info", infoDTO);
+		model.addAttribute("list", list);
+		
+	}
+	@Override
+	public void classReqChk(String id) {
+		StudentInfoDTO infoDTO = mapper.studentInfo(id);
+		mapper.classReq(id, infoDTO.getGradeSemester());
 	}
 
 

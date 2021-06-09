@@ -145,6 +145,8 @@ div {
 				</tr>
 			</thead>
 			<tbody>
+		<c:choose>
+			<c:when test="${subject.size() != 0}">
 			<c:forEach var="list" items="${subject}" >
 				<tr>
 					<td>${list.major}-${list.gradeSemester}</td>
@@ -153,6 +155,13 @@ div {
 					<td>${list.professor}</td>
 				</tr>
 				</c:forEach>
+				</c:when>
+				<c:otherwise>
+				<tr>
+				<th colspan="4">수강신청 내역이 없습니다.</th>
+				</tr>
+				</c:otherwise>
+			</c:choose> 
 			</tbody>
 		</table>
 		</div>

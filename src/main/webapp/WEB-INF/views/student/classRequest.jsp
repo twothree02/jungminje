@@ -17,12 +17,11 @@
 <script type="text/javascript">
 	function req(){
 		if(document.getElementById("classChk").checked){
-			alert(document.getElementById("classChk").value);
+			clsssReq.submit();
 		}else{
 			alert("수강동의를 선택해 주세요");
 		}
-		
-			
+	
 	}
 </script>
 </head>
@@ -33,7 +32,7 @@
 <h1>수강신청</h1>
 </div>
 <div class="title2">
-<h5>경영학과-101/1학년</h5>
+<h5>${info.major}-${info.gradeSemester} / ${info.grade}학년</h5>
 </div>
 <div class="content" align="center">
 	<table class="table" style="text-align: center;">
@@ -46,37 +45,22 @@
 							</tr>
 						</thead>
 						<tbody>
+						<c:forEach var="dto" items="${list}" >
 						<tr>
-							<td>재무관리</td>
-							<td>수 1,2/금 3</td>
-							<td>사회관 101</td>
-							<td>홍길동</td>
+							<td>${dto.major}</td>
+							<td>${dto.lectureTime}</td>
+							<td>${dto.classRoom}</td>
+							<td>${dto.professor}</td>
 						</tr>
-						<tr>
-							<td>재무관리</td>
-							<td>수 1,2/금 3</td>
-							<td>사회관 101</td>
-							<td>홍길동</td>
-						</tr>
-						<tr>
-							<td>재무관리</td>
-							<td>수 1,2/금 3</td>
-							<td>사회관 101</td>
-							<td>홍길동</td>
-						</tr>
-						<tr>
-							<td>재무관리</td>
-							<td>수 1,2/금 3</td>
-							<td>사회관 101</td>
-							<td>홍길동</td>
-						</tr>
-
+						</c:forEach>
 					</tbody>
 					</table>
 
 </div>
 <div class="confirm">
-	<form action="" id="clsssReq" method="POST">
+	<c:choose>
+	<c:when test="${info.gradeSemester != info.classReq }">
+	<form action="classReqChk" id="clsssReq" method="POST">
 	<div style="text-align: center;">
 	<label class="form-check-label">
     <input type="checkbox" class="form-check-input" id="classChk"  name="classChk" value="agree">상기 내용에 동의하며, 해당과목을 수강신청 합니다.
@@ -86,6 +70,11 @@
     <button type="button" class="btn btn-secondary" onclick="req()">수강신청</button>
     </div>
     </form>
+    </c:when>
+    <c:otherwise>
+    <h3>수강신청이 완료 되었습니다.</h3>
+    </c:otherwise>
+    </c:choose>
 </div>
 
 </div>
