@@ -13,6 +13,18 @@
  .content{width:90%; height: 50%; margin: auto; overflow: auto;}
  .confirm{width:90%; height: 20%; display: flex; flex-direction: column; margin: auto; margin-top: 50px;}
 </style>
+
+<script type="text/javascript">
+	function req(){
+		if(document.getElementById("classChk").checked){
+			alert(document.getElementById("classChk").value);
+		}else{
+			alert("수강동의를 선택해 주세요");
+		}
+		
+			
+	}
+</script>
 </head>
 <body>
 <c:import url="../default/studentheader.jsp" />
@@ -64,14 +76,14 @@
 
 </div>
 <div class="confirm">
-	<form action="" id="fmt">
+	<form action="" id="clsssReq" method="POST">
 	<div style="text-align: center;">
 	<label class="form-check-label">
-    <input type="checkbox" class="form-check-input" value="agree">상기 내용에 동의하며, 해당과목을 수강신청 합니다.
+    <input type="checkbox" class="form-check-input" id="classChk"  name="classChk" value="agree">상기 내용에 동의하며, 해당과목을 수강신청 합니다.
     </label>
     </div>
     <div align="center" style="margin-top: 5px;">
-    <button type="button" class="btn btn-secondary">수강신청</button>
+    <button type="button" class="btn btn-secondary" onclick="req()">수강신청</button>
     </div>
     </form>
 </div>
