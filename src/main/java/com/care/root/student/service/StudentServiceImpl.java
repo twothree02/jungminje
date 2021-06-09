@@ -35,6 +35,8 @@ public class StudentServiceImpl implements StudentService{
 
 		try {
 			StudentInfoDTO dto = mapper.studentInfo(id);
+			String birthDate = dto.getResidentNum().substring(0, 6);
+			dto.setBirthDate(birthDate);
 			ArrayList<SubjectDTO> list = mapper.subjectInfo(dto.getGradeSemester(), dto.getMajor());
 			model.addAttribute("info", dto);
 			model.addAttribute("subject", list);
