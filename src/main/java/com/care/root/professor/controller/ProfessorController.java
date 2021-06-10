@@ -1,6 +1,10 @@
 package com.care.root.professor.controller;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.care.root.professor.dto.ProfessorDTO;
 import com.care.root.professor.service.ProfessorService;
@@ -22,10 +28,19 @@ public class ProfessorController {
 	public String allStudent() {
 		return "professor/allStudent";
 	}
-	@GetMapping("input_grade")
-	public String inputGrade(Model model) {
+	@PostMapping("input_grade")
+	public void inputGrade(MultipartHttpServletRequest mul,
+								HttpServletResponse response,
+								HttpServletRequest request) throws Exception {
+		String message = ps.inputGrade(mul, request);
+		PrintWriter out = response.getWriter();
+		response.setContentType("text/html; charset=utf-8");
+		out.print(message);
+	}
+	@GetMapping("show_grade")
+	public String showGrade(Model model) {
 		String lecName = "정보윤리"; //나중에 로그인하는 교수가 가르치는 과목 받아와서 바꿔야함.
-		ps.inputGrade(model, lecName);
+		ps.showGrade(model, lecName);
 		return "professor/inputGrade";
 	}
 	@PostMapping(value = "junior_list", produces = "application/json; charset=utf-8")

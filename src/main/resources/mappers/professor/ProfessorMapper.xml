@@ -48,8 +48,12 @@
 	</select>
 	
 	<select id="getGradeInfo" resultMap="gradeInfo">
-		select * from grade_info where subject_name = #{lecName}
+		select * from grade_info where subject_name = #{lecName} 
 	</select>
+	
+	<update id="saveScore">
+		update grade_info set score=#{score}, grade=#{grade} where id_num = #{idNum}
+	</update>
   
   
   
