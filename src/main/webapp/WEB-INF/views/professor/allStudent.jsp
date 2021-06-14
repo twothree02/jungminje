@@ -25,7 +25,8 @@
 				html += "<td align='center'>"+list[i].major+"</td></tr>"
 				}
 				html += "</table>"
-				$("#juniorList").empty().append(html) //empty를 넣어줌으로 한 번만 호출되게
+				$("#stuList").empty().append(html) //empty를 넣어줌으로 한 번만 호출되게
+				
 				
 			}
 			, error:function(){
@@ -50,7 +51,8 @@
 				html += "<td align='center'>"+list[i].major+"</td></tr>"
 				}
 				html += "</table>"
-				$("#seniorList").empty().append(html) //empty를 넣어줌으로 한 번만 호출되게
+				$("#stuList").empty().append(html) //empty를 넣어줌으로 한 번만 호출되게, 같은 이름으로 걸어주니 모든 게 해결...
+				
 				
 			}
 			, error:function(){
@@ -58,7 +60,6 @@
 			}
 		})
 	}
-
 </script>
 
 </head>
@@ -68,8 +69,8 @@
   <button type="button" class="btn btn-secondary" onclick="juniorList()" style="margin-top:20px; margin-left:20px;">1학년</button>
   <button type="button" class="btn btn-secondary" onclick="seniorList()" style="margin-top:20px;">2학년</button>
 </div>
-<div id="juniorList"></div>
-<div id="seniorList"></div>
+<div id="stuList"></div>
+
 
 
 

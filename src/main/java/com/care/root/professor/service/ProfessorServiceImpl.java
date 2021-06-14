@@ -29,6 +29,23 @@ public class ProfessorServiceImpl implements ProfessorService{
 		return pm.getSeniorList(position, grade);
 	}
 	@Override
+	public ArrayList<ProfessorDTO> getBProfessorList(String position, String major) {
+		return pm.getBProfessorList(position, major);
+	}
+	@Override
+	public ArrayList<ProfessorDTO> getIProfessorList(String position, String major) {
+		return pm.getIProfessorList(position, major);
+	}
+	@Override
+	public ArrayList<ProfessorDTO> getCProfessorList(String position, String major) {
+		return pm.getCProfessorList(position, major);
+	}
+	@Override
+	public ArrayList<ProfessorDTO> getAdminList(String position) {
+		
+		return pm.getAdminList(position);
+	}
+	@Override
 	public void showGrade(Model model, String lecName) {
 		model.addAttribute("gradeInfo", pm.getGradeInfo(lecName)); //성적입력에 넣을 값
 	}
@@ -62,11 +79,8 @@ public class ProfessorServiceImpl implements ProfessorService{
 			pm.saveScore(dto);
 		}
 		
-		/*
-		dto.setScore(Integer.parseInt(mul.getParameter("inputScore")));
-		dto.setGrade(changeGrade(Integer.parseInt(mul.getParameter("inputScore"))));
-		*/
 		// int result = pm.saveScore(dto);
+		// saveScore 반환값을 어떻게 전역변수로 돌려받을지 생각해야 함.
 		int result = 1;
 		MessageDTO mDTO = new MessageDTO();
 		mDTO.setResult(result);
@@ -78,7 +92,9 @@ public class ProfessorServiceImpl implements ProfessorService{
 		mDTO.setFailURL("/professor/show_grade");
 		String message = showMessage(mDTO);
 		return message;
+		
 	}
+
 	public String convertGrade(int score) {
 		//0미만 100초과 밑 문자 오류처리 필요, 잘못 입력했을 때 try catch
 			if(score>=95) return "A+";

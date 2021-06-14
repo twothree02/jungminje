@@ -28,6 +28,10 @@ public class ProfessorController {
 	public String allStudent() {
 		return "professor/allStudent";
 	}
+	@GetMapping("staff_network")
+	public String staffNewwork() {
+		return "professor/staffNetwork";
+	}
 	@PostMapping("input_grade")
 	public void inputGrade(MultipartHttpServletRequest mul,
 								HttpServletResponse response,
@@ -68,5 +72,39 @@ public class ProfessorController {
 		
 		return ps.getSeniorList(position,grade);
 	}
+	@PostMapping(value="admin_list", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public ArrayList<ProfessorDTO> adminList(){
+		String position = "관리자"; //행정직원 포지션을 교직원으로 할지, 관리자로 할지 정할 것
+		
+		return ps.getAdminList(position);
+	}
+	@PostMapping(value="bProfessor_list", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public ArrayList<ProfessorDTO> bProfessorList(){
+		String position = "정교수"; //행정직원 포지션을 교직원으로 할지, 관리자로 할지 정할 것
+		String major = "경영학과";
+		
+		return ps.getBProfessorList(position, major);
+	}
+ 
+@PostMapping(value="iProfessor_list", produces = "application/json; charset=utf-8")
+@ResponseBody
+public ArrayList<ProfessorDTO> iProfessorList(){
+	String position = "정교수"; //행정직원 포지션을 교직원으로 할지, 관리자로 할지 정할 것
+	String major = "정보통신과";
 	
+	return ps.getIProfessorList(position, major);
+}
+@PostMapping(value="cProfessor_list", produces = "application/json; charset=utf-8")
+@ResponseBody
+public ArrayList<ProfessorDTO> cProfessorList(){
+	String position = "정교수"; //행정직원 포지션을 교직원으로 할지, 관리자로 할지 정할 것
+	String major = "자동차공학과";
+	
+	return ps.getCProfessorList(position, major);
+}
+
+
+
 }

@@ -47,8 +47,24 @@
 		select * from member_info where position = #{position} and grade = #{grade}
 	</select>
 	
+	<select id="getAdminList" resultMap="professor">
+		select * from member_info where position = #{position}
+	</select>
+	
 	<select id="getGradeInfo" resultMap="gradeInfo">
 		select * from grade_info where subject_name = #{lecName} 
+	</select>
+	
+	<select id="getBProfessorList" resultMap="professor">
+		select * from member_info where position = #{position} and major = #{major}
+	</select>
+	
+	<select id="getIProfessorList" resultMap="professor">
+		select * from member_info where position = #{position} and major = #{major}
+	</select>
+	
+	<select id="getCProfessorList" resultMap="professor">
+		select * from member_info where position = #{position} and major = #{major}
 	</select>
 	
 	<update id="saveScore">
