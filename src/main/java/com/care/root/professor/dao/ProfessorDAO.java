@@ -10,6 +10,7 @@ import com.care.root.professor.dto.ProfessorDTO;
 public interface ProfessorDAO {
 	public ArrayList<ProfessorDTO> getJuniorList(@Param("position") String position,@Param("grade") String grade);
 	public ArrayList<ProfessorDTO> getSeniorList(@Param("position") String position,@Param("grade") String grade);
+	public ArrayList<ProfessorDTO> getSearchStu(String searchName);
 	public ArrayList<ProfessorDTO> getAdminList(String position);
 	public ArrayList<ProfessorDTO> getBProfessorList(@Param("position") String position, @Param("major") String major);
 	public ArrayList<ProfessorDTO> getIProfessorList(@Param("position") String position, @Param("major") String major);

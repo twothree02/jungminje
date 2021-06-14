@@ -60,6 +60,37 @@
 			}
 		})
 	}
+		function searchStu(){
+			let formData = {}
+			let arr = $("#frm").serializeArray()
+			for(i=0; i<arr.length;i++){
+				formData[arr[i].name] = arr[i].value
+			}
+			$.ajax({
+				url: "search_stu" , type: "POST",
+				dataType:"json",
+				data:JSON.stringify(formData),
+				contentType:"application/json;charset=utf-8",
+				success: function(list){
+					let html = "<table border='1' style='margin-top:20px; margin-left:20px;'>"
+					html += "<tr><td align='center'>번호</td><td align='center'>이름</td><td align='center'>학번</td>"
+					html += "<td align='center'>학년</td><td align='center'>학과</td><tr>"
+					for(var i=0;i<list.length;i++){
+					html += "<tr><td align='center'>"+(i+1)+"</td><td>"+list[i].name+"</td>"
+					html += "<td align='center'>"+list[i].idNum+"</td>"
+					html += "<td align='center'>"+list[i].grade+"</td>"
+					html += "<td align='center'>"+list[i].major+"</td></tr>"
+					}
+					html += "</table>"
+					$("#stuList").empty().append(html) //empty를 넣어줌으로 한 번만 호출되게, 같은 이름으로 걸어주니 모든 게 해결...
+					
+					
+				}
+				, error:function(){
+					alert('문제 발생')
+				}
+			})
+	}
 </script>
 
 </head>
@@ -69,7 +100,14 @@
   <button type="button" class="btn btn-secondary" onclick="juniorList()" style="margin-top:20px; margin-left:20px;">1학년</button>
   <button type="button" class="btn btn-secondary" onclick="seniorList()" style="margin-top:20px;">2학년</button>
 </div>
+<form name="frm" id="frm" method="post">
+	<input type="text" name="sName" id="sName">
+	<input type="button" value="검색" onclick="searchStu()">
+</form>
+
 <div id="stuList"></div>
+
+
 
 
 

@@ -2,6 +2,7 @@ package com.care.root.professor.controller;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,6 +66,7 @@ public class ProfessorController {
 //		return list;
 		return ps.getJuniorList(position, grade);
 	}
+	//responsebody는 json을 리턴할 때 많이 사용
 	@PostMapping(value="senior_list", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public ArrayList<ProfessorDTO> seniorList(){
@@ -71,6 +74,13 @@ public class ProfessorController {
 		String grade = "2";
 		
 		return ps.getSeniorList(position,grade);
+	}
+	@PostMapping(value="search_stu", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public ArrayList<ProfessorDTO> searchStu(@RequestBody Map<String,Object> map){
+		String searchName = (String)map.get("sName");
+		System.out.println(searchName);
+		return ps.getSearchStu(searchName);
 	}
 	@PostMapping(value="admin_list", produces = "application/json; charset=utf-8")
 	@ResponseBody

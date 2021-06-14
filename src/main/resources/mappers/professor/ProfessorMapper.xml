@@ -47,6 +47,10 @@
 		select * from member_info where position = #{position} and grade = #{grade}
 	</select>
 	
+	<select id="getSearchStu" resultMap="professor">
+		select * from member_info where name=#{searchName}
+	</select>
+	
 	<select id="getAdminList" resultMap="professor">
 		select * from member_info where position = #{position}
 	</select>
