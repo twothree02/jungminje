@@ -23,5 +23,6 @@ public interface ProfessorService {
 	public String majorCheck(String pId);
 	public void showGrade(Model model, String lecName);
 	public String inputGrade(MultipartHttpServletRequest mul, HttpServletRequest request);
+	public void detailStuInfo(Model model, String id);
 	
 }

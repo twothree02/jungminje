@@ -20,4 +20,5 @@ public interface ProfessorDAO {
 	public String getLecCheck(String pId);
 	public String getMajorCheck(String pId);
 	public int saveScore(GradeInfoDTO dto); //성공하면 성공된 갯수가 int로 넘어감. ex)데이터값이 3개 있다면 3이 넘어감.
+	public ArrayList<ProfessorDTO> detailStuInfo(String id);
 }

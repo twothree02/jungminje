@@ -164,6 +164,13 @@ public class ProfessorServiceImpl implements ProfessorService{
 		}
 		return message;
 	}
+	@Override
+	public void detailStuInfo(Model model, String id) {
+		System.out.println(id);
+		model.addAttribute("detailStuInfo", pm.detailStuInfo(id));
+		
+	}
+	
 	
 	
 }

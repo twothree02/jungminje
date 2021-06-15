@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,14 +21,14 @@
 				html += "<td align='center'>학년</td><td align='center'>학과</td><tr>"
 				for(var i=0;i<list.length;i++){
 				html += "<tr><td align='center'>"+(i+1)+"</td><td>"+list[i].name+"</td>"
-				html += "<td align='center'>"+list[i].idNum+"</td>"
+				html += "<td align='center'>"+"<form action='${contextPath }/professor/detail_stuInfo' enctype='multipart/form-data' method='post'>"
+						+"<input type='text' name='id' value='"+list[i].idNum+"' readonly>"
+						+"<input type='submit' value='상세정보'></form></td>"
 				html += "<td align='center'>"+list[i].grade+"</td>"
 				html += "<td align='center'>"+list[i].major+"</td></tr>"
 				}
 				html += "</table>"
-				$("#stuList").empty().append(html) //empty를 넣어줌으로 한 번만 호출되게
-				
-				
+					$("#stuList").empty().append(html) //empty를 넣어줌으로 한 번만 호출되게, 같은 이름으로 걸어주니 모든 게 해결...
 			}
 			, error:function(){
 				alert('문제 발생')
@@ -46,14 +47,14 @@
 				html += "<td align='center'>학년</td><td align='center'>학과</td><tr>"
 				for(var i=0;i<list.length;i++){
 				html += "<tr><td align='center'>"+(i+1)+"</td><td>"+list[i].name+"</td>"
-				html += "<td align='center'>"+list[i].idNum+"</td>"
+				html += "<td align='center'>"+"<form action='${contextPath }/professor/detail_stuInfo' enctype='multipart/form-data' method='post'>"
+						+"<input type='text' name='id' value='"+list[i].idNum+"' readonly>"
+						+"<input type='submit' value='상세정보'></form></td>"
 				html += "<td align='center'>"+list[i].grade+"</td>"
 				html += "<td align='center'>"+list[i].major+"</td></tr>"
 				}
 				html += "</table>"
-				$("#stuList").empty().append(html) //empty를 넣어줌으로 한 번만 호출되게, 같은 이름으로 걸어주니 모든 게 해결...
-				
-				
+					$("#stuList").empty().append(html) //empty를 넣어줌으로 한 번만 호출되게, 같은 이름으로 걸어주니 모든 게 해결...
 			}
 			, error:function(){
 				alert('문제 발생')
@@ -77,14 +78,14 @@
 					html += "<td align='center'>학년</td><td align='center'>학과</td><tr>"
 					for(var i=0;i<list.length;i++){
 					html += "<tr><td align='center'>"+(i+1)+"</td><td>"+list[i].name+"</td>"
-					html += "<td align='center'>"+list[i].idNum+"</td>"
+					html += "<td align='center'>"+"<form action='${contextPath }/professor/detail_stuInfo' enctype='multipart/form-data' method='post'>"
+							+"<input type='text' name='id' value='"+list[i].idNum+"' readonly>"
+							+"<input type='submit' value='상세정보'></form></td>"
 					html += "<td align='center'>"+list[i].grade+"</td>"
 					html += "<td align='center'>"+list[i].major+"</td></tr>"
 					}
 					html += "</table>"
-					$("#stuList").empty().append(html) //empty를 넣어줌으로 한 번만 호출되게, 같은 이름으로 걸어주니 모든 게 해결...
-					
-					
+						$("#stuList").empty().append(html) //empty를 넣어줌으로 한 번만 호출되게, 같은 이름으로 걸어주니 모든 게 해결...
 				}
 				, error:function(){
 					alert('문제 발생')

@@ -76,6 +76,10 @@
 		select * from member_info where position = #{position} and major = #{major}
 	</select>
 	
+	<select id="detailStuInfo" resultMap="professor">
+		select * from member_info where id_num = #{id}
+	</select>
+	
 	<select id="getLecCheck" resultType="string">
 		select teach_sub from member_info where id_Num = #{pId}
 	</select>

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.care.root.common.session.MemberSessionName;
 import com.care.root.professor.dto.ProfessorDTO;
@@ -35,6 +36,14 @@ public class ProfessorController implements MemberSessionName{
 	@GetMapping("staff_network")
 	public String staffNewwork() {
 		return "professor/staffNetwork";
+	}
+	@PostMapping("detail_stuInfo")
+	public String detailStuInfo(HttpServletRequest request, Model model){
+		String id = request.getParameter("id");
+		System.out.println(id);
+		ps.detailStuInfo(model, id);
+		
+		return "professor/detailStuInfo";
 	}
 	@PostMapping("input_grade")
 	public void inputGrade(MultipartHttpServletRequest mul,
