@@ -25,6 +25,7 @@
 		<result property="officeAddr" column="office_addr"/>
 		<result property="bank" column="bank"/>
 		<result property="accountNum" column="account_num"/>
+		<result property="teachSub" column="teach_sub"/>
 	</resultMap>
 	
 	<resultMap type="com.care.root.professor.dto.GradeInfoDTO" id="gradeInfo">
@@ -48,7 +49,11 @@
 	</select>
 	
 	<select id="getSearchStu" resultMap="professor">
-		select * from member_info where name=#{searchName}
+		select * from member_info where name=#{searchName} and position = #{position}
+	</select>
+	
+	<select id="getSearchStaff" resultMap="professor">
+		select * from member_info where name=#{searchName} and not position=#{position} 
 	</select>
 	
 	<select id="getAdminList" resultMap="professor">
@@ -69,6 +74,10 @@
 	
 	<select id="getCProfessorList" resultMap="professor">
 		select * from member_info where position = #{position} and major = #{major}
+	</select>
+	
+	<select id="getLecCheck" resultType="string">
+		select teach_sub from member_info where id_Num = #{pId}
 	</select>
 	
 	<update id="saveScore">

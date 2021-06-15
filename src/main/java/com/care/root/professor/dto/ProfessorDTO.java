@@ -22,7 +22,14 @@ public class ProfessorDTO {
 	private String officeAddr;
 	private String bank;
 	private String accountNum;
+	private String teachSub;
 	
+	public String getTeachSub() {
+		return teachSub;
+	}
+	public void setTeachSub(String teachSub) {
+		this.teachSub = teachSub;
+	}
 	public String getMajor() {
 		return major;
 	}

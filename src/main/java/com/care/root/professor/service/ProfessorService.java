@@ -13,11 +13,13 @@ import com.care.root.professor.dto.ProfessorDTO;
 public interface ProfessorService {
 	public ArrayList<ProfessorDTO> getJuniorList(String position, String grade);
 	public ArrayList<ProfessorDTO> getSeniorList(String position, String grade);
-	public ArrayList<ProfessorDTO> getSearchStu(String searchName);
+	public ArrayList<ProfessorDTO> getSearchStu(String searchName, String position);
+	public ArrayList<ProfessorDTO> getSearchStaff(String searchName, String position);
 	public ArrayList<ProfessorDTO> getAdminList(String position);
 	public ArrayList<ProfessorDTO> getBProfessorList(String position, String major);
 	public ArrayList<ProfessorDTO> getIProfessorList(String position, String major);
 	public ArrayList<ProfessorDTO> getCProfessorList(String position, String major);
+	public String lecCheck(String pId);
 	public void showGrade(Model model, String lecName);
 	public String inputGrade(MultipartHttpServletRequest mul, HttpServletRequest request);
 	

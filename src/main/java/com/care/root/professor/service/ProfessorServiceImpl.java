@@ -29,9 +29,14 @@ public class ProfessorServiceImpl implements ProfessorService{
 		return pm.getSeniorList(position, grade);
 	}
 	@Override
-	public ArrayList<ProfessorDTO> getSearchStu(String searchName) {
+	public ArrayList<ProfessorDTO> getSearchStu(String searchName, String position) {
 		
-		return pm.getSearchStu(searchName);
+		return pm.getSearchStu(searchName, position);
+	}
+	@Override
+	public ArrayList<ProfessorDTO> getSearchStaff(String searchName, String position) {
+	
+		return pm.getSearchStaff(searchName, position);
 	}
 	@Override
 	public ArrayList<ProfessorDTO> getBProfessorList(String position, String major) {
@@ -49,6 +54,12 @@ public class ProfessorServiceImpl implements ProfessorService{
 	public ArrayList<ProfessorDTO> getAdminList(String position) {
 		
 		return pm.getAdminList(position);
+	}
+	
+	@Override
+	public String lecCheck(String pId) {
+		
+		return pm.getLecCheck(pId);
 	}
 	@Override
 	public void showGrade(Model model, String lecName) {
