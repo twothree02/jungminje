@@ -41,11 +41,11 @@
 	</resultMap>
 	
   	<select id="getJuniorList" resultMap="professor">
-		select * from member_info where position = #{position} and grade = #{grade}
+		select * from member_info where major = #{major} and grade = #{grade} and position=#{position}
 	</select>
 	
 	<select id="getSeniorList" resultMap="professor">
-		select * from member_info where position = #{position} and grade = #{grade}
+		select * from member_info where major = #{major} and grade = #{grade} and position=#{position}
 	</select>
 	
 	<select id="getSearchStu" resultMap="professor">
@@ -78,6 +78,10 @@
 	
 	<select id="getLecCheck" resultType="string">
 		select teach_sub from member_info where id_Num = #{pId}
+	</select>
+	
+	<select id="getMajorCheck" resultType="string">
+		select major from member_info where id_Num = #{pId}
 	</select>
 	
 	<update id="saveScore">

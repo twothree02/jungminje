@@ -58,29 +58,28 @@ public class ProfessorController implements MemberSessionName{
 	}
 	@PostMapping(value = "junior_list", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public ArrayList<ProfessorDTO> juniorList() {
-		//나중에 학과별로도 구분지어줘야 한다면 넣어줄 것.
-		String position = "학생";
-		String grade = "1";
-		//System.out.println("확인 메시지"); //잘 넘어오나 확인용
+	public ArrayList<ProfessorDTO> juniorList(HttpSession session) {
+		ProfessorDTO dto = new ProfessorDTO();
+		//세션으로(idNum으로) 전공 끌고와 본인 과 학생들만 보이게 해줬음.
+		String pId = (String)session.getAttribute(LOGIN);
+		dto.setMajor(ps.majorCheck(pId));
+		dto.setGrade(1);
+		dto.setPosition("학생");
 		
-//		ArrayList<ProfessorDTO> list = new ArrayList<ProfessorDTO>();
-//		for(int i=0;i<3;i++) {
-//		ProfessorDTO dto = new ProfessorDTO();
-//		dto.setIdNum("값"+i);
-//		list.add(dto);
-//		}
-//		return list;
-		return ps.getJuniorList(position, grade);
+		return ps.getJuniorList(dto);
 	}
 	//responsebody는 json을 리턴할 때 많이 사용
 	@PostMapping(value="senior_list", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public ArrayList<ProfessorDTO> seniorList(){
-		String position = "학생";
-		String grade = "2";
+	public ArrayList<ProfessorDTO> seniorList(HttpSession session){
+		ProfessorDTO dto = new ProfessorDTO();
+		//세션으로(idNum으로) 전공 끌고와 본인 과 학생들만 보이게 해줬음.
+		String pId = (String)session.getAttribute(LOGIN);
+		dto.setMajor(ps.majorCheck(pId));
+		dto.setGrade(2);
+		dto.setPosition("학생");
 		
-		return ps.getSeniorList(position,grade);
+		return ps.getSeniorList(dto);
 	}
 	@PostMapping(value="search_stu", produces = "application/json; charset=utf-8")
 	@ResponseBody

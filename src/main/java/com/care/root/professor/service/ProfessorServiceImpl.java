@@ -22,11 +22,11 @@ import com.care.root.professor.dto.ProfessorDTO;
 public class ProfessorServiceImpl implements ProfessorService{
 	@Autowired ProfessorDAO pm;
 	@Override
-	public ArrayList<ProfessorDTO> getJuniorList(String position, String grade) {
-		return pm.getJuniorList(position, grade);
+	public ArrayList<ProfessorDTO> getJuniorList(ProfessorDTO dto) {
+		return pm.getJuniorList(dto);
 	}
-	public ArrayList<ProfessorDTO> getSeniorList(String position, String grade) {
-		return pm.getSeniorList(position, grade);
+	public ArrayList<ProfessorDTO> getSeniorList(ProfessorDTO dto) {
+		return pm.getSeniorList(dto);
 	}
 	@Override
 	public ArrayList<ProfessorDTO> getSearchStu(String searchName, String position) {
@@ -60,6 +60,36 @@ public class ProfessorServiceImpl implements ProfessorService{
 	public String lecCheck(String pId) {
 		
 		return pm.getLecCheck(pId);
+	}
+	@Override
+	public String majorCheck(String pId) {
+		
+		return pm.getMajorCheck(pId);
+	}
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
+	}
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return super.clone();
+	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
+	@Override
+	protected void finalize() throws Throwable {
+		// TODO Auto-generated method stub
+		super.finalize();
 	}
 	@Override
 	public void showGrade(Model model, String lecName) {
