@@ -10,7 +10,7 @@
  div{/* border: 1px solid black; */}
  .title{}
  .title2{text-align: right;}
- .content{width:90%; height: 70%; margin: auto;}
+ .content{width:90%; height: 70%; justify-content: center; display: flex; overflow: auto; padding-top: 15px; margin: auto;}
 </style>
 </head>
 <body>
@@ -20,48 +20,52 @@
 <h1>성적조회</h1>
 </div>
 <div class="title2">
-<h5>경영학과-101/1학년</h5>
+<h5>${info.major}-${info.gradeSemester} / ${info.grade}학년</h5>
 </div>
 <div class="content" align="center">
-	<table class="table" style="text-align: center;">
+	<table class="table" style="text-align: center; width: 80px;">
+			<thead class="thead-dark">
+				<tr>
+					<th>번호</th>
+				</tr>
+			</thead>
+			<tbody>
+			<c:forEach var="num" begin="1" end="${repeat}">
+				<tr>
+					<td>${num}</td>
+				</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+
+	<table class="table" style="text-align: center; ">
 						<thead class="thead-dark">
 							<tr>
-								<th>번호</th>
 								<th>과목명</th>
 								<th>담당교수</th>
-								<th>점수</th>
-								<th>학점</th>
+								<th >점수</th>
+								<th >학점</th>
 							</tr>
 						</thead>
 						<tbody>
+						<c:choose>
+						<c:when test="${grade.size() != 0 }">
+						<c:forEach var="list" items="${grade}">
 						<tr>
-							<td>1</td>
-							<td>미시경제학</td>
-							<td>홍길순</td>
-							<td>90</td>
-							<td>A</td>
+							<td>${list.subjectName }</td>
+							<td>${list.profName }</td>
+							<td>${list.score }</td>
+							<td>${list.grade }</td>
 						</tr>
+						</c:forEach>
+						</c:when>
+						<c:otherwise>
 						<tr>
-							<td>1</td>
-							<td>미시경제학</td>
-							<td>홍길순</td>
-							<td>90</td>
-							<td>A</td>
+							<th colspan="4">해당학기 성적이 입력되지 않았습니다.</th>
 						</tr>
-						<tr>
-							<td>1</td>
-							<td>미시경제학</td>
-							<td>홍길순</td>
-							<td>90</td>
-							<td>A</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>미시경제학</td>
-							<td>홍길순</td>
-							<td>90</td>
-							<td>A</td>
-						</tr>
+						
+						</c:otherwise>
+						</c:choose>
 					</tbody>
 					</table>
 

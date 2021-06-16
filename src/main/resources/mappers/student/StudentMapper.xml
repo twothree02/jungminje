@@ -37,7 +37,6 @@
 		<result property="lectureTime" column="LECTURE_TIME"/>
 		<result property="year" column="YEAR"/>
 		<result property="gradeSemester" column="GRADE_SEMESTER"/>
-	
 	</resultMap>
 	
 	<resultMap type="com.care.root.student.dto.TuitionInfoDTO" id="tuition">
@@ -49,8 +48,32 @@
 		<result property="payment" column="PAYMENT"/>
 		<result property="regStart" column="REG_START"/>
 		<result property="regEnd" column="REG_END"/>
-	
 	</resultMap>
+	
+	<resultMap type="com.care.root.student.dto.GradeDTO" id="grade">
+		<result property="idNum" column="ID_NUM"/>
+		<result property="name" column="NAME"/>
+		<result property="major" column="MAJOR_SEMESTER"/>		
+		<result property="subjectName" column="SUBJECT_NAME"/>
+		<result property="grade" column="GRADE"/>
+		<result property="score" column="SCORE"/>
+		<result property="profName" column="PROF_NAME"/>
+		<result property="receivedCred" column="RECEIVED_CRED"/>
+		<result property="applicationCred" column="APPLICATION_CRED"/>
+		<result property="semester" column="GRADE_SEMESTER"/>
+	</resultMap>
+	
+	<resultMap type="com.care.root.student.dto.RegisterInfoDTO" id="register">
+		<result property="major" column="MAJOR_SEMESTER"/>
+		<result property="idNum" column="ID_NUM"/>
+		<result property="name" column="NAME"/>		
+		<result property="scholarship" column="SCHOLARSHIP"/>
+		<result property="totalScore" column="TOTAL_SCORE"/>
+		<result property="rank" column="RANK"/>
+		<result property="year" column="YEAR"/>
+		<result property="gradeSemester" column="GRADE_SEMESTER"/>
+	</resultMap>
+	
 	
 	<select id="studentInfo" resultMap="info">
 		select * from member_info where id_num = #{id}
@@ -70,6 +93,14 @@
 	
  	<select id="tuitionInfo" resultMap="tuition">
 		select * from TUITION where id_num = #{id}
+	</select>
+	
+	<select id="gradeInfo" resultMap="grade">
+		select * from GRADE_INFO where id_num = #{id} and GRADE_SEMESTER = #{semester}
+	</select>
+	
+	<select id="registerInfo" resultMap="register">
+		select * from REGISTER_INFO where id_num = #{id} and GRADE_SEMESTER = #{semester}
 	</select>
 	
 	<update id="tutionPayMent">
@@ -95,6 +126,8 @@
 	<update id="classReq">
 	update member_info set CLASS_REQ = #{classReq} where ID_NUM = #{id}
 	</update>
+	
+	
 	
 	
 </mapper>	

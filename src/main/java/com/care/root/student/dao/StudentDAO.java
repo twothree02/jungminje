@@ -1,9 +1,12 @@
 package com.care.root.student.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.care.root.student.dto.GradeDTO;
+import com.care.root.student.dto.RegisterInfoDTO;
 import com.care.root.student.dto.StudentInfoDTO;
 import com.care.root.student.dto.SubjectDTO;
 import com.care.root.student.dto.TuitionInfoDTO;
@@ -21,6 +24,8 @@ public interface StudentDAO {
 	public int tuitionSaveD(String id);
 	public TuitionInfoDTO tuitionInfo(String id);
 	public int classReq(@Param("id")String id, @Param("classReq")int classReq);
+	public List<GradeDTO> gradeInfo(@Param("id")String id, @Param("semester")int semester);
+	public RegisterInfoDTO registerInfo(@Param("id")String id, @Param("semester")int semester);
 	
 	 
 }

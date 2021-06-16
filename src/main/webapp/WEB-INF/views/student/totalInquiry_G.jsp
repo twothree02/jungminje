@@ -6,6 +6,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script type="text/javascript">
+function detailGrade(semester){
+	$.ajax({
+		url:"detailGrade/"+semester, type:"GET", dataType:"json",
+		contentType:"application/json;charset=utf-8",
+		success: function(rep){
+			
+			let html='<table class="table" style="text-align: center;">	<thead class="thead-dark">';
+			html += '<tr><th>학년/학기</th><th>교과목</th><th>취득학점</th><th>평점</th></tr></thead><tbody>'
+
+			rep.forEach(function(data){
+				
+				html += "<tr><td>"+data.semester+"</td>";
+				html += "<td>"+data.subjectName+"</td>";
+				html += "<td>"+data.receivedCred+"</td>";
+				html += "<td>"+data.grade+"</td></tr>";
+			})
+			html += "</tbody></table>";
+			$("#grade").html(html)
+			
+		}, error:function(){
+			alert('문제 발생')
+		}
+		
+	})
+}
+
+</script>
 <style type="text/css">
 div {
 	/*  border: 1px solid black; */
@@ -144,33 +173,76 @@ div {
 						</thead>
 						<tbody>
 							<tr>
-								<td><a href="#">101</a></td>
-								<td>12</td>
-								<td>12</td>
-								<td>4.5</td>
-								<td>1/40</td>
+								<td><button type="button" onclick="detailGrade(101)">101</button></td>
+								<td>${grade101.applicationCred}</td>
+								<td>${grade101.receivedCred}</td>
+								<td>${grade101.avgGrade}</td>
+								<td>${grade101.rank}</td>
 							</tr>
+						
+							<c:choose>
+							<c:when test="${info.gradeSemester >= 102 }">
 							<tr>
-								<td><a href="#">102</a></td>
-								<td>12</td>
-								<td>12</td>
-								<td>4.5</td>
-								<td>1/40</td>
+								<td><button type="button" onclick="detailGrade(102)">102</button></td>
+								<td>${grade102.applicationCred}</td>
+								<td>${grade102.receivedCred}</td>
+								<td>${grade102.avgGrade}</td>
+								<td>${grade102.rank}</td>
 							</tr>
-														<tr>
-								<td><a href="#">102</a></td>
-								<td>12</td>
-								<td>12</td>
-								<td>4.5</td>
-								<td>1/40</td>
+							</c:when>
+							<c:otherwise>
+							<tr>
+								<td>-</td>
+								<td> </td>
+								<td> </td>
+								<td> </td>
+								<td> </td>
 							</tr>
-														<tr>
-								<td><a href="#">102</a></td>
-								<td>12</td>
-								<td>12</td>
-								<td>4.5</td>
-								<td>1/40</td>
+							</c:otherwise>
+							</c:choose>
+							
+							<c:choose>
+							<c:when test="${info.gradeSemester >= 201 }">
+							<tr>
+								<td><button type="button" onclick="detailGrade(201)">201</button></td>
+								<td>${grade201.applicationCred}</td>
+								<td>${grade201.receivedCred}</td>
+								<td>${grade201.avgGrade}</td>
+								<td>${grade201.rank}</td>
 							</tr>
+							</c:when>
+							<c:otherwise>
+							<tr>
+								<td>-</td>
+								<td> </td>
+								<td> </td>
+								<td> </td>
+								<td> </td>
+							</tr>
+							</c:otherwise>
+							</c:choose>
+							
+							<c:choose>
+							<c:when test="${info.gradeSemester >= 202 }">
+							<tr>
+								<td><button type="button" onclick="detailGrade(202)">202</button></td>
+								<td>${grade202.applicationCred}</td>
+								<td>${grade202.receivedCred}</td>
+								<td>${grade202.avgGrade}</td>
+								<td>${grade202.rank}</td>
+							</tr>
+							</c:when>
+							<c:otherwise>
+							<tr>
+								<td>-</td>
+								<td> </td>
+								<td> </td>
+								<td> </td>
+								<td> </td>
+							</tr>
+							</c:otherwise>
+							</c:choose>
+							
 						</tbody>
 					</table>
 
@@ -179,10 +251,10 @@ div {
 				<div style="height: 15%;">
 				<span class="badge badge-success">교과목별 성적</span>
 				</div>
+				<div id="grade">
 				<table class="table" style="text-align: center;">
 						<thead class="thead-dark">
 							<tr>
-								<th>번호</th>
 								<th>학년/학기</th>
 								<th>교과목</th>
 								<th>취득학점</th>
@@ -191,35 +263,12 @@ div {
 						</thead>
 						<tbody>
 							<tr>
-								<td>1</td>
-								<td>101</td>
-								<td>경영학원론</td>
-								<td>3</td>
-								<td>4.0</td>
+								<th colspan="4">검색할 학기를 선택하세요</th>
 							</tr>
-							<tr>
-								<td>2</td>
-								<td>101</td>
-								<td>회계원리</td>
-								<td>3</td>
-								<td>4.0</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>101</td>
-								<td>경제학원론</td>
-								<td>3</td>
-								<td>4.0</td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>101</td>
-								<td>거시경제학</td>
-								<td>3</td>
-								<td>4.0</td>
-							</tr>
+							
 						</tbody>
 					</table>
+					</div>
 				</div>
 				</div>
 				<div class="total_grade">
@@ -237,10 +286,10 @@ div {
 						</thead>
 						<tbody>
 							<tr>
-								<td>24</td>
-								<td>24</td>
-								<td>4.25</td>
-								<td>95</td>
+								<td>${total.tApplicationCred}</td>
+								<td>${total.tReceivedCred}</td>
+								<td>${total.tAvgGrade}</td>
+								<td>${total.tScore}</td>
 							</tr>
 						</tbody>
 					</table>
