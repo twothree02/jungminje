@@ -50,3 +50,86 @@ git status
 git push -u origin master
 git status
 exit
+git status
+git pull
+git status
+git log --oneline
+git pull
+git commit -am "04 / June / front down jh"
+git status
+git log --oneline
+git pull
+'
+
+
+
+
+
+pwd
+git log --oneline
+git status
+git pull
+git commit -am "04 / June / 1251 DownLoad Jh"
+git log --oneline
+git pull
+git status
+git commit -m "04 / June / 1252 jh down"
+git pull
+pwd
+cd ./../
+ls -l
+git clone
+git clone https://github.com/thslfn/final_project.git
+pwd
+ls -l
+cd ./final*
+ls -l
+pwd
+git checkout jh
+git branch -a
+git checkout branch jh
+git checkout jh
+git checkout jh
+git branch -a
+git branch
+git branch jh
+git checkout jh
+git add --all
+git status
+git commit -am "04 / June / 1319 JH"
+pwd
+git push -u origin jh
+git status
+git commit -am "04 / June / 1322 JH"
+pwd
+git remote -v
+git commit -am "04 / June / 1323 JH"
+git add --all
+git status
+git commit -am "04 / June / 1323 JH"
+pwd
+git branch
+git status
+git commit -am "04 / June / 1332 JH"
+git push -u origin jh
+git branch
+git branch -r
+git branch -v
+git branch -r
+git branch -v
+git push origin jh
+pwd
+ls -l
+git status
+git branch
+git branch
+git branch -a
+git branch ?
+git branch ~?
+?
+?
+git branch -r
+git branch -v
+ls -l
+ls -al
+pwd

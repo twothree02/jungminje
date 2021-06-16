@@ -12,10 +12,10 @@
 	</resultMap>
 	
 	<select id="loginChk" resultMap="member">
-		select * from member_test where id = #{id} 
+		select * from member_info where id_num = #{id} 
 	</select>
 	
 	<select id="findId" resultType="String">
-		select id from member_test where name = #{name} and tel = #{tel}
+		select id_num from member_info where name = #{name} and tel_num = #{tel}
 	</select>
 </mapper>	

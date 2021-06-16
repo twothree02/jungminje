@@ -26,11 +26,8 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                       
-           
-  
-                        <li class="nav-item"><a class="nav-link" href="#!">교직원정보</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">학생관리	</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${contextPath}/root/officer/staffInfo">교직원정보</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${contextPath}/root/officer/studentManagement">학생관리	</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">성적/장학처리</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">등록관리</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">시간표관리</a></li>
@@ -39,14 +36,5 @@
                 </div>
             </div>
         </nav>
-        <!-- Header - set the background image for the header in the line below-->
-        <header class="py-5 bg-image-full" style="background-image: url('https://source.unsplash.com/wfh8dDlNFOk/1600x900')">
-            <div class="text-center my-5">
-                <img class="img-fluid rounded-circle mb-4" src="resources/img/5.jpg" alt="..." />
-                <h1 class="text-white fs-3 fw-bolder">Full Width Pics</h1>
-                <p class="text-white-50 mb-0">Landing Page Template</p>
-            </div>
-        </header>
-        <h1 align="center" style = "margin-top: 30px;">YW 대학에 오신걸 환영합니다</h1>
 </body>
 </html>
