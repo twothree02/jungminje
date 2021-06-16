@@ -16,12 +16,12 @@ function adminList(){
 		contentType:"application/json;charset=utf-8",
 		success: function(list){
 			let html = "<table border='1' style='margin-top:20px; margin-left:20px;'>"
-			html += "<tr><td align='center'>번호</td><td align='center'>이름</td><td align='center'>내선 번호</td>"
-			html += "<td align='center'>핸드폰 번호</td><td align='center'>사무실</td><tr>"
+			html += "<tr><td align='center'>번호</td><td align='center'>이름</td><td align='center'>핸드폰 번호</td>"
+			html += "<td align='center'>내선 번호</td><td align='center'>사무실</td><tr>"
 			for(var i=0;i<list.length;i++){
 			html += "<tr><td align='center'>"+(i+1)+"</td><td>"+list[i].name+"</td>"
-			html += "<td align='center'>"+list[i].telNum+"</td>"
 			html += "<td align='center'>"+list[i].phoneNum+"</td>"
+			html += "<td align='center'>"+list[i].telNum+"</td>"
 			html += "<td align='center'>"+list[i].officeAddr+"</td></tr>"
 			}
 			html += "</table>"
@@ -41,12 +41,12 @@ function bProfessorList(){
 		contentType:"application/json;charset=utf-8",
 		success: function(list){
 			let html = "<table border='1' style='margin-top:20px; margin-left:20px;'>"
-			html += "<tr><td align='center'>번호</td><td align='center'>이름</td><td align='center'>내선 번호</td>"
-			html += "<td align='center'>핸드폰 번호</td><td align='center'>사무실</td><tr>"
+			html += "<tr><td align='center'>번호</td><td align='center'>이름</td><td align='center'>핸드폰 번호</td>"
+			html += "<td align='center'>내선 번호</td><td align='center'>사무실</td><tr>"
 			for(var i=0;i<list.length;i++){
 			html += "<tr><td align='center'>"+(i+1)+"</td><td>"+list[i].name+"</td>"
-			html += "<td align='center'>"+list[i].telNum+"</td>"
 			html += "<td align='center'>"+list[i].phoneNum+"</td>"
+			html += "<td align='center'>"+list[i].telNum+"</td>"
 			html += "<td align='center'>"+list[i].officeAddr+"</td></tr>"
 			}
 			html += "</table>"
@@ -66,12 +66,12 @@ function iProfessorList(){
 		contentType:"application/json;charset=utf-8",
 		success: function(list){
 			let html = "<table border='1' style='margin-top:20px; margin-left:20px;'>"
-			html += "<tr><td align='center'>번호</td><td align='center'>이름</td><td align='center'>내선 번호</td>"
-			html += "<td align='center'>핸드폰 번호</td><td align='center'>사무실</td><tr>"
+			html += "<tr><td align='center'>번호</td><td align='center'>이름</td><td align='center'>핸드폰 번호</td>"
+			html += "<td align='center'>내선 번호</td><td align='center'>사무실</td><tr>"
 			for(var i=0;i<list.length;i++){
 			html += "<tr><td align='center'>"+(i+1)+"</td><td>"+list[i].name+"</td>"
-			html += "<td align='center'>"+list[i].telNum+"</td>"
 			html += "<td align='center'>"+list[i].phoneNum+"</td>"
+			html += "<td align='center'>"+list[i].telNum+"</td>"
 			html += "<td align='center'>"+list[i].officeAddr+"</td></tr>"
 			}
 			html += "</table>"
@@ -79,7 +79,7 @@ function iProfessorList(){
 			
 		}
 		, error:function(){
-			alert('문제 발생')
+			alert('문제가 발생하였습니다.')
 		}
 	})
 }
@@ -91,12 +91,12 @@ function cProfessorList(){
 		contentType:"application/json;charset=utf-8",
 		success: function(list){
 			let html = "<table border='1' style='margin-top:20px; margin-left:20px;'>"
-			html += "<tr><td align='center'>번호</td><td align='center'>이름</td><td align='center'>내선 번호</td>"
-			html += "<td align='center'>핸드폰 번호</td><td align='center'>사무실</td><tr>"
+			html += "<tr><td align='center'>번호</td><td align='center'>이름</td><td align='center'>핸드폰 번호</td>"
+			html += "<td align='center'>내선 번호</td><td align='center'>사무실</td><tr>"
 			for(var i=0;i<list.length;i++){
 			html += "<tr><td align='center'>"+(i+1)+"</td><td>"+list[i].name+"</td>"
-			html += "<td align='center'>"+list[i].telNum+"</td>"
 			html += "<td align='center'>"+list[i].phoneNum+"</td>"
+			html += "<td align='center'>"+list[i].telNum+"</td>"
 			html += "<td align='center'>"+list[i].officeAddr+"</td></tr>"
 			}
 			html += "</table>"
@@ -104,7 +104,7 @@ function cProfessorList(){
 			
 		}
 		, error:function(){
-			alert('문제 발생')
+			alert('문제가 발생하였습니다.')
 		}
 	})
 }
@@ -120,22 +120,29 @@ function searchStaff(){
 		data:JSON.stringify(formData),
 		contentType:"application/json;charset=utf-8",
 		success: function(list){
+			if(list.length == 0){
+				let html = "<table border='1' style='margin-top:20px; margin-left:20px;'>"
+					html += "<tr><td align='center'>번호</td><td align='center'>이름</td><td align='center'>직위</td><td align='center'>내선 번호</td>"
+					html += "<td align='center'>핸드폰 번호</td><td align='center'>사무실</td><tr>"
+					html += "<tr><td align='center' colspan='6'><b>찾으시는 교직원이 없습니다.</b></td></tr></table>"
+					$("#adminProfList").empty().append(html)
+			}else{
 			let html = "<table border='1' style='margin-top:20px; margin-left:20px;'>"
-			html += "<tr><td align='center'>번호</td><td align='center'>이름</td><td align='center'>학번</td>"
-			html += "<td align='center'>학년</td><td align='center'>학과</td><tr>"
+			html += "<tr><td align='center'>번호</td><td align='center'>이름</td><td align='center'>직위</td><td align='center'>내선 번호</td>"
+			html += "<td align='center'>핸드폰 번호</td><td align='center'>사무실</td><tr>"
 			for(var i=0;i<list.length;i++){
 			html += "<tr><td align='center'>"+(i+1)+"</td><td>"+list[i].name+"</td>"
-			html += "<td align='center'>"+list[i].idNum+"</td>"
-			html += "<td align='center'>"+list[i].grade+"</td>"
-			html += "<td align='center'>"+list[i].major+"</td></tr>"
+			html += "<td align='center'>"+list[i].position+"</td>"
+			html += "<td align='center'>"+list[i].telNum+"</td>"
+			html += "<td align='center'>"+list[i].phoneNum+"</td>"
+			html += "<td align='center'>"+list[i].officeAddr+"</td></tr>"
 			}
 			html += "</table>"
 			$("#adminProfList").empty().append(html) //empty를 넣어줌으로 한 번만 호출되게, 같은 이름으로 걸어주니 모든 게 해결...
-			
-			
+			}
 		}
 		, error:function(){
-			alert('문제 발생')
+			alert('문제가 발생하였습니다.')
 		}
 	})
 }
@@ -150,8 +157,8 @@ function searchStaff(){
   <button type="button" class="btn btn-secondary" onclick="iProfessorList()" style="margin-top:20px;">정보통신과</button>
   <button type="button" class="btn btn-secondary" onclick="cProfessorList()" style="margin-top:20px;">자동차공학과</button>
 </div>
-<form name="frm" id="frm" method="post">
-	<input type="text" name="staName" id="staName">
+<form name="frm" id="frm" method="post" onsubmit="return false">
+	<input type="text" name="staName" id="staName" placeholder="이름으로 검색해주세요">
 	<input type="button" value="검색" onclick="searchStaff()">
 </form>
 

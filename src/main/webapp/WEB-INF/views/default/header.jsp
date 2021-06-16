@@ -30,7 +30,7 @@
 			
 				<li class="nav-item"><a class="nav-link" href="studentMain">마이페이지</a></li>
 				<li class="nav-item"><a class="nav-link" href="professorMain">종합관리시스템(교수)</a></li>
-				<li class="nav-item"><a class="nav-link"  href="adminMain">종한관리시스템(행정)</a>
+				<li class="nav-item"><a class="nav-link"  href="adminMain">종합관리시스템(행정)</a>
 				</li>
 			</ul>
 		</nav>

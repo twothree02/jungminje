@@ -27,6 +27,7 @@
 </tr>
 </c:forEach>
 </table>
+<input type="button" onclick="location.href='${contextPath }/professor/all_student'" value="Back">
 
 </body>
 </html>

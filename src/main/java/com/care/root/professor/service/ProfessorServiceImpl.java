@@ -112,7 +112,7 @@ public class ProfessorServiceImpl implements ProfessorService{
 		System.out.println(arrScore[1]);
 		System.out.println(arrScore[2]);
 		*/
-		for(int i=0;i<arrId.length;i++) {
+		for(int i=0;i<arrId.length-1;i++) {
 			mapScore.put(arrId[i], arrScore[i]);
 			System.out.println(mapScore);
 			int test01 = Integer.parseInt(arrScore[i]);
@@ -125,9 +125,17 @@ public class ProfessorServiceImpl implements ProfessorService{
 			pm.saveScore(dto);
 		}
 		
-		// int result = pm.saveScore(dto);
-		// saveScore 반환값을 어떻게 전역변수로 돌려받을지 생각해야 함.
-		int result = 1;
+		// 지역변수를 전역변수로 바꾸는 것, 클래스를 다시 만들어 호출하는 것 안 됨(안 되는 거 같음)
+		//따라서 마지막 하나만 빼서 넣어주는 걸로 했다.
+		dto.setIdNum(arrId[arrId.length-1]);
+		dto.setScore(Integer.parseInt(arrScore[arrScore.length-1]));
+		dto.setGrade(convertGrade(Integer.parseInt(arrScore[arrScore.length-1])));
+		
+//		System.out.println(arrId[arrId.length-1]);
+//		System.out.println(arrScore[arrScore.length-1]);
+		
+		int result = pm.saveScore(dto);
+		//int result = 1;
 		MessageDTO mDTO = new MessageDTO();
 		mDTO.setResult(result);
 		System.out.println(result); //test용
