@@ -166,6 +166,7 @@ public class StudentServiceImpl implements StudentService{
 		double tScore = 4.5;
 		String tScore2 = null;
 		RegisterInfoDTO registerDTO = null;
+		DecimalFormat frmt = new DecimalFormat();
 		
 		try {
 			StudentInfoDTO infoDTO = mapper.studentInfo(id);
@@ -175,201 +176,70 @@ public class StudentServiceImpl implements StudentService{
 		
 			List<GradeDTO> list = null;
 			
-			//101 semester
-			
-			registerDTO = mapper.registerInfo(id, 101);
-			list = mapper.gradeInfo(id, 101);
-			for (GradeDTO gradeDTO : list) {
-				applicationCred += gradeDTO.getApplicationCred();
-				receivedCred += gradeDTO.getReceivedCred();
-				if(gradeDTO.getScore() >= 95){
-					avgGrade += 4.5;
-			}else if(gradeDTO.getScore() < 95 && gradeDTO.getScore() >= 90) {
-					avgGrade += 4.0;
-			}else if(gradeDTO.getScore() < 90 && gradeDTO.getScore() >= 85) {
-					avgGrade += 3.5;
-			}else if(gradeDTO.getScore() < 85 && gradeDTO.getScore() >= 80) {
-					avgGrade += 3.0;
-			}else if(gradeDTO.getScore() < 80 && gradeDTO.getScore() >= 75) {
-				avgGrade += 2.5;
-			}else if(gradeDTO.getScore() < 75 && gradeDTO.getScore() >= 70) {
-				avgGrade += 2.0;
-			}else if(gradeDTO.getScore() < 70 && gradeDTO.getScore() >= 65) {
-				avgGrade += 1.0;
-			}else {
-				avgGrade += 0.0;
-			}
-			
-		}
-			
-			tApplicationCred += applicationCred;
-			tReceivedCred += receivedCred;
-			tAvgGrade += avgGrade;
-			
-			SemesterGradeDTO gradeDTO101 = new SemesterGradeDTO();
-			avgGrade = avgGrade/(applicationCred/3);
-			DecimalFormat frmt = new DecimalFormat();
-			frmt.setMaximumFractionDigits(2);
-			avgGrade2 = frmt.format(avgGrade);
-			
-			gradeDTO101.setApplicationCred(applicationCred);
-			gradeDTO101.setReceivedCred(receivedCred);
-			gradeDTO101.setAvgGrade(avgGrade2);
-			gradeDTO101.setRank(registerDTO.getRank());
-			model.addAttribute("grade101", gradeDTO101);
-			
-			
-			
-			
-			applicationCred = 0;
-			receivedCred = 0;;
-			avgGrade = 0;
-			
-			//102 semester
-			registerDTO = null;
-			registerDTO = mapper.registerInfo(id, 102);
-			list = null;
-			list = mapper.gradeInfo(id, 102);
-			if(list.size() != 0) {
+			for(int i=1;i<=4; i++) {
+				applicationCred = 0;
+				receivedCred = 0;
+				avgGrade = 0;
+				int semester = 0;
 
-			for (GradeDTO gradeDTO : list) {
-				applicationCred += gradeDTO.getApplicationCred();
-				receivedCred += gradeDTO.getReceivedCred();
-				if(gradeDTO.getScore() >= 95){
-					avgGrade += 4.5;
-			}else if(gradeDTO.getScore() < 95 && gradeDTO.getScore() >= 90) {
-					avgGrade += 4.0;
-			}else if(gradeDTO.getScore() < 90 && gradeDTO.getScore() >= 85) {
-					avgGrade += 3.5;
-			}else if(gradeDTO.getScore() < 85 && gradeDTO.getScore() >= 80) {
-					avgGrade += 3.0;
-			}else if(gradeDTO.getScore() < 80 && gradeDTO.getScore() >= 75) {
-				avgGrade += 2.5;
-			}else if(gradeDTO.getScore() < 75 && gradeDTO.getScore() >= 70) {
-				avgGrade += 2.0;
-			}else if(gradeDTO.getScore() < 70 && gradeDTO.getScore() >= 65) {
-				avgGrade += 1.0;
-			}else {
-				avgGrade += 0.0;
-			}
-			
-		}
-			
-			tApplicationCred += applicationCred;
-			tReceivedCred += receivedCred;
-			tAvgGrade += avgGrade;
-			
-			SemesterGradeDTO gradeDTO102 = new SemesterGradeDTO();
-			avgGrade = avgGrade/(applicationCred/3);
-			avgGrade2 = frmt.format(avgGrade);
-			
-			gradeDTO102.setApplicationCred(applicationCred);
-			gradeDTO102.setReceivedCred(receivedCred);
-			gradeDTO102.setAvgGrade(avgGrade2);
-			gradeDTO102.setRank(registerDTO.getRank());
-			model.addAttribute("grade102", gradeDTO102);
-			
-			applicationCred = 0;
-			receivedCred = 0;;
-			avgGrade = 0;	
-		}
-			
-			//201 semester
-			registerDTO = null;
-			registerDTO = mapper.registerInfo(id, 201);
-			
-			list = null;
-			list = mapper.gradeInfo(id, 201);
-			if(list.size() != 0) {
+				registerDTO = null;
+				list = null;
+				if(i==1) {
+					semester = 101;
+				}else if(i==2) {
+					semester = 102;
+				}else if (i==3) {
+					semester = 201;
+				}else {
+					semester = 202;
+				}
+				registerDTO = mapper.registerInfo(id, semester);
+				list = mapper.gradeInfo(id, semester);
+				
+				if(list.size() != 0) {
 
-			for (GradeDTO gradeDTO : list) {
-				applicationCred += gradeDTO.getApplicationCred();
-				receivedCred += gradeDTO.getReceivedCred();
-				if(gradeDTO.getScore() >= 95){
-					avgGrade += 4.5;
-			}else if(gradeDTO.getScore() < 95 && gradeDTO.getScore() >= 90) {
-					avgGrade += 4.0;
-			}else if(gradeDTO.getScore() < 90 && gradeDTO.getScore() >= 85) {
-					avgGrade += 3.5;
-			}else if(gradeDTO.getScore() < 85 && gradeDTO.getScore() >= 80) {
-					avgGrade += 3.0;
-			}else if(gradeDTO.getScore() < 80 && gradeDTO.getScore() >= 75) {
-				avgGrade += 2.5;
-			}else if(gradeDTO.getScore() < 75 && gradeDTO.getScore() >= 70) {
-				avgGrade += 2.0;
-			}else if(gradeDTO.getScore() < 70 && gradeDTO.getScore() >= 65) {
-				avgGrade += 1.0;
-			}else {
-				avgGrade += 0.0;
+				for (GradeDTO gradeDTO : list) {
+					applicationCred += gradeDTO.getApplicationCred();
+					receivedCred += gradeDTO.getReceivedCred();
+					if(gradeDTO.getScore() >= 95){
+						avgGrade += 4.5;
+				}else if(gradeDTO.getScore() < 95 && gradeDTO.getScore() >= 90) {
+						avgGrade += 4.0;
+				}else if(gradeDTO.getScore() < 90 && gradeDTO.getScore() >= 85) {
+						avgGrade += 3.5;
+				}else if(gradeDTO.getScore() < 85 && gradeDTO.getScore() >= 80) {
+						avgGrade += 3.0;
+				}else if(gradeDTO.getScore() < 80 && gradeDTO.getScore() >= 75) {
+					avgGrade += 2.5;
+				}else if(gradeDTO.getScore() < 75 && gradeDTO.getScore() >= 70) {
+					avgGrade += 2.0;
+				}else if(gradeDTO.getScore() < 70 && gradeDTO.getScore() >= 65) {
+					avgGrade += 1.0;
+				}else {
+					avgGrade += 0.0;
+				}
+				
+			}
+				
+				tApplicationCred += applicationCred;
+				tReceivedCred += receivedCred;
+				tAvgGrade += avgGrade;
+				
+				SemesterGradeDTO SgradeDTO = new SemesterGradeDTO();
+				avgGrade = avgGrade/(applicationCred/3);
+				avgGrade2 = frmt.format(avgGrade);
+				
+				SgradeDTO.setApplicationCred(applicationCred);
+				SgradeDTO.setReceivedCred(receivedCred);
+				SgradeDTO.setAvgGrade(avgGrade2);
+				SgradeDTO.setRank(registerDTO.getRank());
+				model.addAttribute("grade"+semester, SgradeDTO);
+			}
 			}
 			
-		}
 			
-			tApplicationCred += applicationCred;
-			tReceivedCred += receivedCred;
-			tAvgGrade += avgGrade;
 			
-			SemesterGradeDTO gradeDTO201 = new SemesterGradeDTO();
-			avgGrade = avgGrade/(applicationCred/3);
-			avgGrade2 = frmt.format(avgGrade);
 			
-			gradeDTO201.setApplicationCred(applicationCred);
-			gradeDTO201.setReceivedCred(receivedCred);
-			gradeDTO201.setAvgGrade(avgGrade2);
-			gradeDTO201.setRank(registerDTO.getRank());
-			model.addAttribute("grade201", gradeDTO201);
-			
-			applicationCred = 0;
-			receivedCred = 0;;
-			avgGrade = 0;
-			
-		}		
-			//202 semester
-			
-			registerDTO = null;
-			registerDTO = mapper.registerInfo(id, 202);
-			list = null;
-			list = mapper.gradeInfo(id, 202);
-			if(list.size() != 0) {
-
-			for (GradeDTO gradeDTO : list) {
-				applicationCred += gradeDTO.getApplicationCred();
-				receivedCred += gradeDTO.getReceivedCred();
-				if(gradeDTO.getScore() >= 95){
-					avgGrade += 4.5;
-			}else if(gradeDTO.getScore() < 95 && gradeDTO.getScore() >= 90) {
-					avgGrade += 4.0;
-			}else if(gradeDTO.getScore() < 90 && gradeDTO.getScore() >= 85) {
-					avgGrade += 3.5;
-			}else if(gradeDTO.getScore() < 85 && gradeDTO.getScore() >= 80) {
-					avgGrade += 3.0;
-			}else if(gradeDTO.getScore() < 80 && gradeDTO.getScore() >= 75) {
-				avgGrade += 2.5;
-			}else if(gradeDTO.getScore() < 75 && gradeDTO.getScore() >= 70) {
-				avgGrade += 2.0;
-			}else if(gradeDTO.getScore() < 70 && gradeDTO.getScore() >= 65) {
-				avgGrade += 1.0;
-			}else {
-				avgGrade += 0.0;
-			}
-			
-		}
-			
-			tApplicationCred += applicationCred;
-			tReceivedCred += receivedCred;
-			tAvgGrade += avgGrade;
-			
-			SemesterGradeDTO gradeDTO202 = new SemesterGradeDTO();
-			avgGrade = avgGrade/(applicationCred/3);
-			avgGrade2 = frmt.format(avgGrade);
-			
-			gradeDTO202.setApplicationCred(applicationCred);
-			gradeDTO202.setReceivedCred(receivedCred);
-			gradeDTO202.setAvgGrade(avgGrade2);
-			gradeDTO202.setRank(registerDTO.getRank());
-			model.addAttribute("grade202", gradeDTO202);
-			
-			}
 			//total
 			TotalGradeDTO tGradeDTO = new TotalGradeDTO();
 			tAvgGrade = tAvgGrade/(tApplicationCred/3);
