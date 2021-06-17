@@ -1,5 +1,7 @@
 package com.care.root.student.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -113,5 +116,21 @@ public class StudentController implements MemberSessionName{
 			
 			
 			return ss.detailGrade(semester, id);
+		}
+		
+		@GetMapping("download")
+		public void download(@RequestParam("file") String fileName, HttpServletResponse response) throws Exception{
+			final String IMAGE_REPO = "C:\\Users\\Hyunwoo\\spring\\image_repo";
+			//Content-disposition(http 헤더중 하나) : 파일 다운로드 할떄 http 헤더에 추가해야 한다.
+			//attachment : 파일을 다운로드 하여 브라우저로 표현하는 의미
+			response.addHeader("Content-disposition", "attachment; fileName="+fileName);
+			//IMAGE_REPO : 이미지 저장 경로의 값을 불러오는 코드
+			File file = new File(IMAGE_REPO+"\\"+fileName);
+			//저장되어 있는 이미지를 inputStream으로 불러온 것
+			FileInputStream in = new FileInputStream(file);
+			//in : 왼쪽의 값(이미지 불러온 값)을, out : 오른쪽(reponse(응답).output 하겠다)
+			FileCopyUtils.copy(in, response.getOutputStream());
+			in.close();
+			
 		}
 }

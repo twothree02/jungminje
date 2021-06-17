@@ -1,7 +1,9 @@
 package com.care.root.student.service;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -85,7 +87,11 @@ public class StudentServiceImpl implements StudentService {
 	public String tuitionPayment(String id, HttpServletRequest request) {
 		String message = null;
 		int result = 0;
-
+		
+		Date date = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy");
+		String year = format.format(date);
+		
 		TuitionPayDTO payDTO = new TuitionPayDTO();
 		StudentInfoDTO infoDTO = mapper.studentInfo(id);
 		payDTO.setIdNum(id);
@@ -95,13 +101,13 @@ public class StudentServiceImpl implements StudentService {
 
 		if (result == 1) {
 			if (infoDTO.getGradeSemester() == 101) {
-				mapper.tuitionSaveA(id);
+				mapper.tuitionSaveA(id, year);
 			} else if (infoDTO.getGradeSemester() == 102) {
-				mapper.tuitionSaveB(id);
+				mapper.tuitionSaveB(id, year);
 			} else if (infoDTO.getGradeSemester() == 201) {
-				mapper.tuitionSaveC(id);
+				mapper.tuitionSaveC(id, year);
 			} else if (infoDTO.getGradeSemester() == 202) {
-				mapper.tuitionSaveD(id);
+				mapper.tuitionSaveD(id, year);
 			}
 
 		}
@@ -157,10 +163,8 @@ public class StudentServiceImpl implements StudentService {
 	public void totalInquiry_G(Model model, String id) {
 		int applicationCred = 0;
 		int receivedCred = 0;
-		;
 		double avgGrade = 0;
 		String avgGrade2 = null;
-		int rank = 1;
 
 		int tApplicationCred = 0;
 		int tReceivedCred = 0;
@@ -168,8 +172,9 @@ public class StudentServiceImpl implements StudentService {
 		String tAvgGrade2 = null;
 		double tScore = 4.5;
 		String tScore2 = null;
+		
 		RegisterInfoDTO registerDTO = null;
-		DecimalFormat frmt = new DecimalFormat();
+		DecimalFormat frmt = new DecimalFormat(); //포맷을 바꾸면 double에서 String으로 타입 변화
 		List<GradeDTO> list = null;
 
 		try {

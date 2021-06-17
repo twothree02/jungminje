@@ -18,10 +18,10 @@ public interface StudentDAO {
 	public ArrayList<SubjectDTO> subjectInfoB(@Param("gradeSemester")int gradeSemester, @Param("major")String major);
 	public ArrayList<SubjectDTO> subjectInfoC(@Param("gradeSemester")int gradeSemester, @Param("major")String major);
 	public int tutionPayMent(TuitionPayDTO dto);
-	public int tuitionSaveA(String id);
-	public int tuitionSaveB(String id);
-	public int tuitionSaveC(String id); 
-	public int tuitionSaveD(String id);
+	public int tuitionSaveA(@Param("id")String id, @Param("year")String year);
+	public int tuitionSaveB(@Param("id")String id, @Param("year")String year);
+	public int tuitionSaveC(@Param("id")String id, @Param("year")String year); 
+	public int tuitionSaveD(@Param("id")String id, @Param("year")String year);
 	public TuitionInfoDTO tuitionInfo(String id);
 	public int classReq(@Param("id")String id, @Param("classReq")int classReq);
 	public List<GradeDTO> gradeInfo(@Param("id")String id, @Param("semester")int semester);

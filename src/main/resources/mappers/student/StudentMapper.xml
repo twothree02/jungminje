@@ -108,19 +108,19 @@
 	</update>
 	
  	<update id="tuitionSaveA">
-	update tuition set GRADE_101 = 'Y', PAYMENT_STU = 'Y' where ID_NUM = #{id}
+	update tuition set GRADE_101 = #{year}, PAYMENT_STU = 'Y' where ID_NUM = #{id}
 	</update>
 	
 	<update id="tuitionSaveB">
-	update tuition set GRADE_102 = 'Y', PAYMENT_STU = 'Y' where ID_NUM = #{id}
+	update tuition set GRADE_102 = #{year}, PAYMENT_STU = 'Y' where ID_NUM = #{id}
 	</update>
 	
 	<update id="tuitionSaveC">
-	update tuition set GRADE_201 = 'Y', PAYMENT_STU = 'Y' where ID_NUM = #{id}
+	update tuition set GRADE_201 = #{year}, PAYMENT_STU = 'Y' where ID_NUM = #{id}
 	</update>
 	
 	<update id="tuitionSaveD">
-	update tuition set GRADE_202 = 'Y', PAYMENT_STU = 'Y' where ID_NUM = #{id}
+	update tuition set GRADE_202 = #{year}, PAYMENT_STU = 'Y' where ID_NUM = #{id}
 	</update>
 	
 	<update id="classReq">

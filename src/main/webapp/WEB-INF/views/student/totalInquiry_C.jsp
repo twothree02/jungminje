@@ -55,10 +55,16 @@ div {
 		</div>
 		<div class="memberInfo">
 			<div class="imgDiv">
-			<c:if test="${info.imageFile == 'nan'}">
+			<c:choose>
+			<c:when test="${info.imageFile == 'nan'}">	
 				<img class="navbar-brand rounded-circle"
 					src="../resources/img/nan.png" width=150px; height=150px; style="margin-left: 15px; margin-right: 15px;">
-			</c:if>
+			</c:when>
+			<c:otherwise>
+			<img class="navbar-brand rounded-circle"
+					src="${contextPath }/root/student/download?file=${info.imageFile}" width=150px; height=150px; style="margin-left: 15px; margin-right: 15px;">
+			</c:otherwise>
+			</c:choose>
 			</div>
 			<div class="infoTable">
 				<table class="table">
