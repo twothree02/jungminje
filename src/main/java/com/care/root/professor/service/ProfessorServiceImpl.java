@@ -29,9 +29,9 @@ public class ProfessorServiceImpl implements ProfessorService{
 		return pm.getSeniorList(dto);
 	}
 	@Override
-	public ArrayList<ProfessorDTO> getSearchStu(String searchName, String position) {
+	public ArrayList<ProfessorDTO> getSearchStu(String searchSel, String searchInp) {
 		
-		return pm.getSearchStu(searchName, position);
+		return pm.getSearchStu(searchSel, searchInp);
 	}
 	@Override
 	public ArrayList<ProfessorDTO> getSearchStaff(String searchName, String position) {
@@ -56,6 +56,13 @@ public class ProfessorServiceImpl implements ProfessorService{
 		return pm.getAdminList(position);
 	}
 	
+	
+	
+	@Override
+	public void showTimeTable(Model model, String pId) {
+		model.addAttribute("timeTable", pm.getTimeTable(pId));
+		
+	}
 	@Override
 	public String lecCheck(String pId) {
 		

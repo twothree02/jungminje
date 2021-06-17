@@ -65,6 +65,13 @@ public class ProfessorController implements MemberSessionName{
 		ps.showGrade(model, lecName);
 		return "professor/inputGrade";
 	}
+	@GetMapping("time_table")
+	public String timeTable(Model model, HttpSession session) {
+		String pId = (String)session.getAttribute(LOGIN);
+		ps.showTimeTable(model, pId);
+		
+		return "professor/timeTable";
+	}
 	@PostMapping(value = "junior_list", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public ArrayList<ProfessorDTO> juniorList(HttpSession session) {
@@ -93,10 +100,9 @@ public class ProfessorController implements MemberSessionName{
 	@PostMapping(value="search_stu", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public ArrayList<ProfessorDTO> searchStu(@RequestBody Map<String,Object> map){
-		String searchName = (String)map.get("sName");
-		String position = "학생";
-		System.out.println(searchName);
-		return ps.getSearchStu(searchName, position);
+		String searchSel = (String)map.get("searchSelect");
+		String searchInp = (String)map.get("searchInput");
+		return ps.getSearchStu(searchSel, searchInp);
 	}
 	@PostMapping(value="search_staff", produces = "application/json; charset=utf-8")
 	@ResponseBody

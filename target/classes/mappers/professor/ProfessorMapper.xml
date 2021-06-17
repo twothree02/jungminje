@@ -40,6 +40,16 @@
 		<result property="applicationCred" column="application_cred"/>		
 	</resultMap>
 	
+	<resultMap type="com.care.root.professor.dto.TimeTableDTO" id="timeTable">
+		<result property="yearSeme" column="year_semester"/>
+		<result property="idNum" column="id_num"/>
+		<result property="major" column="major"/>
+		<result property="subject" column="subject"/>
+		<result property="professor" column="professor"/>
+		<result property="lectureRoom" column="lecture_room"/>
+		<result property="time" column="time"/>	
+	</resultMap>
+	
   	<select id="getJuniorList" resultMap="professor">
 		select * from member_info where major = #{major} and grade = #{grade} and position=#{position}
 	</select>
@@ -49,7 +59,7 @@
 	</select>
 	
 	<select id="getSearchStu" resultMap="professor">
-		select * from member_info where name=#{searchName} and position = #{position}
+		select * from member_info where ${searchSel} = #{searchInp} and position = '학생'
 	</select>
 	
 	<select id="getSearchStaff" resultMap="professor">
@@ -78,6 +88,10 @@
 	
 	<select id="detailStuInfo" resultMap="professor">
 		select * from member_info where id_num = #{id}
+	</select>
+	
+	<select id="getTimeTable" resultMap="timeTable">
+		select * from time_table where id_num = #{pId}
 	</select>
 	
 	<select id="getLecCheck" resultType="string">

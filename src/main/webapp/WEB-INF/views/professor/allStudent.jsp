@@ -62,15 +62,21 @@
 		})
 	}
 		function searchStu(){
+			/*
 			let formData = {}
 			let arr = $("#frm").serializeArray()
 			for(i=0; i<arr.length;i++){
 				formData[arr[i].name] = arr[i].value
 			}
+			*/
+			var searchSelect = $('#searchSelect').val()
+			var searchInput = $('#searchInput').val()
+			var form = {'searchSelect' : searchSelect, 'searchInput' : searchInput}
+			
 			$.ajax({
 				url: "search_stu" , type: "POST",
 				dataType:"json",
-				data:JSON.stringify(formData),
+				data:JSON.stringify(form),
 				contentType:"application/json;charset=utf-8",
 				success: function(list){
 					if(list.length == 0){
@@ -109,10 +115,20 @@
   <button type="button" class="btn btn-secondary" onclick="juniorList()" style="margin-top:20px; margin-left:20px;">1학년</button>
   <button type="button" class="btn btn-secondary" onclick="seniorList()" style="margin-top:20px;">2학년</button>
 </div>
+<!--  
 <form name="frm" id="frm" method="post"  onsubmit="return false" >
 	<input type="text" name="sName" id="sName" placeholder="이름으로 검색해주세요">
 	<input type="button" value="검색" onclick="searchStu()">
 </form>
+-->
+<div style="padding-left: 38%; padding-top: 2%;">
+			<select id="searchSelect">
+				<option value="name">이름</option>
+				<option value="id_num">학번</option>
+				<option value="grade">학년</option>
+			</select> <input type="text" id="searchInput"> <input type="button"
+				onclick="searchStu()" value="검색">
+</div>
 
 <div id="stuList"></div>
 
