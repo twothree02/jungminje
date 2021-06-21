@@ -57,7 +57,7 @@ public class StudentController implements MemberSessionName{
 		@RequestMapping("totalInquiry_T")
 		public String totalInquiry_T(Model model, HttpSession session) {
 			String id = (String) session.getAttribute(LOGIN);
-			ss.studentInfo(model, id);
+			ss.totalInquiry_T(model, id);
 			return "student/totalInquiry_T";
 		}
 		

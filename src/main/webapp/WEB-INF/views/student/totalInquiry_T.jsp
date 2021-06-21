@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 div {
-	/*  border: 1px solid black;  */
+	/* border: 1px solid black;  */
 }
 
 .title {
@@ -47,6 +47,7 @@ div {
 .infoTable{width: 35%; margin-left: 10px; margin-right: 30px;}
 .content1{width: 48%; height: 90%; margin-right: 5px;}
 .content2{width: 48%; height: 90%;}
+.content3{display: flex;}
 </style>
 
 </head>
@@ -149,35 +150,122 @@ div {
 						<tbody>
 							<tr>
 								<td>1</td>
-								<td>2021</td>
+								<c:choose>
+								<c:when test="${info.gradeSemester >= 101}">
+								<c:if test="${tuition.grade101 != 'N' }">
+								<td>${tuition.grade101}</td>
+								</c:if>
+								<c:if test="${tuition.grade101 == 'N' }">
+								<td>-</td>
+								</c:if>
 								<td>101</td>
 								<td>300</td>
-								<td>300</td>
+								<td>${300 - registerA.scholarship}</td>
+							    <c:if test="${tuition.grade101 == 'N' }">
+								<td>${tuition.grade101}</td>
+								</c:if>
+								<c:if test="${tuition.grade101 != 'N' }">
 								<td>Y</td>
+								</c:if>
+								</c:when>
+								<c:otherwise>
+								<td>-</td>
+								<td>101</td>
+								<td>-</td>
+								<td>-</td>
+								<td>N</td>
+								</c:otherwise>
+								</c:choose>
 							</tr>
+							
 														<tr>
-								<td>1</td>
-								<td>2021</td>
-								<td>101</td>
+								<td>2</td>
+								<c:choose>
+								<c:when test="${info.gradeSemester >= 102}">
+								<c:if test="${tuition.grade102 != 'N' }">
+								<td>${tuition.grade102}</td>
+								</c:if>
+								<c:if test="${tuition.grade102 == 'N' }">
+								<td>-</td>
+								</c:if>
+								<td>102</td>
 								<td>300</td>
-								<td>300</td>
+								<td>${300 - registerB.scholarship}</td>
+							    <c:if test="${tuition.grade102 == 'N' }">
+								<td>${tuition.grade102}</td>
+								</c:if>
+								<c:if test="${tuition.grade102 != 'N' }">
 								<td>Y</td>
+								</c:if>
+								</c:when>
+								<c:otherwise>
+								<td>-</td>
+								<td>102</td>
+								<td>-</td>
+								<td>-</td>
+								<td>N</td>
+								</c:otherwise>
+								</c:choose>
 							</tr>
+							
 														<tr>
-								<td>1</td>
-								<td>2021</td>
-								<td>101</td>
+								<td>3</td>
+								<c:choose>
+								<c:when test="${info.gradeSemester >= 201}">
+								<c:if test="${tuition.grade201 != 'N' }">
+								<td>${tuition.grade201}</td>
+								</c:if>
+								<c:if test="${tuition.grade201 == 'N' }">
+								<td>-</td>
+								</c:if>
+								<td>201</td>
 								<td>300</td>
-								<td>300</td>
+								<td>${300 - registerC.scholarship}</td>
+							    <c:if test="${tuition.grade201 == 'N' }">
+								<td>${tuition.grade201}</td>
+								</c:if>
+								<c:if test="${tuition.grade201 != 'N' }">
 								<td>Y</td>
+								</c:if>
+								</c:when>
+								<c:otherwise>
+								<td>-</td>
+								<td>201</td>
+								<td>-</td>
+								<td>-</td>
+								<td>N</td>
+								</c:otherwise>
+								</c:choose>
 							</tr>
+							
 														<tr>
-								<td>1</td>
-								<td>2021</td>
-								<td>101</td>
+								<td>4</td>
+								<c:choose>
+								<c:when test="${info.gradeSemester >= 202}">
+								<c:if test="${tuition.grade202 != 'N' }">
+								<td>${tuition.grade202}</td>
+								</c:if>
+								<c:if test="${tuition.grade202 == 'N' }">
+								<td>-</td>
+								</c:if>
+								<td>202</td>
 								<td>300</td>
-								<td>300</td>
+								<td>${300 - registerD.scholarship}</td>
+							    <c:if test="${tuition.grade202 == 'N' }">
+								<td>${tuition.grade202}</td>
+								</c:if>
+								<c:if test="${tuition.grade202 != 'N' }">
 								<td>Y</td>
+								</c:if>
+								</c:when>
+								<c:otherwise>
+								<td>-</td>
+								<td>202</td>
+								<td>-</td>
+								<td>-</td>
+								<td>N</td>
+								</c:otherwise>
+								</c:choose>
 							</tr>
 
 						</tbody>
@@ -188,10 +276,27 @@ div {
 				<div style="height: 10%;">
 					<span class="badge badge-success">장학정보</span>
 				</div>
-								<table class="table" style="text-align: center;">
+				<div class="content3">
+				<table class="table" style="text-align: center; width: 80px;">
 						<thead class="thead-dark">
 							<tr>
 								<th>번호</th>
+							</tr>
+						</thead>
+						<tbody>
+
+						<c:forEach var="num" begin="1" end="${repeat}">
+						<tr>
+							<td>${num}</td>
+						</tr>
+						</c:forEach>
+
+					</tbody>
+					</table>
+				
+								<table class="table" style="text-align: center;">
+						<thead class="thead-dark">
+							<tr>
 								<th>연도</th>
 								<th>학기</th>
 								<th>장학명</th>
@@ -199,37 +304,29 @@ div {
 							</tr>
 						</thead>
 						<tbody>
+						<c:choose>
+						<c:when test="${RegList.size() != 0 }">
+						<c:forEach var="dto" items="${RegList}">
 						<tr>
-							<td>1</td>
-							<td>2021</td>
-							<td>101</td>
+							<td>${dto.year}</td>
+							<td>${dto.gradeSemester}</td>
 							<td>성적우수</td>
-							<td>300</td>
+							<td>${dto.scholarship}</td>
 						</tr>
+						</c:forEach>
+						</c:when>
+						<c:otherwise>
 						<tr>
-							<td>1</td>
-							<td>2021</td>
-							<td>101</td>
-							<td>성적우수</td>
-							<td>300</td>
+							<td>-</td>
+							<td></td>
+							<td></td>
+							<td></td>
 						</tr>
-						<tr>
-							<td>1</td>
-							<td>2021</td>
-							<td>101</td>
-							<td>성적우수</td>
-							<td>300</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>2021</td>
-							<td>101</td>
-							<td>성적우수</td>
-							<td>300</td>
-						</tr>
-
+						</c:otherwise>
+						</c:choose>
 					</tbody>
 					</table>
+					</div>
 				
 			</div>
 			</div>

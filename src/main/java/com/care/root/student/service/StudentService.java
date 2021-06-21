@@ -16,6 +16,7 @@ public interface StudentService {
 	public void subjectInfo(Model model, String id);
 	public String tuitionPayment(String id, HttpServletRequest request);
 	public void totalInquiry_G(Model model, String id);
+	public void totalInquiry_T(Model model, String id);
 	public void tuitionInfo(Model model, String id);
 	public void classRequest(Model model, String id);
 	public void classReqChk(String id);

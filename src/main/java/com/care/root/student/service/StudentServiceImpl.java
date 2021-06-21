@@ -174,7 +174,7 @@ public class StudentServiceImpl implements StudentService {
 		String tScore2 = null;
 		
 		RegisterInfoDTO registerDTO = null;
-		DecimalFormat frmt = new DecimalFormat(); //포맷을 바꾸면 double에서 String으로 타입 변화
+		DecimalFormat frmt = new DecimalFormat("#.##"); //포맷을 바꾸면 double에서 String으로 타입 변화
 		List<GradeDTO> list = null;
 
 		try {
@@ -264,6 +264,41 @@ public class StudentServiceImpl implements StudentService {
 			e.printStackTrace();
 		}
 
+	}
+
+	@Override
+	public void totalInquiry_T(Model model, String id) {
+		
+		try {
+			StudentInfoDTO infoDTO = mapper.studentInfo(id);
+			String birthDate = infoDTO.getResidentNum().substring(0, 6);
+			infoDTO.setBirthDate(birthDate);
+			model.addAttribute("info", infoDTO);
+			TuitionInfoDTO tuitionDTO = mapper.tuitionInfo(id);
+			model.addAttribute("tuition", tuitionDTO);
+			ArrayList<RegisterInfoDTO> list = mapper.totalRegisterInfo(id);
+			RegisterInfoDTO registerDTOA = mapper.registerInfo(id, 101);
+			RegisterInfoDTO registerDTOB = mapper.registerInfo(id, 102);
+			RegisterInfoDTO registerDTOC = mapper.registerInfo(id, 201);
+			RegisterInfoDTO registerDTOD = mapper.registerInfo(id, 202);
+			
+			model.addAttribute("RegList", list);
+			model.addAttribute("registerA", registerDTOA);
+			model.addAttribute("registerB", registerDTOB);
+			model.addAttribute("registerC", registerDTOC);
+			model.addAttribute("registerD", registerDTOD);
+			
+			if (list.size() == 0) {
+				model.addAttribute("repeat", 1);
+			} else {
+				model.addAttribute("repeat", list.size());
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 }

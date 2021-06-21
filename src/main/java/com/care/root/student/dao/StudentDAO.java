@@ -26,6 +26,7 @@ public interface StudentDAO {
 	public int classReq(@Param("id")String id, @Param("classReq")int classReq);
 	public List<GradeDTO> gradeInfo(@Param("id")String id, @Param("semester")int semester);
 	public RegisterInfoDTO registerInfo(@Param("id")String id, @Param("semester")int semester);
+	public ArrayList<RegisterInfoDTO> totalRegisterInfo(String id);
 	
 	 
 }

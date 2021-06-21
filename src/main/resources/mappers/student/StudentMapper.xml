@@ -103,6 +103,10 @@
 		select * from REGISTER_INFO where id_num = #{id} and GRADE_SEMESTER = #{semester}
 	</select>
 	
+	<select id="totalRegisterInfo" resultMap="register">
+		select * from REGISTER_INFO where id_num = #{id} and SCHOLARSHIP > 0 order by GRADE_SEMESTER asc
+	</select>
+	
 	<update id="tutionPayMent">
 	update member_info set BANK = #{bank}, ACCOUNT_NUM = #{account} where ID_NUM=#{idNum}
 	</update>
