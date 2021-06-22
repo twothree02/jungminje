@@ -21,7 +21,7 @@
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark"
 		style="padding: 5;">
 		<!-- Brand -->
-		<a href="#"><img class="navbar-brand rounded-circle"
+		<a href="main"><img class="navbar-brand rounded-circle"
 			src="resources/img/5.jpg" width=80px; height=80px;></a>
 
 		<!-- Links -->

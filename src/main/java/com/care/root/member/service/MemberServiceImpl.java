@@ -3,6 +3,10 @@ package com.care.root.member.service;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -14,7 +18,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.care.root.common.session.MemberSessionName;
 import com.care.root.member.dao.MemberDAO;
 import com.care.root.member.dto.MemberDTO;
 
@@ -132,6 +139,118 @@ public class MemberServiceImpl implements MemberService{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public ArrayList<MemberDTO> getInfo(String id) {
+		ArrayList<MemberDTO> memberList = mapper.getInfo(id);
+		return memberList;
+	}
+	
+	private String modifyInfo(MultipartHttpServletRequest mul, HttpServletRequest request) {
+		String message = null;
+		MemberDTO dto = new MemberDTO();
+		
+		dto.setIdNum((String) request.getSession().getAttribute(MemberSessionName.LOGIN));
+		dto.setName(mul.getParameter("name"));
+		dto.setPw(mul.getParameter("pw"));
+		dto.setAddr(mul.getParameter("addr2"));
+		dto.setDetailAddr(mul.getParameter("detailAddr"));
+		if(mul.getParameter("selectDomain").equals("self")) {
+			dto.setEmail(mul.getParameter("email") + "@" + mul.getParameter("domain"));
+		}
+		else {
+			dto.setEmail(mul.getParameter("email") + "@" + mul.getParameter("selectDomain"));
+		}
+		
+		MemberFileService mfs = new MemberFileServiceImpl();
+		MultipartFile file = mul.getFile("file");
+		if(file.getSize() != 0) {
+			dto.setImageFile(mfs.saveFile(file));
+		}
+		else if(!mul.getParameter("imageFile").equals("nan")) {
+			dto.setImageFile(mul.getParameter("imageFile"));
+		}
+		else {
+			dto.setImageFile("nan");
+		}
+		
+		int result = mapper.modify(dto);
+		if(result == 1) {
+			mapper.updateFirst((String) request.getSession().getAttribute(MemberSessionName.LOGIN));
+			message = "<script> alert('정보가 정상적으로 수정되었습니다.');";
+			message += "location.href='" + request.getContextPath() + "/main'; </script>";
+		}
+		else {
+			message = "<script> alert('문제가 발생하였습니다. 관리자에게 문의해 주세요.'); </script>";
+		}
+		
+		return message;
+	}
+	
+	@Override
+	public String modify(MultipartHttpServletRequest mul, HttpServletRequest request) {
+		String message = null;
+		
+		String dbBirth = mapper.getBirth((String) request.getSession().getAttribute(MemberSessionName.LOGIN));
+		dbBirth = dbBirth.substring(2, dbBirth.indexOf("-"));
+		System.out.println(dbBirth);
+		
+		/** 비밀번호, 주소, 이메일이 수정되지 않으면 수정되지 않도록 제일 처음에 막아야 함 */
+		String pw = mul.getParameter("pw");
+		String email = mul.getParameter("email");
+		String select = mul.getParameter("selectDomain");
+		String domain = mul.getParameter("domain");
+		String addr = mul.getParameter("addr2");
+		String detail = mul.getParameter("detailAddr");
+		
+//		System.out.println("p : " + pw);
+//		System.out.println("e : " + email);
+//		System.out.println("s : " + select);
+//		System.out.println("d : " + domain);
+//		System.out.println("a : " + addr);
+//		System.out.println("d : " + detail);
+		System.out.println(mul.getParameter("imageFile"));
+
+		if(email.equals("") || select.equals("") || addr.equals("") || detail.equals("") || (select.equals("self") && domain.equals(""))) {
+			modifyInfo(mul, request);
+			message = "<script> alert('필수 정보가 누락되었습니다. 주소, 이메일을 모두 올바르게 입력했는지 확인해 주세요.');";
+			message += "location.href='" + request.getContextPath() + "/modifyInfo'; </script>";
+		}
+		else if(pw.equals(dbBirth)) {
+			modifyInfo(mul, request);
+			message = "<script> alert('비밀번호가 기본값에서 수정되지 않았습니다. 비밀번호를 수정해 주세요.');";
+			message += "location.href='" + request.getContextPath() + "/modifyInfo'; </script>";
+		}
+		else {
+			message = modifyInfo(mul, request);
+		}
+		
+		return message;
+	}
+
+	@Override
+	public void rememberId(String sessionId, Date limitDate, String id) {
+		Map<String , Object> dates = new HashMap<String, Object>();
+		dates.put("sessionId", sessionId);
+		dates.put("limitDate", limitDate);
+		dates.put("idNum", id);
+		
+		mapper.rememberId(dates);
+	}
+
+	@Override
+	public int getSessionId(String id) {
+		String sessionId = mapper.getSessionId(id);
+		if(sessionId != null) {
+			return 1;	//학번/사번 저장 체크
+		}
+		return 0;	//학번/사번 저장 체크 X
+	}
+
+	@Override
+	public void setNull(String id) {
+		mapper.setNull(id);
 	}
 
 }

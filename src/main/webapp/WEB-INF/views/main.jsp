@@ -13,24 +13,32 @@
 		<div
 			style="border: 1px solid black; width: 15%; margin-left: 30px; margin-top: 30px; margin-right: 30px; padding-left: 20px; height: 280px;">
 			<table>
-				<tr>
-					<th>로그인정보</th>
-					<td rowspan="4"><img class="navbar-brand rounded-circle"
-						src="resources/img/nan.png" width=100px; height=100px;></td>
-				</tr>
-				<tr>
-					<th style="padding-top: 30px;">이름</th>
-				</tr>
-				<tr>
-					<th style="padding-top: 30px;">학생</th>
-				</tr>
-				<tr>
-					<th style="padding-top: 30px; padding-bottom: 25px;">전공</th>
-				</tr>
+				<c:forEach var="mem" items="${memberList }">
+					<tr>
+						<th>로그인정보</th>
+						<c:choose>
+							<c:when test="${mem.imageFile == 'nan' }">
+								<td rowspan="4"><img class="navbar-brand rounded-circle" src="resources/img/nan.png" width=100px; height=100px;></td>
+							</c:when>
+							<c:otherwise>
+								<td rowspan="4"><img class="navbar-brand rounded-circle" src="<%=request.getContextPath() %>/member/download?imageFile=${mem.imageFile}" width=100px; height=100px;></td>
+							</c:otherwise>
+						</c:choose>
+					</tr>
+					<tr>
+						<th style="padding-top: 30px;">${mem.name }</th>
+					</tr>
+					<tr>
+						<th style="padding-top: 30px;">${mem.position }</th>
+					</tr>
+					<tr>
+						<th style="padding-top: 30px; padding-bottom: 25px;">${mem.major }</th>
+					</tr>
+				</c:forEach>
 				<tr>
 					<th style="padding-right: 20px;"><button type="button"
-							class="btn btn-secondary">로그아웃</button></th>
-					<th><button type="button" class="btn btn-secondary">정보수정</button></th>
+							class="btn btn-secondary" onclick="location.href='<%=request.getContextPath()%>/logout'">로그아웃</button></th>
+					<th><button type="button" class="btn btn-secondary" onclick="location.href='<%=request.getContextPath()%>/modifyInfo'">정보수정</button></th>
 				</tr>
 			</table>
 		</div>

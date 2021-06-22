@@ -1,5 +1,7 @@
 package com.care.root.member.dto;
 
+import java.sql.Date;
+
 public class MemberDTO {
 	private String idNum;
 	private String name;
@@ -9,6 +11,7 @@ public class MemberDTO {
 	private String telNum;
 	private String addr;
 	private String detailAddr;
+	private String major;
 	private String email;
 	private int grade;
 	private String class_;
@@ -21,6 +24,9 @@ public class MemberDTO {
 	private String officeAddr;
 	private String bank;
 	private String accountNum;
+	private String sessionId;
+	private Date limitTime;
+	private String firstLogin;
 	
 	public String getIdNum() {
 		return idNum;
@@ -69,6 +75,12 @@ public class MemberDTO {
 	}
 	public void setDetailAddr(String detailAddr) {
 		this.detailAddr = detailAddr;
+	}
+	public String getMajor() {
+		return major;
+	}
+	public void setMajor(String major) {
+		this.major = major;
 	}
 	public String getEmail() {
 		return email;
@@ -141,5 +153,23 @@ public class MemberDTO {
 	}
 	public void setAccountNum(String accountNum) {
 		this.accountNum = accountNum;
+	}
+	public String getSessionId() {
+		return sessionId;
+	}
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
+	}
+	public Date getLimitTime() {
+		return limitTime;
+	}
+	public void setLimitTime(Date limitTime) {
+		this.limitTime = limitTime;
+	}
+	public String getFirstLogin() {
+		return firstLogin;
+	}
+	public void setFirstLogin(String firstLogin) {
+		this.firstLogin = firstLogin;
 	}
 }
