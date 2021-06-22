@@ -23,7 +23,21 @@ public class ProfessorDTO {
 	private String bank;
 	private String accountNum;
 	private String teachSub;
+	private String firstLogin;
+	private String semester;
 	
+	public String getFirstLogin() {
+		return firstLogin;
+	}
+	public void setFirstLogin(String firstLogin) {
+		this.firstLogin = firstLogin;
+	}
+	public String getSemester() {
+		return semester;
+	}
+	public void setSemester(String semester) {
+		this.semester = semester;
+	}
 	public String getTeachSub() {
 		return teachSub;
 	}

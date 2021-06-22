@@ -2,6 +2,8 @@ package com.care.root.professor.controller;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,11 +60,17 @@ public class ProfessorController implements MemberSessionName{
 	public String showGrade(Model model, HttpSession session) {
 		String pId = (String)session.getAttribute(LOGIN);
 		System.out.println(pId);
-		//String lecName="정보윤리";\
 		//resultMap이 아니라 resultType으로 해주니 반환 잘 됨.
 		String lecName = ps.lecCheck(pId); //세션 아이디를 넣어서 얻어온 교수가 가르치는 과목
+		
+		//연도를 얻어오겠다
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		String tYear = Integer.toString(year); //올해의 연도
+		System.out.println(tYear);
 		System.out.println(lecName); //잘 가져오나 test
-		ps.showGrade(model, lecName);
+		
+		ps.showGrade(model, lecName, tYear);
 		return "professor/inputGrade";
 	}
 	@GetMapping("time_table")
@@ -74,35 +82,36 @@ public class ProfessorController implements MemberSessionName{
 	}
 	@PostMapping(value = "junior_list", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public ArrayList<ProfessorDTO> juniorList(HttpSession session) {
-		ProfessorDTO dto = new ProfessorDTO();
+	public Map<String, Object> juniorList(HttpSession session,
+											@RequestParam(value="num", defaultValue="1", required=false)int num) 
+											throws Exception{
+		//ajax는 model값을 받을 수 없다.
 		//세션으로(idNum으로) 전공 끌고와 본인 과 학생들만 보이게 해줬음.
 		String pId = (String)session.getAttribute(LOGIN);
-		dto.setMajor(ps.majorCheck(pId));
-		dto.setGrade(1);
-		dto.setPosition("학생");
-		
-		return ps.getJuniorList(dto);
+		String major = ps.majorCheck(pId);
+
+		return ps.getJuniorList(major, num);
 	}
 	//responsebody는 json을 리턴할 때 많이 사용
 	@PostMapping(value="senior_list", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public ArrayList<ProfessorDTO> seniorList(HttpSession session){
-		ProfessorDTO dto = new ProfessorDTO();
+	public Map<String, Object> seniorList(HttpSession session,
+											@RequestParam(value="num", defaultValue="1", required=false)int num) 
+					throws Exception{
+		//ajax는 model값을 받을 수 없다.
 		//세션으로(idNum으로) 전공 끌고와 본인 과 학생들만 보이게 해줬음.
 		String pId = (String)session.getAttribute(LOGIN);
-		dto.setMajor(ps.majorCheck(pId));
-		dto.setGrade(2);
-		dto.setPosition("학생");
+		String major = ps.majorCheck(pId);
 		
-		return ps.getSeniorList(dto);
+		return ps.getSeniorList(major, num);
 	}
 	@PostMapping(value="search_stu", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public ArrayList<ProfessorDTO> searchStu(@RequestBody Map<String,Object> map){
+	public Map<String, Object> searchStu(@RequestBody Map<String,Object> map,
+											@RequestParam(value="num", defaultValue="1", required=false)int num){
 		String searchSel = (String)map.get("searchSelect");
 		String searchInp = (String)map.get("searchInput");
-		return ps.getSearchStu(searchSel, searchInp);
+		return ps.getSearchStu(searchSel, searchInp, num);
 	}
 	@PostMapping(value="search_staff", produces = "application/json; charset=utf-8")
 	@ResponseBody
@@ -114,35 +123,35 @@ public class ProfessorController implements MemberSessionName{
 	}
 	@PostMapping(value="admin_list", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public ArrayList<ProfessorDTO> adminList(){
+	public Map<String, Object> adminList(@RequestParam(value="num", defaultValue="1", required=false)int num){
 		String position = "교직원"; 
 		
-		return ps.getAdminList(position);
+		return ps.getAdminList(position, num);
 	}
 	@PostMapping(value="bProfessor_list", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public ArrayList<ProfessorDTO> bProfessorList(){
-		String position = "교수"; //행정직원 포지션을 교직원으로 할지, 관리자로 할지 정할 것
-		String major = "경영학과";
+	public Map<String, Object> bProfessorList(@RequestParam(value="num", defaultValue="1", required=false)int num){
+//		String position = "교수"; 
+//		String major = "경영학과";
 		
-		return ps.getBProfessorList(position, major);
+		return ps.getBProfessorList(num);
 	}
  
 @PostMapping(value="iProfessor_list", produces = "application/json; charset=utf-8")
 @ResponseBody
-public ArrayList<ProfessorDTO> iProfessorList(){
-	String position = "교수"; 
-	String major = "정보통신과";
+public Map<String, Object> iProfessorList(@RequestParam(value="num", defaultValue="1", required=false)int num){
+//	String position = "교수"; 
+//	String major = "정보통신과";
 	
-	return ps.getIProfessorList(position, major);
+	return ps.getIProfessorList(num);
 }
 @PostMapping(value="cProfessor_list", produces = "application/json; charset=utf-8")
 @ResponseBody
-public ArrayList<ProfessorDTO> cProfessorList(){
-	String position = "교수"; 
-	String major = "자동차공학과";
+public Map<String, Object> cProfessorList(@RequestParam(value="num", defaultValue="1", required=false)int num){
+//	String position = "교수"; 
+//	String major = "자동차공학과";
 	
-	return ps.getCProfessorList(position, major);
+	return ps.getCProfessorList(num);
 }
 
 

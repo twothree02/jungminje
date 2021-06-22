@@ -10,7 +10,14 @@ public class GradeInfoDTO {
 	private String profName;
 	private long receivedCred;
 	private long applicationCred;
+	private String year;
 	
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
+	}
 	public String getIdNum() {
 		return idNum;
 	}

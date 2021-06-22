@@ -22,16 +22,60 @@ import com.care.root.professor.dto.ProfessorDTO;
 public class ProfessorServiceImpl implements ProfessorService{
 	@Autowired ProfessorDAO pm;
 	@Override
-	public ArrayList<ProfessorDTO> getJuniorList(ProfessorDTO dto) {
-		return pm.getJuniorList(dto);
+	public Map<String, Object> getJuniorList(String major,int num) {
+		int pageLetter = 2; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
+		int grade = 1; //1학년 학생들에서 학생수를 정의
+		int allCount = pm.selectStuCount(grade, major);
+		
+		int repeat = allCount / pageLetter;	// 총 페이지 수
+		if(allCount % pageLetter != 0) {
+			repeat += 1;
+		}
+		int end = num * pageLetter; //해당 페이지 마지막 게시글 번호
+		int start = end + 1 - pageLetter; //해당 페이지 처음 게시글 번호
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("list", pm.getJuniorList(major,start,end));
+		result.put("repeat",repeat);
+		
+		return result;
 	}
-	public ArrayList<ProfessorDTO> getSeniorList(ProfessorDTO dto) {
-		return pm.getSeniorList(dto);
+	public Map<String, Object> getSeniorList(String major,int num) {
+		int pageLetter = 2; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
+		int grade = 2; //2학년 학생들에서 학생수를 정의
+		int allCount = pm.selectStuCount(grade, major);
+		
+		int repeat = allCount / pageLetter;	// 총 페이지 수
+		if(allCount % pageLetter != 0) {
+			repeat += 1;
+		}
+		int end = num * pageLetter; //해당 페이지 마지막 게시글 번호
+		int start = end + 1 - pageLetter; //해당 페이지 처음 게시글 번호
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("list", pm.getSeniorList(major,start,end));
+		result.put("repeat",repeat);
+		
+		return result;
 	}
 	@Override
-	public ArrayList<ProfessorDTO> getSearchStu(String searchSel, String searchInp) {
+	public Map<String, Object> getSearchStu(String searchSel, String searchInp, int num) {
+		int pageLetter = 2; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
+		int allCount = pm.searchStuCount(searchSel, searchInp);
 		
-		return pm.getSearchStu(searchSel, searchInp);
+		int repeat = allCount / pageLetter;	// 총 페이지 수
+		if(allCount % pageLetter != 0) {
+			repeat += 1;
+		}
+		int end = num * pageLetter; //해당 페이지 마지막 게시글 번호
+		int start = end + 1 - pageLetter; //해당 페이지 처음 게시글 번호
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("list", pm.getSearchStu(searchSel, searchInp, start, end));
+		result.put("repeat",repeat);
+		
+		
+		return result;
 	}
 	@Override
 	public ArrayList<ProfessorDTO> getSearchStaff(String searchName, String position) {
@@ -39,25 +83,81 @@ public class ProfessorServiceImpl implements ProfessorService{
 		return pm.getSearchStaff(searchName, position);
 	}
 	@Override
-	public ArrayList<ProfessorDTO> getBProfessorList(String position, String major) {
-		return pm.getBProfessorList(position, major);
-	}
-	@Override
-	public ArrayList<ProfessorDTO> getIProfessorList(String position, String major) {
-		return pm.getIProfessorList(position, major);
-	}
-	@Override
-	public ArrayList<ProfessorDTO> getCProfessorList(String position, String major) {
-		return pm.getCProfessorList(position, major);
-	}
-	@Override
-	public ArrayList<ProfessorDTO> getAdminList(String position) {
+	public Map<String, Object> getBProfessorList(int num) {
+		int pageLetter = 2; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
+		int allCount = pm.searchBProfCnt();
 		
-		return pm.getAdminList(position);
+		int repeat = allCount / pageLetter;	// 총 페이지 수
+		if(allCount % pageLetter != 0) {
+			repeat += 1;
+		}
+		int end = num * pageLetter; //해당 페이지 마지막 게시글 번호
+		int start = end + 1 - pageLetter; //해당 페이지 처음 게시글 번호
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("list", pm.getBProfessorList(start, end));
+		result.put("repeat",repeat);
+		
+		
+		return result;
 	}
-	
-	
-	
+	@Override
+	public Map<String, Object> getIProfessorList(int num) {
+		int pageLetter = 2; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
+		int allCount = pm.searchIProfCnt();
+		
+		int repeat = allCount / pageLetter;	// 총 페이지 수
+		if(allCount % pageLetter != 0) {
+			repeat += 1;
+		}
+		int end = num * pageLetter; //해당 페이지 마지막 게시글 번호
+		int start = end + 1 - pageLetter; //해당 페이지 처음 게시글 번호
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("list", pm.getIProfessorList(start, end));
+		result.put("repeat",repeat);
+		
+		
+		return result;
+	}
+	@Override
+	public Map<String, Object> getCProfessorList(int num) {
+		int pageLetter = 2; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
+		int allCount = pm.searchCProfCnt();
+		
+		int repeat = allCount / pageLetter;	// 총 페이지 수
+		if(allCount % pageLetter != 0) {
+			repeat += 1;
+		}
+		int end = num * pageLetter; //해당 페이지 마지막 게시글 번호
+		int start = end + 1 - pageLetter; //해당 페이지 처음 게시글 번호
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("list", pm.getCProfessorList(start, end));
+		result.put("repeat",repeat);
+		
+		
+		return result;
+	}
+	@Override
+	public Map<String, Object> getAdminList(String position, int num) {
+		int pageLetter = 2; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
+		int allCount = pm.searchAdminCnt(position);
+		
+		int repeat = allCount / pageLetter;	// 총 페이지 수
+		if(allCount % pageLetter != 0) {
+			repeat += 1;
+		}
+		int end = num * pageLetter; //해당 페이지 마지막 게시글 번호
+		int start = end + 1 - pageLetter; //해당 페이지 처음 게시글 번호
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("list", pm.getAdminList(position, start, end));
+		result.put("repeat", repeat);
+		
+		
+		return result;
+	}
 	@Override
 	public void showTimeTable(Model model, String pId) {
 		model.addAttribute("timeTable", pm.getTimeTable(pId));
@@ -99,8 +199,8 @@ public class ProfessorServiceImpl implements ProfessorService{
 		super.finalize();
 	}
 	@Override
-	public void showGrade(Model model, String lecName) {
-		model.addAttribute("gradeInfo", pm.getGradeInfo(lecName)); //성적입력에 넣을 값
+	public void showGrade(Model model, String lecName, String tYear) {
+		model.addAttribute("gradeInfo", pm.getGradeInfo(lecName, tYear)); //성적입력에 넣을 값
 	}
 	@Override
 	public String inputGrade(MultipartHttpServletRequest mul, HttpServletRequest request) {

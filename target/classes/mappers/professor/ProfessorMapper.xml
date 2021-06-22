@@ -26,6 +26,8 @@
 		<result property="bank" column="bank"/>
 		<result property="accountNum" column="account_num"/>
 		<result property="teachSub" column="teach_sub"/>
+		<result property="firstLogin" column="first_login"/>
+		<result property="semester" column="semester"/>
 	</resultMap>
 	
 	<resultMap type="com.care.root.professor.dto.GradeInfoDTO" id="gradeInfo">
@@ -37,7 +39,8 @@
 		<result property="score" column="score"/>
 		<result property="profName" column="prof_name"/>
 		<result property="receivedCred" column="received_cred"/>
-		<result property="applicationCred" column="application_cred"/>		
+		<result property="applicationCred" column="application_cred"/>	
+		<result property="year" column="year"/>	
 	</resultMap>
 	
 	<resultMap type="com.care.root.professor.dto.TimeTableDTO" id="timeTable">
@@ -48,42 +51,84 @@
 		<result property="professor" column="professor"/>
 		<result property="lectureRoom" column="lecture_room"/>
 		<result property="time" column="time"/>	
+		<result property="week" column="week"/>
 	</resultMap>
 	
   	<select id="getJuniorList" resultMap="professor">
-		select * from member_info where major = #{major} and grade = #{grade} and position=#{position}
+		select B.* from(select rownum rn,
+		A.* from
+		(select * from member_info where position = '학생' and grade = '1' and major=#{major} order by
+		grade desc)A)B where rn between #{s} and #{e}
 	</select>
 	
 	<select id="getSeniorList" resultMap="professor">
-		select * from member_info where major = #{major} and grade = #{grade} and position=#{position}
+		select B.* from(select rownum rn,
+		A.* from
+		(select * from member_info where position = '학생' and grade = '2' and major=#{major} order by
+		grade desc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="searchStuCount" resultType="Integer">
+		select count(*) from member_info where ${searchSel} = #{searchInp} and position = '학생'
 	</select>
 	
 	<select id="getSearchStu" resultMap="professor">
-		select * from member_info where ${searchSel} = #{searchInp} and position = '학생'
+		select B.* from(select rownum rn,
+		A.* from
+		(select * from member_info where position = '학생' and ${searchSel} = #{searchInp}  order by
+		grade desc)A)B where rn between #{s} and #{e}
 	</select>
 	
 	<select id="getSearchStaff" resultMap="professor">
 		select * from member_info where name=#{searchName} and not position=#{position} 
 	</select>
 	
+	<select id="searchAdminCnt" resultType="Integer">
+		select count(*) from member_info where position = #{position}
+	</select>
+	
 	<select id="getAdminList" resultMap="professor">
-		select * from member_info where position = #{position}
+		select B.* from(select rownum rn,
+		A.* from
+		(select * from member_info where position = #{position} order by
+		name asc)A)B where rn between #{s} and #{e}
 	</select>
 	
 	<select id="getGradeInfo" resultMap="gradeInfo">
-		select * from grade_info where subject_name = #{lecName} 
+		select * from grade_info where subject_name = #{lecName} and year=#{tYear} 
+	</select>
+	
+	<select id="searchBProfCnt" resultType="Integer">
+		select count(*) from member_info where position = '교수' and major = '경영학과'
 	</select>
 	
 	<select id="getBProfessorList" resultMap="professor">
-		select * from member_info where position = #{position} and major = #{major}
+		select B.* from(select rownum rn,
+		A.* from
+		(select * from member_info where position = '교수' and major = '경영학과' order by
+		name asc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="searchIProfCnt" resultType="Integer">
+		select count(*) from member_info where position = '교수' and major = '정보통신과'
 	</select>
 	
 	<select id="getIProfessorList" resultMap="professor">
-		select * from member_info where position = #{position} and major = #{major}
+		select B.* from(select rownum rn,
+		A.* from
+		(select * from member_info where position = '교수' and major = '정보통신과' order by
+		name asc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="searchCProfCnt" resultType="Integer">
+		select count(*) from member_info where position = '교수' and major = '자동차공학과'
 	</select>
 	
 	<select id="getCProfessorList" resultMap="professor">
-		select * from member_info where position = #{position} and major = #{major}
+		select B.* from(select rownum rn,
+		A.* from
+		(select * from member_info where position = '교수' and major = '자동차공학과' order by
+		name asc)A)B where rn between #{s} and #{e}
 	</select>
 	
 	<select id="detailStuInfo" resultMap="professor">
@@ -106,6 +151,9 @@
 		update grade_info set score=#{score}, grade=#{grade} where id_num = #{idNum}
 	</update>
   
+  	<select id="selectStuCount" resultType="Integer">
+		select count(*) from member_info where position = '학생' and grade=#{grade} and major=#{major}
+	</select>
   
   
   

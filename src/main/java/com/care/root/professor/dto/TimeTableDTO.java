@@ -9,7 +9,14 @@ public class TimeTableDTO {
 	private String professor;
 	private String lectureRoom;
 	private String time;
+	private String week;
 	
+	public String getWeek() {
+		return week;
+	}
+	public void setWeek(String week) {
+		this.week = week;
+	}
 	public String getYearSeme() {
 		return yearSeme;
 	}

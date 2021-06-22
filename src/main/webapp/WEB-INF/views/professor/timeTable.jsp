@@ -33,7 +33,7 @@
 		<td align='center'>${tTable.subject }</td> 
 		<td align='center'>${tTable.professor }</td> 
 		<td align='center'>${tTable.lectureRoom }</td> 
-		<td align='center'>${tTable.time }</td> 
+		<td align='center'>${tTable.week },${tTable.time }</td> 
 		</tr>
 		</table>
 	</c:otherwise>
