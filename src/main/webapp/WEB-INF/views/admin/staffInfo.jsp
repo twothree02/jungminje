@@ -58,7 +58,7 @@ div {
 		<div class="title">
 			<h1 style="text-align: center;">교직원 정보</h1>
 		</div>
-		<hr>
+		<div class="menuBar"></div>
 		<div class="officerInfo">
 			<div class="imgDiv">
 				<img class="navbar-brand rounded-circle"

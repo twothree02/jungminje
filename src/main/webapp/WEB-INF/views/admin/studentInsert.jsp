@@ -65,6 +65,7 @@
 			contentType:"application/json; charset=utf-8",
 			success:function(list){
 				let html = ""
+					html += "<option></option>"
 					for(var i=0;i<list.length;i++){
 					html += "<option value = " + list[i] + "> " + list[i] + "</option>"
 					}

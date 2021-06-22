@@ -28,9 +28,9 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" href="${contextPath}/root/officer/staffInfo">교직원정보</a></li>
                         <li class="nav-item"><a class="nav-link" href="${contextPath}/root/officer/studentManagement">학생관리	</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">성적/장학처리</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${contextPath}/root/officer/grade">성적/장학처리</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">등록관리</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">시간표관리</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${contextPath}/root/officer/timeTable">시간표관리</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">연락망</a></li>
                     </ul>
                 </div>

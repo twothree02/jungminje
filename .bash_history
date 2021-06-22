@@ -133,3 +133,23 @@ git branch -v
 ls -l
 ls -al
 pwd
+pwd
+ls -l
+ls -al
+git status
+git add --all
+git status
+git branch jh
+git checkout jh
+git commit -am "2021 June 16 JH Middle Upload"
+git status
+git push -u origin jh
+git status
+git push origin jh
+git log --oneline
+git commit -am "2021 June 16 JH Upload"
+git config --global user.email thslfn@naver.com
+git config --global user.name Yoo Ji Hyeong
+git config --global user.name "Yoo Ji Hyeong"
+git commit -am "21 June 16 JH Middle Upload"
+git push origin jh

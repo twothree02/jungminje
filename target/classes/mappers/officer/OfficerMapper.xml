@@ -28,6 +28,18 @@
 		<result property="accountNum" column="account_num" />
 	</resultMap>
 
+	<resultMap type="com.care.root.officer.dto.TimeTableDTO"
+		id="timeTable">
+		<result property="yearSemester" column="year_semester" />
+		<result property="idNum" column="id_num" />
+		<result property="major" column="major" />
+		<result property="subject" column="subject" />
+		<result property="professor" column="professor" />
+		<result property="lectureRoom" column="lecture_room" />
+		<result property="time" column="time" />
+		<result property="week" column="week" />
+	</resultMap>
+
 	<select id="staffInfo" resultMap="officer">
 		select * from member_info where
 		id_num = #{id}
@@ -48,39 +60,42 @@
 	</select>
 
 	<select id="findinfo" resultMap="officer">
-		select B.* from(select rownum rn, A.* from
-		(select * from member_info where major = #{major} and position = '학생' order by grade desc)A)B where rn between #{s} and #{e}
+		select B.* from(select rownum
+		rn, A.* from
+		(select * from member_info where major = #{major} and
+		position = '학생' order by grade desc)A)B where rn between #{s} and #{e}
 	</select>
 
-	<!-- 
-	<select id="findinfo" resultMap="officer">
-		select * from member_info where
-		major = #{major} and position = '학생'
-	</select>
-	 -->
+	<!-- <select id="findinfo" resultMap="officer"> select * from member_info 
+		where major = #{major} and position = '학생' </select> -->
 
 	<select id="findAll" resultMap="officer">
-		select B.* from(select rownum rn, A.* from
-		(select * from member_info where position = '학생' order by grade desc)A)B where rn between #{s} and #{e}
+		select B.* from(select rownum rn,
+		A.* from
+		(select * from member_info where position = '학생' order by
+		grade desc)A)B where rn between #{s} and #{e}
+	</select>
+
+	<!-- <select id="findAll" resultMap="officer"> select * from member_info 
+		where position = '학생' </select> -->
+
+	<select id="searchStudent" resultMap="officer">
+		select B.* from(select rownum rn, A.* from (select * from member_info where ${searchS} = #{searchT} and major = #{searchM} and position =
+		'학생' order by grade desc)A)B where rn between #{s} and #{e}
 	</select>
 	
-	<!-- 
-	<select id="findAll" resultMap="officer">
-		select * from member_info where
-		position = '학생'
+	
+	<select id="searchStudentCount" resultType="Integer">
+		select count(*) from member_info where ${searchS} = #{searchT} and major = #{searchM} and position = '학생'
 	</select>
-	 -->
-	 
-	<select id="searchStudent" resultMap="officer">
-		select * from member_info
-		where ${searchS} = #{searchT} and major = #{searchM} and position =
-		'학생'
-	</select>
-
+	
 	<select id="searchAll" resultMap="officer">
-		select * from member_info
-		where
-		${searchS} = #{searchT} and position = '학생'
+		select B.* from(select rownum rn, A.* from (select * from member_info where ${searchS} = #{searchT} and position = '학생' 
+			order by grade desc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="searchAllCount" resultType="Integer">
+		select count(*) from member_info where ${searchS} = #{searchT} and position = '학생'
 	</select>
 
 	<select id="studentInfo" resultMap="officer">
@@ -89,10 +104,50 @@
 	</select>
 
 	<select id="selectStudentCount" resultType="Integer">
-		select count(*) from member_info where position = '학생'
+		select count(*) from
+		member_info where position = '학생'
 	</select>
-	
+
 	<select id="selectMajorStudentCount" resultType="Integer">
-		select count(*) from member_info where major = #{major} and position = '학생'
+		select count(*)
+		from member_info where major = #{major} and position = '학생'
+	</select>
+
+	<select id="findSubject" resultType="String">
+		select teach_sub from
+		member_info where major = #{major} and position = '교수'
+	</select>
+
+	<select id="AlreadySubject" resultType="String">
+		select subject from
+		time_table where major = #{major}
+	</select>
+
+	<select id="findLecture" resultType="String">
+		select lecture_list from
+		lecture where major = #{major}
+	</select>
+
+	<select id="findTeacher" resultType="String">
+		select name from member_info
+		where teach_sub = #{subject} and position = '교수'
+	</select>
+
+	<select id="findTeacherIdNum" resultType="String">
+		select id_num from
+		member_info where teach_sub = #{subject} and position = '교수'
+	</select>
+
+	<insert id="insertTimeTable">
+		insert into time_table (year_semester, id_num, major,
+		subject, professor, lecture_room, time, week) values
+		(#{yearSemester}, #{idNum}, #{major}, #{subject}, #{professor}, #{lectureRoom},
+		#{time}, #{week})
+	</insert>
+
+	<select id="findTime" resultType="String">
+		select time from time_table
+		where major = #{major} and week = #{week} and lecture_room =
+		#{lecture}
 	</select>
 </mapper>

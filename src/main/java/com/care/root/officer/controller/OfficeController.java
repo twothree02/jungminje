@@ -1,6 +1,7 @@
 package com.care.root.officer.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,11 @@ public class OfficeController implements MemberSessionName{
 
 	@Autowired
 	OfficerService os;
+	
+	@RequestMapping("adminMain")
+	public String adminMain() {
+		return "admin/adminMain";
+	}
 	
 	@RequestMapping("staffInfo")
 	public String staffInfo(HttpSession session, Model model) {
@@ -63,23 +69,22 @@ public class OfficeController implements MemberSessionName{
 	
 	@PostMapping(value="findinfo", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public ArrayList<OfficerDTO> findinfo(@RequestBody Map <String, Object> map, Model model, @RequestParam(value = "num", required=false, defaultValue = "1") int num){
-		if(map.get("major").equals("전체")) {
-			return os.findAll(model, num);
-		}
-		return os.findinfo((String)map.get("major"),model,num);
+	public Map<String,Object> findinfo(@RequestBody Map <String, Object> map, @RequestParam(value = "num", required=false, defaultValue = "1") int num){
+		return os.findinfo((String)map.get("major"), num);	
 	}
 	
 	@PostMapping(value="searchStudent", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public ArrayList<OfficerDTO> searchStudent(@RequestBody Map <String, Object> map){
+	public Map<String,Object> searchStudent(@RequestBody Map <String, Object> map, @RequestParam(value = "num", required=false, defaultValue = "1") int num){
 		System.out.println(map.get("searchSelect"));
 		System.out.println(map.get("searchText"));
 		System.out.println(map.get("searchMajor"));
 		if(map.get("searchMajor").equals("all")) {
-			return os.searchAll((String)map.get("searchSelect"), (String)map.get("searchText"));
+			return os.searchAll((String)map.get("searchSelect"), (String)map.get("searchText"), num);
 		}
-		return os.searchStudent((String)map.get("searchSelect"), (String)map.get("searchText"), (String)map.get("searchMajor"));
+		else {
+			return os.searchStudent((String)map.get("searchSelect"), (String)map.get("searchText"), (String)map.get("searchMajor"), num);
+		}
 	}
 	
 	@RequestMapping("studentInfo")
@@ -90,4 +95,46 @@ public class OfficeController implements MemberSessionName{
 		return "admin/studentInfo";
 	}
 	
+	@RequestMapping("grade")
+	public String grade() {
+		return "admin/grade";
+	}
+	
+	@RequestMapping("timeTable")
+	public String timeTable() {
+		return "admin/timeTable";
+	}
+	
+	@PostMapping(value="findSubject", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public ArrayList<String> findSubject(@RequestBody Map <String, Object> map){
+		return os.findSubject((String)map.get("major"));
+	}
+	
+	@PostMapping(value="findLecture", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public ArrayList<String> findLecture(@RequestBody Map <String, Object> map){
+		return os.findLecture((String)map.get("major"));
+	}
+	
+	@PostMapping(value="findTeacher", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public ArrayList<String> findTeacher(@RequestBody Map <String, Object> map){
+		return os.findTeacher((String)map.get("subject"));
+	}
+	
+	@PostMapping("insertTimeTable")
+	public String insertTimeTable(HttpServletRequest request) {
+		int result = os.insertTimeTable(request);
+		if(result == 1) {
+			return "admin/insertSuccess";
+		}
+		return "admin/insertFail";
+	}
+	
+	@PostMapping(value="timeCheck", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public ArrayList<String> timeCheck(@RequestBody Map <String, Object> map){
+		return os.timeCheck((String)map.get("major"), (String)map.get("week"), (String)map.get("lecture"));
+	}
 }
