@@ -61,6 +61,7 @@
 		<result property="receivedCred" column="RECEIVED_CRED"/>
 		<result property="applicationCred" column="APPLICATION_CRED"/>
 		<result property="semester" column="GRADE_SEMESTER"/>
+		<result property="year" column="YEAR"/>
 	</resultMap>
 	
 	<resultMap type="com.care.root.student.dto.RegisterInfoDTO" id="register">
@@ -105,6 +106,11 @@
 	
 	<select id="totalRegisterInfo" resultMap="register">
 		select * from REGISTER_INFO where id_num = #{id} and SCHOLARSHIP > 0 order by GRADE_SEMESTER asc
+	</select>
+	
+	<select id="rankCnt" resultType="Integer">
+		select count(*) from REGISTER_INFO where major_semester = #{major} and YEAR = #{year} and GRADE_SEMESTER = #{semester}
+	
 	</select>
 	
 	<update id="tutionPayMent">

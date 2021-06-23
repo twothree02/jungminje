@@ -59,7 +59,7 @@
 </div>
 <div class="confirm">
 	<c:choose>
-	<c:when test="${info.gradeSemester != info.classReq }">
+	<c:when test="${infoC.gradeSemester != info.classReq }">
 	<form action="classReqChk" id="clsssReq" method="POST">
 	<div style="text-align: center;">
 	<label class="form-check-label">

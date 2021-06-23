@@ -15,10 +15,17 @@
 <script type="text/javascript">
 	function payment(){
 		var str = document.getElementById("account").value;
-		if(document.getElementById("bankSelect").value == 0 || str.length == 0){
+
+		if(document.getElementById("bankSelect").value == 0  || str.length == 0){
 			alert('은행 정보를 정확히 입력하세요.');
-			document.getElementById("account").focus();	
+			document.getElementById("account").focus();		
 		}else{
+			var answer = "";
+			//var s = str.replace(/[A-z]/g, "");
+			var s = str.replace(/-/gim, "");
+			var s2 = s.replace(/[A-z]/g, "")
+			answer = s2;
+			document.getElementById("account").value = answer;
 			pay.submit();
 		}
 			
@@ -105,7 +112,7 @@
 									</select>
 								</div>
 							</td>
-							<td><input type="text" class="form-control form-control" placeholder="계좌번호 입력" id="account" name="account"></td>
+							<td><input type="text" class="form-control form-control" placeholder="계좌번호 입력 (-)없이 숫자만 입력하세요" id="account" name="account" ></td>
 						</tr>
 					</tbody>
 					</table>

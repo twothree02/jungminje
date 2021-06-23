@@ -179,13 +179,13 @@ div {
 						</thead>
 						<tbody>
 						<c:choose>
-						<c:when test="${grade101 != null}">
+						<c:when test="${grade1 != null}">
 							<tr>
-								<td><button type="button" onclick="detailGrade(101)">101</button></td>
-								<td>${grade101.applicationCred}</td>
-								<td>${grade101.receivedCred}</td>
-								<td>${grade101.avgGrade}</td>
-								<td>${grade101.rank}</td>
+								<td><button type="button" onclick="detailGrade(1)">101</button></td>
+								<td>${grade1.applicationCred}</td>
+								<td>${grade1.receivedCred}</td>
+								<td>${grade1.avgGrade}</td>
+								<td>${grade1.rank}/${rankCnt1}</td>
 							</tr>
 						</c:when>
 						<c:otherwise>
@@ -199,13 +199,13 @@ div {
 							</c:otherwise>
 						</c:choose>
 							<c:choose>
-							<c:when test="${info.gradeSemester >= 102 }">
+							<c:when test="${info.gradeSemester >= 2 }">
 							<tr>
-								<td><button type="button" onclick="detailGrade(102)">102</button></td>
-								<td>${grade102.applicationCred}</td>
-								<td>${grade102.receivedCred}</td>
-								<td>${grade102.avgGrade}</td>
-								<td>${grade102.rank}</td>
+								<td><button type="button" onclick="detailGrade(2)">102</button></td>
+								<td>${grade2.applicationCred}</td>
+								<td>${grade2.receivedCred}</td>
+								<td>${grade2.avgGrade}</td>
+								<td>${grade2.rank}/${rankCnt2}</td>
 							</tr>
 							</c:when>
 							<c:otherwise>
@@ -220,13 +220,13 @@ div {
 							</c:choose>
 							
 							<c:choose>
-							<c:when test="${info.gradeSemester >= 201 }">
+							<c:when test="${info.gradeSemester >= 3 }">
 							<tr>
-								<td><button type="button" onclick="detailGrade(201)">201</button></td>
-								<td>${grade201.applicationCred}</td>
-								<td>${grade201.receivedCred}</td>
-								<td>${grade201.avgGrade}</td>
-								<td>${grade201.rank}</td>
+								<td><button type="button" onclick="detailGrade(3)">201</button></td>
+								<td>${grade3.applicationCred}</td>
+								<td>${grade3.receivedCred}</td>
+								<td>${grade3.avgGrade}</td>
+								<td>${grade3.rank}/${rankCnt3}</td>
 							</tr>
 							</c:when>
 							<c:otherwise>
@@ -241,13 +241,13 @@ div {
 							</c:choose>
 							
 							<c:choose>
-							<c:when test="${info.gradeSemester >= 202 }">
+							<c:when test="${info.gradeSemester >= 4 }">
 							<tr>
-								<td><button type="button" onclick="detailGrade(202)">202</button></td>
-								<td>${grade202.applicationCred}</td>
-								<td>${grade202.receivedCred}</td>
-								<td>${grade202.avgGrade}</td>
-								<td>${grade202.rank}</td>
+								<td><button type="button" onclick="detailGrade(4)">202</button></td>
+								<td>${grade4.applicationCred}</td>
+								<td>${grade4.receivedCred}</td>
+								<td>${grade4.avgGrade}</td>
+								<td>${grade4.rank}/${rankCnt4}</td>
 							</tr>
 							</c:when>
 							<c:otherwise>

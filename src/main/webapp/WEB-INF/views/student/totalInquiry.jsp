@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 div {
-	/* border: 1px solid black; */
+	 /*border: 1px solid black;*/
 }
 
 .title {
@@ -127,10 +127,10 @@ div {
 		</div>
 			<div class="content">
 				<div class="badge1" style="margin-top: 10px;">
-				<span class="badge badge-success">기본정보</span>
+				<span class="badge badge-success" style="margin-left: 50px;">기본정보</span>
 				</div>
 				<div class="ContentTable1" style="display: flex;">
-				<div class="infoTable2">
+				<div class="infoTable2" style="margin-left: 120px;">
 			
 							<table class="table">
 					<thead>
@@ -148,7 +148,7 @@ div {
 				</table>
 			</div>
 			
-						<div class="infoTable3">
+						<div class="infoTable3" style="margin-left: 100px;">
 			
 							<table class="table">
 					<thead>
@@ -170,10 +170,10 @@ div {
 				</div>
 <hr>
 				<div class="badge2">
-				<span class="badge badge-success">연락처</span>
+				<span class="badge badge-success" style="margin-left: 50px;">연락처</span>
 				</div>
 				<div class="ContentTable2" style="display: flex;">
-				<div class="infoTable4">
+				<div class="infoTable4" style="margin-left: 120px;">
 			
 							<table class="table">
 					<thead>
@@ -188,7 +188,7 @@ div {
 				</table>
 			</div>
 			
-						<div class="infoTable5">
+						<div class="infoTable5" style="margin-left: 185px;">
 			
 							<table class="table">
 					<thead>

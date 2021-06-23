@@ -32,10 +32,19 @@ public class StudentServiceImpl implements StudentService {
 	public void studentInfo(Model model, String id) {
 
 		try {
-			StudentInfoDTO dto = mapper.studentInfo(id);
-			String birthDate = dto.getResidentNum().substring(0, 6);
-			dto.setBirthDate(birthDate);
-			model.addAttribute("info", dto);
+			StudentInfoDTO infoDTO = mapper.studentInfo(id);
+			String birthDate = infoDTO.getResidentNum().substring(0, 6);
+			infoDTO.setBirthDate(birthDate);
+			if(infoDTO.getGradeSemester() == 1) {
+				infoDTO.setGradeSemester(101);
+			}else if(infoDTO.getGradeSemester() == 2) {
+				infoDTO.setGradeSemester(102);
+			}else if(infoDTO.getGradeSemester() == 3) {
+				infoDTO.setGradeSemester(201);
+			}else if(infoDTO.getGradeSemester() == 4) {
+				infoDTO.setGradeSemester(202);
+			}
+			model.addAttribute("info", infoDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -46,17 +55,27 @@ public class StudentServiceImpl implements StudentService {
 	public void subjectInfo(Model model, String id) {
 
 		try {
-			StudentInfoDTO dto = mapper.studentInfo(id);
-			String birthDate = dto.getResidentNum().substring(0, 6);
-			dto.setBirthDate(birthDate);
+			StudentInfoDTO infoDTO = mapper.studentInfo(id);
+			String birthDate = infoDTO.getResidentNum().substring(0, 6);
+			infoDTO.setBirthDate(birthDate);
 			ArrayList<SubjectDTO> list = null;
-			if (dto.getGradeSemester() == dto.getClassReq()) {
-				list = mapper.subjectInfoA(dto.getGradeSemester(), dto.getMajor());
+			if (infoDTO.getGradeSemester() == infoDTO.getClassReq()) {
+				list = mapper.subjectInfoA(infoDTO.getGradeSemester(), infoDTO.getMajor());
 			} else {
-				list = mapper.subjectInfoB(dto.getGradeSemester(), dto.getMajor());
+				list = mapper.subjectInfoB(infoDTO.getGradeSemester(), infoDTO.getMajor());
 			}
 
-			model.addAttribute("info", dto);
+			if(infoDTO.getGradeSemester() == 1) {
+				infoDTO.setGradeSemester(101);
+			}else if(infoDTO.getGradeSemester() == 2) {
+				infoDTO.setGradeSemester(102);
+			}else if(infoDTO.getGradeSemester() == 3) {
+				infoDTO.setGradeSemester(201);
+			}else if(infoDTO.getGradeSemester() == 4) {
+				infoDTO.setGradeSemester(202);
+			}
+			
+			model.addAttribute("info", infoDTO);
 			model.addAttribute("subject", list);
 			if (list.size() == 0) {
 				model.addAttribute("repeat", 1);
@@ -75,6 +94,15 @@ public class StudentServiceImpl implements StudentService {
 		try {
 			StudentInfoDTO infoDTO = mapper.studentInfo(id);
 			TuitionInfoDTO tuitionDTO = mapper.tuitionInfo(id);
+			if(infoDTO.getGradeSemester() == 1) {
+				infoDTO.setGradeSemester(101);
+			}else if(infoDTO.getGradeSemester() == 2) {
+				infoDTO.setGradeSemester(102);
+			}else if(infoDTO.getGradeSemester() == 3) {
+				infoDTO.setGradeSemester(201);
+			}else if(infoDTO.getGradeSemester() == 4) {
+				infoDTO.setGradeSemester(202);
+			}
 			model.addAttribute("studentInfo", infoDTO);
 			model.addAttribute("tuitionInfo", tuitionDTO);
 		} catch (Exception e) {
@@ -100,21 +128,17 @@ public class StudentServiceImpl implements StudentService {
 		result = mapper.tutionPayMent(payDTO);
 
 		if (result == 1) {
-			if (infoDTO.getGradeSemester() == 101) {
+			if (infoDTO.getGradeSemester() == 1) {
 				mapper.tuitionSaveA(id, year);
-			} else if (infoDTO.getGradeSemester() == 102) {
+			} else if (infoDTO.getGradeSemester() == 2) {
 				mapper.tuitionSaveB(id, year);
-			} else if (infoDTO.getGradeSemester() == 201) {
+			} else if (infoDTO.getGradeSemester() == 3) {
 				mapper.tuitionSaveC(id, year);
-			} else if (infoDTO.getGradeSemester() == 202) {
+			} else if (infoDTO.getGradeSemester() == 4) {
 				mapper.tuitionSaveD(id, year);
 			}
 
 		}
-		System.out.println(id);
-		System.out.println(request.getParameter("bankSelect"));
-		System.out.println(request.getParameter("account"));
-		System.out.println(result);
 
 		/*
 		 * if(result == 1) { message = "<script>alert('계좌번호가 정상적으로 등록되었습니다.');"; message
@@ -126,10 +150,28 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public void classRequest(Model model, String id) {
-		StudentInfoDTO infoDTO = mapper.studentInfo(id);
-		ArrayList<SubjectDTO> list = mapper.subjectInfoC(infoDTO.getGradeSemester(), infoDTO.getMajor());
-		model.addAttribute("info", infoDTO);
-		model.addAttribute("list", list);
+		
+		try {
+			StudentInfoDTO infoDTO = mapper.studentInfo(id);
+			StudentInfoDTO infoDTOC = mapper.studentInfo(id);
+			ArrayList<SubjectDTO> list = mapper.subjectInfoC(infoDTO.getGradeSemester(), infoDTO.getMajor());
+			
+			model.addAttribute("infoC", infoDTOC);
+				if(infoDTO.getGradeSemester() == 1) {
+					infoDTO.setGradeSemester(101);
+				}else if(infoDTO.getGradeSemester() == 2) {
+					infoDTO.setGradeSemester(102);
+				}else if(infoDTO.getGradeSemester() == 3) {
+					infoDTO.setGradeSemester(201);
+				}else if(infoDTO.getGradeSemester() == 4) {
+					infoDTO.setGradeSemester(202);
+				}
+			model.addAttribute("info", infoDTO);
+			model.addAttribute("list", list);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 
 	}
 
@@ -148,6 +190,16 @@ public class StudentServiceImpl implements StudentService {
 		} else {
 			model.addAttribute("repeat", list.size());
 		}
+		
+		if(infoDTO.getGradeSemester() == 1) {
+			infoDTO.setGradeSemester(101);
+		}else if(infoDTO.getGradeSemester() == 2) {
+			infoDTO.setGradeSemester(102);
+		}else if(infoDTO.getGradeSemester() == 3) {
+			infoDTO.setGradeSemester(201);
+		}else if(infoDTO.getGradeSemester() == 4) {
+			infoDTO.setGradeSemester(202);
+		}
 		model.addAttribute("info", infoDTO);
 		model.addAttribute("grade", list);
 
@@ -155,8 +207,20 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public List<GradeDTO> detailGrade(int semester, String id) {
-
-		return mapper.gradeInfo(id, semester);
+		List<GradeDTO> list = mapper.gradeInfo(id, semester);
+		for (GradeDTO dto : list) {
+			if(dto.getSemester() == 1) {
+				dto.setSemester(101);
+			}else if(dto.getSemester() == 2) {
+				dto.setSemester(102);
+			}else if(dto.getSemester() == 3) {
+				dto.setSemester(201);
+			}else if(dto.getSemester() == 4) {
+				dto.setSemester(202);
+			}
+		}
+		
+		return list;
 	}
 
 	@Override
@@ -187,19 +251,9 @@ public class StudentServiceImpl implements StudentService {
 				applicationCred = 0;
 				receivedCred = 0;
 				avgGrade = 0;
-				int semester = 0;
-
+				int semester = i;
 				registerDTO = null;
 				list = null;
-				if (i == 1) {
-					semester = 101;
-				} else if (i == 2) {
-					semester = 102;
-				} else if (i == 3) {
-					semester = 201;
-				} else {
-					semester = 202;
-				}
 				registerDTO = mapper.registerInfo(id, semester);
 				list = mapper.gradeInfo(id, semester);
 
@@ -242,6 +296,11 @@ public class StudentServiceImpl implements StudentService {
 					SgradeDTO.setRank(registerDTO.getRank());
 					model.addAttribute("grade"+semester, SgradeDTO);
 				}
+				if(infoDTO.getGradeSemester() >= i) {
+					model.addAttribute("rankCnt"+i, mapper.rankCnt(infoDTO.getMajor(), registerDTO.getYear(), i));
+				}
+				
+				
 			}
 
 			// total
@@ -277,10 +336,22 @@ public class StudentServiceImpl implements StudentService {
 			TuitionInfoDTO tuitionDTO = mapper.tuitionInfo(id);
 			model.addAttribute("tuition", tuitionDTO);
 			ArrayList<RegisterInfoDTO> list = mapper.totalRegisterInfo(id);
-			RegisterInfoDTO registerDTOA = mapper.registerInfo(id, 101);
-			RegisterInfoDTO registerDTOB = mapper.registerInfo(id, 102);
-			RegisterInfoDTO registerDTOC = mapper.registerInfo(id, 201);
-			RegisterInfoDTO registerDTOD = mapper.registerInfo(id, 202);
+			RegisterInfoDTO registerDTOA = mapper.registerInfo(id, 1);
+			RegisterInfoDTO registerDTOB = mapper.registerInfo(id, 2);
+			RegisterInfoDTO registerDTOC = mapper.registerInfo(id, 3);
+			RegisterInfoDTO registerDTOD = mapper.registerInfo(id, 4);
+			
+			for (RegisterInfoDTO dto : list) {
+				if(dto.getGradeSemester() == 1) {
+					dto.setGradeSemester(101);
+				}else if(dto.getGradeSemester() == 2) {
+					dto.setGradeSemester(102);
+				}else if(dto.getGradeSemester() == 3) {
+					dto.setGradeSemester(201);
+				}else if(dto.getGradeSemester() == 4) {
+					dto.setGradeSemester(202);
+				}
+			}
 			
 			model.addAttribute("RegList", list);
 			model.addAttribute("registerA", registerDTOA);

@@ -142,16 +142,16 @@ div {
 								<th>번호</th>
 								<th>연도</th>
 								<th>학기</th>
-								<th>고지금액</th>
-								<th>납부액</th>
-								<th>등록상태</th>
+								<th>고지금액(만원)</th>
+								<th>납부액(만원)</th>
+								<th>등록</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td>1</td>
 								<c:choose>
-								<c:when test="${info.gradeSemester >= 101}">
+								<c:when test="${info.gradeSemester >= 1}">
 								<c:if test="${tuition.grade101 != 'N' }">
 								<td>${tuition.grade101}</td>
 								</c:if>
@@ -181,7 +181,7 @@ div {
 														<tr>
 								<td>2</td>
 								<c:choose>
-								<c:when test="${info.gradeSemester >= 102}">
+								<c:when test="${info.gradeSemester >= 2}">
 								<c:if test="${tuition.grade102 != 'N' }">
 								<td>${tuition.grade102}</td>
 								</c:if>
@@ -211,7 +211,7 @@ div {
 														<tr>
 								<td>3</td>
 								<c:choose>
-								<c:when test="${info.gradeSemester >= 201}">
+								<c:when test="${info.gradeSemester >= 3}">
 								<c:if test="${tuition.grade201 != 'N' }">
 								<td>${tuition.grade201}</td>
 								</c:if>
@@ -241,7 +241,7 @@ div {
 														<tr>
 								<td>4</td>
 								<c:choose>
-								<c:when test="${info.gradeSemester >= 202}">
+								<c:when test="${info.gradeSemester >= 4}">
 								<c:if test="${tuition.grade202 != 'N' }">
 								<td>${tuition.grade202}</td>
 								</c:if>
@@ -300,7 +300,7 @@ div {
 								<th>연도</th>
 								<th>학기</th>
 								<th>장학명</th>
-								<th>지급예정 금액</th>
+								<th>지급예정 금액(만원)</th>
 							</tr>
 						</thead>
 						<tbody>
