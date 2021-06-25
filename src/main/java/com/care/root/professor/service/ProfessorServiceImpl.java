@@ -283,7 +283,10 @@ public class ProfessorServiceImpl implements ProfessorService{
 	public void detailStuInfo(Model model, String id) {
 		System.out.println(id);
 		model.addAttribute("detailStuInfo", pm.detailStuInfo(id));
-		
+	}
+	@Override
+	public void semeGrade(Model model, String id) {
+		model.addAttribute("semeGradeInfo",pm.semeGradeInfo(id));
 	}
 	
 	

@@ -21,7 +21,7 @@
 <!-- <table border="1"><tr><td>${gInfo.subjectName}</td></tr></table> -->
 <tr>
 <td align='center'><input type="text" name="keyId" value="${gInfo.idNum }" readonly></td>
-<td align='center'>${gInfo.majorSeme }</td>
+<td align='center'>${gInfo.major}</td>
  <td align='center'>${gInfo.name }</td> 
  <td align='center'><input type="number" min="0" max="100" name="inputScore" value="${gInfo.score }" required></td> 
  <td align='center'><input type="text" name="inputGrade" value="${gInfo.grade }" readonly></td>

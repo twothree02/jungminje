@@ -3,7 +3,7 @@ package com.care.root.professor.dto;
 public class GradeInfoDTO {
 	private String idNum;
 	private String name;
-	private String majorSeme;
+	private String major;
 	private String subjectName;
 	private String grade;
 	private int score;
@@ -30,12 +30,14 @@ public class GradeInfoDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getMajorSeme() {
-		return majorSeme;
+	public String getMajor() {
+		return major;
 	}
-	public void setMajorSeme(String majorSeme) {
-		this.majorSeme = majorSeme;
+	public void setMajor(String major) {
+		this.major = major;
 	}
+	
+	
 	public String getSubjectName() {
 		return subjectName;
 	}

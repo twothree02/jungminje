@@ -33,7 +33,7 @@
 	<resultMap type="com.care.root.professor.dto.GradeInfoDTO" id="gradeInfo">
 		<result property="idNum" column="id_num"/>
 		<result property="name" column="name"/>
-		<result property="majorSeme" column="major_semester"/>
+		<result property="major" column="major"/>
 		<result property="subjectName" column="subject_name"/>
 		<result property="grade" column="grade"/>
 		<result property="score" column="score"/>
@@ -52,6 +52,21 @@
 		<result property="lectureRoom" column="lecture_room"/>
 		<result property="time" column="time"/>	
 		<result property="week" column="week"/>
+	</resultMap>
+	
+	<resultMap type="com.care.root.professor.dto.RegisterInfoDTO" id="register">
+		<result property="major" column="major"/>
+		<result property="idNum" column="id_num"/>
+		<result property="name" column="name"/>
+		<result property="scholarship" column="scholarship"/>
+		<result property="totalScore" column="total_score"/>
+		<result property="rank" column="rank"/>
+		<result property="year" column="year"/>	
+		<result property="gradeSeme" column="grade_semester"/>
+		<result property="chkPeriod" column="chk_period"/>
+		<result property="aveGrade" column="ave_grade"/>
+		<result property="appCred" column="application_cred"/>
+		<result property="receivedCred" column="received_cred"/>
 	</resultMap>
 	
   	<select id="getJuniorList" resultMap="professor">
@@ -133,6 +148,10 @@
 	
 	<select id="detailStuInfo" resultMap="professor">
 		select * from member_info where id_num = #{id}
+	</select>
+	
+	<select id="semeGradeInfo" resultMap="register">
+		select * from register_info where id_num = #{id}
 	</select>
 	
 	<select id="getTimeTable" resultMap="timeTable">

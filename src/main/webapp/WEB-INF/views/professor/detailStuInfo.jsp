@@ -33,6 +33,24 @@
 </c:forEach>
 </table>
 <input type="button" onclick="location.href='${contextPath }/professor/all_student'" value="Back">
+<br>
+<br>
+<br>
+
+<table border="1">
+<tr>
+<td>학년/학기</td> <td>신청학점</td> <td>취득학점</td> <td>취득학점 평균</td> <td>석차</td>
+</tr>
+<c:forEach var="sGrade" items="${semeGradeInfo}">
+<tr>
+<td>${sGrade.major}${sGrade.gradeSeme}</td> <td>${sGrade.appCred}</td>
+<td>${sGrade.receivedCred}</td> <td>${sGrade.aveGrade}</td> <td>${sGrade.rank}</td>
+</tr>
+</c:forEach>
+</table>
+
+
+
 
 </body>
 </html>

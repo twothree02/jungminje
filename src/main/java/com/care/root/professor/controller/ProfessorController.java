@@ -44,6 +44,7 @@ public class ProfessorController implements MemberSessionName{
 		String id = request.getParameter("id");
 		System.out.println(id);
 		ps.detailStuInfo(model, id);
+		ps.semeGrade(model,id);
 		
 		return "professor/detailStuInfo";
 	}
