@@ -23,7 +23,22 @@ public class OfficerDTO {
 	private String bank;
 	private String accountNum;
 	private String birthDate;
+	private int curTotalGrade;
+	private int curRank;
 	
+	
+	public int getCurRank() {
+		return curRank;
+	}
+	public void setCurRank(int curRank) {
+		this.curRank = curRank;
+	}
+	public int getCurTotalGrade() {
+		return curTotalGrade;
+	}
+	public void setCurTotalGrade(int curTotalGrade) {
+		this.curTotalGrade = curTotalGrade;
+	}
 	public String getIdNum() {
 		return idNum;
 	}

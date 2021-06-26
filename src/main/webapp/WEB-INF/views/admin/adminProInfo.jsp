@@ -56,7 +56,7 @@ div {
 	<c:import url="../default/adminHeader.jsp" />
 	<div class="wrap">
 		<div class="title">
-			<h1 style="text-align: center;">내 정보</h1>
+			<h1 style="text-align: center;">교수 / 관리자 상세정보</h1>
 		</div>
 		<div class="menuBar"></div>
 		<div class="officerInfo">

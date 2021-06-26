@@ -1,7 +1,6 @@
 package com.care.root.officer.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.care.root.common.session.MemberSessionName;
+import com.care.root.officer.dto.GradeDTO;
 import com.care.root.officer.dto.OfficerDTO;
 import com.care.root.officer.service.OfficerService;
 
@@ -96,7 +96,8 @@ public class OfficeController implements MemberSessionName{
 	}
 	
 	@RequestMapping("grade")
-	public String grade() {
+	public String grade(Model model, @RequestParam(value = "num", required=false, defaultValue = "1") int num) {
+		os.grade(model, num);
 		return "admin/grade";
 	}
 	
@@ -136,5 +137,46 @@ public class OfficeController implements MemberSessionName{
 	@ResponseBody
 	public ArrayList<String> timeCheck(@RequestBody Map <String, Object> map){
 		return os.timeCheck((String)map.get("major"), (String)map.get("week"), (String)map.get("lecture"));
+	}
+	
+	@RequestMapping("tuitionAdmin")
+	public String tuitionAdmin() {
+		return "admin/tuitionAdmin";
+	}
+	
+	@RequestMapping("adminProTel")
+	public String adminProTel(Model model, @RequestParam(value = "num", required=false, defaultValue = "1") int num) {
+		ArrayList<OfficerDTO> list = new ArrayList<OfficerDTO>();
+		list = os.findAllAdmin(model, num);
+		model.addAttribute("list", list);
+		return "admin/adminProTel";
+	}
+	
+	@PostMapping(value="findinfoProTel", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String,Object> findinfoProTel(@RequestBody Map <String, Object> map, @RequestParam(value = "num", required=false, defaultValue = "1") int num){
+		return os.findinfoProTel((String)map.get("major"), num);	
+	}
+	
+	@PostMapping(value="searchAdminPro", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String,Object> searchAdminPro(@RequestBody Map <String, Object> map, @RequestParam(value = "num", required=false, defaultValue = "1") int num){
+		System.out.println(map.get("searchSelect"));
+		System.out.println(map.get("searchText"));
+		System.out.println(map.get("searchMajor"));
+		if(map.get("searchMajor").equals("all")) {
+			return os.searchAllAdminPro((String)map.get("searchSelect"), (String)map.get("searchText"), num);
+		}
+		else {
+			return os.searchAdminPro((String)map.get("searchSelect"), (String)map.get("searchText"), (String)map.get("searchMajor"), num);
+		}
+	}
+	
+	@RequestMapping("adminProInfo")
+	public String adminProInfo(HttpServletRequest request, Model model) {
+		OfficerDTO dto = new OfficerDTO();
+		dto = os.adminProInfo(request.getParameter("idNum"));
+		model.addAttribute("dto", dto);
+		return "admin/adminProInfo";
 	}
 }

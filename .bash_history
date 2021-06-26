@@ -153,3 +153,26 @@ git config --global user.name Yoo Ji Hyeong
 git config --global user.name "Yoo Ji Hyeong"
 git commit -am "21 June 16 JH Middle Upload"
 git push origin jh
+pwd
+ls -l
+git status
+git commit -am "2021 June 22 YJH Paging Upload"
+git push -u origin jh
+git status
+git add -all
+git add --all
+git status
+git commit -am "2021 June 22 YJH Paging Upload"
+git push -u origin jh
+git status
+git status
+git branch -a
+ls -al
+git status
+git status
+g
+git stuats
+git stuats
+git stauts
+git status
+git branch -a

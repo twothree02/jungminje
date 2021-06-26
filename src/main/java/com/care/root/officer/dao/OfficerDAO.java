@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.care.root.officer.dto.GradeDTO;
 import com.care.root.officer.dto.OfficerDTO;
 import com.care.root.officer.dto.TimeTableDTO;
 
@@ -29,4 +30,23 @@ public interface OfficerDAO {
 	public String findTeacherIdNum(@Param("subject") String subject);
 	public int insertTimeTable(TimeTableDTO dto);
 	public ArrayList<String> findTime(@Param("major") String major, @Param("week") String week, @Param("lecture") String lecture);
+	public int selectAdminProCount();
+	public ArrayList<OfficerDTO> findAllAdmin(@Param("s") int start, @Param("e") int end);
+	public int selectMajorAdminProCount(@Param("major") String major);
+	public ArrayList<OfficerDTO> findinfoAdminPro(@Param("major") String major, @Param("s") int start, @Param("e") int end);
+	public ArrayList<OfficerDTO> searchAdminPro(@Param("s") int start, @Param("e") int end, 
+			@Param("searchS") String searchS, @Param("searchT") String searchT, @Param("searchM") String searchM);
+	public int searchAdminProCount(@Param("searchS") String searchS, @Param("searchT") String searchT, @Param("searchM") String searchM);
+	public ArrayList<OfficerDTO> searchAllAdminPro(@Param("s") int start, @Param("e") int end, 
+            @Param("searchS") String searchS, @Param("searchT") String searchT);
+	public int searchAllAdminProCount(@Param("searchS") String searchS, @Param("searchT") String searchT);
+	public OfficerDTO adminProInfo(@Param("idNum") String idNum);
+	public ArrayList<GradeDTO> grade(@Param("s") int start, @Param("e") int end);
+	public Integer totalCal(@Param("idNum") String idNum, @Param("dbSemester") String dbSemester, @Param("dbYear") String dbYear);
+	public ArrayList<String> studentIdNum();
+	public void insertCurTotalScore(@Param("totalScore") int totalScore, @Param("idNum") String idNum);
+	public ArrayList<OfficerDTO> findRankFirst(@Param("s") int start, @Param("e") int end);
+	public ArrayList<OfficerDTO> findRankSecond(@Param("s") int start, @Param("e") int end);
+	public void insertCurRank();
+	public int getTotalGrade(String idNum);
 }	

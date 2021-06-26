@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.care.root.officer.dao.OfficerDAO;
+import com.care.root.officer.dto.GradeDTO;
 import com.care.root.officer.dto.OfficerDTO;
 import com.care.root.officer.dto.TimeTableDTO;
 
@@ -78,6 +79,10 @@ public class OfficerServiceImpl implements OfficerService{
 		int end = num * pageLetter;
 		int start = end + 1 - pageLetter;
 		
+		if(repeat == 0) {
+			repeat = 1;
+		}
+		
 		if(major.equals("전체")) {
 			Map <String,Object> map = new HashMap<String, Object>();
 			map.put("repeat", repeat);
@@ -103,6 +108,11 @@ public class OfficerServiceImpl implements OfficerService{
 		}
 		int end = num * pageLetter;
 		int start = end + 1 - pageLetter;
+		
+		if(repeat == 0) {
+			repeat = 1;
+		}
+		
 		model.addAttribute("repeat", repeat);
 		model.addAttribute("list", mapper.findAll(start, end));
 		return mapper.findAll(start,end);
@@ -120,6 +130,10 @@ public class OfficerServiceImpl implements OfficerService{
 		int start = end + 1 - pageLetter;
 		
 		System.out.println(num);
+		
+		if(repeat == 0) {
+			repeat = 1;
+		}
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("repeat", repeat);
@@ -139,6 +153,10 @@ public class OfficerServiceImpl implements OfficerService{
 		int start = end + 1 - pageLetter;
 		
 		System.out.println(num);
+		
+		if(repeat == 0) {
+			repeat = 1;
+		}
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("repeat", repeat);
@@ -252,4 +270,177 @@ public class OfficerServiceImpl implements OfficerService{
 		return finalTime;
 	}
 	
+	@Override
+	public ArrayList<OfficerDTO> findAllAdmin(Model model, int num) {
+		int pageLetter = 3;
+		int allCount = mapper.selectAdminProCount();
+		
+		int repeat = allCount / pageLetter;	// 총 페이지 수
+		if(allCount % pageLetter != 0) {
+			repeat += 1;
+		}
+		if(repeat == 0) {
+			repeat = 1;
+		}
+		int end = num * pageLetter;
+		int start = end + 1 - pageLetter;
+		model.addAttribute("repeat", repeat);
+		return mapper.findAllAdmin(start,end);
+	}
+
+	@Override
+	public Map<String, Object> findinfoProTel(String major,int num) {
+		int pageLetter = 3;
+		int allCount;
+		if(major.equals("전체")) {
+			allCount = mapper.selectAdminProCount(); // 총 글 개수 얻어오기
+		}
+		else {
+			allCount = mapper.selectMajorAdminProCount(major); // 총 글 개수 얻어오기
+		}
+		
+		int repeat = allCount / pageLetter;	// 총 페이지 수
+		if(allCount % pageLetter != 0) {
+			repeat += 1;
+		}
+		int end = num * pageLetter;
+		int start = end + 1 - pageLetter;
+		
+		if(major.equals("전체")) {
+			Map <String,Object> map = new HashMap<String, Object>();
+			if(repeat == 0) {
+				repeat = 1;
+			}
+			map.put("repeat", repeat);
+			map.put("list", mapper.findAllAdmin(start, end));
+			return map;
+		}
+		else {
+			Map <String,Object> map = new HashMap<String, Object>();
+			if(repeat == 0) {
+				repeat = 1;
+			}
+			map.put("repeat", repeat);
+			map.put("list", mapper.findinfoAdminPro(major, start, end));
+			return map;
+		}
+	}
+	@Override
+	public Map<String, Object> searchAdminPro(String searchS, String searchT, String searchM, int num) {
+		int pageLetter = 3;
+		int allCount = mapper.searchAdminProCount(searchS, searchT, searchM); // 총 글 개수 얻어오기
+		int repeat = allCount / pageLetter;	// 총 페이지 수
+		if(allCount % pageLetter != 0) {
+			repeat += 1;
+		}
+		int end = num * pageLetter;
+		int start = end + 1 - pageLetter;
+		
+		System.out.println(num);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("repeat", repeat);
+		map.put("list", mapper.searchAdminPro(start, end, searchS, searchT, searchM));
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> searchAllAdminPro(String searchS, String searchT, int num) {
+		int pageLetter = 3;
+		int allCount = mapper.searchAllAdminProCount(searchS, searchT); // 총 글 개수 얻어오기
+		int repeat = allCount / pageLetter;	// 총 페이지 수
+		if(allCount % pageLetter != 0) {
+			repeat += 1;
+		}
+		int end = num * pageLetter;
+		int start = end + 1 - pageLetter;
+		
+		System.out.println(num);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("repeat", repeat);
+		map.put("list", mapper.searchAllAdminPro(start, end, searchS, searchT));
+		return map;
+	}
+	
+	@Override
+	public OfficerDTO adminProInfo(String idNum) {
+		OfficerDTO dto = new OfficerDTO();
+		dto = mapper.adminProInfo(idNum);
+		dto.setBirthDate(dto.getResidentNum().substring(0,6));
+		return dto;
+	}
+
+	@Override
+	public ArrayList<GradeDTO> grade(Model model, int num){
+		
+		int pageLetter = 9;
+		int allCount = mapper.selectStudentCount(); // 총 글 개수 얻어오기
+		
+		int repeat = allCount / pageLetter;	// 총 페이지 수
+		if(allCount % pageLetter != 0) {
+			repeat += 1;
+		}
+		int end = num * pageLetter;
+		int start = end + 1 - pageLetter;
+		
+		if(repeat == 0) {
+			repeat = 1;
+		} 
+		
+		Calendar cal = Calendar.getInstance();
+		
+		int year = cal.get(cal.YEAR);
+		int month = cal.get(cal.MONTH)+1;
+		String semester = null;
+		
+		if(month < 9 && month > 0) {
+			semester = "1학기";
+		}
+		else if (month >= 9 && month < 13 ){
+			semester = "2학기";
+		}
+		
+		insertCurTotalGrade();
+		
+		mapper.insertCurRank();
+		
+		model.addAttribute("year", year);
+		model.addAttribute("semester", semester);
+		model.addAttribute("repeat", repeat);	
+		model.addAttribute("list", mapper.findRankFirst(start, end));
+		model.addAttribute("listSecond", mapper.findRankSecond(start, end));
+		return mapper.grade(start,end);
+	}
+	
+	public void insertCurTotalGrade() {
+		ArrayList<String> list = new ArrayList<String>();
+		list = mapper.studentIdNum();
+		Integer totalScore;
+		
+		Calendar cal = Calendar.getInstance();
+		
+		int year = cal.get(cal.YEAR);
+		int month = cal.get(cal.MONTH)+1;
+		String dbSemester = null;
+		String dbYear = year + "";
+		
+		if(month < 9 && month > 0) {
+			dbSemester = "1";
+		}
+		else if (month >= 9 && month < 13 ){
+			dbSemester = "2";
+		}
+		
+		for(int i = 0; i<list.size(); i++) {
+			totalScore = mapper.totalCal(list.get(i), dbSemester, dbYear);
+			if(totalScore == null) {
+				totalScore = 0;
+				mapper.insertCurTotalScore(totalScore, list.get(i));
+			}
+			else {
+				mapper.insertCurTotalScore(totalScore, list.get(i));
+			}
+		}
+	}
 }
