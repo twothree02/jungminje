@@ -10,7 +10,22 @@ public class GradeInfoDTO {
 	private String profName;
 	private long receivedCred;
 	private long applicationCred;
+	private int gradeSeme;
 	private String year;
+	private String seme;
+	
+	public String getSeme() {
+		return seme;
+	}
+	public void setSeme(String seme) {
+		this.seme = seme;
+	}
+	public int getGradeSeme() {
+		return gradeSeme;
+	}
+	public void setGradeSeme(int gradeSeme) {
+		this.gradeSeme = gradeSeme;
+	}
 	
 	public String getYear() {
 		return year;

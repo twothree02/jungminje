@@ -27,6 +27,7 @@ public interface ProfessorService {
 	public void showGrade(Model model, String lecName, String tYear);
 	public String inputGrade(MultipartHttpServletRequest mul, HttpServletRequest request);
 	public void detailStuInfo(Model model, String id);
+	public ArrayList<GradeInfoDTO> getSemeDetail(String idNum, String gSeme);
 	public void semeGrade(Model model, String id);
 	
 }

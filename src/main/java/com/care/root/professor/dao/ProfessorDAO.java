@@ -26,6 +26,7 @@ public interface ProfessorDAO {
 	public String getMajorCheck(String pId);
 	public int saveScore(GradeInfoDTO dto); //성공하면 성공된 갯수가 int로 넘어감. ex)데이터값이 3개 있다면 3이 넘어감.
 	public ArrayList<ProfessorDTO> detailStuInfo(String id);
+	public ArrayList<GradeInfoDTO> getSemeDetail(@Param("id")String idNum, @Param("seme")int inputSeme);
 	public ArrayList<RegisterInfoDTO> semeGradeInfo(String id);
 	public int selectStuCount(@Param("grade") int grade, @Param("major") String major);
 	public int searchStuCount(@Param("searchSel") String searchSel,@Param("searchInp") String searchInp);

@@ -285,6 +285,13 @@ public class ProfessorServiceImpl implements ProfessorService{
 		model.addAttribute("detailStuInfo", pm.detailStuInfo(id));
 	}
 	@Override
+	public ArrayList<GradeInfoDTO> getSemeDetail(String idNum, String gSeme) {
+		int inputSeme = Integer.parseInt(gSeme);
+		System.out.println(inputSeme);
+		
+		return pm.getSemeDetail(idNum, inputSeme);
+	}
+	@Override
 	public void semeGrade(Model model, String id) {
 		model.addAttribute("semeGradeInfo",pm.semeGradeInfo(id));
 	}

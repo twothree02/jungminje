@@ -40,7 +40,9 @@
 		<result property="profName" column="prof_name"/>
 		<result property="receivedCred" column="received_cred"/>
 		<result property="applicationCred" column="application_cred"/>	
-		<result property="year" column="year"/>	
+		<result property="gradeSeme" column="grade_semester"/>
+		<result property="year" column="year"/>
+		<result property="seme" column="semester"/>		
 	</resultMap>
 	
 	<resultMap type="com.care.root.professor.dto.TimeTableDTO" id="timeTable">
@@ -150,8 +152,12 @@
 		select * from member_info where id_num = #{id}
 	</select>
 	
+	<select id="getSemeDetail" resultMap="gradeInfo">
+		select * from grade_info where id_num = #{id} and grade_semester = #{seme} order by subject_name asc
+	</select>
+	
 	<select id="semeGradeInfo" resultMap="register">
-		select * from register_info where id_num = #{id}
+		select * from register_info where id_num = #{id} order by grade_semester asc
 	</select>
 	
 	<select id="getTimeTable" resultMap="timeTable">

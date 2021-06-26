@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.care.root.common.session.MemberSessionName;
+import com.care.root.professor.dto.GradeInfoDTO;
 import com.care.root.professor.dto.ProfessorDTO;
 import com.care.root.professor.service.ProfessorService;
 
@@ -47,6 +48,17 @@ public class ProfessorController implements MemberSessionName{
 		ps.semeGrade(model,id);
 		
 		return "professor/detailStuInfo";
+	}
+	@PostMapping(value="seme_detail", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public ArrayList<GradeInfoDTO> semeDetail(
+			@RequestBody Map<String,Object> map){
+		
+		String idNum = (String)map.get("idNum");
+		String gSeme = (String)map.get("seme01");
+		System.out.println(idNum+","+gSeme);
+		
+		return ps.getSemeDetail(idNum, gSeme);
 	}
 	@PostMapping("input_grade")
 	public void inputGrade(MultipartHttpServletRequest mul,
