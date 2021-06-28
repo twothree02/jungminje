@@ -20,7 +20,7 @@ public class academicFileBoardServiceImpl  implements academicFileBoardService{
 		if(num == 1) {
 			message = "<script>alert('새로운 게시글이 등록 되었습니다');";
 			message += "location.href='"+request.getContextPath()+
-						"/academicList';</script>";
+						"/board/academicList';</script>";
 		}else {
 			message = "<script>alert('문제가 발생하였습니다');";
 			message += "location.href='"+request.getContextPath()+

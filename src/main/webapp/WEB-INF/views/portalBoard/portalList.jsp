@@ -10,7 +10,7 @@
 <body>
 	<c:import url="../default/header.jsp" />
 	<div class="container">
-		<h2 style="text-align: center; margin-top: 30px;">포털 게시판</h2>
+		<h2 style="text-align: center; margin-top: 30px;">포 털 공 지</h2>
 		<p style="text-align: center;">YW university</p>
 		<div align="right">
 		<form id ="searchfrom" action="portalList" method ="get">

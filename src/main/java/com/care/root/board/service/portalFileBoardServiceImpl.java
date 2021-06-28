@@ -18,7 +18,7 @@ public class portalFileBoardServiceImpl implements portalFileBoardService {
 		if(num == 1) {
 			message = "<script>alert('새로운 게시글이 등록 되었습니다');";
 			message += "location.href='"+request.getContextPath()+
-						"/portalList';</script>";
+						"/board/portalList';</script>";
 		}else {
 			message = "<script>alert('문제가 발생하였습니다');";
 			message += "location.href='"+request.getContextPath()+

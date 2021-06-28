@@ -1,4 +1,4 @@
-	package com.care.root.board.service;
+package com.care.root.board.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,8 +19,8 @@ import com.care.root.board.academicdto.academicMessageDTO;
 import com.care.root.board.academicdto.academicReplyDTO;
 import com.care.root.board.academicdto.viewNumber3;
 import com.care.root.board.dao.BoardMapper;
-import com.care.root.board.noticedto.noticeMessageDTO;
 import com.care.root.board.noticedto.noticeDTO;
+import com.care.root.board.noticedto.noticeMessageDTO;
 import com.care.root.board.noticedto.noticeReplyDTO;
 import com.care.root.board.noticedto.viewNumber;
 import com.care.root.board.portaldto.portalDTO;
@@ -86,9 +86,9 @@ public class boardServiceImpl implements boardService {
 		mDTO.setResult(result);
 		mDTO.setRequest(request);
 		mDTO.setSuccessMessage("성공적으로 수정되었습니다");
-		mDTO.setSuccessURL("/list");
+		mDTO.setSuccessURL("/board/list");
 		mDTO.setFailMessage("수정 중 문제가 발생하였습니다");
-		mDTO.setFailURL("modify");
+		mDTO.setFailURL("/board/modify");
 		String message = bfs.getMessage(mDTO);
 		return message;
 	}
@@ -113,9 +113,9 @@ public class boardServiceImpl implements boardService {
 		mDTO.setResult(result);
 		mDTO.setRequest(request);
 		mDTO.setSuccessMessage("성공적으로 삭제 되었습니다");
-		mDTO.setSuccessURL("/list");
+		mDTO.setSuccessURL("/board/list");
 		mDTO.setFailMessage("삭제 중 문제가 발생하였습니다");
-		mDTO.setFailURL("contentView");
+		mDTO.setFailURL("/board/contentView");
 		return bfs.getMessage(mDTO);
 	}
 
@@ -255,9 +255,9 @@ public class boardServiceImpl implements boardService {
 		mDTO.setResult(result);
 		mDTO.setRequest(request);
 		mDTO.setSuccessMessage("성공적으로 수정되었습니다");
-		mDTO.setSuccessURL("/portalList");
+		mDTO.setSuccessURL("/board/portalList");
 		mDTO.setFailMessage("수정 중 문제가 발생하였습니다");
-		mDTO.setFailURL("portalModify");
+		mDTO.setFailURL("/board/portalModify");
 		String message = bfs.portalGetMessage(mDTO);
 		return message;
 	}
@@ -286,9 +286,9 @@ public class boardServiceImpl implements boardService {
 		mDTO.setResult(result);
 		mDTO.setRequest(request);
 		mDTO.setSuccessMessage("성공적으로 삭제 되었습니다");
-		mDTO.setSuccessURL("/portalList");
+		mDTO.setSuccessURL("/board/portalList");
 		mDTO.setFailMessage("삭제 중 문제가 발생하였습니다");
-		mDTO.setFailURL("portalContentView");
+		mDTO.setFailURL("/board/portalContentView");
 		return bfs.portalGetMessage(mDTO);
 	}
 
@@ -445,9 +445,9 @@ public class boardServiceImpl implements boardService {
 		mDTO.setResult(result);
 		mDTO.setRequest(request);
 		mDTO.setSuccessMessage("성공적으로 수정되었습니다");
-		mDTO.setSuccessURL("/academicList");
+		mDTO.setSuccessURL("/board/academicList");
 		mDTO.setFailMessage("수정 중 문제가 발생하였습니다");
-		mDTO.setFailURL("academicModify");
+		mDTO.setFailURL("/board/academicModify");
 		String message = bfs.academicGetMessage(mDTO);
 		return message;
 	}
@@ -474,9 +474,9 @@ public class boardServiceImpl implements boardService {
 		mDTO.setResult(result);
 		mDTO.setRequest(request);
 		mDTO.setSuccessMessage("성공적으로 삭제 되었습니다");
-		mDTO.setSuccessURL("/academicList");
+		mDTO.setSuccessURL("/board/academicList");
 		mDTO.setFailMessage("삭제 중 문제가 발생하였습니다");
-		mDTO.setFailURL("academicContentView");
+		mDTO.setFailURL("/board/academicContentView");
 		return bfs.academicGetMessage(mDTO);
 	}
 

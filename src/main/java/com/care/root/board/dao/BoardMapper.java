@@ -100,7 +100,7 @@ public interface BoardMapper {
 		//댓글 총 개수
 		public int  academicReplycount (int rno);
 		//메인리스트
-		List<academicReplyDTO>academicMainList();
+		List<academicDTO>academicMainList();
 		
 }
 
