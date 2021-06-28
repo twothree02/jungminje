@@ -3,13 +3,10 @@ package com.care.root.member.service;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-<<<<<<< HEAD
-=======
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
->>>>>>> yw
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -119,31 +116,6 @@ public class MemberServiceImpl implements MemberService{
 			}
 		}
 		return pw;
-<<<<<<< HEAD
-	}
-	
-	private void sendMail(String to, String title, String body) {
-		MimeMessage message = mailSender.createMimeMessage();
-		try {
-			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
-			messageHelper.setSubject(title);
-			messageHelper.setTo(to);
-			messageHelper.setText(body, true);	//true : HTML 태그를 번역한 뒤 메일을 보내기 위함
-			mailSender.send(message);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void logout(HttpSession session, HttpServletResponse response) {
-		try {
-			PrintWriter out = response.getWriter();
-			out.print("<script>alert('로그아웃되었습니다. 로그인 페이지로 돌아갑니다.'); wait();</script>");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-=======
 	}
 	
 	private void sendMail(String to, String title, String body) {
@@ -279,7 +251,6 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void setNull(String id) {
 		mapper.setNull(id);
->>>>>>> yw
 	}
 
 }
