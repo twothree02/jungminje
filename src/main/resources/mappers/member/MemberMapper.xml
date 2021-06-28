@@ -31,11 +31,9 @@
 	</resultMap>
 	
 	<select id="loginChk" resultMap="member">
-<<<<<<< HEAD
 		select * from member_info where id_num = #{id} 
-=======
 		select * from member_info where id_num = #{id}
->>>>>>> hw
+
 	</select>
 	
 	<select id="findId" resultType="String">
