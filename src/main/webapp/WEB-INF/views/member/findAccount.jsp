@@ -107,7 +107,6 @@
 											<input class="form-control" name="inputEmail" id="inputEmail" type="text"
 												placeholder="abc@aaa.com" style="width: 50%;"> <label for="inputEmail">E-mail 입력</label>
 											<font style="padding-top: 15px;">@</font>
-<<<<<<< HEAD
 											<select name="address" id="address" class="form-control" style="width: 50%;">
 												<option value="none">=== 선택 ===</option>
 												<option value="naver.com">naver.com</option>
@@ -115,7 +114,6 @@
 												<option value="gmail.com">gamil.com</option>
 												<option value="nate.com">nate.com</option>
 											</select>
-=======
 											<div class="form-floating">
 												<select class="form-select" id="floatingSelect" aria-label="Floating label select example" style="width: 200%;">
 													<option value="none" selected>== 선택 ==</option>
@@ -125,7 +123,6 @@
 													<option value="nate.com">nate.com</option>
 												</select> <label for="floatingSelect" style="width: 100%;">Domain</label>
 											</div>
->>>>>>> yw
 										</div>
 										<div
 											class="d-flex align-items-center justify-content-between mt-4 mb-0">
@@ -143,15 +140,8 @@
 		</div>
 
 		<div id="layoutAuthentication_footer">
-			<footer class="py-4 bg-light mt-auto">
-				<div class="container-fluid px-4">
-					<div
-						class="d-flex align-items-center justify-content-between small">
-						<div class="text-muted">Copyright &copy; YW University</div>
-						<div>관리자 | TEL 010-0000-0000</div>
-					</div>
-				</div>
-			</footer>
+		           <c:import url="../default/footer.jsp" />
+
 		</div>
 	</div>
 	<script

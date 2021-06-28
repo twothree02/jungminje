@@ -40,10 +40,11 @@ table {
 
 		<div align="center">
 			<input type="submit" class="btn btn-secondary" value="저장">
-			<button type="reset" class="btn btn-secondary">취소</button>
+			<button type="reset" class="btn btn-secondary" onclick="history.back()">취소</button>
 		</div>
 	</form>
 
+	<c:import url="../default/footer.jsp"></c:import>
 
 
 </body>

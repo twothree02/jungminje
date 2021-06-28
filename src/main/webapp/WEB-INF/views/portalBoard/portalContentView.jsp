@@ -380,6 +380,7 @@ function displayTime(timeValue) {
 	<div id='commentModifyArea'></div>
 
 	<div id="pagig" align="center"></div>
+	<c:import url="../default/footer.jsp"></c:import>
 
 </body>
 </html>

@@ -129,5 +129,6 @@
 <h3>등록금 납부 기간이 아닙니다.</h3>
 </c:if>
 </div>
+  <c:import url="../default/footer.jsp" />
 </body>
 </html>

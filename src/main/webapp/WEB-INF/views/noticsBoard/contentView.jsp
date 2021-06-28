@@ -244,7 +244,7 @@ function modify(){
 		type : "POST",
 		url : "commenModify",
 		data : {
-			
+				
 				"content" : content,
 				"step" : step,
 				"rno" : rno
@@ -366,8 +366,8 @@ function displayTime(timeValue) {
 		<input type="hidden" name="writeNo" value="${board.writeNo }">
 		<div align="left" style="margin-top: 30px;">
 			<b>댓글</b>&nbsp;&nbsp; <b>작성자 : ${login }</b>&nbsp;&nbsp; &nbsp;&nbsp;
-			&nbsp;&nbsp; <b>내용:</b>
-			&nbsp;&nbsp;<input type="text" size="30" name="content">
+			&nbsp;&nbsp; <b>내용:</b> &nbsp;&nbsp;<input type="text" size="30"
+				name="content">
 			<button type="button" onclick="rep()" class='btn btn-secondary'>답글</button>
 			<button type="button" class='btn btn-secondary'>취소</button>
 			<hr>
@@ -380,6 +380,7 @@ function displayTime(timeValue) {
 	<div id='commentModifyArea'></div>
 
 	<div id="pagig" align="center"></div>
+	<c:import url="../default/footer.jsp"></c:import>
 
 </body>
 </html>
