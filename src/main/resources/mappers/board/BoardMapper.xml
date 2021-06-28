@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<<<<<<< HEAD
 <mapper namespace="com.care.root.board.dao.BoardMapper">
 	<resultMap type="com.care.root.board.dto.BoardDTO" id="board">
 		<id property="writeNo" column="write_no"/>
@@ -19,3 +20,9 @@
 	
 	
 	</mapper>
+=======
+<mapper namespace="com.care.root.board.dao.BoardDAO">
+
+
+</mapper>
+>>>>>>> yw
