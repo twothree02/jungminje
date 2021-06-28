@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.care.root.student.dao.StudentDAO">
+	<resultMap type="com.care.root.student.dto.StudentInfoDTO" id="info">
+		<result property="idNum" column="ID_NUM"/>
+		<result property="name" column="NAME"/>
+		<result property="residentNum" column="RESIDENT_NUM"/>	
+		<result property="phoneNum" column="PHONE_NUM"/>
+		<result property="telNum" column="TEL_NUM"/>
+		<result property="addr" column="ADDR"/>	
+		<result property="detailAddr" column="DETAIL_ADDR"/>
+		<result property="email" column="EMAIL"/>
+		<result property="major" column="MAJOR"/>
+		<result property="grade" column="GRADE"/>
+		<result property="classInfo" column="CLASS"/>
+		<result property="country" column="COUNTRY"/>
+		<result property="mentor" column="MENTOR"/>
+		<result property="zipcodeSend" column="ZIPCODE_SEND"/>
+		<result property="smsSend" column="SMS_SEND"/>
+		<result property="position" column="POSITION"/>
+		<result property="imageFile" column="IMAGE_FILE"/>
+		<result property="officeAddr" column="OFFICE_ADDR"/>
+		<result property="bank" column="BANK"/>
+		<result property="accountNum" column="ACCOUNT_NUM"/>	
+		<result property="gradeSemester" column="GRADE_SEMESTER"/>	
+		<result property="classReq" column="CLASS_REQ"/>	
+
+	</resultMap>
+	
+	<resultMap type="com.care.root.student.dto.SubjectDTO" id="subject">
+		<result property="major" column="MAJOR_SEMESTER"/>
+		<result property="subjectName" column="SUBJECT_NAME"/>
+		<result property="professor" column="PROF_NAME"/>		
+		<result property="classRoom" column="CLASSROOM"/>
+		<result property="lectureTime" column="LECTURE_TIME"/>
+		<result property="year" column="YEAR"/>
+		<result property="gradeSemester" column="GRADE_SEMESTER"/>
+	</resultMap>
+	
+	<resultMap type="com.care.root.student.dto.TuitionInfoDTO" id="tuition">
+		<result property="grade101" column="GRADE_101"/>
+		<result property="grade102" column="GRADE_102"/>
+		<result property="grade201" column="GRADE_201"/>		
+		<result property="grade202" column="GRADE_202"/>
+		<result property="paymentStu" column="PAYMENT_STU"/>
+		<result property="payment" column="PAYMENT"/>
+		<result property="regStart" column="REG_START"/>
+		<result property="regEnd" column="REG_END"/>
+	</resultMap>
+	
+	<resultMap type="com.care.root.student.dto.GradeDTO" id="grade">
+		<result property="idNum" column="ID_NUM"/>
+		<result property="name" column="NAME"/>
+		<result property="major" column="MAJOR_SEMESTER"/>		
+		<result property="subjectName" column="SUBJECT_NAME"/>
+		<result property="grade" column="GRADE"/>
+		<result property="score" column="SCORE"/>
+		<result property="profName" column="PROF_NAME"/>
+		<result property="receivedCred" column="RECEIVED_CRED"/>
+		<result property="applicationCred" column="APPLICATION_CRED"/>
+		<result property="semester" column="GRADE_SEMESTER"/>
+		<result property="year" column="YEAR"/>
+	</resultMap>
+	
+	<resultMap type="com.care.root.student.dto.RegisterInfoDTO" id="register">
+		<result property="major" column="MAJOR_SEMESTER"/>
+		<result property="idNum" column="ID_NUM"/>
+		<result property="name" column="NAME"/>		
+		<result property="scholarship" column="SCHOLARSHIP"/>
+		<result property="totalScore" column="TOTAL_SCORE"/>
+		<result property="rank" column="RANK"/>
+		<result property="year" column="YEAR"/>
+		<result property="gradeSemester" column="GRADE_SEMESTER"/>
+	</resultMap>
+	
+	
+	<select id="studentInfo" resultMap="info">
+		select * from member_info where id_num = #{id}
+	</select>
+	
+	<select id="subjectInfoA" resultMap="subject">
+		select * from subject_all where MAJOR_SEMESTER = #{major} and #{gradeSemester} >= GRADE_SEMESTER order by GRADE_SEMESTER asc
+	</select>
+	
+	<select id="subjectInfoB" resultMap="subject">
+		select * from subject_all where MAJOR_SEMESTER = #{major} and #{gradeSemester} > GRADE_SEMESTER order by GRADE_SEMESTER asc
+	</select>
+	
+	<select id="subjectInfoC" resultMap="subject">
+		select * from subject_all where MAJOR_SEMESTER = #{major} and #{gradeSemester} = GRADE_SEMESTER order by GRADE_SEMESTER asc
+	</select>
+	
+ 	<select id="tuitionInfo" resultMap="tuition">
+		select * from TUITION where id_num = #{id}
+	</select>
+	
+	<select id="gradeInfo" resultMap="grade">
+		select * from GRADE_INFO where id_num = #{id} and GRADE_SEMESTER = #{semester}
+	</select>
+	
+	<select id="registerInfo" resultMap="register">
+		select * from REGISTER_INFO where id_num = #{id} and GRADE_SEMESTER = #{semester}
+	</select>
+	
+	<select id="totalRegisterInfo" resultMap="register">
+		select * from REGISTER_INFO where id_num = #{id} and SCHOLARSHIP > 0 order by GRADE_SEMESTER asc
+	</select>
+	
+	<select id="rankCnt" resultType="Integer">
+		select count(*) from REGISTER_INFO where major_semester = #{major} and YEAR = #{year} and GRADE_SEMESTER = #{semester}
+	
+	</select>
+	
+	<update id="tutionPayMent">
+	update member_info set BANK = #{bank}, ACCOUNT_NUM = #{account} where ID_NUM=#{idNum}
+	</update>
+	
+ 	<update id="tuitionSaveA">
+	update tuition set GRADE_101 = #{year}, PAYMENT_STU = 'Y' where ID_NUM = #{id}
+	</update>
+	
+	<update id="tuitionSaveB">
+	update tuition set GRADE_102 = #{year}, PAYMENT_STU = 'Y' where ID_NUM = #{id}
+	</update>
+	
+	<update id="tuitionSaveC">
+	update tuition set GRADE_201 = #{year}, PAYMENT_STU = 'Y' where ID_NUM = #{id}
+	</update>
+	
+	<update id="tuitionSaveD">
+	update tuition set GRADE_202 = #{year}, PAYMENT_STU = 'Y' where ID_NUM = #{id}
+	</update>
+	
+	<update id="classReq">
+	update member_info set CLASS_REQ = #{classReq} where ID_NUM = #{id}
+	</update>
+	
+	
+	
+	
+</mapper>	
