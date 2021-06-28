@@ -2,7 +2,6 @@ package com.care.root.board.noticedto;
 
 public class noticeReplyDTO {
 	private String id; // 댓글 아이디
-	private String title; // 댓글 제목
 	private String content; // 댓글 내용
 	private int step;// 댓글이 증가할 때마다 +1
 	private java.util.Date write_date; // 댓글에 대한 시간
@@ -14,14 +13,6 @@ public class noticeReplyDTO {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
 	}
 
 	public String getContent() {

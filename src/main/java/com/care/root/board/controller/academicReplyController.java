@@ -55,7 +55,6 @@ public class academicReplyController implements MemberSessionName {
 		academicReplyDTO dto = new academicReplyDTO();
 		dto.setId((String)session.getAttribute(LOGIN));
 		dto.setRno(Integer.parseInt( (String)map.get("writeNo")));
-		dto.setTitle((String)map.get("title"));
 		dto.setContent((String)map.get("content"));
 		System.out.println("컨트롤러 실행 합니다");
 		System.out.println(map);

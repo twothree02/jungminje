@@ -45,7 +45,7 @@
 	<!-- notice 댓글 영역 -->
 	<resultMap type="com.care.root.board.noticedto.noticeReplyDTO" id="reply">
 		<id property="id" column="id" />
-		<result property="title" column="title" />
+	
 		<result property="content" column="content" />
 		<result property="rno" column="rno" />
 		<result property="write_date" column="write_date" />
@@ -55,7 +55,7 @@
 	<!-- portal 댓글 영역 -->
 	<resultMap type="com.care.root.board.portaldto.portalReplyDTO" id="portalReply">
 		<id property="id" column="id" />
-		<result property="title" column="title" />
+
 		<result property="content" column="content" />
 		<result property="rno" column="rno" />
 		<result property="write_date" column="write_date" />
@@ -66,7 +66,7 @@
 	<!-- academic 댓글 영역 -->
 	<resultMap type="com.care.root.board.academicdto.academicReplyDTO" id="academicReply">
 		<id property="id" column="id" />
-		<result property="title" column="title" />
+	
 		<result property="content" column="content" />
 		<result property="rno" column="rno" />
 		<result property="write_date" column="write_date" />
@@ -149,8 +149,8 @@ select *from
 	<!-- notice 댓글 영역  -->	
 
 	<insert id="addReply">
-		insert into noticereply(id,title, content, rno,step)
-			values( #{id},#{title},#{content},#{rno},Replyseq.nextval )
+		insert into noticereply(id, content, rno,step)
+			values( #{id},#{content},#{rno},Replyseq.nextval )
 	</insert>
 	<select id="replyList" resultMap="reply">
 		select * from noticereply where rno=#{rno} order by write_date desc
@@ -164,7 +164,7 @@ select *from
 	
 	<!-- 수정하기 -->
 	<update id="replyModify">
-		UPDATE noticereply SET title=#{title},write_date=sysdate, content=#{content} where step=#{step} AND rno=#{rno} 
+		UPDATE noticereply SET write_date=sysdate, content=#{content} where step=#{step} AND rno=#{rno} 
 	</update> 
 	<!-- 삭제하기 -->
 	<delete id="replyDelete">
@@ -251,8 +251,8 @@ select *from
 	<!-- portal 댓글 영역  -->	
 
 	<insert id="portalAddReply">
-		insert into portalReply(id,title, content, rno,step)
-			values( #{id},#{title},#{content},#{rno},portalreply_seq.nextval )
+		insert into portalReply(id, content, rno,step)
+			values( #{id},#{content},#{rno},portalreply_seq.nextval )
 	</insert>
 	<select id="portalReplyList" resultMap="portalReply">
 		select * from portalReply where rno=#{rno} order by write_date desc
@@ -266,7 +266,7 @@ select *from
 	
 	<!-- 수정하기 -->
 	<update id="portalReplyModify">
-		UPDATE portalReply SET title=#{title},write_date=sysdate, content=#{content} where step=#{step} AND rno=#{rno} 
+		UPDATE portalReply SET  write_date=sysdate, content=#{content} where step=#{step} AND rno=#{rno} 
 	</update> 
 	<!-- 삭제하기 -->
 	<delete id="portalReplyDelete">
@@ -350,8 +350,8 @@ select *from
 		<!-- academic 댓글 영역  -->	
 
 	<insert id="academicAddReply">
-		insert into academic_reply(id,title, content, rno,step)
-			values( #{id},#{title},#{content},#{rno},academicreply_seq.nextval )
+		insert into academic_reply(id, content, rno,step)
+			values( #{id},#{content},#{rno},academicreply_seq.nextval )
 	</insert>
 	<select id="academicReplyList" resultMap="academicReply">
 		select * from academic_reply where rno=#{rno} order by write_date desc
@@ -365,7 +365,7 @@ select *from
 	
 	<!-- 수정하기 -->
 	<update id="academicReplyModify">
-		UPDATE academic_reply SET title=#{title},write_date=sysdate, content=#{content} where step=#{step} AND rno=#{rno} 
+		UPDATE academic_reply SET write_date=sysdate, content=#{content} where step=#{step} AND rno=#{rno} 
 	</update> 
 	<!-- 삭제하기 -->
 	<delete id="academicReplyDelete">

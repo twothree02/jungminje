@@ -41,8 +41,7 @@ public interface BoardMapper {
 	public ArrayList<noticeReplyDTO> replyPaging(@Param("s") int start, @Param("e") int end,@Param("rno")int rno);
 	//댓글 총 개수
 	public int replycount(int rno);
-	//메인리스트
-	List<noticeDTO>mainList();
+	
 	
 
 	//portal 영역
@@ -70,7 +69,7 @@ public interface BoardMapper {
 	//댓글 총 개수
 	public int  portalReplycount (int rno);
 	//메인리스트
-	List<portalDTO>portalMainList();
+	
 	
 	
 	//academic 영역
@@ -99,8 +98,8 @@ public interface BoardMapper {
 		public ArrayList<academicReplyDTO> academicReplyPaging(@Param("s") int start, @Param("e") int end,@Param("rno")int rno);
 		//댓글 총 개수
 		public int  academicReplycount (int rno);
-		//메인리스트
-		List<academicDTO>academicMainList();
+	
+		
 		
 }
 

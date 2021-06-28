@@ -51,7 +51,7 @@ public class boardServiceImpl implements boardService {
 	@Override
 	public String register(MultipartHttpServletRequest mul, HttpServletRequest request) {
 		noticeDTO dto = new noticeDTO();
-		dto.setTitle(mul.getParameter("title"));
+	
 		dto.setContent(mul.getParameter("content"));
 		dto.setName(mul.getParameter("name"));
 		HttpSession session = request.getSession();
@@ -406,7 +406,7 @@ public class boardServiceImpl implements boardService {
 	@Override
 	public String academicRegister(MultipartHttpServletRequest mul, HttpServletRequest request) {
 		academicDTO dto = new academicDTO();
-		dto.setTitle(mul.getParameter("title"));
+
 		dto.setContent(mul.getParameter("content"));
 		dto.setName(mul.getParameter("name"));
 		
@@ -429,7 +429,7 @@ public class boardServiceImpl implements boardService {
 	public String academicModify(MultipartHttpServletRequest mul, HttpServletRequest request) {
 		academicDTO dto = new academicDTO();
 		dto.setWriteNo(Integer.parseInt(mul.getParameter("writeNo")));
-		dto.setTitle(mul.getParameter("title"));
+	
 		dto.setContent(mul.getParameter("content"));
 
 		MultipartFile file = mul.getFile("fileupload");
@@ -572,10 +572,6 @@ public class boardServiceImpl implements boardService {
 	}
 
 
-	@Override
-	public List<academicReplyDTO> academicMainList() {
-		return mapper.academicMainList();
-	}
 
 
 

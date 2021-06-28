@@ -103,17 +103,8 @@ public class noticeController implements MemberSessionName {
 		out.print(message);
 	}
 	
-	
-	@RequestMapping("main")
-	public String mainList(Model model) {
-		model.addAttribute("list",service.mainList());
-		model.addAttribute("portalMainList",service.portalMainList());
-		model.addAttribute("academicMainList",service.academicMainList());
-		return "main";
-	}
+
 	
 
-	//portal 영역
-	
 
 }

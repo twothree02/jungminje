@@ -93,7 +93,7 @@ function commentList(result){
 	html +="<thead>"
 	html +="<tr>"
 	html +="<th scope='col'>작성자</th>"
-	html +="<th scope='col'>제목</th>"
+
 	html +="<th scope='col'>내용</th>"
 	html +="<th scope='col'>시간</th><th scope='col'>수정</th><th scope='col'>삭제</th></tr>"	
 	html +="<thead>"
@@ -102,7 +102,7 @@ function commentList(result){
 			html +="<tbody>"
 			html += "<tr>"
 			html += "<td>" + paging[i].id + "</td>";
-			html += "<td>" + paging[i].title + "</td>";
+		
 			html += "<td>" + paging[i].content + "</td>"
 			html += "<td>" + displayTime(paging[i].write_date) + "</td>"
 			html += "<td> <button' onclick='commentModiView("+paging[i].step+")' class='btn btn-secondary' >수정</button></td>"
@@ -215,7 +215,7 @@ function commentModifyArea(result){
 				output +="<i text-align:center>댓글 수정</i><br>"
 				output +="아이디 : <input type='text' id='id' value='${login}' readonly style='margin-bottom: 30px;'><br/>";
 				output +="작성자 : <input type='text' id='replyid' value='"+result.id+"'readonly style='margin-bottom: 30px;'><br/>";
-				output +="제목 : <input type='text' id='title' value='"+result.title+"' style='margin-bottom: 30px;'><br/>";
+			
 				output +="댓글 :  <input type='text' id='content' value='"+result.content+"' style='margin-bottom: 30px;'><br/>";
 			
 				output +="<button onclick = 'modify()' class='btn btn-secondary'style='margin-right: 20px;'>댓글 수정 </button>";
@@ -236,7 +236,7 @@ function slide_hide(){
 function modify(){ 
 	console.log(${login})
 
-	var title = $("#title").val();
+
 	var content = $("#content").val();
 	var step = $("#step").val();
 	var rno = ${board.writeNo};
@@ -244,7 +244,7 @@ function modify(){
 		type : "POST",
 		url : "commenModify",
 		data : {
-				"title" : title,
+			
 				"content" : content,
 				"step" : step,
 				"rno" : rno
@@ -366,7 +366,7 @@ function displayTime(timeValue) {
 		<input type="hidden" name="writeNo" value="${board.writeNo }">
 		<div align="left" style="margin-top: 30px;">
 			<b>댓글</b>&nbsp;&nbsp; <b>작성자 : ${login }</b>&nbsp;&nbsp; &nbsp;&nbsp;
-			<b>제목 :</b><input type="text" name="title"> &nbsp;&nbsp; <b>내용:</b>
+			&nbsp;&nbsp; <b>내용:</b>
 			&nbsp;&nbsp;<input type="text" size="30" name="content">
 			<button type="button" onclick="rep()" class='btn btn-secondary'>답글</button>
 			<button type="button" class='btn btn-secondary'>취소</button>

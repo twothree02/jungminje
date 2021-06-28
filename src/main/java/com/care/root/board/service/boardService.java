@@ -52,7 +52,6 @@ public interface boardService {
 
 	//메인
 
-	List<noticeDTO>mainList();
 
 
 
@@ -89,7 +88,6 @@ public interface boardService {
 
 		//메인
 
-		List<portalDTO>portalMainList();
 		
 		List<portalDTO>academicList();
 		public String academicRegister(MultipartHttpServletRequest mul,HttpServletRequest request);
@@ -119,7 +117,7 @@ public interface boardService {
 		//댓글페이징
 		public Map<String, Object> academicReplyPaging(Model model, int num,academicReplyDTO dto);
 
-		//메인
+		
 
-		List<academicReplyDTO>academicMainList();
+
 }
