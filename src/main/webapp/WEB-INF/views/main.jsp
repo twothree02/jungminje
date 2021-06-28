@@ -50,21 +50,17 @@
 						<thead class="thead-dark">
 							<tr>
 								<th>공지사항</th>
-								<th style="text-align: right;"><a href="portalList">more</a></th>
+								<th style="text-align: right;"><a href="board/list">more</a></th>
 							</tr>
 						</thead>
 						<tbody>
+						
+						<c:forEach var ="board" items="${list }">
 							<tr>
-								<td rowspan="2">
-									<ul>
-										<li>1</li>
-										<li>2</li>
-										<li>3</li>
-										<li>3</li>
-										<li>3</li>
-									</ul>
-								</td>
+							<td>${board.title}</td>	
+							<td>${board.savedate }								
 							</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
@@ -73,21 +69,23 @@
 						<thead class="thead-dark">
 							<tr>
 								<th>포털공지</th>
-								<th style="text-align: right;"><a href="#">more</a></th>
+								<th style="text-align: right;"><a href="board/portalList">more</a></th>
 							</tr>
 						</thead>
 						<tbody>
+						
+								
+								<c:forEach var ="list" items="${portalMainList }">
+										
 							<tr>
-								<td rowspan="2">
-									<ul>
-										<li>1</li>
-										<li>2</li>
-										<li>3</li>
-										<li>3</li>
-										<li>3</li>
-									</ul>
-								</td>
-							</tr>
+										<td>${list.title }</td>
+									
+										<td>${list.savedate }</td>
+										
+								</tr>		
+									</c:forEach>
+								
+							
 						</tbody>
 					</table>
 				</div>
@@ -97,23 +95,20 @@
 					<table class="table">
 						<thead class="thead-dark">
 							<tr>
-								<th>학사일지</th>
-								<th style="text-align: right;"><a href="#">more</a></th>
+								<th>학사공지</th>
+								<th style="text-align: right;"><a href="board/academicList">more</a></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td rowspan="2">
-									<ul>
-										<li>1</li>
-										<li>2</li>
-										<li>3</li>
-										<li>3</li>
-										<li>3</li>
-									</ul>
-								</td>
-							</tr>
-
+								<c:forEach var ="list" items="${academicMainList }">
+									<tr>
+									
+										<td>${list.title }</td>
+									
+										<td>${list.savedate }</td>
+								</tr>
+								</c:forEach>		
+							
 						</tbody>
 					</table>
 				</div>
@@ -121,7 +116,7 @@
 					<table class="table">
 						<thead class="thead-dark">
 							<tr>
-								<th>공지사항</th>
+								<th>학사일정</th>
 								<th style="text-align: right;"><a href="#">more</a></th>
 							</tr>
 						</thead>

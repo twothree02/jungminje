@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -21,6 +22,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.care.root.board.academicdto.academicDTO;
+import com.care.root.board.noticedto.noticeDTO;
+import com.care.root.board.portaldto.portalDTO;
 import com.care.root.common.session.MemberSessionName;
 import com.care.root.member.dao.MemberDAO;
 import com.care.root.member.dto.MemberDTO;
@@ -32,11 +36,12 @@ public class MemberServiceImpl implements MemberService{
 	@Autowired JavaMailSender mailSender;	//config에 설정한 bean 얻어오기
 
 	@Override
-	public int loginChk(HttpServletRequest request) {
+	public int loginChk(HttpServletRequest request, HttpSession session) {
 		MemberDTO dto = mapper.loginChk(request.getParameter("inputId"));
 		if(dto != null) {
 			// 암호화 되기 전 코드, 암호화 완료 시 수정 필요!
 			if(request.getParameter("inputPwd").equals(dto.getPw())) {
+				session.setAttribute(MemberSessionName.POSITION, dto.getPosition());
 				return 0;
 			}
 		}
@@ -251,6 +256,21 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void setNull(String id) {
 		mapper.setNull(id);
+	}
+
+	@Override
+	public List<noticeDTO> mainList() {
+		return mapper.mainList();
+	}
+
+	@Override
+	public List<portalDTO> portalMainList() {
+		return mapper.portalMainList();
+	}
+
+	@Override
+	public List<academicDTO> academicMainList() {
+		return mapper.academicMainList();
 	}
 
 }

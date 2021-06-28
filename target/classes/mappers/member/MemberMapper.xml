@@ -30,6 +30,39 @@
 		<result property="firstLogin" column="first_login" />
 	</resultMap>
 	
+	<!-- notice 영역 -->
+	<resultMap type="com.care.root.board.noticedto.noticeDTO" id="board">
+		<id property="writeNo" column="write_no" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="hit" column="hit" />
+		<result property="name" column="name" />
+		<result property="fileupload" column="FILEUPLOAD" />
+	</resultMap>
+	
+	
+	<!-- portal -->
+	<resultMap type="com.care.root.board.portaldto.portalDTO" id="portalBoard">
+		<id property="writeNo" column="write_no" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="hit" column="hit" />
+		<result property="name" column="name" />
+		<result property="fileupload" column="FILEUPLOAD" />
+	</resultMap>
+	
+	
+	
+	<!-- academicBoard -->
+	<resultMap type="com.care.root.board.academicdto.academicDTO" id="academicBoard">
+		<id property="writeNo" column="write_no" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="hit" column="hit" />
+		<result property="name" column="name" />
+		<result property="fileupload" column="FILEUPLOAD" />
+	</resultMap>
+	
 	<select id="loginChk" resultMap="member">
 		select * from member_info where id_num = #{id} 
 
@@ -77,5 +110,18 @@
 	
 	<select id="getBirth" resultType="String">
 		select resident_num from member_info where id_num = #{id}
+	</select>
+
+
+	<select id="mainList" resultMap="board">
+		select * from notices_board where rownum &lt;6 order by write_no desc
+	</select>
+
+	<select id="portalMainList" resultMap="portalBoard">
+		select * from portal_board where rownum &lt;6 order by write_no desc
+	</select>
+
+	<select id="academicMainList" resultMap="academicBoard">
+		select * from academic_board where rownum &lt;6 order by write_no desc
 	</select>
 </mapper>
