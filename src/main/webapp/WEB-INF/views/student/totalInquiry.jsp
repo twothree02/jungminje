@@ -64,7 +64,7 @@ div {
 					src="${contextPath }/root/student/download?file=${info.imageFile}" width=150px; height=150px; style="margin-left: 15px; margin-right: 15px;">
 			</c:otherwise>
 			</c:choose>
-			</div>
+			</div>			
 			<div class="infoTable">
 				<table class="table">
 					<thead>
