@@ -32,7 +32,6 @@
 	
 	<select id="loginChk" resultMap="member">
 		select * from member_info where id_num = #{id} 
-		select * from member_info where id_num = #{id}
 
 	</select>
 	

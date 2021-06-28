@@ -65,7 +65,7 @@
 	</resultMap>
 	
 	<resultMap type="com.care.root.student.dto.RegisterInfoDTO" id="register">
-		<result property="major" column="MAJOR_SEMESTER"/>
+		<result property="major" column="MAJOR"/>
 		<result property="idNum" column="ID_NUM"/>
 		<result property="name" column="NAME"/>		
 		<result property="scholarship" column="SCHOLARSHIP"/>
@@ -109,7 +109,7 @@
 	</select>
 	
 	<select id="rankCnt" resultType="Integer">
-		select count(*) from REGISTER_INFO where major_semester = #{major} and YEAR = #{year} and GRADE_SEMESTER = #{semester}
+		select count(*) from REGISTER_INFO where MAJOR = #{major} and YEAR = #{year} and GRADE_SEMESTER = #{semester}
 	
 	</select>
 	
