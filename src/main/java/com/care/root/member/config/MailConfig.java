@@ -17,7 +17,7 @@ public class MailConfig {
 		//jms.setUsername("dkjsozn@gmail.com");	//메일을 보낼 때 사용할 계정
 		//jms.setPassword("Zaq!@wsx");	//계정 비밀번호
 		jms.setUsername("yeunwoo0918.jo@gmail.com");
-		jms.setPassword("gaenari@13260802");
+		jms.setPassword("*");
 		
 		/** 메일 전달 프로토콜 세부 설정 */
 		Properties prop = new Properties();	
