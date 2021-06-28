@@ -27,7 +27,7 @@ table {
 				class="form-control input-lg">
 		</div>
 		<div class=" col-lg-4" align="center" style ="margin-bottom: 20px;">
-			<input type="text" name="name" class="form-control" value ="${login }">
+			<input type="text" name="name" class="form-control" value ="${login }" readonly="readonly">
 		</div>
 		<div class=" col-lg-4" align="center" style ="margin-bottom: 20px;" >
 			<textarea rows="5" name="content"class="form-control" placeholder="내용을 입력하세요" required="required" style="resize: none;"></textarea>
