@@ -29,7 +29,7 @@
                        
            
   
-                        <li class="nav-item"><a class="nav-link" href="#!">교직원정보</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/professor/show_myInfo">교직원정보</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/professor/all_student">
                         학생정보</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/professor/show_grade">

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,7 +31,7 @@ import com.care.root.professor.service.ProfessorService;
 
 @Controller
 @RequestMapping("professor")
-public class ProfessorController implements MemberSessionName{
+public class ProfessorController implements MemberSessionName {
 	@Autowired ProfessorService ps;
 	@GetMapping("all_student")
 	public String allStudent() {
@@ -40,12 +41,20 @@ public class ProfessorController implements MemberSessionName{
 	public String staffNewwork() {
 		return "professor/staffNetwork";
 	}
+	@GetMapping("show_myInfo")
+	public String showMyInfo(Model model, HttpSession session) {
+		String id = (String)session.getAttribute(LOGIN);
+		ps.showMyInfo(model, id);
+		
+		return "professor/showMyInfo";
+	}
 	@PostMapping("detail_stuInfo")
 	public String detailStuInfo(HttpServletRequest request, Model model){
 		String id = request.getParameter("id");
 		System.out.println(id);
 		ps.detailStuInfo(model, id);
 		ps.semeGrade(model,id);
+		ps.accumulatedGrade(model,id); //누적 성적 accumulated : 누적된
 		
 		return "professor/detailStuInfo";
 	}
@@ -61,10 +70,12 @@ public class ProfessorController implements MemberSessionName{
 		return ps.getSemeDetail(idNum, gSeme);
 	}
 	@PostMapping("input_grade")
-	public void inputGrade(MultipartHttpServletRequest mul,
+	public void inputGrade(		HttpSession session,
+								MultipartHttpServletRequest mul,
 								HttpServletResponse response,
 								HttpServletRequest request) throws Exception {
-		String message = ps.inputGrade(mul, request);
+		String pId = (String)session.getAttribute(LOGIN);
+		String message = ps.inputGrade(mul, request, pId);
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html; charset=utf-8");
 		out.print(message);
@@ -166,6 +177,13 @@ public Map<String, Object> cProfessorList(@RequestParam(value="num", defaultValu
 	
 	return ps.getCProfessorList(num);
 }
+/* 일단 보류
+@ExceptionHandler(NullPointerException.class) 
+public String nullex(Exception e) { System.err.println(e.getClass());
+   //DB에 null이 뜰 경우 반환해줌.
+	return "professor/allStudent"; 
+}
+*/
 
 
 

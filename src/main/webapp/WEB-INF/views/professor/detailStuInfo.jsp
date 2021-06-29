@@ -74,7 +74,7 @@
 <br>
 <br>
 
-
+ 
 <table border="1">
 <tr>
 <td>학년/학기</td> <td>신청학점</td> <td>취득학점</td> <td>취득학점 평균</td> <td>석차</td>
@@ -91,8 +91,21 @@
 </c:forEach>
 </table>
 
+<br>
 <div id="semeDetail"></div>
+<br>
+<!-- 반복되지 않으면 c:forEach를 쓰면 안 된다. list 같은 것들만 쓸 것. -->
+<table border="1" style='margin-top:20px; margin-left:20px;'>
+<tr>
+<td>신청 학점</td> <td>취득 학점</td> <td>평균 평점</td> <td>환산 점수</td>
+</tr>
 
+<tr>
+ <td>${accumInfo.applyGrade}</td> <td>${accumInfo.receivedGrade}</td>
+ <td>${accumInfo.aveGrade}</td> <td>${accumInfo.totalScore}</td>
+</tr>
+
+</table>
 
 
 </body>

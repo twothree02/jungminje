@@ -5,16 +5,30 @@ public class RegisterInfoDTO {
 	private String idNum;
 	private String name;
 	private int scholarship;
-	private int totalScore;
+	private double totalScore;
 	private int rank;
 	private String year;
 	private int gradeSeme;
 	private String chkPeriod;
-	private String aveGrade;
+	private double aveGrade;
 	private int appCred;
 	private int receivedCred;
 	
 
+
+	
+	public double getTotalScore() {
+		return totalScore;
+	}
+	public void setTotalScore(double totalScore) {
+		this.totalScore = totalScore;
+	}
+	public double getAveGrade() {
+		return aveGrade;
+	}
+	public void setAveGrade(double aveGrade) {
+		this.aveGrade = aveGrade;
+	}
 	public String getMajor() {
 		return major;
 	}
@@ -39,12 +53,7 @@ public class RegisterInfoDTO {
 	public void setScholarship(int scholarship) {
 		this.scholarship = scholarship;
 	}
-	public int getTotalScore() {
-		return totalScore;
-	}
-	public void setTotalScore(int totalScore) {
-		this.totalScore = totalScore;
-	}
+	
 	public int getRank() {
 		return rank;
 	}
@@ -69,12 +78,7 @@ public class RegisterInfoDTO {
 	public void setChkPeriod(String chkPeriod) {
 		this.chkPeriod = chkPeriod;
 	}
-	public String getAveGrade() {
-		return aveGrade;
-	}
-	public void setAveGrade(String aveGrade) {
-		this.aveGrade = aveGrade;
-	}
+	
 	public int getAppCred() {
 		return appCred;
 	}

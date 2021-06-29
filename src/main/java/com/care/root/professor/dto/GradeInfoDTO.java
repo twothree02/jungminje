@@ -13,7 +13,14 @@ public class GradeInfoDTO {
 	private int gradeSeme;
 	private String year;
 	private String seme;
+	private String numGrade;
 	
+	public String getNumGrade() {
+		return numGrade;
+	}
+	public void setNumGrade(String numGrade) {
+		this.numGrade = numGrade;
+	}
 	public String getSeme() {
 		return seme;
 	}

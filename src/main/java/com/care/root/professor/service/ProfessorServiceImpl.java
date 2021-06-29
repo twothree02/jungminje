@@ -1,6 +1,7 @@
 package com.care.root.professor.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.care.root.professor.dao.ProfessorDAO;
+import com.care.root.professor.dto.AccumInfoDTO;
 import com.care.root.professor.dto.GradeInfoDTO;
 import com.care.root.professor.dto.MessageDTO;
 import com.care.root.professor.dto.ProfessorDTO;
@@ -158,6 +160,12 @@ public class ProfessorServiceImpl implements ProfessorService{
 		
 		return result;
 	}
+	
+	@Override
+	public void showMyInfo(Model model, String id) {
+		model.addAttribute("myInfo", pm.getMyInfo(id));
+		
+	}
 	@Override
 	public void showTimeTable(Model model, String pId) {
 		model.addAttribute("timeTable", pm.getTimeTable(pId));
@@ -203,12 +211,12 @@ public class ProfessorServiceImpl implements ProfessorService{
 		model.addAttribute("gradeInfo", pm.getGradeInfo(lecName, tYear)); //성적입력에 넣을 값
 	}
 	@Override
-	public String inputGrade(MultipartHttpServletRequest mul, HttpServletRequest request) {
+	public String inputGrade(MultipartHttpServletRequest mul, HttpServletRequest request, String pId){
 		GradeInfoDTO dto = new GradeInfoDTO();
 		
 		Map<String, String> mapScore = new HashMap<String,String>();
 	
-		//여기서부터 다시 해야함. 스코어가 안 들어감. 자바 콘솔에는 찍히는 데 안 들어간다.
+		//여기서부터 다시 해야함. 스코어가 안 들어감. 자바 콘솔에는 찍히는 데 안 들어간다. inputNumGrade
 		String[] arrScore = mul.getParameterValues("inputScore");
 		String[] arrId = mul.getParameterValues("keyId");
 		/* 값은 잘 넘어옴
@@ -218,7 +226,21 @@ public class ProfessorServiceImpl implements ProfessorService{
 		System.out.println(arrScore[0]);
 		System.out.println(arrScore[1]);
 		System.out.println(arrScore[2]);
+		
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		String tYear = Integer.toString(year);
 		*/
+		String subName = pm.getLecCheck(pId);
+		
+		Calendar cal = Calendar.getInstance();
+		String tYear = cal.get(Calendar.YEAR)+"";
+		String tSeme = "1";
+		int month = cal.get(Calendar.MONTH);
+		if(month>6) {
+			tSeme = "2";
+		}
+		
 		for(int i=0;i<arrId.length-1;i++) {
 			mapScore.put(arrId[i], arrScore[i]);
 			System.out.println(mapScore);
@@ -226,9 +248,16 @@ public class ProfessorServiceImpl implements ProfessorService{
 			System.out.println(test01);
 //			dto.setScore(80);
 //			dto.setGrade(convertGrade(80));
+				
+			dto.setSubjectName(subName);
+			dto.setYear(tYear);
+			dto.setSeme(tSeme);
 			dto.setIdNum(arrId[i]);
 			dto.setScore(Integer.parseInt(arrScore[i]));
 			dto.setGrade(convertGrade(Integer.parseInt(arrScore[i])));
+			dto.setNumGrade(convertNumGrade(Integer.parseInt(arrScore[i])));
+			System.out.println(dto.getYear());
+			System.out.println(dto.getSeme());
 			pm.saveScore(dto);
 		}
 		
@@ -237,7 +266,7 @@ public class ProfessorServiceImpl implements ProfessorService{
 		dto.setIdNum(arrId[arrId.length-1]);
 		dto.setScore(Integer.parseInt(arrScore[arrScore.length-1]));
 		dto.setGrade(convertGrade(Integer.parseInt(arrScore[arrScore.length-1])));
-		
+		dto.setNumGrade(convertNumGrade(Integer.parseInt(arrScore[arrScore.length-1])));
 //		System.out.println(arrId[arrId.length-1]);
 //		System.out.println(arrScore[arrScore.length-1]);
 		
@@ -267,6 +296,16 @@ public class ProfessorServiceImpl implements ProfessorService{
 			else if(score>=60) return "D";
 			else return "F";
 	}
+	public String convertNumGrade(int score) {
+			if(score>=95) return "4.5";
+			else if(score>=90) return "4.0";
+			else if(score>=85) return "3.5";
+			else if(score>=80) return "3.0";
+			else if(score>=75) return "2.5";
+			else if(score>=70) return "2.0";
+			else if(score>=60) return "1.0";
+			else return "0";
+	}
 	public String showMessage(MessageDTO dto) {
 		String message = null;
 		String path = dto.getRequest().getContextPath();
@@ -294,6 +333,37 @@ public class ProfessorServiceImpl implements ProfessorService{
 	@Override
 	public void semeGrade(Model model, String id) {
 		model.addAttribute("semeGradeInfo",pm.semeGradeInfo(id));
+	}
+	@Override
+	public void accumulatedGrade(Model model, String id) {
+		try {
+			//데이터가 없을 경우 연산이 전혀 될 수 없으니 오류가 발생. 따라서 꼭! try catch로 묶을 것.
+			int applyGrade = pm.getApplyGrade(id); //신청 학점 가져오기
+			int receivedGrade = pm.getRecGrade(id); //받은 학점 가져오기(F제외)
+			
+			
+			double semes = (double)pm.getSemes(id);
+			
+			double netAveGrade = pm.getNetAveGrade(id); //평점의 합 가져오기
+			double aveGrade = Math.round((netAveGrade/semes)*100)/100.0; //평점 평균(소수 둘째자리까지)
+			double netTotalScore = pm.getNetTotalScore(id); //환산점수의 합
+			double totalScore = Math.round((netTotalScore/semes)*100)/100.0; //평균 환산점수
+			
+			System.out.println(applyGrade);
+			System.out.println(receivedGrade);
+			System.out.println(aveGrade);
+			System.out.println(totalScore);
+			
+			AccumInfoDTO dto = new AccumInfoDTO();
+			dto.setApplyGrade(applyGrade);
+			dto.setReceivedGrade(receivedGrade);
+			dto.setAveGrade(aveGrade);
+			dto.setTotalScore(totalScore);
+			model.addAttribute("accumInfo",dto);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

@@ -22,17 +22,23 @@ public interface ProfessorDAO {
 	public ArrayList<ProfessorDTO> getCProfessorList(@Param("s")int start,@Param("e")int end);
 	public ArrayList<GradeInfoDTO> getGradeInfo(@Param("lecName")String lecName,@Param("tYear")String tYear);
 	public ArrayList<TimeTableDTO> getTimeTable(String pId);
+	public ProfessorDTO getMyInfo(String id);
 	public String getLecCheck(String pId);
 	public String getMajorCheck(String pId);
 	public int saveScore(GradeInfoDTO dto); //성공하면 성공된 갯수가 int로 넘어감. ex)데이터값이 3개 있다면 3이 넘어감.
 	public ArrayList<ProfessorDTO> detailStuInfo(String id);
 	public ArrayList<GradeInfoDTO> getSemeDetail(@Param("id")String idNum, @Param("seme")int inputSeme);
 	public ArrayList<RegisterInfoDTO> semeGradeInfo(String id);
-	public int selectStuCount(@Param("grade") int grade, @Param("major") String major);
-	public int searchStuCount(@Param("searchSel") String searchSel,@Param("searchInp") String searchInp);
-	public int searchAdminCnt(String position);
-	public int searchBProfCnt();
-	public int searchIProfCnt();
-	public int searchCProfCnt();
+	public Integer selectStuCount(@Param("grade") int grade, @Param("major") String major);
+	public Integer searchStuCount(@Param("searchSel") String searchSel,@Param("searchInp") String searchInp);
+	public Integer searchAdminCnt(String position);
+	public Integer searchBProfCnt();
+	public Integer searchIProfCnt();
+	public Integer searchCProfCnt();
+	public Integer getApplyGrade(String id);
+	public Integer getRecGrade(String id);
+	public Integer getSemes(String id);
+	public double getNetAveGrade(String id);
+	public double getNetTotalScore(String id);
 	
 }

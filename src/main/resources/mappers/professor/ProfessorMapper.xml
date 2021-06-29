@@ -43,6 +43,7 @@
 		<result property="gradeSeme" column="grade_semester"/>
 		<result property="year" column="year"/>
 		<result property="seme" column="semester"/>		
+		<result property="numGrade" column="num_grade"/>	
 	</resultMap>
 	
 	<resultMap type="com.care.root.professor.dto.TimeTableDTO" id="timeTable">
@@ -70,6 +71,10 @@
 		<result property="appCred" column="application_cred"/>
 		<result property="receivedCred" column="received_cred"/>
 	</resultMap>
+	
+	<select id="getMyInfo" resultMap="professor">
+		select * from member_info where id_num=#{id}
+	</select>
 	
   	<select id="getJuniorList" resultMap="professor">
 		select B.* from(select rownum rn,
@@ -156,6 +161,26 @@
 		select * from grade_info where id_num = #{id} and grade_semester = #{seme} order by subject_name asc
 	</select>
 	
+	<select id="getApplyGrade" resultType="Integer">
+		select sum(application_cred) from register_info where id_num=#{id}
+	</select>
+	
+	<select id="getRecGrade" resultType="Integer">
+		select sum(received_cred) from register_info where id_num=#{id}
+	</select>
+	
+	<select id="getNetAveGrade" resultType="double">
+		select sum(ave_grade) from register_info where id_num=#{id}
+	</select>
+	
+	<select id="getNetTotalScore" resultType="double">
+		select sum(total_score) from register_info where id_num=#{id}
+	</select>
+	
+	<select id="getSemes" resultType="Integer">
+		select count(*) from register_info where id_num=#{id}
+	</select>
+	
 	<select id="semeGradeInfo" resultMap="register">
 		select * from register_info where id_num = #{id} order by grade_semester asc
 	</select>
@@ -173,7 +198,8 @@
 	</select>
 	
 	<update id="saveScore">
-		update grade_info set score=#{score}, grade=#{grade} where id_num = #{idNum}
+		update grade_info set score=#{score}, grade=#{grade}, num_grade=#{numGrade} 
+		where id_num = #{idNum} and year=#{year} and semester=#{seme} and subject_name=#{subjectName}
 	</update>
   
   	<select id="selectStuCount" resultType="Integer">

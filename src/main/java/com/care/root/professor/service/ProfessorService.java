@@ -21,13 +21,15 @@ public interface ProfessorService {
 	public Map<String, Object> getBProfessorList(int num);
 	public Map<String, Object> getIProfessorList(int num);
 	public Map<String, Object> getCProfessorList(int num);
+	public void showMyInfo(Model model, String id);
 	public void showTimeTable(Model model, String pId);
 	public String lecCheck(String pId);
 	public String majorCheck(String pId);
 	public void showGrade(Model model, String lecName, String tYear);
-	public String inputGrade(MultipartHttpServletRequest mul, HttpServletRequest request);
+	public String inputGrade(MultipartHttpServletRequest mul, HttpServletRequest request, String pId);
 	public void detailStuInfo(Model model, String id);
 	public ArrayList<GradeInfoDTO> getSemeDetail(String idNum, String gSeme);
 	public void semeGrade(Model model, String id);
+	public void accumulatedGrade(Model model, String id);
 	
 }
