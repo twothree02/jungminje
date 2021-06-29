@@ -175,7 +175,7 @@ div {
 				<div class="ContentTable2" style="display: flex;">
 				<div class="infoTable4" style="margin-left: 120px;">
 			
-							<table class="table">
+							<table class="table" style="width: 185px;">
 					<thead>
 
 					</thead>

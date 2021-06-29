@@ -155,7 +155,7 @@ div {
 			<c:when test="${subject.size() != 0}">
 			<c:forEach var="list" items="${subject}" >
 				<tr>
-					<td>${list.major}-${list.gradeSemester}</td>
+					<td>${list.major}-${info.gradeSemester}</td>
 					<td>${list.subjectName}</td>
 					<td>${list.classRoom}</td>
 					<td>${list.professor}</td>

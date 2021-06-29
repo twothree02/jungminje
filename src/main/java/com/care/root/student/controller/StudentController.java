@@ -31,6 +31,11 @@ public class StudentController implements MemberSessionName{
 	
 	@Autowired StudentService ss;
 
+		@RequestMapping("studentMain")
+		public String studentMain() {
+			return "student/studentMain";
+		}
+		
 		@RequestMapping("totalInquiry")
 		public String totalInquiry(Model model, HttpSession session) {
 			String id = (String) session.getAttribute(LOGIN);

@@ -9,6 +9,15 @@ public class RegisterInfoDTO {
 	private int rank;
 	private String year;
 	private int gradeSemester;
+	private String chkPeriod;
+	
+	public String getChkPeriod() {
+		return chkPeriod;
+	}
+	public void setChkPeriod(String chkPeriod) {
+		this.chkPeriod = chkPeriod;
+	}
+	
 	public String getMajor() {
 		return major;
 	}
