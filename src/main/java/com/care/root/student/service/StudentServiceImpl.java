@@ -59,11 +59,14 @@ public class StudentServiceImpl implements StudentService {
 			String birthDate = infoDTO.getResidentNum().substring(0, 6);
 			infoDTO.setBirthDate(birthDate);
 			ArrayList<SubjectDTO> list = null;
-			if (infoDTO.getGradeSemester() == infoDTO.getClassReq()) {
+			
+			/*if (infoDTO.getGradeSemester() == infoDTO.getClassReq()) {
 				list = mapper.subjectInfoA(infoDTO.getGradeSemester(), infoDTO.getMajor());
 			} else {
 				list = mapper.subjectInfoB(infoDTO.getGradeSemester(), infoDTO.getMajor());
-			}
+			}*/
+			list = mapper.subjectInfoA(infoDTO.getClassReq(), infoDTO.getMajor());
+			
 
 			if(infoDTO.getGradeSemester() == 1) {
 				infoDTO.setGradeSemester(101);
@@ -77,6 +80,7 @@ public class StudentServiceImpl implements StudentService {
 			
 			model.addAttribute("info", infoDTO);
 			model.addAttribute("subject", list);
+			
 			if (list.size() == 0) {
 				model.addAttribute("repeat", 1);
 			} else {
