@@ -359,6 +359,9 @@ function displayTime(timeValue) {
 			value="삭제">
 	</div>
 
+	
+	<div id="commentArea"></div>
+	<div id='commentModifyArea'></div>
 
 	<!-- 댓글 영역 -->
 
@@ -366,8 +369,12 @@ function displayTime(timeValue) {
 		<input type="hidden" name="writeNo" value="${board.writeNo }">
 		<div align="left" style="margin-top: 30px;">
 			<b>댓글</b>&nbsp;&nbsp; <b>작성자 : ${login }</b>&nbsp;&nbsp; &nbsp;&nbsp;
-			<b>제목 :</b><input type="text" name="title"> &nbsp;&nbsp; <b>내용:</b>
-			&nbsp;&nbsp;<input type="text" size="30" name="content">
+			<b>제목 :</b><input type="text" name="title"> &nbsp;&nbsp; 
+			&nbsp;&nbsp;
+			
+			<div class="container">
+			<textarea class="form-control col-sm-5" rows="5" name ="content"></textarea>
+			</div>		
 			<button type="button" onclick="rep()" class='btn btn-secondary'>답글</button>
 			<button type="button" class='btn btn-secondary'>취소</button>
 			<hr>
@@ -375,9 +382,9 @@ function displayTime(timeValue) {
 	</form>
 
 
+	
 
-	<div id="commentArea"></div>
-	<div id='commentModifyArea'></div>
+
 
 	<div id="pagig" align="center"></div>
 
