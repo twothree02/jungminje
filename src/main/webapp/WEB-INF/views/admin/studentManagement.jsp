@@ -59,12 +59,13 @@
 					$('#searchMajor').val('all')
 					let html = "<table border='1' style='margin-top:20px; margin-left:20px;'>"
 						html += "<tr><td align='center'>번호</td><td align='center'>이름</td><td align='center'>학번</td>"
-						html += "<td align='center'>학년</td><td align='center'>학과</td><tr>"
+						html += "<td align='center'>학년</td><td align='center'>학과</td><td align='center'>연락처</td><tr>"
 						for(var i=0;i<map.list.length;i++){
 						html += "<tr><td align='center'>"+(i+1)+"</td><td align='center'><a href = 'studentInfo?idNum="+ map.list[i].idNum +"'>"+map.list[i].name+"</a></td>"
 						html += "<td align='center'>"+map.list[i].idNum+"</td>"
 						html += "<td align='center'>"+map.list[i].grade+"</td>"
-						html += "<td align='center'>"+map.list[i].major+"</td></tr>"
+						html += "<td align='center'>"+map.list[i].major+"</td>
+						html += "<td align='center'>"+map.list[i].phoneNum+"</td></tr>"
 						}
 						html += "</table>"
 					let pagehtml = "<table style='margin-top: 20px; margin-left: 20px; width: 275px; text-align: center; font-size: 20px;'><tr>"
@@ -93,12 +94,13 @@
 					$('#searchMajor').val('정보통신과')
 					let	html = "<table border='1' style='margin-top:20px; margin-left:20px;'>"
 						html += "<tr><td align='center'>번호</td><td align='center'>이름</td><td align='center'>학번</td>"
-						html += "<td align='center'>학년</td><td align='center'>학과</td><tr>"
+						html += "<td align='center'>학년</td><td align='center'>학과</td><td align='center'>연락처</td><tr>"
 						for(var i=0;i<map.list.length;i++){
 						html += "<tr><td align='center'>"+(i+1)+"</td><td align='center'><a href = 'studentInfo?idNum="+ map.list[i].idNum +"'>"+map.list[i].name+"</a></td>"
 						html += "<td align='center'>"+map.list[i].idNum+"</td>"
 						html += "<td align='center'>"+map.list[i].grade+"</td>"
-						html += "<td align='center'>"+map.list[i].major+"</td></tr>"
+						html += "<td align='center'>"+map.list[i].major+"</td>
+						html += "<td align='center'>"+map.list[i].pho+"</td></tr>"
 						}
 						html += "</table>"	
 					let pagehtml = "<table style='margin-top: 20px; margin-left: 20px; width: 275px; text-align: center; font-size: 20px;'><tr>"
@@ -127,12 +129,13 @@
 				$('#searchMajor').val('자동차공학과')
 					let html = "<table border='1' style='margin-top:20px; margin-left:20px;'>"
 						html += "<tr><td align='center'>번호</td><td align='center'>이름</td><td align='center'>학번</td>"
-						html += "<td align='center'>학년</td><td align='center'>학과</td><tr>"
+						html += "<td align='center'>학년</td><td align='center'>학과</td><td align='center'>연락처</td><tr>"
 						for(var i=0;i<map.list.length;i++){
 						html += "<tr><td align='center'>"+(i+1)+"</td><td align='center'><a href = 'studentInfo?idNum="+ map.list[i].idNum +"'>"+map.list[i].name+"</a></td>"
 						html += "<td align='center'>"+map.list[i].idNum+"</td>"
 						html += "<td align='center'>"+map.list[i].grade+"</td>"
-						html += "<td align='center'>"+map.list[i].major+"</td></tr>"
+						html += "<td align='center'>"+map.list[i].major+"</td>
+						html += "<td align='center'>"+map.list[i].phoneNum+"</td></tr>"
 						}
 						html += "</table>"
 					let pagehtml = "<table style='margin-top: 20px; margin-left: 20px; width: 275px; text-align: center; font-size: 20px;'><tr>"
@@ -161,12 +164,13 @@
 				$('#searchMajor').val('경영학과')
 					let html = "<table border='1' style='margin-top:20px; margin-left:20px;'>"
 						html += "<tr><td align='center'>번호</td><td align='center'>이름</td><td align='center'>학번</td>"
-						html += "<td align='center'>학년</td><td align='center'>학과</td><tr>"
+						html += "<td align='center'>학년</td><td align='center'>학과</td><td align='center'>연락처</td><tr>"
 						for(var i=0;i<map.list.length;i++){
 						html += "<tr><td align='center'>"+(i+1)+"</td><td align='center'><a href = 'studentInfo?idNum="+ map.list[i].idNum +"'>"+map.list[i].name+"</a></td>"
 						html += "<td align='center'>"+map.list[i].idNum+"</td>"
 						html += "<td align='center'>"+map.list[i].grade+"</td>"
-						html += "<td align='center'>"+map.list[i].major+"</td></tr>"
+						html += "<td align='center'>"+map.list[i].major+"</td>
+						html += "<td align='center'>"+map.list[i].phoneNum+"</td></tr>"
 						}
 						html += "</table><br>"
 					let pagehtml = "<table style='margin-top: 20px; margin-left: 20px; width: 275px; text-align: center; font-size: 20px;'><tr>"
@@ -196,12 +200,13 @@
 			success:function(map){
 					let html = "<table border='1' style='margin-top:20px; margin-left:20px;'>"
 						html += "<tr><td align='center'>번호</td><td align='center'>이름</td><td align='center'>학번</td>"
-						html += "<td align='center'>학년</td><td align='center'>학과</td><tr>"
+						html += "<td align='center'>학년</td><td align='center'>학과</td><td align='center'>연락처</td><tr>"
 						for(var i=0;i<map.list.length;i++){
 						html += "<tr><td align='center'>"+(i+1)+"</td><td align='center'><a href = 'studentInfo?idNum="+ map.list[i].idNum +"'>"+map.list[i].name+"</a></td>"
 						html += "<td align='center'>"+map.list[i].idNum+"</td>"
 						html += "<td align='center'>"+map.list[i].grade+"</td>"
-						html += "<td align='center' id = 'major'>"+map.list[i].major+"</td></tr>"
+						html += "<td align='center' id = 'major'>"+map.list[i].major+"</td>"
+						html += "<td align='center'>"+map.list[i].phoneNum+"</td></tr>"
 						}
 						html += "</table><br>"
 					let pagehtml = "<table style='margin-top: 20px; margin-left: 20px; width: 275px; text-align: center; font-size: 20px;'><tr>"
@@ -283,6 +288,7 @@
 					<td align='center'>학번</td>
 					<td align='center'>학년</td>
 					<td align='center'>학과</td>
+					<td align='center'>연락처</td>
 				<tr>
 					<c:set var="cnt" value="0" />
 					<c:forEach var="list" items="${list}">
@@ -292,6 +298,7 @@
 							<td align='center'>${list.idNum}</td>
 							<td align='center'>${list.grade}</td>
 							<td align='center' id='major'>${list.major}</td>
+							<td align='center'>${list.phoneNumm}</td>
 						</tr>
 						<c:set var="cnt" value="${cnt+1}" />
 					</c:forEach>

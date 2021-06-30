@@ -176,3 +176,11 @@ git stuats
 git stauts
 git status
 git branch -a
+git status
+git add --all
+git staus
+git status
+git commit -am "2021 June 26 Rank Update"
+git status
+git push -u origin jh
+git status

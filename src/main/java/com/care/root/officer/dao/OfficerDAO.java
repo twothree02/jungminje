@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.care.root.officer.dto.GradeDTO;
 import com.care.root.officer.dto.OfficerDTO;
+import com.care.root.officer.dto.RegisterDTO;
 import com.care.root.officer.dto.TimeTableDTO;
 
 public interface OfficerDAO {
@@ -44,9 +45,18 @@ public interface OfficerDAO {
 	public ArrayList<GradeDTO> grade(@Param("s") int start, @Param("e") int end);
 	public Integer totalCal(@Param("idNum") String idNum, @Param("dbSemester") String dbSemester, @Param("dbYear") String dbYear);
 	public ArrayList<String> studentIdNum();
-	public void insertCurTotalScore(@Param("totalScore") int totalScore, @Param("idNum") String idNum);
-	public ArrayList<OfficerDTO> findRankFirst(@Param("s") int start, @Param("e") int end);
-	public ArrayList<OfficerDTO> findRankSecond(@Param("s") int start, @Param("e") int end);
+	public void insertCurTotalScore(@Param("totalScore") int totalScore, @Param("idNum") String idNum, @Param("dbSemester") String dbSemester);
+	public ArrayList<OfficerDTO> findRank(@Param("s") int start, @Param("e") int end);
 	public void insertCurRank();
 	public int getTotalGrade(String idNum);
+	public int selectMajorGradeCount(@Param("major") String major);
+	public ArrayList<OfficerDTO> findRankMajor(@Param("major") String major, @Param("s") int start, @Param("e") int end);
+	public ArrayList<OfficerDTO> searchMajorGrade(@Param("s") int start, @Param("e") int end, 
+			@Param("searchS") String searchS, @Param("searchT") String searchT, @Param("searchM") String searchM);
+	public int searchMajorGradeCount(@Param("searchS") String searchS, @Param("searchT") String searchT, @Param("searchM") String searchM);
+	public ArrayList<OfficerDTO> searchAllGrade(@Param("s") int start, @Param("e") int end, 
+            @Param("searchS") String searchS, @Param("searchT") String searchT);
+	public int searchAllGradeCount(@Param("searchS") String searchS, @Param("searchT") String searchT);
+	public int finalProcess(RegisterDTO dto);
+	public ArrayList<OfficerDTO> getAllMember();
 }	

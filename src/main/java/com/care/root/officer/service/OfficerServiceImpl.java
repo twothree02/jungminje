@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import com.care.root.officer.dao.OfficerDAO;
 import com.care.root.officer.dto.GradeDTO;
 import com.care.root.officer.dto.OfficerDTO;
+import com.care.root.officer.dto.RegisterDTO;
 import com.care.root.officer.dto.TimeTableDTO;
 
 @Service
@@ -374,7 +375,7 @@ public class OfficerServiceImpl implements OfficerService{
 	@Override
 	public ArrayList<GradeDTO> grade(Model model, int num){
 		
-		int pageLetter = 9;
+		int pageLetter = 5;
 		int allCount = mapper.selectStudentCount(); // 총 글 개수 얻어오기
 		
 		int repeat = allCount / pageLetter;	// 총 페이지 수
@@ -385,7 +386,7 @@ public class OfficerServiceImpl implements OfficerService{
 		int start = end + 1 - pageLetter;
 		
 		if(repeat == 0) {
-			repeat = 1;
+			repeat = 1;	
 		} 
 		
 		Calendar cal = Calendar.getInstance();
@@ -408,9 +409,10 @@ public class OfficerServiceImpl implements OfficerService{
 		model.addAttribute("year", year);
 		model.addAttribute("semester", semester);
 		model.addAttribute("repeat", repeat);	
-		model.addAttribute("list", mapper.findRankFirst(start, end));
-		model.addAttribute("listSecond", mapper.findRankSecond(start, end));
+		model.addAttribute("list", mapper.findRank(start, end));
+		model.addAttribute("listSecond", mapper.findRank(start, end));
 		return mapper.grade(start,end);
+		
 	}
 	
 	public void insertCurTotalGrade() {
@@ -436,11 +438,172 @@ public class OfficerServiceImpl implements OfficerService{
 			totalScore = mapper.totalCal(list.get(i), dbSemester, dbYear);
 			if(totalScore == null) {
 				totalScore = 0;
-				mapper.insertCurTotalScore(totalScore, list.get(i));
+				mapper.insertCurTotalScore(totalScore, list.get(i), dbSemester);
 			}
 			else {
-				mapper.insertCurTotalScore(totalScore, list.get(i));
+				mapper.insertCurTotalScore(totalScore, list.get(i), dbSemester);
 			}
+		}
+	}
+	
+	@Override
+	public Map<String, Object> gradeMajor(String major,int num) {
+		int pageLetter = 3;
+		int allCount;
+		if(major.equals("전체")) {
+			allCount = mapper.selectStudentCount(); // 총 글 개수 얻어오기
+		}
+		else {
+			allCount = mapper.selectMajorStudentCount(major); // 총 글 개수 얻어오기
+		}
+		
+		int repeat = allCount / pageLetter;	// 총 페이지 수
+		if(allCount % pageLetter != 0) {
+			repeat += 1;
+		}
+		int end = num * pageLetter;
+		int start = end + 1 - pageLetter;
+		
+		Calendar cal = Calendar.getInstance();
+		
+		int year = cal.get(cal.YEAR);
+		int month = cal.get(cal.MONTH)+1;
+		String semester = null;
+		
+		if(month < 9 && month > 0) {
+			semester = "1학기";
+		}
+		else if (month >= 9 && month < 13 ){
+			semester = "2학기";
+		}
+		System.out.println("전체 실행");
+		if(major.equals("전체")) {
+			Map <String,Object> map = new HashMap<String, Object>();
+			if(repeat == 0) {
+				repeat = 1;
+			}
+			map.put("repeat", repeat);
+			map.put("list", mapper.findRank(start, end));
+			map.put("year", year);
+			map.put("semester", semester);
+			return map;
+		}
+		else {
+			Map <String,Object> map = new HashMap<String, Object>();
+			if(repeat == 0) {
+				repeat = 1;
+			}
+			map.put("repeat", repeat);
+			map.put("list", mapper.findRankMajor(major, start, end));
+			map.put("year", year);
+			map.put("semester", semester);
+			return map;
+		}
+	}
+	
+	@Override
+	public Map<String, Object> searchMajorGrade(String searchS, String searchT, String searchM, int num) {
+		int pageLetter = 3;
+		int allCount = mapper.searchMajorGradeCount(searchS, searchT, searchM); // 총 글 개수 얻어오기
+		int repeat = allCount / pageLetter;	// 총 페이지 수
+		if(allCount % pageLetter != 0) {
+			repeat += 1;
+		}
+		int end = num * pageLetter;
+		int start = end + 1 - pageLetter;
+		
+		Calendar cal = Calendar.getInstance();
+		
+		int year = cal.get(cal.YEAR);
+		int month = cal.get(cal.MONTH)+1;
+		String semester = null;
+		
+		if(month < 9 && month > 0) {
+			semester = "1학기";
+		}
+		else if (month >= 9 && month < 13 ){
+			semester = "2학기";
+		}
+		
+		System.out.println(num);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("repeat", repeat);
+		map.put("list", mapper.searchMajorGrade(start, end, searchS, searchT, searchM));
+		map.put("year", year);
+		map.put("semester", semester);
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> searchAllGrade(String searchS, String searchT, int num) {
+		int pageLetter = 3;
+		int allCount = mapper.searchAllGradeCount(searchS, searchT); // 총 글 개수 얻어오기
+		int repeat = allCount / pageLetter;	// 총 페이지 수
+		if(allCount % pageLetter != 0) {
+			repeat += 1;
+		}
+		int end = num * pageLetter;
+		int start = end + 1 - pageLetter;
+		
+		Calendar cal = Calendar.getInstance();
+		
+		int year = cal.get(cal.YEAR);
+		int month = cal.get(cal.MONTH)+1;
+		String semester = null;
+		
+		if(month < 9 && month > 0) {
+			semester = "1학기";
+		}
+		else if (month >= 9 && month < 13 ){
+			semester = "2학기";
+		}
+		
+		System.out.println(num);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("repeat", repeat);
+		map.put("list", mapper.searchAllGrade(start, end, searchS, searchT));
+		map.put("year", year);
+		map.put("semester", semester);
+		return map;
+	}
+	
+	
+	@Override
+	public int finalProcess() {
+		RegisterDTO dto = new RegisterDTO();
+		ArrayList<OfficerDTO> set = new ArrayList<OfficerDTO>();
+
+		set = mapper.getAllMember();
+		
+		Calendar cal = Calendar.getInstance();
+		
+		String year = cal.get(cal.YEAR)+"";
+		int cnt = 0;
+		
+		for(int i = 0; i<set.size(); i++) {
+			if(set.get(i).getCurRank() > 0 && set.get(i).getCurRank() < 4) {
+				dto.setScholarship(300);
+			}
+			else {
+				dto.setScholarship(0); 
+			}
+			dto.setMajor(set.get(i).getMajor());
+			dto.setName(set.get(i).getName());
+			dto.setRank(set.get(i).getCurRank());
+			dto.setTotalScore(set.get(i).getCurTotalGrade());
+			dto.setIdNum(set.get(i).getIdNum());
+			dto.setYear(year);
+			dto.setSemester(set.get(i).getSemester());
+			mapper.finalProcess(dto);
+			cnt++;
+		}
+		if(cnt == set.size()) {
+			return 1;
+		}
+		else {
+			return 0;
 		}
 	}
 }

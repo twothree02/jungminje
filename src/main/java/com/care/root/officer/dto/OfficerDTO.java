@@ -23,10 +23,17 @@ public class OfficerDTO {
 	private String bank;
 	private String accountNum;
 	private String birthDate;
+	private String semester;
 	private int curTotalGrade;
 	private int curRank;
 	
 	
+	public String getSemester() {
+		return semester;
+	}
+	public void setSemester(String semester) {
+		this.semester = semester;
+	}
 	public int getCurRank() {
 		return curRank;
 	}

@@ -26,6 +26,7 @@
 		<result property="officeAddr" column="office_addr" />
 		<result property="bank" column="bank" />
 		<result property="accountNum" column="account_num" />
+		<result property="semester" column="semester" />
 		<result property="curTotalGrade" column="cur_totalgrade" />
 		<result property="curRank" column="cur_rank" />
 	</resultMap>
@@ -54,6 +55,22 @@
 		<result property="applicationCred" column="application_cred" />
 		<result property="gradeSemester" column="grade_semester" />
 		<result property="year" column="year" />
+	</resultMap>
+	
+	<resultMap type="com.care.root.officer.dto.RegisterDTO" id="register">
+		<result property="major" column="major" />
+		<result property="idNum" column="id_num" />
+		<result property="name" column="name" />
+		<result property="scholarship" column="scholarship" />
+		<result property="rank" column="rank" />
+		<result property="year" column="year" />
+		<result property="gradeSemester" column="grade_semester" />
+		<result property="chkPeriod" column="chk_period" />
+		<result property="applicationCred" column="application_cred" />
+		<result property="receivedCred" column="received_cred" />
+		<result property="semester" column="semester" />
+		<result property="aveGrade" column="ave_grade" />
+		<result property="totalScore" column="total_score" />
 	</resultMap>
 	
 	<select id="staffInfo" resultMap="officer">
@@ -229,25 +246,51 @@
 	</select>
 	
 	<update id="insertCurTotalScore">
-		update member_info set cur_totalgrade = #{totalScore} where id_num = #{idNum}
+		update member_info set semester = #{dbSemester}, cur_totalgrade = #{totalScore} where id_num = #{idNum}
 	</update>
 	
-	<select id="findRankFirst" resultMap="officer">
+	<select id="findRank" resultMap="officer">
 		select B.* from(select rownum rn,
 		A.* from
-		(select * from member_info where position = '학생' and grade = '1'order by
-		major, cur_rank)A)B where rn between #{s} and #{e}
-	</select>
-	
-	<select id="findRankSecond" resultMap="officer">
-		select B.* from(select rownum rn,
-		A.* from
-		(select * from member_info where position = '학생' and grade = '2' order by
-		major, cur_rank)A)B where rn between #{s} and #{e}
+		(select * from member_info where position = '학생' order by
+		major, grade DESC, cur_rank)A)B where rn between #{s} and #{e}
 	</select>
 	
 	<update id="insertCurRank">
 		update member_info a set cur_rank=(select ranks from (select rank() over(PARTITION BY major ORDER BY cur_totalgrade DESC) as ranks 
             , id_num rid from member_info where not cur_totalgrade is null) b where b.rid = a.id_num)
 	</update>
+	
+	<select id="findRankMajor" resultMap="officer">
+		select B.* from(select rownum rn,
+		A.* from
+		(select * from member_info where position = '학생' and major = #{major} order by
+		major, grade DESC, cur_rank)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="searchMajorGrade" resultMap="officer">
+		select B.* from(select rownum rn, A.* from (select * from member_info where ${searchS} = #{searchT} and major = #{searchM} and position = '학생'
+			order by id_num desc)A)B where rn between #{s} and #{e}
+	</select>
+
+	<select id="searchMajorGradeCount" resultType="Integer">
+		select count(*) from member_info where ${searchS} = #{searchT} and major = #{searchM} and position = '학생'
+	</select>
+	
+	<select id="searchAllGrade" resultMap="officer">
+		select B.* from(select rownum rn, A.* from (select * from member_info where ${searchS} = #{searchT} and position = '학생' order by id_num desc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="searchAllGradeCount" resultType="Integer">
+		select count(*) from member_info where ${searchS} = #{searchT} and position = '학생'
+	</select>	
+	
+	<select id="getAllMember" resultMap="officer">
+		select * from member_info where position = '학생' and <![CDATA[semester <= 4 and semester > 0]]>
+	</select>
+	
+	<insert id="finalProcess">
+		insert into register_Info (major, id_num, name, scholarship, rank, year, semester, total_score) values
+		(#{major}, #{idNum}, #{name}, #{scholarship}, #{rank}, #{year}, #{semester}, #{totalScore})
+	</insert>
 </mapper>

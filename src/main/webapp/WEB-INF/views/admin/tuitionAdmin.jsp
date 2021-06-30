@@ -57,10 +57,36 @@
 	<div class="menuBar">
 	</div>
 	<div>
-		<form action = "test" method = "post">
-			<input type = "date" name = "startDate" id = "startDate">
-			<input type = "submit" value="등록">
-		</form>
+		<div style = "padding-top: 50px; text-align: center;">
+			<h3><u>납부기한 설정</u></h3>
+		</div>
+		<div style = "align : center;">
+			<form action = "tution" method = "post">
+				<table border = "1">
+					<tr>
+						<td>
+							납부 시작일
+						</td>
+						<td>
+							<input type = "date" name = "startDate" id = "startDate">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							납부 마감일
+						</td>
+						<td>
+							<input type = "date" name = "endDate" id = "endDate">
+						</td>
+					</tr>
+					<tr>
+						<td colspan = "2">
+							<button type="submit" class="btn btn-secondary">등록</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
 	</div>
 </body>
 </html>

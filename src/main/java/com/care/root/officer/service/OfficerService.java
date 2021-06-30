@@ -30,4 +30,8 @@ public interface OfficerService {
 	public Map<String,Object> searchAdminPro(String searchS, String searchT, String searchM, int num);
 	public OfficerDTO adminProInfo(String idNum);
 	public ArrayList<GradeDTO> grade(Model model, int num);
+	public Map<String,Object> gradeMajor(String major, int num);
+	public Map<String,Object> searchAllGrade(String searchS, String searchT, int num);
+	public Map<String,Object> searchMajorGrade(String searchS, String searchT, String searchM, int num);
+	public int finalProcess();
 }

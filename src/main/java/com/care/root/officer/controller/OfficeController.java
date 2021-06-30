@@ -101,6 +101,13 @@ public class OfficeController implements MemberSessionName{
 		return "admin/grade";
 	}
 	
+	@PostMapping(value="gradeMajor", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String,Object> gradeMajor(@RequestBody Map <String, Object> map, @RequestParam(value = "num", required=false, defaultValue = "1") int num){
+		System.out.println("컨트롤러");
+		return os.gradeMajor((String)map.get("major"), num);	
+	}
+	
 	@RequestMapping("timeTable")
 	public String timeTable() {
 		return "admin/timeTable";
@@ -179,4 +186,30 @@ public class OfficeController implements MemberSessionName{
 		model.addAttribute("dto", dto);
 		return "admin/adminProInfo";
 	}
+	
+	@PostMapping(value="searchGrade", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String,Object> searchGrade(@RequestBody Map <String, Object> map, @RequestParam(value = "num", required=false, defaultValue = "1") int num){
+		System.out.println(map.get("searchSelect"));
+		System.out.println(map.get("searchText"));
+		System.out.println(map.get("searchMajor"));
+		if(map.get("searchMajor").equals("all")) {
+			return os.searchAllGrade((String)map.get("searchSelect"), (String)map.get("searchText"), num);
+		}
+		else {
+			return os.searchMajorGrade((String)map.get("searchSelect"), (String)map.get("searchText"), (String)map.get("searchMajor"), num);
+		}
+	}
+	
+	
+	@RequestMapping("finalProcess")
+	public String finalProcess() {
+		if(os.finalProcess() == 1) {
+			return "admin/finalProcessSuccess";
+		}
+		else {
+			return "admin/finalProcessFail";
+		}
+	}
+	
 }
