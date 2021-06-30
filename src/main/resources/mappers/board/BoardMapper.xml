@@ -2,12 +2,6 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<<<<<<< HEAD
-<mapper namespace="com.care.root.board.dao.BoardDAO">
-
-
-</mapper>
-=======
 <mapper namespace="com.care.root.board.dao.BoardMapper">
 	<!-- notice 영역 -->
 	<resultMap type="com.care.root.board.noticedto.noticeDTO" id="board">
@@ -395,20 +389,3 @@ select *from
 </select>
 	
 </mapper>
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> bb07c79fd9ac91874a87a5bb2e7831194b9114f1
