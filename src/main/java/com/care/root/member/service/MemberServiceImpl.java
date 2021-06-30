@@ -256,6 +256,8 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void setNull(String id) {
 		mapper.setNull(id);
+<<<<<<< HEAD
+=======
 	}
 
 	@Override
@@ -271,6 +273,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public List<academicDTO> academicMainList() {
 		return mapper.academicMainList();
+>>>>>>> bb07c79fd9ac91874a87a5bb2e7831194b9114f1
 	}
 
 }

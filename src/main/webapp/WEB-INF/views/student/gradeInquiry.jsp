@@ -49,7 +49,7 @@
 						</thead>
 						<tbody>
 						<c:choose>
-						<c:when test="${grade.size() != 0 }">
+						<c:when test="${period == 'Y' }">
 						<c:forEach var="list" items="${grade}">
 						<tr>
 							<td>${list.subjectName }</td>
@@ -61,7 +61,7 @@
 						</c:when>
 						<c:otherwise>
 						<tr>
-							<th colspan="4">해당학기 성적이 입력되지 않았습니다.</th>
+							<th colspan="4">해당학기 성적 정정기간이 아닙니다.</th>
 						</tr>
 						
 						</c:otherwise>

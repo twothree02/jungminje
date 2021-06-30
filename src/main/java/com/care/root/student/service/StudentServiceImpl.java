@@ -59,11 +59,14 @@ public class StudentServiceImpl implements StudentService {
 			String birthDate = infoDTO.getResidentNum().substring(0, 6);
 			infoDTO.setBirthDate(birthDate);
 			ArrayList<SubjectDTO> list = null;
-			if (infoDTO.getGradeSemester() == infoDTO.getClassReq()) {
+			
+			/*if (infoDTO.getGradeSemester() == infoDTO.getClassReq()) {
 				list = mapper.subjectInfoA(infoDTO.getGradeSemester(), infoDTO.getMajor());
 			} else {
 				list = mapper.subjectInfoB(infoDTO.getGradeSemester(), infoDTO.getMajor());
-			}
+			}*/
+			list = mapper.subjectInfoA(infoDTO.getClassReq(), infoDTO.getMajor());
+			
 
 			if(infoDTO.getGradeSemester() == 1) {
 				infoDTO.setGradeSemester(101);
@@ -77,6 +80,7 @@ public class StudentServiceImpl implements StudentService {
 			
 			model.addAttribute("info", infoDTO);
 			model.addAttribute("subject", list);
+			
 			if (list.size() == 0) {
 				model.addAttribute("repeat", 1);
 			} else {
@@ -177,32 +181,80 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public void classReqChk(String id) {
-		StudentInfoDTO infoDTO = mapper.studentInfo(id);
-		mapper.classReq(id, infoDTO.getGradeSemester());
+		try {
+			StudentInfoDTO infoDTO = mapper.studentInfo(id);
+			mapper.classReq(id, infoDTO.getGradeSemester());
+			Date date = new Date();
+			SimpleDateFormat format = new SimpleDateFormat("yyyy");
+			String year = format.format(date);
+			ArrayList<SubjectDTO> list = mapper.subjectInfoC(infoDTO.getGradeSemester(), infoDTO.getMajor());
+			
+			
+			for (SubjectDTO subjectDTO : list) {
+				GradeDTO gradeDTO = new GradeDTO();
+				gradeDTO.setMajor(infoDTO.getMajor());
+				gradeDTO.setIdNum(infoDTO.getIdNum());
+				gradeDTO.setName(infoDTO.getName());
+				gradeDTO.setSubjectName(subjectDTO.getSubjectName());
+				gradeDTO.setProfName(subjectDTO.getProfessor());
+				gradeDTO.setYear(year);
+				gradeDTO.setSemester(infoDTO.getGradeSemester());
+				gradeDTO.setApplicationCred(3);
+				String semester = null;
+				if(infoDTO.getGradeSemester() == 1 || infoDTO.getGradeSemester() == 3) {
+					semester = "1";
+				}else {
+					semester = "2";
+				}
+				gradeDTO.setSemester2(semester);
+				mapper.insertRegInfo(gradeDTO);
+			} 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+			
+		
 	}
 
 	@Override
 	public void gradeInquiry(Model model, String id) {
-		StudentInfoDTO infoDTO = mapper.studentInfo(id);
-		List<GradeDTO> list = mapper.gradeInfo(id, infoDTO.getGradeSemester());
-		if (list.size() == 0) {
-			model.addAttribute("repeat", 1);
-		} else {
-			model.addAttribute("repeat", list.size());
+		try {
+			StudentInfoDTO infoDTO = mapper.studentInfo(id);
+			List<GradeDTO> list = mapper.gradeInfo(id, infoDTO.getGradeSemester());
+			RegisterInfoDTO RegDTO = mapper.registerInfo(id, infoDTO.getGradeSemester());
+			
+			if(RegDTO != null) {
+				model.addAttribute("period", RegDTO.getChkPeriod());
+			}else {
+				model.addAttribute("period", "N");
+			}
+			
+			int repeat = 0;
+			if (RegDTO == null || RegDTO.getChkPeriod() != "Y") {		
+					repeat = 1;
+			}else{
+					repeat = list.size();
+			}
+			model.addAttribute("repeat", repeat);
+			
+			if(infoDTO.getGradeSemester() == 1) {
+				infoDTO.setGradeSemester(101);
+			}else if(infoDTO.getGradeSemester() == 2) {
+				infoDTO.setGradeSemester(102);
+			}else if(infoDTO.getGradeSemester() == 3) {
+				infoDTO.setGradeSemester(201);
+			}else if(infoDTO.getGradeSemester() == 4) {
+				infoDTO.setGradeSemester(202);
+			}
+			
+			model.addAttribute("info", infoDTO);
+			model.addAttribute("grade", list);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
 		
-		if(infoDTO.getGradeSemester() == 1) {
-			infoDTO.setGradeSemester(101);
-		}else if(infoDTO.getGradeSemester() == 2) {
-			infoDTO.setGradeSemester(102);
-		}else if(infoDTO.getGradeSemester() == 3) {
-			infoDTO.setGradeSemester(201);
-		}else if(infoDTO.getGradeSemester() == 4) {
-			infoDTO.setGradeSemester(202);
-		}
-		model.addAttribute("info", infoDTO);
-		model.addAttribute("grade", list);
-
 	}
 
 	@Override
@@ -247,7 +299,7 @@ public class StudentServiceImpl implements StudentService {
 			infoDTO.setBirthDate(birthDate);
 			model.addAttribute("info", infoDTO);
 
-			for (int i = 1; i <= 4; i++) {
+			for (int i = 1; i < infoDTO.getGradeSemester(); i++) {
 				applicationCred = 0;
 				receivedCred = 0;
 				avgGrade = 0;
@@ -311,11 +363,19 @@ public class StudentServiceImpl implements StudentService {
 			tScore = (tScore - tAvgGrade) * 10;
 			tScore = 99 - tScore;
 			tScore2 = frmt.format(tScore);
-
-			tGradeDTO.settApplicationCred(tApplicationCred);
-			tGradeDTO.settReceivedCred(tReceivedCred);
-			tGradeDTO.settAvgGrade(tAvgGrade2);
-			tGradeDTO.settScore(tScore2);
+			
+			//1학년 1학기의 경우에는 학기별 성적 조회 불가능하게 하기 위하여 진행
+			if(infoDTO.getGradeSemester() > 1) {
+				tGradeDTO.settApplicationCred(tApplicationCred);
+				tGradeDTO.settReceivedCred(tReceivedCred);
+				tGradeDTO.settAvgGrade(tAvgGrade2);
+				tGradeDTO.settScore(tScore2);
+			}else {
+				tGradeDTO.settApplicationCred(0);
+				tGradeDTO.settReceivedCred(0);
+				tGradeDTO.settAvgGrade("0");
+				tGradeDTO.settScore("0");
+			}
 
 			model.addAttribute("total", tGradeDTO);
 

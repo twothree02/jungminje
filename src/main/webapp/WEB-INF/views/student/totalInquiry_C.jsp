@@ -155,7 +155,23 @@ div {
 			<c:when test="${subject.size() != 0}">
 			<c:forEach var="list" items="${subject}" >
 				<tr>
-					<td>${list.major}-${list.gradeSemester}</td>
+					<td>${list.major}-
+					<c:choose>
+					<c:when test="${list.gradeSemester == 1}">
+					101
+					</c:when>
+					<c:when test="${list.gradeSemester == 2}">
+					102
+					</c:when>
+					<c:when test="${list.gradeSemester == 3}">
+					201
+					</c:when>
+					<c:when test="${list.gradeSemester == 4}">
+					202
+					</c:when>
+					</c:choose>
+					
+					</td>
 					<td>${list.subjectName}</td>
 					<td>${list.classRoom}</td>
 					<td>${list.professor}</td>
