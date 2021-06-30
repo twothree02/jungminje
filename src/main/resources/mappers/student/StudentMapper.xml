@@ -111,12 +111,7 @@
 	</select>
 	
 	<select id="rankCnt" resultType="Integer">
-<<<<<<< HEAD
 		select count(*) from REGISTER_INFO where MAJOR = #{major} and YEAR = #{year} and GRADE_SEMESTER = #{semester}
-=======
-		select count(*) from REGISTER_INFO where major = #{major} and YEAR = #{year} and GRADE_SEMESTER = #{semester}
->>>>>>> hw
-	
 	</select>
 	
 	<update id="tutionPayMent">
