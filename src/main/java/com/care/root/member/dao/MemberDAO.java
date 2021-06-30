@@ -12,8 +12,6 @@ public interface MemberDAO {
 	public String findId(@Param("name") String name, @Param("phone") String phone);
 	public MemberDTO findPw(@Param("id") String id, @Param("email") String email);
 	public int tempPw(@Param("tempPw") String tempPw, @Param("id") String id);
-<<<<<<< HEAD
-=======
 	public ArrayList<MemberDTO> getInfo(String id);
 	public int modify(MemberDTO dto);
 	public void rememberId(Map<String, Object> dates);
@@ -22,5 +20,4 @@ public interface MemberDAO {
 	public String chkFirst(String id);
 	public void updateFirst(String id);
 	public String getBirth(String attribute);
->>>>>>> yw
 }

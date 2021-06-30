@@ -11,10 +11,7 @@ public class MemberDTO {
 	private String telNum;
 	private String addr;
 	private String detailAddr;
-<<<<<<< HEAD
-=======
 	private String major;
->>>>>>> yw
 	private String email;
 	private int grade;
 	private String class_;
@@ -27,12 +24,9 @@ public class MemberDTO {
 	private String officeAddr;
 	private String bank;
 	private String accountNum;
-<<<<<<< HEAD
-=======
 	private String sessionId;
 	private Date limitTime;
 	private String firstLogin;
->>>>>>> yw
 	
 	public String getIdNum() {
 		return idNum;
@@ -63,7 +57,6 @@ public class MemberDTO {
 	}
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
-<<<<<<< HEAD
 	}
 	public String getTelNum() {
 		return telNum;
@@ -71,15 +64,6 @@ public class MemberDTO {
 	public void setTelNum(String telNum) {
 		this.telNum = telNum;
 	}
-=======
-	}
-	public String getTelNum() {
-		return telNum;
-	}
-	public void setTelNum(String telNum) {
-		this.telNum = telNum;
-	}
->>>>>>> yw
 	public String getAddr() {
 		return addr;
 	}
@@ -91,15 +75,12 @@ public class MemberDTO {
 	}
 	public void setDetailAddr(String detailAddr) {
 		this.detailAddr = detailAddr;
-<<<<<<< HEAD
-=======
 	}
 	public String getMajor() {
 		return major;
 	}
 	public void setMajor(String major) {
 		this.major = major;
->>>>>>> yw
 	}
 	public String getEmail() {
 		return email;
@@ -172,8 +153,6 @@ public class MemberDTO {
 	}
 	public void setAccountNum(String accountNum) {
 		this.accountNum = accountNum;
-<<<<<<< HEAD
-=======
 	}
 	public String getSessionId() {
 		return sessionId;
@@ -192,6 +171,5 @@ public class MemberDTO {
 	}
 	public void setFirstLogin(String firstLogin) {
 		this.firstLogin = firstLogin;
->>>>>>> yw
 	}
 }

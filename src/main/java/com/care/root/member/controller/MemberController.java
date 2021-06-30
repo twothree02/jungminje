@@ -16,11 +16,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-<<<<<<< HEAD
-=======
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
->>>>>>> yw
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,21 +52,11 @@ public class MemberController implements MemberSessionName {
 			ra.addAttribute("id", request.getParameter("inputId"));
 			ra.addAttribute("rememberId", request.getParameter("rememberId"));
 			session.setAttribute(LOGIN, request.getParameter("inputId"));
-<<<<<<< HEAD
-			System.out.println("로그인 성공");
-			return "redirect:main";
-=======
 			return "redirect:successLogin";
->>>>>>> yw
 		}
 		return "redirect:login";
 	}
 	
-<<<<<<< HEAD
-	@GetMapping("main")
-	public String main() {
-		return "main";
-=======
 	@RequestMapping("successLogin")
 	public String successLogin(@RequestParam("id") String id, @RequestParam(value="rememberId", required=false) String rememberId, HttpSession session, HttpServletResponse response) {
 		//session.setAttribute(LOGIN, id);	//여러 사용자의 세션을 관리하기 위함
@@ -97,7 +84,6 @@ public class MemberController implements MemberSessionName {
 			ms.setNull(id);
 		}
 		return "redirect:main";
->>>>>>> yw
 	}
 
 	/** 아이디, 비밀번호 찾기 */
@@ -108,11 +94,7 @@ public class MemberController implements MemberSessionName {
 
 	@PostMapping(value="findId", produces = "application/json; charset=utf-8")
 	@ResponseBody
-<<<<<<< HEAD
-	public String findId(@RequestBody Map <String,Object> map) {
-=======
 	public String findId(@RequestBody Map<String,Object> map) {
->>>>>>> yw
 		String id = ms.findId((String)map.get("inputName"), (String)map.get("inputPhone"));
 		return "{\"result\":\"" + id + "\"}";
 	}
@@ -124,15 +106,6 @@ public class MemberController implements MemberSessionName {
 		return "{\"result\":\"" + tempPw + "\"}";
 	}
 	
-<<<<<<< HEAD
-	/** 정보 수정 */
-	@GetMapping("modifyInfo")
-	public String modifyInfo() {
-		return "member/modifyInfo";
-	}
-	
-	/** 로그아웃 */
-=======
 	/** 정보수정 */
 	@GetMapping("modifyInfo")
 	public String modifyInfo(HttpSession session, Model model) {
@@ -168,15 +141,12 @@ public class MemberController implements MemberSessionName {
 	
 	/** 로그아웃 */
 	/*
->>>>>>> yw
 	@GetMapping("logout")
 	public String logout(HttpSession session, HttpServletResponse response) {
 		ms.logout(session, response);
 		session.invalidate();
 		return "redirect:login";
 	}
-<<<<<<< HEAD
-=======
 	*/
 	
 	@GetMapping("logout")
@@ -190,5 +160,4 @@ public class MemberController implements MemberSessionName {
 			return "redirect:/";
 		}
 	}
->>>>>>> yw
 }

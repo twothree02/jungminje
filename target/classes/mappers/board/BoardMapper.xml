@@ -2,27 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<<<<<<< HEAD
-<mapper namespace="com.care.root.board.dao.BoardMapper">
-	<resultMap type="com.care.root.board.dto.BoardDTO" id="board">
-		<id property="writeNo" column="write_no"/>
-		<result property="title" column="title"/>
-		<result property="content" column="content"/>
-		<result property="hit" column="hit"/>
-		<result property="name" column="name"/>
-	</resultMap>
-	
-	<select id="getList" resultMap="board">
-	
-	select * from notices_board
-	
-	</select>
-	
-	
-	</mapper>
-=======
 <mapper namespace="com.care.root.board.dao.BoardDAO">
 
 
 </mapper>
->>>>>>> yw

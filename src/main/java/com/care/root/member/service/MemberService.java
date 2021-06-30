@@ -6,25 +6,19 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-<<<<<<< HEAD
-=======
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.care.root.member.dto.MemberDTO;
->>>>>>> yw
 
 public interface MemberService {
 	public int loginChk(HttpServletRequest request);
 	public String findId(String name, String phone);
 	public String findPw(String id, String email, HttpServletRequest request, HttpServletResponse response);
 	public void logout(HttpSession session, HttpServletResponse response);
-<<<<<<< HEAD
-=======
 	public ArrayList<MemberDTO> getInfo(String id);
 	public String modify(MultipartHttpServletRequest mul, HttpServletRequest request);
 	public void rememberId(String sessionId, Date limitDate, String id);
 	public int getSessionId(String id);
 	public void setNull(String id);
->>>>>>> yw
 }
