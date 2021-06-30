@@ -4665,6 +4665,7 @@ textarea.form-control-lg {
   vertical-align: baseline;
   border-radius: 0.25rem;
 }
+
 .badge:empty {
   display: none;
 }

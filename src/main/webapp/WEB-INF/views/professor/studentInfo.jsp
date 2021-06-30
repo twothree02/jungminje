@@ -111,6 +111,5 @@ div {
          </div>
 
          <div class="menuBar"></div>
-   
 </body>
 </html>

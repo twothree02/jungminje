@@ -21,21 +21,21 @@
 			contentType:"application/json;charset=utf-8",
 			success: function(list){
 				if(list.length == 0){
-					let html = "<table border='1' style='margin-top:20px; margin-left:20px;'>"
-						html += "<tr><td align='center'>번호</td><td align='center'>학기</td><td align='center'>교과목</td>"
-						html += "<td align='center'>취득 학점</td><td align='center'>평점</td><td align='center'>등급</td><tr>"
-						html += "<tr><td align='center' colspan='6'><b>해당 학기 성적이 없습니다.</b></td></tr></table>"
+					let html = "<span class='badge badge-success' style='width: 110px; height: 30px; font-size: 18px; margin-top: 10px; margin-bottom: 10px;'>기본정보</span><table class='table'>"
+						html += "<thead class='thead-dark' style='text-align: center;'><tr><th>번호</th><th>학기</th><th>교과목</th>"
+						html += "<th>취득 학점</th><th>평점</th><th>등급</th></tr></thead>"
+						html += "<tbody style='text-align: center;'><tr><td colspan='6'><b>해당 학기 성적이 없습니다.</b></td></tr></tbody>"
 						$("#semeDetail").empty().append(html)
 				}else{
-					let html = "<table border='1' style='margin-top:20px; margin-left:20px;'>"
-						html += "<tr><td align='center'>번호</td><td align='center'>학기</td><td align='center'>교과목</td>"
-						html += "<td align='center'>취득 학점</td><td align='center'>평점</td><td align='center'>등급</td><tr>"
+					let html = "<div class='container'><table class='table'>"
+						html += "<thead class='thead-dark' style='text-align: center;'><tr><th>번호</th><th>학기</th><th>교과목</th>"
+						html += "<th>취득 학점</th><th>평점</th><th>등급</th></tr>"
 				for(var i=0;i<list.length;i++){
-				html += "<tr><td align='center'>"+(i+1)+"</td><td>"+list[i].gradeSeme+"</td>"
-				html += "<td align='center'>"+list[i].subjectName+"</td>"
-				html += "<td align='center'>"+list[i].score+"</td>"
-				html += "<td align='center'>"+list[i].grade+"</td>" //나중에 수정 받은 평점으로 
-				html += "<td align='center'>"+list[i].grade+"</td></tr>"
+				html += "<tbody style='text-align: center;'><tr><td>"+(i+1)+"</td><td>"+list[i].gradeSeme+"</td>"
+				html += "<td>"+list[i].subjectName+"</td>"
+				html += "<td>"+list[i].score+"</td>"
+				html += "<td>"+list[i].grade+"</td>" //나중에 수정 받은 평점으로 
+				html += "<td>"+list[i].grade+"</td></tr></tbody>"
 				}
 				html += "</table>"
 				
@@ -49,64 +49,97 @@
 	}
 
 </script>
+<style type="text/css">
+	.hr { border: 0;
+		  height: 3px;
+		  background-color: #A5A5A5; }
+</style>
 </head>
 <body>
  <c:import url="../default/professorHeader.jsp" />
  
-<table border="1">
-<c:forEach var="pStuInfo" items="${detailStuInfo}">
-<tr>
-<td>학번</td> <td>${pStuInfo.idNum}</td> <td>이름</td> <td>${pStuInfo.name}</td>
-</tr>
-<tr>
-<td>휴대폰 번호</td> <td>${pStuInfo.phoneNum}</td> <td>생년월일</td> <td>${pStuInfo.residentNum}</td>
-</tr>
-<tr>
-<td>이메일</td> <td>${pStuInfo.email}</td> <td>학과</td> <td>${pStuInfo.major}</td>
-</tr>
-<tr>
-<td>학년 - 반</td> <td>${pStuInfo.class_}</td> <td>국적</td> <td>${pStuInfo.country}</td>
-</tr>
-</c:forEach>
-</table>
-<input type="button" onclick="location.href='${contextPath }/professor/all_student'" value="Back">
-<br>
-<br>
-<br>
-
+<div class="container">
+<span class="badge badge-success" style="width: 110px; height: 30px; font-size: 18px; margin-top: 10px; margin-bottom: 10px;">기본 정보</span>
+	<table class="table">
+		<c:forEach var="pStuInfo" items="${detailStuInfo}">
+			<tr>
+				<th>학번</th> <td>${pStuInfo.idNum}</td> <th>이름</th> <td>${pStuInfo.name}</td>
+			</tr>
+			<tr>
+				<th>휴대폰 번호</th> <td>${pStuInfo.phoneNum}</td> <th>생년월일</th> <td>${pStuInfo.residentNum}</td>
+			</tr>
+			<tr>
+				<th>이메일</th> <td>${pStuInfo.email}</td> <th>학과</th> <td>${pStuInfo.major}</td>
+			</tr>
+			<tr>
+				<th>학년 - 반</th> <td>${pStuInfo.class_}</td> <th>국적</th> <td>${pStuInfo.country}</td>
+			</tr>
+		</c:forEach>
+		<tr>
+			<td colspan="3" style="border-top: none;"></td>
+			<td style="float: right; border-top: none;"><input type="button" onclick="location.href='${contextPath }/professor/all_student'" value="Back"></td>
+		</tr>
+	</table>
+	<hr class="hr">
+</div>
  
-<table border="1">
-<tr>
-<td>학년/학기</td> <td>신청학점</td> <td>취득학점</td> <td>취득학점 평균</td> <td>석차</td>
-</tr>
-<!-- varStatus로 인덱스를 매기면 하나 하나 개별적으로 값을 전달하는 것이 가능하다. -->
-<c:forEach var="sGrade" items="${semeGradeInfo}" varStatus="status">
-<input type="hidden" id="idNum" value="${sGrade.idNum }"/>
-<input type="hidden" id=seme${status.index} value="${sGrade.gradeSeme }"/>
-<tr>
-<td><input type="button" value="${sGrade.gradeSeme}" onclick="showDetail($('#seme${status.index}').val())"/></td>
- <td>${sGrade.appCred}</td>
-<td>${sGrade.receivedCred}</td> <td>${sGrade.aveGrade}</td> <td>${sGrade.rank}</td>
-</tr>
-</c:forEach>
-</table>
+<div class="container">
+	<span class="badge badge-success" style="width: 110px; height: 30px; font-size: 18px; margin-top: 10px; margin-bottom: 10px;">학기 성적</span>
+	<table class="table" style="text-align: center;">
+		<thead class="thead-dark">
+			<tr>
+				<th>학년/학기</th> <th>신청학점</th> <th>취득학점</th> <th>취득학점 평균</th> <th>석차</th>
+			</tr>
+		</thead>
+		<!-- varStatus로 인덱스를 매기면 하나 하나 개별적으로 값을 전달하는 것이 가능하다. -->
+		<c:forEach var="sGrade" items="${semeGradeInfo}" varStatus="status">
+			<input type="hidden" id="idNum" value="${sGrade.idNum }"/>
+			<input type="hidden" id=seme${status.index} value="${sGrade.gradeSeme }"/>
+			<tr>
+				<td><input type="button" value="${sGrade.gradeSeme}" onclick="showDetail($('#seme${status.index}').val())"/></td>
+				<td>${sGrade.appCred}</td>
+				<td>${sGrade.receivedCred}</td> <td>${sGrade.aveGrade}</td> <td>${sGrade.rank}</td>
+			</tr>
+		</c:forEach>
+	</table>
+	<hr class="hr">
+</div>
 
-<br>
-<div id="semeDetail"></div>
-<br>
+<div class="container">
+	<span class="badge badge-success" style="width: 130px; height: 30px; font-size: 18px; margin-top: 10px; margin-bottom: 10px;">교과목별 성적</span>
+	<div id="semeDetail">
+		<table class="table" style="text-align: center;">
+			<thead class="thead-dark">
+				<tr>
+					<th>번호</th> <th>학기</th> <th>교과목</th> <th>취득 학점</th> <th>평점</th> <th>등급</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					 <td colspan="6"><b>성적을 볼 학기를 선택해 주세요.</b></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<hr class="hr">
+</div>
 <!-- 반복되지 않으면 c:forEach를 쓰면 안 된다. list 같은 것들만 쓸 것. -->
-<table border="1" style='margin-top:20px; margin-left:20px;'>
-<tr>
-<td>신청 학점</td> <td>취득 학점</td> <td>평균 평점</td> <td>환산 점수</td>
-</tr>
-
-<tr>
- <td>${accumInfo.applyGrade}</td> <td>${accumInfo.receivedGrade}</td>
- <td>${accumInfo.aveGrade}</td> <td>${accumInfo.totalScore}</td>
-</tr>
-
+<div class="container">
+<span class="badge badge-success" style="width: 110px; height: 30px; font-size: 18px; margin-top: 10px; margin-bottom: 10px;">누적 성적</span>
+<table class="table" style="text-align: center;">
+	<thead class="thead-dark">
+		<tr>
+			<th>신청 학점</th> <th>취득 학점</th> <th>평균 평점</th> <th>환산 점수</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			 <td>${accumInfo.applyGrade}</td> <td>${accumInfo.receivedGrade}</td>
+			 <td>${accumInfo.aveGrade}</td> <td>${accumInfo.totalScore}</td>
+		</tr>
+	</tbody>
 </table>
-
+</div>
 
 </body>
 </html>
