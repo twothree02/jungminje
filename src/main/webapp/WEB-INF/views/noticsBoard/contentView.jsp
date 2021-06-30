@@ -212,15 +212,17 @@ function commentModifyArea(result){
 		output += "<div id='first'>"
 
 			output += "<div style='width:250px; margin: 0 auto; padding-top: 20px;'>"
-				output +="<i text-align:center>댓글 수정</i><br>"
+				output +="<div align='center'>"
+				output +="<i><u>댓글 수정</u></i><br>"
+				output +="</div>"
 				output +="아이디 : <input type='text' id='id' value='${login}' readonly style='margin-bottom: 30px;'><br/>";
 				output +="작성자 : <input type='text' id='replyid' value='"+result.id+"'readonly style='margin-bottom: 30px;'><br/>";
 			
 				output +="댓글 :  <input type='text' id='content' value='"+result.content+"' style='margin-bottom: 30px;'><br/>";
-			
-				output +="<button onclick = 'modify()' class='btn btn-secondary'style='margin-right: 20px;'>댓글 수정 </button>";
-				output +="<button onclick = ' slide_hide()' class='btn btn-secondary'>취소 </button>";
-		
+				output +="<div align='center'>"
+				output +="<button onclick = 'modify()' class='btn btn-secondary'style='margin-right: 20px;margin-top:150px;'>댓글 수정 </button>";
+				output +="<button onclick = ' slide_hide()' class='btn btn-secondary' style='margin-top:150px;'>취소 </button>";
+				output +="</div>"
 				output +="<input type = 'hidden' id='step' value='"+result.step+"'>";
 				output += "</div>"
 					output += "</div>"
@@ -361,27 +363,28 @@ function displayTime(timeValue) {
 
 
 	<!-- 댓글 영역 -->
+	<div id="commentArea"></div>
+	<div id='commentModifyArea'></div>
+	<div id="pagig" align="center"></div>
 
 	<form id="frm" method="post">
 		<input type="hidden" name="writeNo" value="${board.writeNo }">
 		<div align="left" style="margin-top: 30px;">
 			<b>댓글</b>&nbsp;&nbsp; <b>작성자 : ${login }</b>&nbsp;&nbsp; &nbsp;&nbsp;
-			&nbsp;&nbsp; <b>내용:</b> &nbsp;&nbsp;<input type="text" size="30"
-				name="content">
+			&nbsp;&nbsp;<br>  &nbsp;&nbsp;<textarea rows="5" cols="50" name="content"></textarea><br>
 			<button type="button" onclick="rep()" class='btn btn-secondary'>답글</button>
 			<button type="button" class='btn btn-secondary'>취소</button>
-			<hr>
+		
 		</div>
 	</form>
 
 
 
-	<div id="commentArea"></div>
-	<div id='commentModifyArea'></div>
+	
 
-	<div id="pagig" align="center"></div>
+	
 	<c:import url="../default/footer.jsp"></c:import>
-
+	
 </body>
 </html>
 

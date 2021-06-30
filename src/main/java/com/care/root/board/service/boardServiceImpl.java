@@ -202,10 +202,7 @@ public class boardServiceImpl implements boardService {
 	
 	}
 
-	@Override
-	public List<noticeDTO> mainList() {
-		return mapper.mainList();
-		}
+
 
 	//portal 영역
 	@Override
@@ -378,11 +375,7 @@ public class boardServiceImpl implements boardService {
 	
 	}
 
-	@Override
-	public List<portalDTO> portalMainList() {
-		return mapper.portalMainList();
-	}
-
+	
 
 	@Override
 	public void hit(int writeNo) {
