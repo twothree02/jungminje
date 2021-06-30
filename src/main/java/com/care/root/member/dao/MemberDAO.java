@@ -1,10 +1,14 @@
 package com.care.root.member.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.care.root.board.academicdto.academicDTO;
+import com.care.root.board.noticedto.noticeDTO;
+import com.care.root.board.portaldto.portalDTO;
 import com.care.root.member.dto.MemberDTO;
 
 public interface MemberDAO {
@@ -20,4 +24,13 @@ public interface MemberDAO {
 	public String chkFirst(String id);
 	public void updateFirst(String id);
 	public String getBirth(String attribute);
+<<<<<<< HEAD
 }
+=======
+	
+	public List<noticeDTO>mainList();
+	public List<portalDTO>portalMainList();
+	public List<academicDTO>academicMainList();
+	
+}
+>>>>>>> bb07c79fd9ac91874a87a5bb2e7831194b9114f1

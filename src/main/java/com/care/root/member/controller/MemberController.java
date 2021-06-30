@@ -47,11 +47,15 @@ public class MemberController implements MemberSessionName {
 
 	@PostMapping("loginChk")
 	public String loginChk(HttpServletRequest request, HttpSession session, RedirectAttributes ra) {
-		int result = ms.loginChk(request);
+		int result = ms.loginChk(request, session);
 		if(result == 0) {
 			ra.addAttribute("id", request.getParameter("inputId"));
 			ra.addAttribute("rememberId", request.getParameter("rememberId"));
 			session.setAttribute(LOGIN, request.getParameter("inputId"));
+<<<<<<< HEAD
+=======
+			System.out.println(session.getAttribute(POSITION));
+>>>>>>> bb07c79fd9ac91874a87a5bb2e7831194b9114f1
 			return "redirect:successLogin";
 		}
 		return "redirect:login";
@@ -136,10 +140,15 @@ public class MemberController implements MemberSessionName {
 	public String main(HttpSession session, Model model) {
 		ArrayList<MemberDTO> memberList = ms.getInfo((String) session.getAttribute(LOGIN));
 		model.addAttribute("memberList", memberList);
+		model.addAttribute("list", ms.mainList());
+		model.addAttribute("portalMainList", ms.portalMainList());
+		model.addAttribute("academicMainList", ms.academicMainList());
 		return "main";
 	}
 	
-	/** 로그아웃 */
+	
+	
+	/** 로그아웃 **/
 	/*
 	@GetMapping("logout")
 	public String logout(HttpSession session, HttpServletResponse response) {
@@ -160,4 +169,8 @@ public class MemberController implements MemberSessionName {
 			return "redirect:/";
 		}
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> bb07c79fd9ac91874a87a5bb2e7831194b9114f1

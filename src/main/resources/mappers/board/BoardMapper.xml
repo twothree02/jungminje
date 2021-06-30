@@ -2,7 +2,413 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<<<<<<< HEAD
 <mapper namespace="com.care.root.board.dao.BoardDAO">
 
 
 </mapper>
+=======
+<mapper namespace="com.care.root.board.dao.BoardMapper">
+	<!-- notice 영역 -->
+	<resultMap type="com.care.root.board.noticedto.noticeDTO" id="board">
+		<id property="writeNo" column="write_no" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="hit" column="hit" />
+		<result property="name" column="name" />
+		<result property="fileupload" column="FILEUPLOAD" />
+	</resultMap>
+	
+	
+	<!-- portal -->
+	<resultMap type="com.care.root.board.portaldto.portalDTO" id="portalBoard">
+		<id property="writeNo" column="write_no" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="hit" column="hit" />
+		<result property="name" column="name" />
+		<result property="fileupload" column="FILEUPLOAD" />
+	</resultMap>
+	
+	
+	
+	<!-- academicBoard -->
+	<resultMap type="com.care.root.board.academicdto.academicDTO" id="academicBoard">
+		<id property="writeNo" column="write_no" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="hit" column="hit" />
+		<result property="name" column="name" />
+		<result property="fileupload" column="FILEUPLOAD" />
+	</resultMap>
+	
+	
+	
+	
+	
+	
+	
+	<!-- notice 댓글 영역 -->
+	<resultMap type="com.care.root.board.noticedto.noticeReplyDTO" id="reply">
+		<id property="id" column="id" />
+	
+		<result property="content" column="content" />
+		<result property="rno" column="rno" />
+		<result property="write_date" column="write_date" />
+		<result property="step" column="step" />
+	</resultMap>
+	
+	<!-- portal 댓글 영역 -->
+	<resultMap type="com.care.root.board.portaldto.portalReplyDTO" id="portalReply">
+		<id property="id" column="id" />
+
+		<result property="content" column="content" />
+		<result property="rno" column="rno" />
+		<result property="write_date" column="write_date" />
+		<result property="step" column="step" />
+	</resultMap>
+	
+	
+	<!-- academic 댓글 영역 -->
+	<resultMap type="com.care.root.board.academicdto.academicReplyDTO" id="academicReply">
+		<id property="id" column="id" />
+	
+		<result property="content" column="content" />
+		<result property="rno" column="rno" />
+		<result property="write_date" column="write_date" />
+		<result property="step" column="step" />
+	</resultMap>
+	
+	
+	
+	<!-- 검색처리 -->
+	<sql id="search">
+		<trim prefix="(" suffix=") and">
+			<foreach collection="typeArr" item="type" separator="OR">
+				<if test="type == 'T'.toString()">
+					title like '%'||#{keyword}||'%'
+				</if>
+				<if test="type == 'N'.toString()">
+					content like '%'||#{keyword}||'%'
+				</if>
+			</foreach>
+		</trim>
+	</sql>
+
+	<!-- 목록조회 -->
+	<select id="getList" resultMap="board">
+		select * from notices_board order
+		by write_no desc
+	</select>
+
+	<!-- 글쓰기 -->
+	<insert id="register">
+		insert into
+		notices_board(write_no,title,content,fileupload,name)
+		values(notice_seq.nextval,#{title},#{content},#{fileupload},#{name})
+	</insert>
+	<!-- 타이틀 클릭했을 때 -->
+	<select id="contentView" resultMap="board"> 
+		select * from notices_board
+		where write_no = #{writeNo}
+	</select>
+	<!-- 조회수증가 -->
+	<update id="hit">
+		update notices_board set hit=hit+1 where
+		write_no=#{writeNo}
+	</update>
+	<!-- 수정 -->
+	<update id="modify">
+		update notices_board set title=#{title},
+		content=#{content},
+		fileupload=#{fileupload} where write_no = #{writeNo}
+	</update>
+
+	<delete id="delete">
+		delete from notices_board where write_no=#{writeNo}
+	</delete>
+
+
+	<select id="getPaging" resultMap="board">
+	 <![CDATA[
+select *from
+	(
+	select /*+index_desc(notices_board pk_board) */ rownum rn, write_no,title,name,savedate
+	from notices_board
+	where 
+	]]>
+		<include refid="search"></include>
+	
+	 <![CDATA[
+	write_no > 0 and rownum >0 and rownum <=(#{pageNum}*#{amount})
+	)
+	where rn >(#{pageNum}-1)*#{amount}
+	]]>
+	</select>
+	<select id="total" resultType="int">
+		select count(write_no) from notices_board where
+		<include refid="search"></include>
+		write_no>0
+	</select>
+	
+	
+	<!-- notice 댓글 영역  -->	
+
+	<insert id="addReply">
+		insert into noticereply(id, content, rno,step)
+			values( #{id},#{content},#{rno},Replyseq.nextval )
+	</insert>
+	<select id="replyList" resultMap="reply">
+		select * from noticereply where rno=#{rno} order by write_date desc
+	</select>
+	
+	<!-- 댓글 수정 눌렀을 때 이전 댓글 불러오기-->
+	
+	<select id="replyModView" resultMap="reply">
+		select *from noticereply where step = #{step}
+	</select>
+	
+	<!-- 수정하기 -->
+	<update id="replyModify">
+		UPDATE noticereply SET write_date=sysdate, content=#{content} where step=#{step} AND rno=#{rno} 
+	</update> 
+	<!-- 삭제하기 -->
+	<delete id="replyDelete">
+		DELETE FROM noticereply WHERE step=#{step}
+	</delete>
+	
+	<!-- 댓글 페이징 -->
+	<select id="replyPaging" resultMap="reply">
+		select B.* from(select rownum rn, A.* from
+		(select * from noticereply where rno=#{rno} order by write_date desc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="replycount" resultType="Integer">
+		select count(*) from noticereply where rno=#{rno}
+	</select>
+
+	<select id = "mainList" resultMap="board" >
+  
+ 	select * from notices_board  where rownum &lt;6 order by write_no desc
+
+</select>
+
+
+	<!-- portal -->
+
+	<!-- 목록조회 -->
+	<select id="portalList" resultMap="portalBoard">
+		select * from portal_board order
+		by write_no desc
+	</select>
+	<!-- 글쓰기 -->
+	<insert id="portalRegister">
+		insert into
+		portal_board(write_no,title,content,fileupload,name)
+		values(portal_seq.nextval,#{title},#{content},#{fileupload},#{name})
+	</insert>
+	<!-- 타이틀 클릭했을 때 -->
+	<select id="portalContentView" resultMap="portalBoard"> 
+		select * from portal_board
+		where write_no = #{writeNo}
+	</select>
+	<!-- 조회수증가 -->
+	<update id="portalHit">
+			update portal_board set hit=hit+1 where
+		write_no=#{writeNo}
+	</update>
+	
+	<!-- 수정 -->
+	<update id="portalModify">
+		update portal_board set title=#{title},
+		content=#{content},
+		fileupload=#{fileupload} where write_no = #{writeNo}
+	</update>
+
+	<delete id="portalDelete">
+		delete from portal_board where write_no=#{writeNo}
+	</delete>
+
+
+	<select id="portalPaging" resultMap="portalBoard">
+	 <![CDATA[
+select *from
+	(
+	select /*+index_desc(portal_board pk_portal) */ rownum rn, write_no,title,name,savedate
+	from portal_board
+	where 
+	]]>
+		<include refid="search"></include>
+	
+	 <![CDATA[
+	write_no > 0 and rownum >0 and rownum <=(#{pageNum}*#{amount})
+	)
+	where rn >(#{pageNum}-1)*#{amount}
+	]]>
+	</select>
+	<select id="portaltotal" resultType="int">
+		select count(write_no) from portal_board where
+		<include refid="search"></include>
+		write_no>0
+	</select>
+	
+	
+	
+	<!-- portal 댓글 영역  -->	
+
+	<insert id="portalAddReply">
+		insert into portalReply(id, content, rno,step)
+			values( #{id},#{content},#{rno},portalreply_seq.nextval )
+	</insert>
+	<select id="portalReplyList" resultMap="portalReply">
+		select * from portalReply where rno=#{rno} order by write_date desc
+	</select>
+	
+	<!-- 댓글 수정 눌렀을 때 이전 댓글 불러오기-->
+	
+	<select id="portalReplyModView" resultMap="portalReply">
+		select *from portalReply where step = #{step}
+	</select>
+	
+	<!-- 수정하기 -->
+	<update id="portalReplyModify">
+		UPDATE portalReply SET  write_date=sysdate, content=#{content} where step=#{step} AND rno=#{rno} 
+	</update> 
+	<!-- 삭제하기 -->
+	<delete id="portalReplyDelete">
+		DELETE FROM portalReply WHERE step=#{step}
+	</delete>
+	
+	<!-- 댓글 페이징 -->
+	<select id="portalReplyPaging" resultMap="portalReply">
+		select B.* from(select rownum rn, A.* from
+		(select * from portalReply where rno=#{rno} order by write_date desc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="portalReplycount" resultType="Integer">
+		select count(*) from portalreply where rno=#{rno}
+	</select>
+
+	<select id = "portalMainList" resultMap="portalBoard" >
+  
+ 	select * from portal_board  where rownum &lt;6 order by write_no desc
+
+</select>
+	
+	
+	<!-- academic 영역 -->
+	
+	
+	<select id="academicList" resultMap="academicBoard">
+		select * from academic_board order
+		by write_no desc
+	</select>
+	<!-- 글쓰기 -->
+	<insert id="academicRegister">
+		insert into
+		academic_board(write_no,title,content,fileupload,name)
+		values(academic_seq.nextval,#{title},#{content},#{fileupload},#{name})
+	</insert>
+	<!-- 타이틀 클릭했을 때 -->
+	<select id="academicContentView" resultMap="academicBoard"> 
+		select * from ACADEMIC_BOARD
+		where write_no = #{writeNo}
+	</select>
+	<!-- 조회수증가 -->
+	<update id="academicHit">
+		update ACADEMIC_BOARD set hit=hit+1 where
+		write_no=#{writeNo}
+	</update>
+	<!-- 수정 -->
+	<update id="academicModify">
+		update ACADEMIC_BOARD set title=#{title},
+		content=#{content},
+		fileupload=#{fileupload} where write_no = #{writeNo}
+	</update>
+
+	<delete id="academicDelete">
+		delete from ACADEMIC_BOARD where write_no=#{writeNo}
+	</delete>
+
+
+	<select id="academicPaging" resultMap="academicBoard">
+	 <![CDATA[
+select *from
+	(
+	select /*+index_desc(ACADEMIC_BOARD pk_academic) */ rownum rn, write_no,title,name,savedate
+	from ACADEMIC_BOARD
+	where 
+	]]>
+		<include refid="search"></include>
+	
+	 <![CDATA[
+	write_no > 0 and rownum >0 and rownum <=(#{pageNum}*#{amount})
+	)
+	where rn >(#{pageNum}-1)*#{amount}
+	]]>
+	</select>
+	<select id="academictotal" resultType="int">
+		select count(write_no) from ACADEMIC_BOARD where
+		<include refid="search"></include>
+		write_no>0
+	</select>
+	
+		<!-- academic 댓글 영역  -->	
+
+	<insert id="academicAddReply">
+		insert into academic_reply(id, content, rno,step)
+			values( #{id},#{content},#{rno},academicreply_seq.nextval )
+	</insert>
+	<select id="academicReplyList" resultMap="academicReply">
+		select * from academic_reply where rno=#{rno} order by write_date desc
+	</select>
+	
+	<!-- 댓글 수정 눌렀을 때 이전 댓글 불러오기-->
+	
+	<select id="academicReplyModView" resultMap="academicReply">
+		select *from academic_reply where step = #{step}
+	</select>
+	
+	<!-- 수정하기 -->
+	<update id="academicReplyModify">
+		UPDATE academic_reply SET write_date=sysdate, content=#{content} where step=#{step} AND rno=#{rno} 
+	</update> 
+	<!-- 삭제하기 -->
+	<delete id="academicReplyDelete">
+		DELETE FROM academic_reply WHERE step=#{step}
+	</delete>
+	
+	<!-- 댓글 페이징 -->
+	<select id="academicReplyPaging" resultMap="academicReply">
+		select B.* from(select rownum rn, A.* from
+		(select * from academic_reply where rno=#{rno} order by write_date desc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="academicReplycount" resultType="Integer">
+		select count(*) from  academic_reply  where rno=#{rno}
+	</select>
+
+	<select id = "academicMainList" resultMap="academicBoard" >
+  
+ 	select * from academic_board  where rownum &lt;6 order by write_no desc
+
+</select>
+	
+</mapper>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> bb07c79fd9ac91874a87a5bb2e7831194b9114f1

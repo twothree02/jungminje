@@ -16,22 +16,29 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<c:set var="conetxtPath" value="<%=request.getContextPath()%>" />
+	<c:set var="contextPath" value="<%=request.getContextPath()%>" />
+	<c:set var="position" value="${sessionScope.position }" />
 
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark"
 		style="padding: 5;">
 		<!-- Brand -->
-		<a href="main"><img class="navbar-brand rounded-circle"
-			src="resources/img/5.jpg" width=80px; height=80px;></a>
+		<a href="${contextPath }/main"><img class="navbar-brand rounded-circle"
+			src="/root/resources/img/5.jpg" width=80px; height=80px;></a>
 
 		<!-- Links -->
 		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 			<ul class="navbar-nav">
-			
-				<li class="nav-item"><a class="nav-link" href="studentMain">마이페이지</a></li>
-				<li class="nav-item"><a class="nav-link" href="professorMain">종합관리시스템(교수)</a></li>
-				<li class="nav-item"><a class="nav-link"  href="adminMain">종한관리시스템(행정)</a>
-				</li>
+			<c:choose>
+				<c:when test="${position == '학생' }">
+					<li class="nav-item"><a class="nav-link" href="student/studentMain">마이페이지</a></li>
+				</c:when>
+				<c:when test="${position == '교수' }">
+					<li class="nav-item"><a class="nav-link" href="professorMain">종합시스템</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="nav-item"><a class="nav-link"  href="adminMain">종한관리시스템</a></li>
+				</c:otherwise>
+			</c:choose>
 			</ul>
 		</nav>
 		</nav>	
