@@ -11,8 +11,7 @@
 <script type="text/javascript">
 	function juniorList(num) {
 
-		$
-				.ajax({
+		$.ajax({
 					url : "junior_list?num=" + num,
 					type : "POST",
 					//data : JSON.stringify(ArrayList) //데이터는 서버로 보낼 때 사용. success가 받아올 때.

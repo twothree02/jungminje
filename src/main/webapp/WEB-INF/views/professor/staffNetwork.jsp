@@ -9,8 +9,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	function adminList(num) {
-		$
-				.ajax({
+		$.ajax({
 					url : "admin_list?num=" + num,
 					type : "POST",
 					//data : JSON.stringify(ArrayList) //데이터는 서버로 보낼 때 사용. success가 받아올 때.
@@ -53,8 +52,7 @@
 				})
 	}
 	function bProfessorList(num) {
-		$
-				.ajax({
+		$.ajax({
 					url : "bProfessor_list?num=" + num,
 					type : "POST",
 					//data : JSON.stringify(ArrayList) //데이터는 서버로 보낼 때 사용. success가 받아올 때.
@@ -97,8 +95,7 @@
 				})
 	}
 	function iProfessorList(num) {
-		$
-				.ajax({
+		$.ajax({
 					url : "iProfessor_list?num=" + num,
 					type : "POST",
 					//data : JSON.stringify(ArrayList) //데이터는 서버로 보낼 때 사용. success가 받아올 때.
@@ -138,8 +135,7 @@
 				})
 	}
 	function cProfessorList(num) {
-		$
-				.ajax({
+		$.ajax({
 					url : "cProfessor_list?num=" + num,
 					type : "POST",
 					//data : JSON.stringify(ArrayList) //데이터는 서버로 보낼 때 사용. success가 받아올 때.
@@ -184,8 +180,7 @@
 		for (i = 0; i < arr.length; i++) {
 			formData[arr[i].name] = arr[i].value
 		}
-		$
-				.ajax({
+		$.ajax({
 					url : "search_staff",
 					type : "POST",
 					dataType : "json",
