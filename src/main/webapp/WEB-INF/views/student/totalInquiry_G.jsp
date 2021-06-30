@@ -199,7 +199,7 @@ div {
 							</c:otherwise>
 						</c:choose>
 							<c:choose>
-							<c:when test="${info.gradeSemester >= 2 }">
+							<c:when test="${info.gradeSemester > 2 }">
 							<tr>
 								<td><button type="button" onclick="detailGrade(2)">102</button></td>
 								<td>${grade2.applicationCred}</td>
@@ -220,7 +220,7 @@ div {
 							</c:choose>
 							
 							<c:choose>
-							<c:when test="${info.gradeSemester >= 3 }">
+							<c:when test="${info.gradeSemester > 3 }">
 							<tr>
 								<td><button type="button" onclick="detailGrade(3)">201</button></td>
 								<td>${grade3.applicationCred}</td>
@@ -241,7 +241,7 @@ div {
 							</c:choose>
 							
 							<c:choose>
-							<c:when test="${info.gradeSemester >= 4 }">
+							<c:when test="${info.gradeSemester > 4 }">
 							<tr>
 								<td><button type="button" onclick="detailGrade(4)">202</button></td>
 								<td>${grade4.applicationCred}</td>

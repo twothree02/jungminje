@@ -62,6 +62,7 @@
 		<result property="applicationCred" column="APPLICATION_CRED"/>
 		<result property="semester" column="GRADE_SEMESTER"/>
 		<result property="year" column="YEAR"/>
+		<result property="semester2" column="SEMESTER"/>
 	</resultMap>
 	
 	<resultMap type="com.care.root.student.dto.RegisterInfoDTO" id="register">
@@ -73,6 +74,7 @@
 		<result property="rank" column="RANK"/>
 		<result property="year" column="YEAR"/>
 		<result property="gradeSemester" column="GRADE_SEMESTER"/>
+		<result property="chkPeriod" column="CHK_PERIOD"/>
 	</resultMap>
 	
 	
@@ -89,7 +91,7 @@
 	</select>
 	
 	<select id="subjectInfoC" resultMap="subject">
-		select * from subject_all where MAJOR_SEMESTER = #{major} and #{gradeSemester} = GRADE_SEMESTER order by GRADE_SEMESTER asc
+		select * from subject_all where MAJOR_SEMESTER = #{major} and GRADE_SEMESTER = #{gradeSemester} 
 	</select>
 	
  	<select id="tuitionInfo" resultMap="tuition">
@@ -109,7 +111,11 @@
 	</select>
 	
 	<select id="rankCnt" resultType="Integer">
+<<<<<<< HEAD
 		select count(*) from REGISTER_INFO where MAJOR = #{major} and YEAR = #{year} and GRADE_SEMESTER = #{semester}
+=======
+		select count(*) from REGISTER_INFO where major = #{major} and YEAR = #{year} and GRADE_SEMESTER = #{semester}
+>>>>>>> hw
 	
 	</select>
 	
@@ -136,8 +142,8 @@
 	<update id="classReq">
 	update member_info set CLASS_REQ = #{classReq} where ID_NUM = #{id}
 	</update>
-	
-	
-	
+	<insert id="insertRegInfo">
+	insert into GRADE_INFO (MAJOR, ID_NUM, NAME, SUBJECT_NAME, PROF_NAME, YEAR, GRADE_SEMESTER, APPLICATION_CRED, SEMESTER) values(#{major}, #{idNum}, #{name}, #{subjectName}, #{profName}, #{year}, #{semester}, #{applicationCred}, #{semester2})
+	</insert>
 	
 </mapper>	

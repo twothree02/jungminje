@@ -12,7 +12,9 @@ public class GradeDTO {
 	private int applicationCred;
 	private int semester;
 	private String year;
+	private String semester2;
 	
+
 	public String getYear() {
 		return year;
 	}
@@ -79,6 +81,11 @@ public class GradeDTO {
 	public void setSemester(int semester) {
 		this.semester = semester;
 	}
-	
+	public String getSemester2() {
+		return semester2;
+	}
+	public void setSemester2(String semester2) {
+		this.semester2 = semester2;
+	}
 	
 }

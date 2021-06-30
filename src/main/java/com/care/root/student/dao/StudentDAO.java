@@ -28,6 +28,7 @@ public interface StudentDAO {
 	public RegisterInfoDTO registerInfo(@Param("id")String id, @Param("semester")int semester);
 	public ArrayList<RegisterInfoDTO> totalRegisterInfo(String id);
 	public int rankCnt(@Param("major")String major, @Param("year")String year, @Param("semester")int semester);
+	public int insertRegInfo(GradeDTO dto);
 	
 	 
 }
