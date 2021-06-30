@@ -53,6 +53,7 @@ public class boardServiceImpl implements boardService {
 		noticeDTO dto = new noticeDTO();
 	
 		dto.setContent(mul.getParameter("content"));
+		dto.setTitle(mul.getParameter("title"));
 		dto.setName(mul.getParameter("name"));
 		HttpSession session = request.getSession();
 		BoardFileService bfs = new BoardFileServiceImpl();
@@ -401,12 +402,10 @@ public class boardServiceImpl implements boardService {
 		academicDTO dto = new academicDTO();
 
 		dto.setContent(mul.getParameter("content"));
+		dto.setTitle(mul.getParameter("title"));
 		dto.setName(mul.getParameter("name"));
-		
 		HttpSession session = request.getSession();
-		
 		academicFileBoardService bfs = new academicFileBoardServiceImpl();
-		
 		MultipartFile file = mul.getFile("fileupload");
 		
 		if(file.getSize() != 0) {
@@ -422,10 +421,11 @@ public class boardServiceImpl implements boardService {
 	public String academicModify(MultipartHttpServletRequest mul, HttpServletRequest request) {
 		academicDTO dto = new academicDTO();
 		dto.setWriteNo(Integer.parseInt(mul.getParameter("writeNo")));
-	
+		dto.setTitle(mul.getParameter("title"));
 		dto.setContent(mul.getParameter("content"));
 
 		MultipartFile file = mul.getFile("fileupload");
+	
 		academicFileBoardService bfs = new academicFileBoardServiceImpl();
 		if(file.getSize() != 0) {
 			dto.setFileupload(bfs.academicSaveFile(file));

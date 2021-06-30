@@ -13,6 +13,7 @@
 		<h2 style="text-align: center; margin-top: 30px;">공 지 사 항</h2>
 		<p style="text-align: center;">YW university</p>
 		<div align="right">
+		<div style="margin-bottom: 15px;">
 		<form id ="searchfrom" action="list" method ="get">
 		<select name = "type">
 		<option VALUE =""${boardPage.vN.type ==null?"selected":""}>----</option>
@@ -25,6 +26,7 @@
 		<input type ="hidden" name = "amount" value ="${boardPage.vN.amount }">
 		<button class="btn btn-secondary">찾기</button>
 		</form>
+		</div>
 		</div>
 		<table class="table">
 			<thead class="thead-dark">
@@ -57,7 +59,7 @@
 			</tbody>
 		</table>
 	</div>
-	<div align="center">
+	<div align="right" style="margin-right: 300px;">
 		<button type="button" class="btn btn-secondary"
 			onclick="location.href='register'" style ="margin-top: 20px; margin-bottom: 20px;">등록</button>	
 	</div>
