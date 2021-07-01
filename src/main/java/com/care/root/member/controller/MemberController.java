@@ -52,7 +52,9 @@ public class MemberController implements MemberSessionName {
 			ra.addAttribute("id", request.getParameter("inputId"));
 			ra.addAttribute("rememberId", request.getParameter("rememberId"));
 			session.setAttribute(LOGIN, request.getParameter("inputId"));
+
 			System.out.println(session.getAttribute(POSITION));
+
 			return "redirect:successLogin";
 		}
 		return "redirect:login";
@@ -166,4 +168,6 @@ public class MemberController implements MemberSessionName {
 			return "redirect:/";
 		}
 	}
+
 }
+

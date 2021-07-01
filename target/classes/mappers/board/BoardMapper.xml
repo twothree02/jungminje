@@ -2,6 +2,9 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
 <mapper namespace="com.care.root.board.dao.BoardMapper">
 	<!-- notice 영역 -->
 	<resultMap type="com.care.root.board.noticedto.noticeDTO" id="board">
@@ -390,7 +393,6 @@ select *from
 	
 </mapper>
 	
-
 
 
 

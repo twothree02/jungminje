@@ -57,7 +57,7 @@
 			</tbody>
 		</table>
 	</div>
-	<div align="center">
+	<div align="right" style="margin-right: 300px;">
 		<button type="button" class="btn btn-secondary"
 			onclick="location.href='portalRegister'" style ="margin-top: 20px; margin-bottom: 20px;">등록</button>	
 	</div>

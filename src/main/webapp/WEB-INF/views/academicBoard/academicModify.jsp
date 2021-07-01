@@ -12,6 +12,9 @@
 <body>
 	<c:import url="../default/header.jsp" />
 	<div>
+	<div style="width: 1300px; margin: auto;">
+	<h2 style="text-align: center; margin-top: 30px;">수 정</h2>
+	<p style="text-align: center;">YW university</p>
 		<form action="academicModify" enctype="multipart/form-data" method="post">
 			<input type="hidden" name="writeNo" value="${board.writeNo}">
 			<input type="hidden" name="originFileName"
@@ -19,18 +22,27 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th scope="col">제목</th>
-						<th scope="col"><input type="text" name="title"
-							value="${board.title }"></th>
+
+
+						<th scope="col" style="padding-top: 30px;">제목</th>
+						<th scope="col">
+						<input type="text" name="title"	value="${board.title }" class="form-control">
+						</th>
+						<th scope="col">&nbsp;</th>
+						<th scope="col">&nbsp;</th>
+						
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<th scope="col">내용</th>
-						<th scope="col"><input type="text" name="content"
-							value="${board.content }"></th>
-
-						<th scope="col">첨부파일</th>
+						<th scope="col">	<textarea rows="20" cols="130"
+					style="resize: none;"class="form-control" name="content">${board.content }</textarea></th>
+					</tr>
+					
+					<tr>	
+						<th scope="col" style="width: 200px;">첨부파일</th>
+					
 						<c:if test="${board.fileupload != 'nan'}">
 
 							<th scope="col" id="preview"><a
@@ -39,10 +51,12 @@
 						</c:if>
 						<th><input type="file" name="fileupload"></th>
 					</tr>
+					
 					<tr>
 						<th scope="col">등록일</th>
 						<th scope="col">"${board.savedate }"</th>
-
+						<th scope="col">&nbsp;</th>
+						<th scope="col">&nbsp;</th>
 
 					</tr>
 
@@ -54,8 +68,9 @@
 			</div>
 		</form>
 	</div>
+	</div>
+		<c:import url="../default/footer.jsp"></c:import>
 	
-	   <c:import url="../default/footer.jsp" />
 
 </body>
 </html>

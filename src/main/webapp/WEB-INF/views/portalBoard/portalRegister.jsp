@@ -16,23 +16,24 @@ table {
 </head>
 <body>
 	<c:import url="../default/header.jsp" />
+	<div style="width: 1300px; margin: auto;">
 	<h2 style="text-align: center; margin-top: 30px;">등 록</h2>
 	<p style="text-align: center;">YW university</p>
 	<form action="portalRegister" method="post" enctype="multipart/form-data"
 		style="margin-top: 50px;" role="form">
 
 		<div align="center">
-		<div class=" col-lg-4" style="margin-bottom: 20px;" >
+		<div  style="margin-bottom: 20px;" >
 			<input type="text" name="title" placeholder="제목을 입력하세요" required="required"
 				class="form-control input-lg">
 		</div>
-		<div class=" col-lg-4" align="center" style ="margin-bottom: 20px;">
+		<div  align="center" style ="margin-bottom: 20px;">
 			<input type="text" name="name" class="form-control" value ="${login }" readonly="readonly">
 		</div>
-		<div class=" col-lg-4" align="center" style ="margin-bottom: 20px;" >
-			<textarea rows="5" name="content"class="form-control" placeholder="내용을 입력하세요" required="required" style="resize: none;"></textarea>
+		<div  align="center" style ="margin-bottom: 20px;" >
+			<textarea rows="20" cols="130" name="content"class="form-control" placeholder="내용을 입력하세요" required="required" style="resize: none;"></textarea>
 		</div>
-		<div class=" col-lg-4" align="center" style ="margin-bottom: 20px;">
+		<div  align="left" style ="margin-bottom: 20px;">
 			<input type="file" name="fileupload">
 		</div>
 </div>
@@ -43,7 +44,7 @@ table {
 			<button type="reset" class="btn btn-secondary" onclick="history.back()">취소</button>
 		</div>
 	</form>
-
+	</div>
 	<c:import url="../default/footer.jsp"></c:import>
 
 

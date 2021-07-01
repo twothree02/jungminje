@@ -17,7 +17,7 @@
 	right: 0;
 	width: 100%;
 	height: 100%;
-	background-color: #D5D5D5;
+	background-color: #EAEAEA;
 }
 
 #first {
@@ -30,7 +30,12 @@
 	right: 0;
 	height: 450px;
 	width: 300px;
-	background-color: #D5D5D5
+	background-color: #EAEAEA
+}
+div{
+		/*
+	border: 1px solid red;
+	*/
 }
 </style>
 
@@ -59,6 +64,9 @@ function slide_hide(){
 //페이지 로딩시 댓글 목록 조회
 function abcd(number){
 $(document).ready(function(){
+
+
+
 	console.log(number)
 	// 페이지가 로딩 될때 실행
 	var rno = ${board.writeNo};//게시물 변수 선언
@@ -84,35 +92,38 @@ function commentList(result){
 	var commentList = result.commentList;
 	var paging = result.paging;
 	console.log("========시작되는지점==========");
+	console.log(${sessionScope.login})
 	console.log(repeat)
 
 	var html="";
-	html +="<div tyle='display: flex; justify-content: center;'>"
-	html +="<div>"
-	html +="<table class='table'>"
-	html +="<thead>"
-	html +="<tr>"
-	html +="<th scope='col'>작성자</th>"
+	
+	html +="<div >"
+		
 
-	html +="<th scope='col'>내용</th>"
-	html +="<th scope='col'>시간</th><th scope='col'>수정</th><th scope='col'>삭제</th></tr>"	
-	html +="<thead>"
-	for(var i in paging){
-		
-			html +="<tbody>"
-			html += "<tr>"
-			html += "<td>" + paging[i].id + "</td>";
-		
-			html += "<td>" + paging[i].content + "</td>"
-			html += "<td>" + displayTime(paging[i].write_date) + "</td>"
-			html += "<td> <button' onclick='commentModiView("+paging[i].step+")' class='btn btn-secondary' >수정</button></td>"
-			html += "<td > <button onclick='commentDelete("+paging[i].step+")' class='btn btn-secondary'>삭제</button></td>"	
-			html += "</tr>"
-			html += "</tr>"			
-			html += "</tr>"
-			html += "</tbody>"			
+	for(var i in paging){	
+
+		html +="<div style = 'margin-bottom:15px;'>"
+			html +=  "<strong style ='margin-top:20px;'>"+paging[i].id +"</strong>&nbsp;&nbsp;&nbsp;"
+			html +=  displayTime(paging[i].write_date)
+			html +="</div>"
+			html +="<div style ='display:flex'>"
+			html +="<div style='width:1300px;'>"
+			html +=  paging[i].content ;
+			
+			html +="</div>"
+			
+			if(${sessionScope.login} == paging[i].id){
+				html +="<div style ='width:150px;'>"
+				html += "<button onclick='commentModiView("+paging[i].step+")' class='btn btn-outline-secondary'>수정</button>&nbsp;&nbsp&nbsp;"
+				html += "<button onclick='commentDelete("+paging[i].step+")'  class='btn btn-outline-secondary'>삭제</button>"
+				html +="</div>"
+			}
+			html +="</div>"
+			
+			html += "<hr>"
 	}
-			html += "</table>"
+		
+			html +="</div>"
 			html +="</div>"
 			
 			var page ="";
@@ -213,15 +224,15 @@ function commentModifyArea(result){
 
 			output += "<div style='width:250px; margin: 0 auto; padding-top: 20px;'>"
 				output +="<div align='center'>"
-				output +="<i><u>댓글 수정</u></i><br>"
+				output +="<i><u>댓글 수정</u></i><br><br>"
 				output +="</div>"
-				output +="아이디 : <input type='text' id='id' value='${login}' readonly style='margin-bottom: 30px;'><br/>";
-				output +="작성자 : <input type='text' id='replyid' value='"+result.id+"'readonly style='margin-bottom: 30px;'><br/>";
+				output +="아이디 : <input type='text' id='id' value='${login}' readonly style='margin-bottom: 30px;' class='form-control'>";
+				output +="작성자 : <input type='text' id='replyid' value='"+result.id+"'readonly style='margin-bottom: 30px;'class='form-control'>";
 			
-				output +="댓글 :  <input type='text' id='content' value='"+result.content+"' style='margin-bottom: 30px;'><br/>";
+				output +="댓글 :  <input type='text' id='content' value='"+result.content+"' style='margin-bottom: 30px;'class='form-control'>";
 				output +="<div align='center'>"
-				output +="<button onclick = 'modify()' class='btn btn-secondary'style='margin-right: 20px;margin-top:150px;'>댓글 수정 </button>";
-				output +="<button onclick = ' slide_hide()' class='btn btn-secondary' style='margin-top:150px;'>취소 </button>";
+				output +="<button onclick = 'modify()' class='btn btn-secondary'style='margin-right: 20px;margin-top:50px;'>댓글 수정 </button>";
+				output +="<button onclick = ' slide_hide()' class='btn btn-secondary' style='margin-top:50px;'>취소 </button>";
 				output +="</div>"
 				output +="<input type = 'hidden' id='step' value='"+result.step+"'>";
 				output += "</div>"
@@ -304,87 +315,107 @@ function displayTime(timeValue) {
 };
 </script>
 
+
 </head>
 <body onload="abcd(1)">
 	<c:import url="../default/header.jsp" />
-	<div align="center" style="margin-top: 50px;">
-
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">제목</th>
-					<th scope="col">${board.title }"</th>
-					<th scope="col">작성자</th>
-					<th scope="col">"${board.name }"</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th scope="col">내용</th>
-					<th scope="col">${board.content }"</th>
-
-
-					<th scope="col">첨부파일</th>
-					<c:if test="${board.fileupload == 'nan'}">
-						<td><b>등록된 첨부파일이 없습니다</b></td>
-					</c:if>
-					<c:if test="${board.fileupload != 'nan'}">
-						<th scope="col"><a
-							href="download?fileupload=${board.fileupload}">${board.fileupload }</a></th>
-
-					</c:if>
-				</tr>
-				<tr>
-					<th scope="col">등록일</th>
-					<th scope="col">"${board.savedate }"</th>
-					<th scope="col">조회수</th>
-					<th scope="col">${board.hit }</th>
-				</tr>
-
-				<tr>
-					<th scope="col">&nbsp;</th>
-					<th scope="col">&nbsp;</th>
-					<th scope="col">&nbsp;</th>
-					<th scope="col">&nbsp;</th>
-				</tr>
-
-			</tbody>
-		</table>
-	</div>
-	<div align="center">
-		<button type="button" class="btn btn-secondary"
-			onclick="location.href='modify?writeNo=${board.writeNo}'">수정</button>
-		<button type="button" class="btn btn-secondary"
-			onclick="location.href='list'">목록</button>
-		<input type="submit" class="btn btn-secondary"
-			onclick="location.href='delete?writeNo=${board.writeNo }&fileupload=${board.fileupload}'"
-			value="삭제">
-	</div>
-
-
-	<!-- 댓글 영역 -->
-	<div id="commentArea"></div>
-	<div id='commentModifyArea'></div>
-	<div id="pagig" align="center"></div>
-
-	<form id="frm" method="post">
-		<input type="hidden" name="writeNo" value="${board.writeNo }">
-		<div align="left" style="margin-top: 30px;">
-			<b>댓글</b>&nbsp;&nbsp; <b>작성자 : ${login }</b>&nbsp;&nbsp; &nbsp;&nbsp;
-			&nbsp;&nbsp;<br>  &nbsp;&nbsp;<textarea rows="5" cols="50" name="content"></textarea><br>
-			<button type="button" onclick="rep()" class='btn btn-secondary'>답글</button>
-			<button type="button" class='btn btn-secondary'>취소</button>
-		
+	<h2 style="text-align:center; margin-top:30px; " id="top">YW UNIVERSITY</h2>
+	<div style="width: 1300px; margin: auto;">
+		<div align="right" >
+			<b><u>조회수:${board.hit }</u></b>
 		</div>
-	</form>
+		<div align="center">
+			<table class="table">
+				<thead>
+					<tr>
+
+						<th scope="col">제목</th>
+						<th scope="col">${board.title }"</th>
+						<th scope="col">작성자</th>
+						<th scope="col">"${board.name }"</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="col">첨부파일</th>
+						<c:if test="${board.fileupload == 'nan'}">
+							<td><b>등록된 첨부파일이 없습니다</b></td>
+						</c:if>
+						<c:if test="${board.fileupload != 'nan'}">
+							<th scope="col"><a
+								href="download?fileupload=${board.fileupload}">${board.fileupload }</a></th>
+						</c:if>
+						<th scope="col">등록일</th>
+						<th scope="col">"${board.savedate }"</th>
+
+					</tr>
+					<tr>
+						<th>&nbsp;</th>
+						<th>&nbsp;</th>
+						<th>&nbsp;</th>
+						<th>&nbsp;</th>
+					</tr>
 
 
 
+
+				</tbody>
+			</table>
+	
+			<div align="center" style="margin-bottom: 30px;" >
+			
+				
+					<textarea rows="20" cols="130" readonly="readonly"
+					style="resize: none;"class="form-control">${board.content }</textarea>
+					
+					 
+			</div>
+
+
+
+		</div>
+		<c:if test="${sessionScope.position =='관리자'}">
+			<div align="center">
+				<button type="button" class="btn btn-secondary"
+					onclick="location.href='modify?writeNo=${board.writeNo}'">수정</button>
+				<button type="button" class="btn btn-secondary"
+					onclick="location.href='list'">목록</button>
+				<input type="submit" class="btn btn-secondary"
+					onclick="location.href='delete?writeNo=${board.writeNo }&fileupload=${board.fileupload}'"
+					value="삭제">
+			</div>
+		</c:if>
+
+
+		<!-- 댓글 영역 -->
+		<div id="commentArea"></div>
+		<div id='commentModifyArea'></div>
+		<div id="pagig" align="center"></div>
+
+		<form id="frm" method="post">
+			<input type="hidden" name="writeNo" value="${board.writeNo }">
+			<div align="left" style="margin-top: 30px;">
+				<div align="left" style="height: 30px;">
+					<b style="margin-left: 10px;">작성자 : ${login }</b>&nbsp;&nbsp;
+					&nbsp;&nbsp; &nbsp;&nbsp;<br> &nbsp;&nbsp;
+				</div>
+				<div align="center">
+					<textarea cols="165" rows="5" name="content" style="resize: none;" class="form-control"></textarea>
+					<br>
+				</div>
+				<div align="right" style="margin-right: 30px; margin-bottom: 15px;">
+					<button type="button" onclick="rep()" class='btn btn-secondary'>답글</button>
+				</div>
+			</div>
+		</form>
+		<div align="right" style="margin-right: 30px;">
+		<button onclick='location.href="/root/board/list"' class='btn btn-outline-info'>목록</button>&nbsp;&nbsp;&nbsp;<a href="#top" class='btn btn-outline-info' >TOP</a>
+		</div>
+	</div>
 	
 
-	
 	<c:import url="../default/footer.jsp"></c:import>
-	
+
 </body>
 </html>
 

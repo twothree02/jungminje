@@ -28,6 +28,7 @@
 		<result property="sessionId" column="session_id" />
 		<result property="limitTime" column="limit_time" />
 		<result property="firstLogin" column="first_login" />
+
 	</resultMap>
 	
 	<!-- notice 영역 -->
@@ -61,6 +62,7 @@
 		<result property="hit" column="hit" />
 		<result property="name" column="name" />
 		<result property="fileupload" column="FILEUPLOAD" />
+
 	</resultMap>
 	
 	<select id="loginChk" resultMap="member">
@@ -113,6 +115,9 @@
 	</select>
 
 
+
+
+
 	<select id="mainList" resultMap="board">
 		select * from notices_board where rownum &lt;6 order by write_no desc
 	</select>
@@ -125,3 +130,4 @@
 		select * from academic_board where rownum &lt;6 order by write_no desc
 	</select>
 </mapper>
+

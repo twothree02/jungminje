@@ -25,8 +25,9 @@ public interface MemberService {
 	public void rememberId(String sessionId, Date limitDate, String id);
 	public int getSessionId(String id);
 	public void setNull(String id);
-	
+
 	public List<noticeDTO>mainList();
 	public List<portalDTO>portalMainList();
 	public List<academicDTO>academicMainList();
 }
+
