@@ -161,30 +161,20 @@ public class ProfessorController implements MemberSessionName {
 		return ps.getBProfessorList(num);
 	}
  
-@PostMapping(value="iProfessor_list", produces = "application/json; charset=utf-8")
-@ResponseBody
-public Map<String, Object> iProfessorList(@RequestParam(value="num", defaultValue="1", required=false)int num){
-//	String position = "교수"; 
-//	String major = "정보통신과";
-	
-	return ps.getIProfessorList(num);
-}
-@PostMapping(value="cProfessor_list", produces = "application/json; charset=utf-8")
-@ResponseBody
-public Map<String, Object> cProfessorList(@RequestParam(value="num", defaultValue="1", required=false)int num){
-//	String position = "교수"; 
-//	String major = "자동차공학과";
-	
-	return ps.getCProfessorList(num);
-}
-/* 일단 보류
-@ExceptionHandler(NullPointerException.class) 
-public String nullex(Exception e) { System.err.println(e.getClass());
-   //DB에 null이 뜰 경우 반환해줌.
-	return "professor/allStudent"; 
-}
-*/
+	@PostMapping(value="iProfessor_list", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String, Object> iProfessorList(@RequestParam(value="num", defaultValue="1", required=false)int num){
+		//	String position = "교수"; 
+		//	String major = "정보통신과";
 
+		return ps.getIProfessorList(num);
+	}
+	@PostMapping(value="cProfessor_list", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String, Object> cProfessorList(@RequestParam(value="num", defaultValue="1", required=false)int num){
+		//	String position = "교수"; 
+		//	String major = "자동차공학과";
 
-
+		return ps.getCProfessorList(num);
+	}
 }
