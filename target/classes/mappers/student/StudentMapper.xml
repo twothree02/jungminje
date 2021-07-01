@@ -107,7 +107,7 @@
 	</select>
 	
 	<select id="totalRegisterInfo" resultMap="register">
-		select * from REGISTER_INFO where id_num = #{id} and SCHOLARSHIP > 0 order by GRADE_SEMESTER asc
+		select * from REGISTER_INFO where id_num = #{id} and SCHOLARSHIP > 0 and  #{semester} > GRADE_SEMESTER order by GRADE_SEMESTER asc
 	</select>
 	
 	<select id="rankCnt" resultType="Integer">
