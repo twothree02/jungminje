@@ -184,3 +184,12 @@ git commit -am "2021 June 26 Rank Update"
 git status
 git push -u origin jh
 git status
+ls -a;l
+ls -al
+git status
+git add -all
+git add --all
+git status
+git commit -am "2021 June 30 grade complete"
+git status
+git push -u origin jh

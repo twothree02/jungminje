@@ -1,5 +1,6 @@
 package com.care.root.officer.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -596,6 +597,8 @@ public class OfficerServiceImpl implements OfficerService{
 			dto.setIdNum(set.get(i).getIdNum());
 			dto.setYear(year);
 			dto.setSemester(set.get(i).getSemester());
+			dto.setApplicationCred(mapper.getApplicationCred(set.get(i).getIdNum(), year, set.get(i).getSemester()));
+			dto.setReceivedCred(mapper.getApplicationCred(set.get(i).getIdNum(), year, set.get(i).getSemester()));
 			mapper.finalProcess(dto);
 			cnt++;
 		}
@@ -605,5 +608,13 @@ public class OfficerServiceImpl implements OfficerService{
 		else {
 			return 0;
 		}
+	}
+
+	@Override
+	public int tuition(HttpServletRequest request) {
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
+		
+		return mapper.tuition(startDate, endDate);
 	}
 }

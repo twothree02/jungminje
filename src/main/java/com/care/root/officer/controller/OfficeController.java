@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.care.root.common.session.MemberSessionName;
-import com.care.root.officer.dto.GradeDTO;
 import com.care.root.officer.dto.OfficerDTO;
 import com.care.root.officer.service.OfficerService;
 
@@ -209,6 +208,18 @@ public class OfficeController implements MemberSessionName{
 		}
 		else {
 			return "admin/finalProcessFail";
+		}
+	}
+	
+	@RequestMapping("tuition")
+	public String tuition(HttpServletRequest request) {
+		System.out.println(request.getParameter("startDate").getClass());
+		System.out.println(os.tuition(request));
+		if(os.tuition(request) != 0) {
+			return "admin/tuitionSuccess";
+		}
+		else {
+			return "admin/tuitionFail";
 		}
 	}
 	

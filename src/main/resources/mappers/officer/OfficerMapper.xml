@@ -293,4 +293,16 @@
 		insert into register_Info (major, id_num, name, scholarship, rank, year, semester, total_score) values
 		(#{major}, #{idNum}, #{name}, #{scholarship}, #{rank}, #{year}, #{semester}, #{totalScore})
 	</insert>
+	
+	<select id="getApplicationCred" resultType="Integer">
+		select sum(application_cred) from grade_info where id_num = #{idNum} and year = #{year} and semester = #{semester}
+	</select>
+	
+	<select id="getReceivedCred" resultType="Integer">
+		select sum(received_cred) from grade_info where id_num = #{idNum} and year = #{year} and semester = #{semester}
+	</select>
+	
+	<update id="tuition">
+		update tuition set reg_start = #{startDate}, reg_end = #{endDate}
+	</update>
 </mapper>

@@ -61,7 +61,7 @@
 			<h3><u>납부기한 설정</u></h3>
 		</div>
 		<div style = "align : center;">
-			<form action = "tution" method = "post">
+			<form action = "tuition" method = "post">
 				<table border = "1">
 					<tr>
 						<td>
