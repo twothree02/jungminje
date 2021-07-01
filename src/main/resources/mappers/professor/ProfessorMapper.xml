@@ -198,7 +198,7 @@
 	</select>
 	
 	<update id="saveScore">
-		update grade_info set score=#{score}, grade=#{grade}, num_grade=#{numGrade} 
+		update grade_info set score=#{score}, grade=#{grade}, num_grade=#{numGrade}, received_cred=#{receivedCred} 
 		where id_num = #{idNum} and year=#{year} and semester=#{seme} and subject_name=#{subjectName}
 	</update>
   

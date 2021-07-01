@@ -255,6 +255,11 @@ public class ProfessorServiceImpl implements ProfessorService{
 			dto.setIdNum(arrId[i]);
 			dto.setScore(Integer.parseInt(arrScore[i]));
 			dto.setGrade(convertGrade(Integer.parseInt(arrScore[i])));
+			if(convertGrade(Integer.parseInt(arrScore[i])).equals("F")) {
+				dto.setReceivedCred(0);
+			}else {
+				dto.setReceivedCred(3);
+			}
 			dto.setNumGrade(convertNumGrade(Integer.parseInt(arrScore[i])));
 			System.out.println(dto.getYear());
 			System.out.println(dto.getSeme());
