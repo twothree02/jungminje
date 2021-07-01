@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +19,7 @@
 <script type="text/javascript">
 	function findId(){
 		let form = {}
-		let arr = $("#fndId").serializeArray()
+		let arr = $("#findId").serializeArray()
 		for(i=0; i<arr.length; i++){
 			form[arr[i].name] = arr[i].value
 		}
@@ -31,7 +31,27 @@
 				alert($("#inputName").val() + ' 님의 아이디는 ' + rep.result + ' 입니다.')
 			},
 			error:function(request,status,error){
-				alert("문제가 발생했습니다.");
+				alert("회원이 아니거나 이름 또는 전화번호를 잘못 입력하셨습니다. 다시 한 번 확인해 주세요.");
+
+			}
+		})
+	}
+	
+	function findPw(){
+		let form = {"inputId" : $("#inputId").val(), "inputEmail" : $("#inputEmail").val() + "@" + $("#address").val()}
+		//let arr = $("#findPw").serializeArray()
+		//for(i=0; i<arr.length; i++){
+		//	form[arr[i].name] = arr[i].value
+		//}
+		$.ajax({
+			url:"findPw" ,type:"POST",dataType:"json",
+			data:JSON.stringify(form),
+			contentType:"application/json; charset=utf-8",
+			success:function(rep){
+				alert("임시 비밀번호가 메일로 발송되었습니다.");
+			},
+			error:function(request,status,error){
+				alert("아이디 또는 이메일을 잘못 입력하셨습니다. 다시 한 번 확인해 주세요.");
 
 			}
 		})
@@ -39,6 +59,7 @@
 </script>
 </head>
 <body class="bg-secondary">
+	<c:set var="contextPath" value="<%=request.getContextPath() %>" />
 	<div id="layoutAuthentication">
 		<div id="layoutAuthentication_content">
 			<div
@@ -53,20 +74,19 @@
 									<h3 class="text-center font-weight-light my-4">아이디 찾기</h3>
 								</div>
 								<div class="card-body">
-									<form id = "fndId" method="post">
+									<form id = "findId" method="post">
 										<div class="form-floating mb-3">
 											<input class="form-control" name="inputName" id = "inputName" type="text"
 												placeholder="name" /> <label for="inputName">이름 입력</label>
 										</div>
 										<div class="form-floating mb-3">
-											<input class="form-control" name="inputTel" id = "inputTel" type="text"
-												placeholder="010-0000-0000" /> <label for="inputTel">전화번호
-												입력</label>
+											<input class="form-control" name="inputPhone" id = "inputPhone" type="text"
+												placeholder="01000000000" /> <label for="inputPhone">전화번호 입력</label>
 										</div>
 										<div
 											class="d-flex align-items-center justify-content-between mt-4 mb-0">
-											<input type="button" class="btn btn-primary"
-												onclick="findId()" value="아이디 찾기">
+											<input type="button" class="btn btn-primary" onclick="findId()" value="아이디 찾기">
+											<input type="button" class="btn btn-primary" onclick="location.href='${contextPath}'" value="로그인하기">
 										</div>
 									</form>
 								</div>
@@ -78,29 +98,38 @@
 									<h3 class="text-center font-weight-light my-4">비밀번호 찾기</h3>
 								</div>
 								<div class="card-body">
-
-									<div class="form-floating mb-3">
-										<input class="form-control" name="inputId" type="text"
-											placeholder="id" /> <label for="inputId">아이디 입력</label>
-									</div>
-									<div class="form-floating mb-3" style="display: flex;">
-										<input class="form-control" name="inputEmail" type="text"
-											placeholder="abc@aaa.com" style="width: 50%;"> <label
-											for="inputEmail">E-mail 입력</label> <font
-											style="padding-top: 15px;">@</font> <select name="address"
-											class="form-control" style="width: 50%;">
-											<option value="none">=== 선택 ===</option>
-											<option value="naver">naver.com</option>
-											<option value="daum">daum.net</option>
-											<option value="google">gamil.com</option>
-											<option value="nate">nate.com</option>
-										</select>
-									</div>
-									<div
-										class="d-flex align-items-center justify-content-between mt-4 mb-0">
-										<input type="submit" class="btn btn-primary" value="비밀번호 찾기">
-									</div>
-
+									<form id = "findPw" method="post">
+										<div class="form-floating mb-3">
+											<input class="form-control" name="inputId" id="inputId" type="text"
+												placeholder="id" /> <label for="inputId">아이디 입력</label>
+										</div>
+										<div class="form-floating mb-3" style="display: flex;">
+											<input class="form-control" name="inputEmail" id="inputEmail" type="text"
+												placeholder="abc@aaa.com" style="width: 50%;"> <label for="inputEmail">E-mail 입력</label>
+											<font style="padding-top: 15px;">@</font>
+											<select name="address" id="address" class="form-control" style="width: 50%;">
+												<option value="none">=== 선택 ===</option>
+												<option value="naver.com">naver.com</option>
+												<option value="daum.net">daum.net</option>
+												<option value="gmail.com">gamil.com</option>
+												<option value="nate.com">nate.com</option>
+											</select>
+											<div class="form-floating">
+												<select class="form-select" id="floatingSelect" aria-label="Floating label select example" style="width: 200%;">
+													<option value="none" selected>== 선택 ==</option>
+													<option value="naver.com">naver.com</option>
+													<option value="daum.net">daum.net</option>
+													<option value="gmail.com">gamil.com</option>
+													<option value="nate.com">nate.com</option>
+												</select> <label for="floatingSelect" style="width: 100%;">Domain</label>
+											</div>
+										</div>
+										<div
+											class="d-flex align-items-center justify-content-between mt-4 mb-0">
+											<input type="button" class="btn btn-primary" onclick="findPw()" value="비밀번호 찾기">
+											<input type="button" class="btn btn-primary" onclick="location.href='${contextPath}'" value="로그인하기">
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -111,15 +140,8 @@
 		</div>
 
 		<div id="layoutAuthentication_footer">
-			<footer class="py-4 bg-light mt-auto">
-				<div class="container-fluid px-4">
-					<div
-						class="d-flex align-items-center justify-content-between small">
-						<div class="text-muted">Copyright &copy; YW University</div>
-						<div>관리자 | TEL 010-0000-0000</div>
-					</div>
-				</div>
-			</footer>
+		           <c:import url="../default/footer.jsp" />
+
 		</div>
 	</div>
 	<script

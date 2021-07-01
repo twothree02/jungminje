@@ -1944,6 +1944,10 @@ progress {
   vertical-align: top;
   border-color: #dee2e6;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 005a5bff6756e6b1cf90cde71a0aedd48b1d9e64
 .table > :not(caption) > * > *, .dataTable-table > :not(caption) > * > * {
   padding: 0.5rem 0.5rem;
   background-color: var(--bs-table-bg);
@@ -4665,7 +4669,10 @@ textarea.form-control-lg {
   vertical-align: baseline;
   border-radius: 0.25rem;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 005a5bff6756e6b1cf90cde71a0aedd48b1d9e64
 .badge:empty {
   display: none;
 }

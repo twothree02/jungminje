@@ -65,5 +65,32 @@
     class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
 	<beans:property name="maxUploadSize" value="52428800"/>
 </beans:bean>
+	<!-- 인터셉터 -->
+	<beans:bean id="memberInterceptor" class="com.care.root.member.interceptor.MemberInterceptor" />
+	<beans:bean id="modifyInterceptor" class="com.care.root.member.interceptor.ModifyInterceptor" />
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/modifyInfo" />
+			<mapping path="/main" />
+			<mapping path="/studentMain" />
+			<mapping path="/professorMain" />
+			<mapping path="/adminMain" />
+			<mapping path="/portalList" />
+			<mapping path="/logout" />
+			<beans:ref bean = "memberInterceptor" />
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/loginChk" />
+			<mapping path="/successLogin" />
+			<mapping path="/main" />
+			<mapping path="/studentMain" />
+			<mapping path="/professorMain" />
+			<mapping path="/adminMain" />
+			<mapping path="/portalList" />
+			<beans:ref bean = "modifyInterceptor" />
+		</interceptor>
+	</interceptors>
 
 </beans:beans>

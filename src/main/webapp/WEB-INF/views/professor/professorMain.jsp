@@ -11,6 +11,5 @@
 <body>
 <c:import url="../default/professorHeaderMain.jsp" />
 
-
 </body>
 </html>

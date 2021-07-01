@@ -22,7 +22,7 @@
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="#!">YW University</a>
+                <a class="navbar-brand" href="/root/main">YW University</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -36,10 +36,13 @@
                         성적 입력</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/professor/time_table">시간표</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/professor/staff_network">연락망</a></li>
+                    	<li class="nav-item"></li>
                     </ul>
                 </div>
             </div>
+            <div>
+            	<a class="nav-link" href="<%=request.getContextPath()%>/logout" style="color: white; float: right;">로그아웃</a>
+            </div>
         </nav>
-        
 </body>
 </html>
