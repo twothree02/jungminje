@@ -193,3 +193,7 @@ git status
 git commit -am "2021 June 30 grade complete"
 git status
 git push -u origin jh
+git add --all
+git status
+git commit -am "2021 July 01 final"
+git push -u origin jh

@@ -19,9 +19,9 @@
 <!-- 테이블 입니다 머리글 상단은 검정색으로 테이블 쓰시면 되고 머리글 왼쪽은 노멀로 쓰시면 됩니다 -->
 <div class="container"  style="display : flex;">
 	
+	
 	<div>
   <table class="table">
-  <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">First</th>
@@ -59,7 +59,7 @@
   <p>The .thead-dark class adds a black background to table headers, and the .thead-light class adds a grey background to table headers:</p>
   <table class="table">
     <thead class="thead-dark">
-      <tr>
+      <tr>	
         <th>Firstname</th>
         <th>Lastname</th>
         <th>Email</th>

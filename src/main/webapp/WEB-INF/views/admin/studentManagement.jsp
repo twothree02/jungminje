@@ -100,7 +100,7 @@
 						html += "<td align='center'>"+map.list[i].idNum+"</td>"
 						html += "<td align='center'>"+map.list[i].grade+"</td>"
 						html += "<td align='center'>"+map.list[i].major+"</td>
-						html += "<td align='center'>"+map.list[i].pho+"</td></tr>"
+						html += "<td align='center'>"+map.list[i].phoneNum+"</td></tr>"
 						}
 						html += "</table>"	
 					let pagehtml = "<table style='margin-top: 20px; margin-left: 20px; width: 275px; text-align: center; font-size: 20px;'><tr>"
@@ -298,7 +298,7 @@
 							<td align='center'>${list.idNum}</td>
 							<td align='center'>${list.grade}</td>
 							<td align='center' id='major'>${list.major}</td>
-							<td align='center'>${list.phoneNumm}</td>
+							<td align='center'>${list.phoneNum}</td>
 						</tr>
 						<c:set var="cnt" value="${cnt+1}" />
 					</c:forEach>

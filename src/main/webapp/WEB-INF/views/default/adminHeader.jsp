@@ -35,6 +35,9 @@
                     </ul>
                 </div>
             </div>
+            <div>
+            	<a class="nav-link" href="<%=request.getContextPath()%>/logout" style="color: white; float: right;">로그아웃</a>
+            </div>
         </nav>
 </body>
 </html>

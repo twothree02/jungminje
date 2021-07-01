@@ -74,8 +74,7 @@
 	</resultMap>
 	
 	<select id="staffInfo" resultMap="officer">
-		select * from member_info where
-		id_num = #{id}
+		select * from member_info where id_num = #{id}
 	</select>
 
 	<insert id="insertStu">
