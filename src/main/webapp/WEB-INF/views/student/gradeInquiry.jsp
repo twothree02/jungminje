@@ -72,5 +72,7 @@
 </div>
 
 </div>
+	<c:import url="../default/footer.jsp"></c:import>
+
 </body>
 </html>

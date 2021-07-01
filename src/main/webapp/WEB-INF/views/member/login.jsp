@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,19 +32,34 @@
 								<div class="card-body">
 									<form action = "loginChk" method ="post">
 										<div class="form-floating mb-3">
-											<input class="form-control" name="inputId" type="text"
-												placeholder="name@example.com" /> <label for="inputId">학번
-												/ 사번 입력</label>
+											<c:choose>
+												<c:when test="${login != 'null' }">
+													<input class="form-control" name="inputId" type="text"
+														placeholder="name@example.com" value="${id }" /> <label for="inputId">학번 / 사번 입력</label>
+												</c:when>
+												<c:otherwise>
+													<input class="form-control" name="inputId" type="text"
+														placeholder="name@example.com" /> <label for="inputId">학번 / 사번 입력</label>
+												</c:otherwise>
+											</c:choose>
 										</div>
 										<div class="form-floating mb-3">
 											<input class="form-control" name="inputPwd" type="password"
-												placeholder="Password" /> <label for="inputPwd">비밀번호
-												입력</label>
+												placeholder="Password" /> <label for="inputPwd">비밀번호 입력</label>
 										</div>
 										<div class="form-check mb-3">
-											<input class="form-check-input" id="inputRememberPassword"
-												type="checkbox"/> <label class="form-check-label"
-												for="inputRememberPassword">학번 / 사번 저장</label>
+											<c:choose>
+												<c:when test="${login != null }">
+													<input class="form-check-input" id="rememberId" name="rememberId"
+														type="checkbox" checked="checked"/> <label class="form-check-label"
+														for="rememberId">학번 / 사번 저장</label>
+												</c:when>
+												<c:otherwise>
+													<input class="form-check-input" id="rememberId" name="rememberId"
+														type="checkbox"/> <label class="form-check-label"
+														for="rememberId">학번 / 사번 저장</label>
+												</c:otherwise>
+											</c:choose>
 										</div>
 										<div
 											class="d-flex align-items-center justify-content-between mt-4 mb-0">
@@ -78,15 +93,8 @@
 			</main>
 		</div>
 		<div id="layoutAuthentication_footer">
-			<footer class="py-4 bg-light mt-auto">
-				<div class="container-fluid px-4">
-					<div
-						class="d-flex align-items-center justify-content-between small">
-						<div class="text-muted">Copyright &copy; YW University</div>
-						<div>관리자 | TEL 010-0000-0000</div>
-					</div>
-				</div>
-			</footer>
+			           <c:import url="../default/footer.jsp" />
+
 		</div>
 	</div>
 	<script

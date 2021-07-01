@@ -33,4 +33,3 @@
 	<mybatis-spring:scan base-package="com.care.root.student.dao"/>
 		
 </beans>
-

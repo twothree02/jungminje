@@ -160,7 +160,7 @@ div {
 								</c:if>
 								<td>101</td>
 								<td>300</td>
-								<td>${300 - registerA.scholarship}</td>
+								<td>300</td>
 							    <c:if test="${tuition.grade101 == 'N' }">
 								<td>${tuition.grade101}</td>
 								</c:if>
@@ -190,7 +190,7 @@ div {
 								</c:if>
 								<td>102</td>
 								<td>300</td>
-								<td>${300 - registerB.scholarship}</td>
+								<td>${300 - registerA.scholarship}</td>
 							    <c:if test="${tuition.grade102 == 'N' }">
 								<td>${tuition.grade102}</td>
 								</c:if>
@@ -220,7 +220,7 @@ div {
 								</c:if>
 								<td>201</td>
 								<td>300</td>
-								<td>${300 - registerC.scholarship}</td>
+								<td>${300 - registerB.scholarship}</td>
 							    <c:if test="${tuition.grade201 == 'N' }">
 								<td>${tuition.grade201}</td>
 								</c:if>
@@ -250,7 +250,7 @@ div {
 								</c:if>
 								<td>202</td>
 								<td>300</td>
-								<td>${300 - registerD.scholarship}</td>
+								<td>${300 - registerC.scholarship}</td>
 							    <c:if test="${tuition.grade202 == 'N' }">
 								<td>${tuition.grade202}</td>
 								</c:if>
@@ -332,5 +332,6 @@ div {
 			</div>
 
 		</div>
+		  <c:import url="../default/footer.jsp" />
 </body>
 </html>

@@ -4,18 +4,130 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.care.root.member.dao.MemberDAO">
 	<resultMap type="com.care.root.member.dto.MemberDTO" id="member">
-		<result property="id" column="id"/>
-		<result property="name" column="name"/>
-		<result property="tel" column="tel"/>
-		<result property="email" column="email"/>
-		<result property="pw" column="pw"/>
+		<result property="idNum" column="id_num"/>
+		<result property="name" column="name" />
+		<result property="pw" column="pw" />
+		<result property="residentNum" column="resident_num" />
+		<result property="phoneNum" column="phone_num" />
+		<result property="telNum" column="tel_num" />
+		<result property="addr" column="addr" />
+		<result property="detailAddr" column="detail_addr" />
+		<result property="email" column="email" />
+		<result property="major" column="major" />
+		<result property="grade" column="grade" />
+		<result property="class_" column="class" />
+		<result property="country" column="country" />
+		<result property="mentor" column="mentor" />
+		<result property="zipcodeSend" column="zipcode_send" />
+		<result property="smsSend" column="sms_send" />
+		<result property="position" column="position" />
+		<result property="imageFile" column="image_file" />
+		<result property="officeAddr" column="office_addr" />
+		<result property="bank" column="bank" />
+		<result property="accountNum" column="account_num" />
+		<result property="sessionId" column="session_id" />
+		<result property="limitTime" column="limit_time" />
+		<result property="firstLogin" column="first_login" />
+
+	</resultMap>
+	
+	<!-- notice 영역 -->
+	<resultMap type="com.care.root.board.noticedto.noticeDTO" id="board">
+		<id property="writeNo" column="write_no" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="hit" column="hit" />
+		<result property="name" column="name" />
+		<result property="fileupload" column="FILEUPLOAD" />
+	</resultMap>
+	
+	
+	<!-- portal -->
+	<resultMap type="com.care.root.board.portaldto.portalDTO" id="portalBoard">
+		<id property="writeNo" column="write_no" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="hit" column="hit" />
+		<result property="name" column="name" />
+		<result property="fileupload" column="FILEUPLOAD" />
+	</resultMap>
+	
+	
+	
+	<!-- academicBoard -->
+	<resultMap type="com.care.root.board.academicdto.academicDTO" id="academicBoard">
+		<id property="writeNo" column="write_no" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="hit" column="hit" />
+		<result property="name" column="name" />
+		<result property="fileupload" column="FILEUPLOAD" />
+
 	</resultMap>
 	
 	<select id="loginChk" resultMap="member">
-		select * from member_info where id_num = #{id}
+		select * from member_info where id_num = #{id} 
+
 	</select>
 	
 	<select id="findId" resultType="String">
-		select id from member_test where name = #{name} and tel = #{tel}
+		select id_num from member_info where name = #{name} and phone_num = #{phone}
 	</select>
-</mapper>	
+	
+	<select id="findPw" resultMap="member">
+		select pw, name from member_info where id_num = #{id} and email = #{email}
+	</select>
+	
+	<update id="tempPw">
+		update member_info set pw = #{tempPw} where id_num = #{id}
+	</update>
+	
+	<select id="getInfo" resultMap="member">
+		select * from member_info where id_num = #{id}
+	</select>
+	
+	<update id="modify">
+		update member_info set name = #{name}, pw = #{pw}, addr = #{addr}, detail_addr = #{detailAddr}, email = #{email}, image_file = #{imageFile} where id_num = #{idNum}
+	</update>
+	
+	<update id="rememberId">
+		update member_info set session_id = #{sessionId}, limit_time = #{limitDate} where id_num = #{idNum}
+	</update>
+	
+	<select id="getSessionId" resultType="String">
+		select session_id from member_info where id_num = #{id}
+	</select>
+	
+	<update id="setNull">
+		update member_info set session_id = null, limit_time = null where id_num = #{id}
+	</update>
+	
+	<select id="chkFirst" resultType="String">
+		select first_login from member_info where id_num = #{id}
+	</select>
+	
+	<update id="updateFirst">
+		update member_info set first_login = 'N' where id_num = #{id}
+	</update>
+	
+	<select id="getBirth" resultType="String">
+		select resident_num from member_info where id_num = #{id}
+	</select>
+
+
+
+
+
+	<select id="mainList" resultMap="board">
+		select * from notices_board where rownum &lt;6 order by write_no desc
+	</select>
+
+	<select id="portalMainList" resultMap="portalBoard">
+		select * from portal_board where rownum &lt;6 order by write_no desc
+	</select>
+
+	<select id="academicMainList" resultMap="academicBoard">
+		select * from academic_board where rownum &lt;6 order by write_no desc
+	</select>
+</mapper>
+

@@ -47,7 +47,7 @@
 							<tr>
 								<th>학과/학기</th>
 								<th>이 름</th>
-								<th>납 부 금</th>
+								<th>납 부 금(만원)</th>
 								<th>납 부 상 태</th>
 								<th>납 부 기 한</th>
 							</tr>
@@ -56,7 +56,7 @@
 						<tr>
 							<td>${studentInfo.major}/${studentInfo.gradeSemester}</td>
 							<td>${studentInfo.name}</td>
-							<td>300 만원</td>
+							<td>${300 - scholar}</td>
 							<td>${tuitionInfo.paymentStu}</td>
 							<td>${tuitionInfo.regStart }~${ tuitionInfo.regEnd}</td>
 						</tr>
@@ -129,5 +129,6 @@
 <h3>등록금 납부 기간이 아닙니다.</h3>
 </c:if>
 </div>
+  <c:import url="../default/footer.jsp" />
 </body>
 </html>

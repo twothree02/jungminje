@@ -1,6 +1,5 @@
 package com.care.root.student.dto;
 
-import java.sql.Date;
 
 public class TuitionInfoDTO {
 	private String grade101;
@@ -9,8 +8,8 @@ public class TuitionInfoDTO {
 	private String grade202;
 	private String paymentStu;
 	private String payment;
-	private Date regStart;
-	private Date regEnd;
+	private String regStart;
+	private String regEnd;
 	
 	public String getGrade101() {
 		return grade101;
@@ -48,16 +47,16 @@ public class TuitionInfoDTO {
 	public void setPayment(String payment) {
 		this.payment = payment;
 	}
-	public Date getRegStart() {
+	public String getRegStart() {
 		return regStart;
 	}
-	public void setRegStart(Date regStart) {
+	public void setRegStart(String regStart) {
 		this.regStart = regStart;
 	}
-	public Date getRegEnd() {
+	public String getRegEnd() {
 		return regEnd;
 	}
-	public void setRegEnd(Date regEnd) {
+	public void setRegEnd(String regEnd) {
 		this.regEnd = regEnd;
 	}
 }
