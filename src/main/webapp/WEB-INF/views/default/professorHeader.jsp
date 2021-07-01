@@ -36,7 +36,6 @@
                         성적 입력</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/professor/time_table">시간표</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/professor/staff_network">연락망</a></li>
-                    	<li class="nav-item"></li>
                     </ul>
                 </div>
             </div>
