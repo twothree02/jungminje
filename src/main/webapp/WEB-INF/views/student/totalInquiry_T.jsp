@@ -317,10 +317,7 @@ div {
 						</c:when>
 						<c:otherwise>
 						<tr>
-							<td>-</td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<th colspan="4">장학 내역이 존재하지 않습니다.</th>
 						</tr>
 						</c:otherwise>
 						</c:choose>

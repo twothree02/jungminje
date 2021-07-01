@@ -26,24 +26,19 @@
     <body>
     <c:set var="conetxtPath" value="<%=request.getContextPath()%>" />
         <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-
                 <a class="navbar-brand" href="${contextPath}/root/main">YW University</a>
-
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: flex; justify-content: flex-end;">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-
                         <li class="nav-item"><a class="nav-link" href="${contextPath}/root/student/totalInquiry">종합정보조회</a></li>
                         <li class="nav-item"><a class="nav-link" href="${contextPath}/root/student/classRequest">수강신청</a></li>
                         <li class="nav-item"><a class="nav-link" href="${contextPath}/root/student/gradeInquiry">성적조회</a></li>
                         <li class="nav-item"><a class="nav-link" href="${contextPath}/root/student/tuitionChk">등록금관리</a></li>
-         
                     </ul>
                 </div>
             </div>
         </nav>
-
 </body>
 </html>
