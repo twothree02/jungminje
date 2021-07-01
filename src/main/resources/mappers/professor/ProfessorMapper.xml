@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.care.root.professor.dao.ProfessorDAO">
+  	<resultMap type="com.care.root.professor.dto.ProfessorDTO" id="professor">
+		<result property="idNum" column="id_num"/>
+		<result property="name" column="name"/>
+		<result property="pw" column="pw"/>
+		<result property="residentNum" column="resident_num"/>
+		<result property="phoneNum" column="phone_num"/>
+		<result property="telNum" column="tel_num"/>
+		<result property="addr" column="addr"/>
+		<result property="detailAddr" column="detail_addr"/>
+		<result property="email" column="email"/>
+		<result property="major" column="major"/>
+		<result property="grade" column="grade"/>
+		<result property="class_" column="class"/>
+		<result property="country" column="country"/>
+		<result property="mentor" column="mentor"/>
+		<result property="zipcodeSend" column="zipcode_send"/>
+		<result property="smsSend" column="sms_send"/>
+		<result property="position" column="position"/>
+		<result property="imageFile" column="image_file"/>
+		<result property="officeAddr" column="office_addr"/>
+		<result property="bank" column="bank"/>
+		<result property="accountNum" column="account_num"/>
+		<result property="teachSub" column="teach_sub"/>
+		<result property="firstLogin" column="first_login"/>
+		<result property="semester" column="semester"/>
+	</resultMap>
+	
+	<resultMap type="com.care.root.professor.dto.GradeInfoDTO" id="gradeInfo">
+		<result property="idNum" column="id_num"/>
+		<result property="name" column="name"/>
+		<result property="major" column="major"/>
+		<result property="subjectName" column="subject_name"/>
+		<result property="grade" column="grade"/>
+		<result property="score" column="score"/>
+		<result property="profName" column="prof_name"/>
+		<result property="receivedCred" column="received_cred"/>
+		<result property="applicationCred" column="application_cred"/>	
+		<result property="gradeSeme" column="grade_semester"/>
+		<result property="year" column="year"/>
+		<result property="seme" column="semester"/>		
+		<result property="numGrade" column="num_grade"/>	
+	</resultMap>
+	
+	<resultMap type="com.care.root.professor.dto.TimeTableDTO" id="timeTable">
+		<result property="yearSeme" column="year_semester"/>
+		<result property="idNum" column="id_num"/>
+		<result property="major" column="major"/>
+		<result property="subject" column="subject"/>
+		<result property="professor" column="professor"/>
+		<result property="lectureRoom" column="lecture_room"/>
+		<result property="time" column="time"/>	
+		<result property="week" column="week"/>
+	</resultMap>
+	
+	<resultMap type="com.care.root.professor.dto.RegisterInfoDTO" id="register">
+		<result property="major" column="major"/>
+		<result property="idNum" column="id_num"/>
+		<result property="name" column="name"/>
+		<result property="scholarship" column="scholarship"/>
+		<result property="totalScore" column="total_score"/>
+		<result property="rank" column="rank"/>
+		<result property="year" column="year"/>	
+		<result property="gradeSeme" column="grade_semester"/>
+		<result property="chkPeriod" column="chk_period"/>
+		<result property="aveGrade" column="ave_grade"/>
+		<result property="appCred" column="application_cred"/>
+		<result property="receivedCred" column="received_cred"/>
+	</resultMap>
+	
+	<select id="getMyInfo" resultMap="professor">
+		select * from member_info where id_num=#{id}
+	</select>
+	
+  	<select id="getJuniorList" resultMap="professor">
+		select B.* from(select rownum rn,
+		A.* from
+		(select * from member_info where position = '학생' and grade = '1' and major=#{major} order by
+		grade desc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="getSeniorList" resultMap="professor">
+		select B.* from(select rownum rn,
+		A.* from
+		(select * from member_info where position = '학생' and grade = '2' and major=#{major} order by
+		grade desc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="searchStuCount" resultType="Integer">
+		select count(*) from member_info where ${searchSel} = #{searchInp} and position = '학생'
+	</select>
+	
+	<select id="getSearchStu" resultMap="professor">
+		select B.* from(select rownum rn,
+		A.* from
+		(select * from member_info where position = '학생' and ${searchSel} = #{searchInp}  order by
+		grade desc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="getSearchStaff" resultMap="professor">
+		select * from member_info where name=#{searchName} and not position=#{position} 
+	</select>
+	
+	<select id="searchAdminCnt" resultType="Integer">
+		select count(*) from member_info where position = #{position}
+	</select>
+	
+	<select id="getAdminList" resultMap="professor">
+		select B.* from(select rownum rn,
+		A.* from
+		(select * from member_info where position = #{position} order by
+		name asc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="getGradeInfo" resultMap="gradeInfo">
+		select * from grade_info where subject_name = #{lecName} and year=#{tYear} 
+	</select>
+	
+	<select id="searchBProfCnt" resultType="Integer">
+		select count(*) from member_info where position = '교수' and major = '경영학과'
+	</select>
+	
+	<select id="getBProfessorList" resultMap="professor">
+		select B.* from(select rownum rn,
+		A.* from
+		(select * from member_info where position = '교수' and major = '경영학과' order by
+		name asc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="searchIProfCnt" resultType="Integer">
+		select count(*) from member_info where position = '교수' and major = '정보통신과'
+	</select>
+	
+	<select id="getIProfessorList" resultMap="professor">
+		select B.* from(select rownum rn,
+		A.* from
+		(select * from member_info where position = '교수' and major = '정보통신과' order by
+		name asc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="searchCProfCnt" resultType="Integer">
+		select count(*) from member_info where position = '교수' and major = '자동차공학과'
+	</select>
+	
+	<select id="getCProfessorList" resultMap="professor">
+		select B.* from(select rownum rn,
+		A.* from
+		(select * from member_info where position = '교수' and major = '자동차공학과' order by
+		name asc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="detailStuInfo" resultMap="professor">
+		select * from member_info where id_num = #{id}
+	</select>
+	
+	<select id="getSemeDetail" resultMap="gradeInfo">
+		select * from grade_info where id_num = #{id} and grade_semester = #{seme} order by subject_name asc
+	</select>
+	
+	<select id="getApplyGrade" resultType="Integer">
+		select sum(application_cred) from register_info where id_num=#{id}
+	</select>
+	
+	<select id="getRecGrade" resultType="Integer">
+		select sum(received_cred) from register_info where id_num=#{id}
+	</select>
+	
+	<select id="getNetAveGrade" resultType="double">
+		select sum(ave_grade) from register_info where id_num=#{id}
+	</select>
+	
+	<select id="getNetTotalScore" resultType="double">
+		select sum(total_score) from register_info where id_num=#{id}
+	</select>
+	
+	<select id="getSemes" resultType="Integer">
+		select count(*) from register_info where id_num=#{id}
+	</select>
+	
+	<select id="semeGradeInfo" resultMap="register">
+		select * from register_info where id_num = #{id} order by grade_semester asc
+	</select>
+	
+	<select id="getTimeTable" resultMap="timeTable">
+		select * from time_table where id_num = #{pId}
+	</select>
+	
+	<select id="getLecCheck" resultType="string">
+		select teach_sub from member_info where id_Num = #{pId}
+	</select>
+	
+	<select id="getMajorCheck" resultType="string">
+		select major from member_info where id_Num = #{pId}
+	</select>
+	
+	<update id="saveScore">
+		update grade_info set score=#{score}, grade=#{grade}, num_grade=#{numGrade}, received_cred=#{receivedCred} 
+		where id_num = #{idNum} and year=#{year} and semester=#{seme} and subject_name=#{subjectName}
+	</update>
+  
+  	<select id="selectStuCount" resultType="Integer">
+		select count(*) from member_info where position = '학생' and grade=#{grade} and major=#{major}
+	</select>
+  
+  
+  
+  </mapper>

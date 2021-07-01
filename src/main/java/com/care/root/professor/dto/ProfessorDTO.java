@@ -1,8 +1,6 @@
-package com.care.root.member.dto;
+package com.care.root.professor.dto;
 
-import java.sql.Date;
-
-public class MemberDTO {
+public class ProfessorDTO {
 	private String idNum;
 	private String name;
 	private String pw;
@@ -11,8 +9,8 @@ public class MemberDTO {
 	private String telNum;
 	private String addr;
 	private String detailAddr;
-	private String major;
 	private String email;
+	private String major;
 	private int grade;
 	private String class_;
 	private String country;
@@ -24,10 +22,34 @@ public class MemberDTO {
 	private String officeAddr;
 	private String bank;
 	private String accountNum;
-	private String sessionId;
-	private Date limitTime;
+	private String teachSub;
 	private String firstLogin;
+	private String semester;
 	
+	public String getFirstLogin() {
+		return firstLogin;
+	}
+	public void setFirstLogin(String firstLogin) {
+		this.firstLogin = firstLogin;
+	}
+	public String getSemester() {
+		return semester;
+	}
+	public void setSemester(String semester) {
+		this.semester = semester;
+	}
+	public String getTeachSub() {
+		return teachSub;
+	}
+	public void setTeachSub(String teachSub) {
+		this.teachSub = teachSub;
+	}
+	public String getMajor() {
+		return major;
+	}
+	public void setMajor(String major) {
+		this.major = major;
+	}
 	public String getIdNum() {
 		return idNum;
 	}
@@ -75,12 +97,6 @@ public class MemberDTO {
 	}
 	public void setDetailAddr(String detailAddr) {
 		this.detailAddr = detailAddr;
-	}
-	public String getMajor() {
-		return major;
-	}
-	public void setMajor(String major) {
-		this.major = major;
 	}
 	public String getEmail() {
 		return email;
@@ -153,23 +169,5 @@ public class MemberDTO {
 	}
 	public void setAccountNum(String accountNum) {
 		this.accountNum = accountNum;
-	}
-	public String getSessionId() {
-		return sessionId;
-	}
-	public void setSessionId(String sessionId) {
-		this.sessionId = sessionId;
-	}
-	public Date getLimitTime() {
-		return limitTime;
-	}
-	public void setLimitTime(Date limitTime) {
-		this.limitTime = limitTime;
-	}
-	public String getFirstLogin() {
-		return firstLogin;
-	}
-	public void setFirstLogin(String firstLogin) {
-		this.firstLogin = firstLogin;
 	}
 }

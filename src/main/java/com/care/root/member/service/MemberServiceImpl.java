@@ -31,7 +31,6 @@ import com.care.root.member.dto.MemberDTO;
 
 @Service
 public class MemberServiceImpl implements MemberService{
-
 	@Autowired MemberDAO mapper;
 	@Autowired JavaMailSender mailSender;	//config에 설정한 bean 얻어오기
 
@@ -48,7 +47,6 @@ public class MemberServiceImpl implements MemberService{
 		return 1;
 	}
 
-	@Override
 	public String findId(String name, String phone) {
 		String id = mapper.findId(name, phone);
 		return id;

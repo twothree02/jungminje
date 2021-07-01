@@ -5,7 +5,6 @@
 <html>
 <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
         
@@ -28,22 +27,20 @@
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-
                 <a class="navbar-brand" href="${contextPath}/root/main">YW University</a>
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-
                         <li class="nav-item"><a class="nav-link" href="${contextPath}/root/student/totalInquiry">종합정보조회</a></li>
                         <li class="nav-item"><a class="nav-link" href="${contextPath}/root/student/classRequest">수강신청</a></li>
                         <li class="nav-item"><a class="nav-link" href="${contextPath}/root/student/gradeInquiry">성적조회</a></li>
                         <li class="nav-item"><a class="nav-link" href="${contextPath}/root/student/tuitionChk">등록금관리</a></li>
-         
+         				
                     </ul>
                 </div>
             </div>
+            <div>
+            	<a class="nav-link" href="<%=request.getContextPath()%>/logout" style="color: white; float: right;">로그아웃</a>
+       		</div>
         </nav>
-
 </body>
 </html>

@@ -30,4 +30,3 @@ public interface MemberService {
 	public List<portalDTO>portalMainList();
 	public List<academicDTO>academicMainList();
 }
-

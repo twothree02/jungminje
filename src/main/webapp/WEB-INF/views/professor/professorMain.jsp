@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:import url="../default/professorHeader.jsp" />
+<c:import url="../default/professorHeaderMain.jsp" />
 
 </body>
 </html>

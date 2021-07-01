@@ -130,4 +130,3 @@
 		select * from academic_board where rownum &lt;6 order by write_no desc
 	</select>
 </mapper>
-
