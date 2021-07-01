@@ -67,6 +67,7 @@
 	
 	<select id="loginChk" resultMap="member">
 		select * from member_info where id_num = #{id} 
+<<<<<<< HEAD
 
 	</select>
 	
@@ -128,5 +129,11 @@
 
 	<select id="academicMainList" resultMap="academicBoard">
 		select * from academic_board where rownum &lt;6 order by write_no desc
+=======
+	</select>
+	
+	<select id="findId" resultType="String">
+		select id_num from member_info where name = #{name} and tel_num = #{tel}
+>>>>>>> jh
 	</select>
 </mapper>

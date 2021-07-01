@@ -30,6 +30,6 @@
    <mybatis-spring:scan base-package="com.care.root.board.dao"/>
    <mybatis-spring:scan base-package="com.care.root.officer.dao"/>
    <mybatis-spring:scan base-package="com.care.root.professor.dao"/>
-	<mybatis-spring:scan base-package="com.care.root.student.dao"/>
-		
+	<mybatis-spring:scan base-package="com.care.root.student.dao"/>	
+	
 </beans>
