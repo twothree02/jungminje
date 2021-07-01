@@ -61,6 +61,11 @@ public class noticeController implements MemberSessionName {
 		String message = service.register(mul, rquest);
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html chartest=utf-8");
+		System.out.println("컨트롤러 실행합니다 레지스터");
+		System.out.println(rquest.getParameter("title"));
+		System.out.println(rquest.getParameter("content"));
+		System.out.println(rquest.getParameter("name"));
+		System.out.println(rquest.getParameter("file"));
 		out.print(message);
 	}
 	@GetMapping("contentView")

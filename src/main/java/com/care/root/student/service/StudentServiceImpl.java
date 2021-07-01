@@ -98,6 +98,15 @@ public class StudentServiceImpl implements StudentService {
 		try {
 			StudentInfoDTO infoDTO = mapper.studentInfo(id);
 			TuitionInfoDTO tuitionDTO = mapper.tuitionInfo(id);
+			
+			if(infoDTO.getGradeSemester() > 1) {
+				RegisterInfoDTO regDTO = mapper.registerInfo(id, infoDTO.getGradeSemester()-1);
+				model.addAttribute("scholar", regDTO.getScholarship());
+			}else {
+				model.addAttribute("scholar", 0);
+			}
+			
+			
 			if(infoDTO.getGradeSemester() == 1) {
 				infoDTO.setGradeSemester(101);
 			}else if(infoDTO.getGradeSemester() == 2) {
@@ -395,7 +404,7 @@ public class StudentServiceImpl implements StudentService {
 			model.addAttribute("info", infoDTO);
 			TuitionInfoDTO tuitionDTO = mapper.tuitionInfo(id);
 			model.addAttribute("tuition", tuitionDTO);
-			ArrayList<RegisterInfoDTO> list = mapper.totalRegisterInfo(id);
+			ArrayList<RegisterInfoDTO> list = mapper.totalRegisterInfo(id, infoDTO.getGradeSemester());
 			RegisterInfoDTO registerDTOA = mapper.registerInfo(id, 1);
 			RegisterInfoDTO registerDTOB = mapper.registerInfo(id, 2);
 			RegisterInfoDTO registerDTOC = mapper.registerInfo(id, 3);

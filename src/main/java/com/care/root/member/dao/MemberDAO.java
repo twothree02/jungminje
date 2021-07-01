@@ -25,8 +25,8 @@ public interface MemberDAO {
 	public void updateFirst(String id);
 	public String getBirth(String attribute);
 	
-	public List<noticeDTO>mainList();
-	public List<portalDTO>portalMainList();
-	public List<academicDTO>academicMainList();
+	public List<noticeDTO> mainList();
+	public List<portalDTO> portalMainList();
+	public List<academicDTO> academicMainList();
 	
 }

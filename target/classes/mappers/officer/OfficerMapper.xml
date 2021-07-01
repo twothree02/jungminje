@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.care.root.officer.dao.OfficerDAO">
+	<resultMap type="com.care.root.officer.dto.OfficerDTO"
+		id="officer">
+		<result property="idNum" column="id_num" />
+		<result property="name" column="name" />
+		<result property="pw" column="pw" />
+		<result property="residentNum" column="resident_num" />
+		<result property="phoneNum" column="phone_num" />
+		<result property="telNum" column="tel_num" />
+		<result property="addr" column="addr" />
+		<result property="detailAddr" column="detail_addr" />
+		<result property="email" column="email" />
+		<result property="major" column="major" />
+		<result property="grade" column="grade" />
+		<result property="class_" column="class" />
+		<result property="country" column="country" />
+		<result property="mentor" column="mentor" />
+		<result property="zipcodeSend" column="zipcode_send" />
+		<result property="smsSend" column="sms_send" />
+		<result property="position" column="position" />
+		<result property="imageFile" column="image_file" />
+		<result property="officeAddr" column="office_addr" />
+		<result property="bank" column="bank" />
+		<result property="accountNum" column="account_num" />
+		<result property="semester" column="semester" />
+		<result property="curTotalGrade" column="cur_totalgrade" />
+		<result property="curRank" column="cur_rank" />
+	</resultMap>
+
+	<resultMap type="com.care.root.officer.dto.TimeTableDTO"
+		id="timeTable">
+		<result property="yearSemester" column="year_semester" />
+		<result property="idNum" column="id_num" />
+		<result property="major" column="major" />
+		<result property="subject" column="subject" />
+		<result property="professor" column="professor" />
+		<result property="lectureRoom" column="lecture_room" />
+		<result property="time" column="time" />
+		<result property="week" column="week" />
+	</resultMap>
+	
+	<resultMap type="com.care.root.officer.dto.GradeDTO" id="grade">
+		<result property="idNum" column="id_num" />
+		<result property="name" column="name" />
+		<result property="major" column="major" />
+		<result property="subjectName" column="subject_name" />
+		<result property="grade" column="grade" />
+		<result property="score" column="score" />
+		<result property="profName" column="prof_name" />
+		<result property="receivedCred" column="received_cred" />
+		<result property="applicationCred" column="application_cred" />
+		<result property="gradeSemester" column="grade_semester" />
+		<result property="year" column="year" />
+	</resultMap>
+	
+	<resultMap type="com.care.root.officer.dto.RegisterDTO" id="register">
+		<result property="major" column="major" />
+		<result property="idNum" column="id_num" />
+		<result property="name" column="name" />
+		<result property="scholarship" column="scholarship" />
+		<result property="rank" column="rank" />
+		<result property="year" column="year" />
+		<result property="gradeSemester" column="grade_semester" />
+		<result property="chkPeriod" column="chk_period" />
+		<result property="applicationCred" column="application_cred" />
+		<result property="receivedCred" column="received_cred" />
+		<result property="semester" column="semester" />
+		<result property="aveGrade" column="ave_grade" />
+		<result property="totalScore" column="total_score" />
+	</resultMap>
+	
+	<select id="staffInfo" resultMap="officer">
+		select * from member_info where id_num = #{id}
+	</select>
+
+	<insert id="insertStu">
+		insert into member_info (id_num, name, pw,
+		resident_num, country, mentor, grade, class, phone_num, major,
+		position) values
+		(#{idNum}, #{name}, #{pw}, #{residentNum}, #{country},
+		#{mentor},
+		#{grade}, #{class_}, #{phoneNum}, #{major}, #{position})
+	</insert>
+
+	<select id="findProfessor" resultType="String">
+		select name from
+		member_info where major = #{major} and position = '교수'
+	</select>
+
+	<select id="findinfo" resultMap="officer">
+		select B.* from(select rownum
+		rn, A.* from
+		(select distinct * from member_info where major = #{major} and
+		position = '학생' order by grade desc)A)B where rn between #{s} and #{e}
+	</select>
+
+	<!-- <select id="findinfo" resultMap="officer"> select * from member_info 
+		where major = #{major} and position = '학생' </select> -->
+
+	<select id="findAll" resultMap="officer">
+		select B.* from(select rownum rn,
+		A.* from
+		(select * from member_info where position = '학생' order by
+		grade desc)A)B where rn between #{s} and #{e}
+	</select>
+
+	<!-- <select id="findAll" resultMap="officer"> select * from member_info 
+		where position = '학생' </select> -->
+
+	<select id="searchStudent" resultMap="officer">
+		select B.* from(select rownum rn, A.* from (select * from member_info where ${searchS} = #{searchT} and major = #{searchM} and position =
+		'학생' order by grade desc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	
+	<select id="searchStudentCount" resultType="Integer">
+		select count(*) from member_info where ${searchS} = #{searchT} and major = #{searchM} and position = '학생'
+	</select>
+	
+	<select id="searchAll" resultMap="officer">
+		select B.* from(select rownum rn, A.* from (select * from member_info where ${searchS} = #{searchT} and position = '학생' 
+			order by grade desc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="searchAllCount" resultType="Integer">
+		select count(*) from member_info where ${searchS} = #{searchT} and position = '학생'
+	</select>
+
+	<select id="studentInfo" resultMap="officer">
+		select * from member_info
+		where id_num = #{idNum}
+	</select>
+
+	<select id="selectStudentCount" resultType="Integer">
+		select count(*) from
+		member_info where position = '학생'
+	</select>
+
+	<select id="selectMajorStudentCount" resultType="Integer">
+		select count(*)
+		from member_info where major = #{major} and position = '학생'
+	</select>
+
+	<select id="findSubject" resultType="String">
+		select teach_sub from
+		member_info where major = #{major} and position = '교수'
+	</select>
+
+	<select id="AlreadySubject" resultType="String">
+		select subject from
+		time_table where major = #{major}
+	</select>
+
+	<select id="findLecture" resultType="String">
+		select lecture_list from
+		lecture where major = #{major}
+	</select>
+
+	<select id="findTeacher" resultType="String">
+		select name from member_info
+		where teach_sub = #{subject} and position = '교수'
+	</select>
+
+	<select id="findTeacherIdNum" resultType="String">
+		select id_num from
+		member_info where teach_sub = #{subject} and position = '교수'
+	</select>
+
+	<insert id="insertTimeTable">
+		insert into time_table (year_semester, id_num, major,
+		subject, professor, lecture_room, time, week) values
+		(#{yearSemester}, #{idNum}, #{major}, #{subject}, #{professor}, #{lectureRoom},
+		#{time}, #{week})
+	</insert>
+
+	<select id="findTime" resultType="String">
+		select time from time_table
+		where major = #{major} and week = #{week} and lecture_room =
+		#{lecture}
+	</select>
+	
+	<select id="selectAdminProCount" resultType="Integer">
+		select count(*) from
+		member_info where position = '교수' or position = '관리자'
+	</select>
+	
+	<select id="findAllAdmin" resultMap="officer">
+		select B.* from(select rownum rn,
+		A.* from
+		(select * from member_info where position = '교수' or position = '관리자' order by
+		id_num desc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="selectMajorAdminProCount" resultType="Integer">
+		select count(*)
+		from member_info where major = #{major} and position = '교수'
+	</select>
+	
+	<select id="findinfoAdminPro" resultMap="officer">
+		select B.* from(select rownum
+		rn, A.* from
+		(select * from member_info where major = #{major} and
+		(position = '교수' or position = '관리자') order by id_num desc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="searchAdminPro" resultMap="officer">
+		select B.* from(select rownum rn, A.* from (select * from member_info where ${searchS} = #{searchT} and major = #{searchM} and (position =
+		'교수' or position = '관리자')order by id_num desc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	
+	<select id="searchAdminProCount" resultType="Integer">
+		select count(*) from member_info where ${searchS} = #{searchT} and major = #{searchM} and (position = '교수' or position = '관리자')
+	</select>
+	
+	<select id="searchAllAdminPro" resultMap="officer">
+		select B.* from(select rownum rn, A.* from (select * from member_info where ${searchS} = #{searchT} and (position = '교수' or
+			position = '관리자')order by id_num desc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="searchAllAdminProCount" resultType="Integer">
+		select count(*) from member_info where ${searchS} = #{searchT} and (position = '교수' or position = '관리자')
+	</select>	
+	
+	<select id="adminProInfo" resultMap="officer">
+		select * from member_info where id_num = #{idNum}
+	</select>
+	
+	<select id="grade" resultMap="grade">
+		select B.* from(select rownum rn,
+		A.* from
+		(select * from grade_info order by grade_semester desc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="totalCal" resultType="Integer">
+		select sum(score) from grade_info where id_num = #{idNum} and year = #{dbYear} and semester = #{dbSemester}
+	</select>
+	
+	<select id="studentIdNum" resultType="String">
+		select id_num from member_info where position = '학생'
+	</select>
+	
+	<update id="insertCurTotalScore">
+		update member_info set semester = #{dbSemester}, cur_totalgrade = #{totalScore} where id_num = #{idNum}
+	</update>
+	
+	<select id="findRank" resultMap="officer">
+		select B.* from(select rownum rn,
+		A.* from
+		(select * from member_info where position = '학생' order by
+		major, grade DESC, cur_rank)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<update id="insertCurRank">
+		update member_info a set cur_rank=(select ranks from (select rank() over(PARTITION BY major ORDER BY cur_totalgrade DESC) as ranks 
+            , id_num rid from member_info where not cur_totalgrade is null) b where b.rid = a.id_num)
+	</update>
+	
+	<select id="findRankMajor" resultMap="officer">
+		select B.* from(select rownum rn,
+		A.* from
+		(select * from member_info where position = '학생' and major = #{major} order by
+		major, grade DESC, cur_rank)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="searchMajorGrade" resultMap="officer">
+		select B.* from(select rownum rn, A.* from (select * from member_info where ${searchS} = #{searchT} and major = #{searchM} and position = '학생'
+			order by id_num desc)A)B where rn between #{s} and #{e}
+	</select>
+
+	<select id="searchMajorGradeCount" resultType="Integer">
+		select count(*) from member_info where ${searchS} = #{searchT} and major = #{searchM} and position = '학생'
+	</select>
+	
+	<select id="searchAllGrade" resultMap="officer">
+		select B.* from(select rownum rn, A.* from (select * from member_info where ${searchS} = #{searchT} and position = '학생' order by id_num desc)A)B where rn between #{s} and #{e}
+	</select>
+	
+	<select id="searchAllGradeCount" resultType="Integer">
+		select count(*) from member_info where ${searchS} = #{searchT} and position = '학생'
+	</select>	
+	
+	<select id="getAllMember" resultMap="officer">
+		select * from member_info where position = '학생' and <![CDATA[semester <= 4 and semester > 0]]>
+	</select>
+	
+	<insert id="finalProcess">
+		insert into register_Info (major, id_num, name, scholarship, rank, year, semester, total_score) values
+		(#{major}, #{idNum}, #{name}, #{scholarship}, #{rank}, #{year}, #{semester}, #{totalScore})
+	</insert>
+	
+	<select id="getApplicationCred" resultType="Integer">
+		select sum(application_cred) from grade_info where id_num = #{idNum} and year = #{year} and semester = #{semester}
+	</select>
+	
+	<select id="getReceivedCred" resultType="Integer">
+		select sum(received_cred) from grade_info where id_num = #{idNum} and year = #{year} and semester = #{semester}
+	</select>
+	
+	<update id="tuition">
+		update tuition set reg_start = #{startDate}, reg_end = #{endDate}
+	</update>
+</mapper>
