@@ -58,7 +58,7 @@
 							<td>${studentInfo.name}</td>
 							<td>${300 - scholar}</td>
 							<td>${tuitionInfo.paymentStu}</td>
-							<td>${tuitionInfo.regStart }~${ tuitionInfo.regEnd}</td>
+							<td>${tuitionInfo.regStart }&nbsp;~&nbsp;${ tuitionInfo.regEnd}</td>
 						</tr>
 					</tbody>
 					</table>
