@@ -240,10 +240,10 @@ public class StudentServiceImpl implements StudentService {
 			}
 			
 			int repeat = 0;
-			if (RegDTO == null || RegDTO.getChkPeriod() != "Y") {		
-					repeat = 1;
-			}else{
+			if (RegDTO != null && RegDTO.getChkPeriod().equals("Y")) {
 					repeat = list.size();
+			}else{
+					repeat = 1;
 			}
 			model.addAttribute("repeat", repeat);
 			

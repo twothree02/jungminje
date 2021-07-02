@@ -47,7 +47,7 @@
 						<tbody>
 						<c:forEach var="dto" items="${list}" >
 						<tr>
-							<td>${dto.major}</td>
+							<td>${dto.subjectName}</td>
 							<td>${dto.lectureTime}</td>
 							<td>${dto.classRoom}</td>
 							<td>${dto.professor}</td>
