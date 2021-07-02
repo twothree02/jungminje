@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.care.root.common.session.MemberSessionName;
 import com.care.root.student.dto.GradeDTO;
+import com.care.root.student.dto.SubjectDTO;
 import com.care.root.student.service.StudentService;
 
 @Controller
@@ -122,6 +123,7 @@ public class StudentController implements MemberSessionName{
 			
 			return ss.detailGrade(semester, id);
 		}
+		
 		
 		@GetMapping("download")
 		public void download(@RequestParam("file") String fileName, HttpServletResponse response) throws Exception{
