@@ -137,7 +137,7 @@
 						</thead>
 						<tbody>
 							<tr>
-								<th scope="row">주 소 (자 택)</th>
+								<th scope="row" style="width: 200px;">주 소 (자 택)</th>
 								<td>${dto.addr}${dto.detailAddr}</td>
 							</tr>
 						</tbody>
@@ -164,5 +164,6 @@
 			</div>
 		</div>
 	</div>
+	<c:import url="../default/footer.jsp" />
 </body>
 </html>

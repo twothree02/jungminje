@@ -19,5 +19,6 @@
             </div>
         </header>
         <h1 align="center" style = "margin-top: 30px;">YW 대학에 오신걸 환영합니다</h1>
+        <c:import url="../default/footer.jsp" />
 </body>
 </html>

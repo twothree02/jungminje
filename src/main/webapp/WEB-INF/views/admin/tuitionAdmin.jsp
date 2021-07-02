@@ -56,37 +56,42 @@
 	</div>
 	<div class="menuBar">
 	</div>
-	<div>
-		<div style = "padding-top: 50px; text-align: center;">
-			<h3><u>납부기한 설정</u></h3>
+	<div class="container">
+		<div style = "padding-top: 50px; margin-bottom: 30px;">
+			<h4>납부기한 설정</h4>
 		</div>
-		<div style = "align : center;">
-			<form action = "tuition" method = "post">
-				<table border = "1">
-					<tr>
-						<td>
-							납부 시작일
-						</td>
-						<td>
-							<input type = "date" name = "startDate" id = "startDate">
-						</td>
-					</tr>
-					<tr>
-						<td>
-							납부 마감일
-						</td>
-						<td>
-							<input type = "date" name = "endDate" id = "endDate">
-						</td>
-					</tr>
-					<tr>
-						<td colspan = "2">
-							<button type="submit" class="btn btn-secondary">등록</button>
-						</td>
-					</tr>
+		<form action = "tuition" method = "post">
+			<div class="container">
+				<table class="table">
+					<thead style="text-align: center;">
+						<tr>
+							<th>
+								납부 시작일
+							</th>
+							<td>
+								<input type = "date" name = "startDate" id = "startDate">
+							</td>
+						</tr>
+					</thead>
+					<tbody style="text-align: center;">
+						<tr>
+							<th>
+								납부 마감일
+							</th>
+							<td>
+								<input type = "date" name = "endDate" id = "endDate">
+							</td>
+						</tr>
+						<tr>
+							<td colspan = "2" style="text-align: right; border-top: none;">
+								<button type="submit" class="btn btn-secondary">등록</button>
+							</td>
+						</tr>
+					</tbody>
 				</table>
-			</form>
-		</div>
+			</div>
+		</form>
 	</div>
+	<c:import url="../default/footer.jsp" />
 </body>
 </html>

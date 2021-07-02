@@ -170,5 +170,6 @@
 			</form>
 		</div>
 	</div>
+	<c:import url="../default/footer.jsp" />
 </body>
 </html>

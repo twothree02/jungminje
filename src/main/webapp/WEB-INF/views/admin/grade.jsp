@@ -121,7 +121,6 @@
 			success:function(map){
 					$('#searchMajor').val('정보통신과')
 					let html = "<div class='container'><table class='table' style='margin-top: 20px; margin-left:20px;'>"
-						html += "<caption style = 'caption-side : top; text-align : center; font-size : 18pt;'><b>[정보통신과]</b></caption>"
 						html += "<thead class='thead-dark' style='text-align: center;'><tr><th>번호</th><th>학번</th><th>이름</th><th>학과</th>"
 						html += "<th>학년</th><th>연도 - 학기</th><th>총점</th><th>석차</th>"
 						html += "<th>장학대상자 여부</th></tr></thead>"
@@ -168,7 +167,6 @@
 			success:function(map){
 				$('#searchMajor').val('자동차공학과')
 				let html = "<div class='container'><table class='table' style='margin-top: 20px; margin-left:20px;'>"
-					html += "<caption style = 'caption-side : top; text-align : center; font-size : 18pt;'><b>[자동차공학과]</b></caption>"
 					html += "<thead class='thead-dark' style='text-align: center;'><tr><th>번호</th><th>학번</th><th>이름</th><th>학과</th>"
 					html += "<th>학년</th><th>연도 - 학기</th><th>총점</th><th>석차</th>"
 					html += "<th>장학대상자 여부</th></tr></thead>"
@@ -215,7 +213,6 @@
 			success:function(map){
 				$('#searchMajor').val('경영학과')
 				let html = "<div class='container'><table class='table' style='margin-top: 20px; margin-left:20px;'>"
-					html += "<caption style = 'caption-side : top; text-align : center; font-size : 18pt;'><b>[경영학과]</b></caption>"
 					html += "<thead class='thead-dark' style='text-align: center;'><tr><th>번호</th><th>학번</th><th>이름</th><th>학과</th>"
 					html += "<th>학년</th><th>연도 - 학기</th><th>총점</th><th>석차</th>"
 					html += "<th>장학대상자 여부</th></tr></thead>"
@@ -264,7 +261,6 @@
 			contentType:"application/json; charset=utf-8",
 			success:function(map){
 				let html = "<div class='container'><table class='table' style='margin-top: 20px; margin-left:20px;'>"
-					html += "<caption style = 'caption-side : top; text-align : center; font-size : 18pt;'><b>[검색 결과]</b></caption>"
 					html += "<thead class='thead-dark' style='text-align: center;'><tr><th>번호</th><th>학번</th><th>이름</th><th>학과</th>"
 					html += "<th>학년</th><th>연도 - 학기</th><th>총점</th><th>석차</th>"
 					html += "<th>장학대상자 여부</th></tr></thead>"
@@ -344,8 +340,7 @@
 	<input type="hidden" value="" id="searchMaj">
 	<div id="studentGrade">
 		<div class="container">
-			<table class="table" style='margin-top: 20px;'>
-				<caption style = "caption-side : top; text-align : center; font-size : 18pt;"><b>[전체]</b></caption>
+			<table class='table' style='margin-top:20px; margin-left:20px;'>
 				<thead class="thead-dark" style="text-align: center;">
 					<tr>
 						<th>번호</th>
@@ -398,5 +393,6 @@
 			</tr>
 		</table>
 	</div>
+	<c:import url="../default/footer.jsp" />
 </body>
 </html>
