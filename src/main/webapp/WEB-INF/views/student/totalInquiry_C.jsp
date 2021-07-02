@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <style type="text/css">
 div {
 	/* border: 1px solid black; */
@@ -41,6 +42,7 @@ div {
 	height: 50%;
 	margin :auto;
 	overflow: auto;
+	display: flex;
 }
 
 .infoTable{width: 35%; margin-left: 10px; margin-right: 30px;}
@@ -49,6 +51,7 @@ div {
 </head>
 <body>
 	<c:import url="../default/studentheader.jsp" />
+
 	<div class="wrap">
 		<div class="title">
 			<h1>종합정보 조회</h1>
@@ -110,7 +113,7 @@ div {
 						</tr>
 						<tr>
 							<th scope="row">국   적</th>
-							<td>${info.country }</td>
+							<td>${info.country}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -126,7 +129,8 @@ div {
 				<button type="button" class="btn btn-secondary" onclick="location.href='${contextPath }/root/student/totalInquiry_T'">등록/장학</button>
 			</div>
 		</div>
-			<div class="content" style="display: flex;">
+			
+			<div class="content">
 		<table class="table" style="margin-top: 7px; text-align: center; width: 80px;">
 			<thead class="thead-dark">
 				<tr>

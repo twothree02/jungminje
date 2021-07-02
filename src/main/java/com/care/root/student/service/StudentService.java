@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 
 import com.care.root.student.dto.GradeDTO;
+import com.care.root.student.dto.SubjectDTO;
 
 public interface StudentService {
 	public void studentInfo(Model model, String id);
