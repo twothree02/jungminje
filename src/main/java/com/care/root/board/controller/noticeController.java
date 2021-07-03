@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.care.root.board.noticedto.noticePageDTO;
@@ -109,7 +110,10 @@ public class noticeController implements MemberSessionName {
 	}
 	
 
+	@RequestMapping("schedule")
+	public String schedule() {
+		return "schedule";
+	}
 	
-
 
 }

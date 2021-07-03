@@ -59,10 +59,12 @@
 			</tbody>
 		</table>
 	</div>
+	<c:if test="${position =='관리자' }">
 	<div align="right" style="margin-right: 300px;">
 		<button type="button" class="btn btn-secondary"
 			onclick="location.href='register'" style ="margin-top: 20px; margin-bottom: 20px;">등록</button>	
 	</div>
+	</c:if>
 		
 	
 	
