@@ -30,13 +30,13 @@
 			<ul class="navbar-nav">
 			<c:choose>
 				<c:when test="${position == '학생' }">
-					<li class="nav-item"><a class="nav-link" href="student/studentMain">마이페이지</a></li>
+					<li class="nav-item"><a class="nav-link" href="/root/student/studentMain">마이페이지</a></li>
 				</c:when>
 				<c:when test="${position == '교수' }">
 					<li class="nav-item"><a class="nav-link" href="professorMain">종합시스템</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="nav-item"><a class="nav-link"  href="adminMain">종한관리시스템</a></li>
+					<li class="nav-item"><a class="nav-link"  href="/root/admin/adminMain">종한관리시스템</a></li>
 				</c:otherwise>
 			</c:choose>
 			</ul>
