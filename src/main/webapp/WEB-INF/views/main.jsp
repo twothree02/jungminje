@@ -116,7 +116,7 @@
 					<table class="table">
 						<thead class="thead-dark">
 							<tr>
-								<th>학사공지</th>
+								<th>학사일정</th>
 								<th style="text-align: right;"><a href="board/schedule">more</a></th>
 							</tr>
 						</thead>
