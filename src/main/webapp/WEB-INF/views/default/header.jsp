@@ -36,7 +36,7 @@
 					<li class="nav-item"><a class="nav-link" href="professorMain">종합시스템</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="nav-item"><a class="nav-link"  href="/root/admin/adminMain">종한관리시스템</a></li>
+					<li class="nav-item"><a class="nav-link"  href="adminMain">종한관리시스템</a></li>
 				</c:otherwise>
 			</c:choose>
 			</ul>

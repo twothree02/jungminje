@@ -25,7 +25,7 @@ public class ProfessorServiceImpl implements ProfessorService{
 	@Autowired ProfessorDAO pm;
 	@Override
 	public Map<String, Object> getJuniorList(String major,int num) {
-		int pageLetter = 2; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
+		int pageLetter = 10; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
 		int grade = 1; //1학년 학생들에서 학생수를 정의
 		int allCount = pm.selectStuCount(grade, major);
 		
@@ -43,7 +43,7 @@ public class ProfessorServiceImpl implements ProfessorService{
 		return result;
 	}
 	public Map<String, Object> getSeniorList(String major,int num) {
-		int pageLetter = 2; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
+		int pageLetter = 10; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
 		int grade = 2; //2학년 학생들에서 학생수를 정의
 		int allCount = pm.selectStuCount(grade, major);
 		
@@ -62,7 +62,7 @@ public class ProfessorServiceImpl implements ProfessorService{
 	}
 	@Override
 	public Map<String, Object> getSearchStu(String searchSel, String searchInp, int num) {
-		int pageLetter = 2; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
+		int pageLetter = 10; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
 		int allCount = pm.searchStuCount(searchSel, searchInp);
 		
 		int repeat = allCount / pageLetter;	// 총 페이지 수
@@ -86,7 +86,7 @@ public class ProfessorServiceImpl implements ProfessorService{
 	}
 	@Override
 	public Map<String, Object> getBProfessorList(int num) {
-		int pageLetter = 2; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
+		int pageLetter = 10; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
 		int allCount = pm.searchBProfCnt();
 		
 		int repeat = allCount / pageLetter;	// 총 페이지 수
@@ -105,7 +105,7 @@ public class ProfessorServiceImpl implements ProfessorService{
 	}
 	@Override
 	public Map<String, Object> getIProfessorList(int num) {
-		int pageLetter = 2; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
+		int pageLetter = 10; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
 		int allCount = pm.searchIProfCnt();
 		
 		int repeat = allCount / pageLetter;	// 총 페이지 수
@@ -124,7 +124,7 @@ public class ProfessorServiceImpl implements ProfessorService{
 	}
 	@Override
 	public Map<String, Object> getCProfessorList(int num) {
-		int pageLetter = 2; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
+		int pageLetter = 10; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
 		int allCount = pm.searchCProfCnt();
 		
 		int repeat = allCount / pageLetter;	// 총 페이지 수
@@ -143,7 +143,7 @@ public class ProfessorServiceImpl implements ProfessorService{
 	}
 	@Override
 	public Map<String, Object> getAdminList(String position, int num) {
-		int pageLetter = 2; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
+		int pageLetter = 10; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
 		int allCount = pm.searchAdminCnt(position);
 		
 		int repeat = allCount / pageLetter;	// 총 페이지 수
@@ -241,7 +241,7 @@ public class ProfessorServiceImpl implements ProfessorService{
 			tSeme = "2";
 		}
 		
-		for(int i=0;i<arrId.length-1;i++) {
+		for(int i=0;i<=arrId.length-1;i++) {
 			mapScore.put(arrId[i], arrScore[i]);
 			System.out.println(mapScore);
 			int test01 = Integer.parseInt(arrScore[i]);
@@ -332,8 +332,14 @@ public class ProfessorServiceImpl implements ProfessorService{
 	public ArrayList<GradeInfoDTO> getSemeDetail(String idNum, String gSeme) {
 		int inputSeme = Integer.parseInt(gSeme);
 		System.out.println(inputSeme);
+		int convertSeme = 0;
+		if(inputSeme == 101) convertSeme = 1;
+		if(inputSeme == 102) convertSeme = 2;
+		if(inputSeme == 201) convertSeme = 3;
+		if(inputSeme == 202) convertSeme = 4;
+		System.out.println(convertSeme);
 		
-		return pm.getSemeDetail(idNum, inputSeme);
+		return pm.getSemeDetail(idNum, convertSeme);
 	}
 	@Override
 	public void semeGrade(Model model, String id) {
@@ -370,6 +376,11 @@ public class ProfessorServiceImpl implements ProfessorService{
 			e.printStackTrace();
 		}
 	}
+	@Override
+	public String chkPeriod(String pId) {
+		return pm.getChkPeriod(pId);
+	}
+	
 	
 	
 	

@@ -31,5 +31,6 @@ public interface ProfessorService {
 	public ArrayList<GradeInfoDTO> getSemeDetail(String idNum, String gSeme);
 	public void semeGrade(Model model, String id);
 	public void accumulatedGrade(Model model, String id);
+	public String chkPeriod(String pId);
 	
 }
