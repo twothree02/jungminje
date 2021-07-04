@@ -84,7 +84,7 @@
 										<li style="padding-bottom: 1.5%;">8/10~17 2학기 수강신청</li>
 										<li style="padding-bottom: 1.5%;">8/23~27 2학기 재학생 등록</li>
 										<li style="padding-bottom: 1.5%;">8/27 후기 학위수여식</li>
-										<li style="padding-bottom: 1.5%;">8/31 1학기 종료, 하계휴가 종료</li>
+										<li style="padding-bottom: 1.5%; list-style: none;"><a href="/root/board/schedule">more</a></li>
 									</ul>
 								</div>
 							</div>
@@ -94,10 +94,7 @@
 
 			</main>
 		</div>
-		<div id="layoutAuthentication_footer">
-			           <c:import url="../default/footer.jsp" />
-
-		</div>
+		<c:import url="../default/footer.jsp" />
 	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"

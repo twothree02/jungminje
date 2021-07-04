@@ -109,7 +109,8 @@ div {
          
          </div>
          </div>
-
+	</div>
          <div class="menuBar"></div>
+    <c:import url="../default/footer.jsp" />
 </body>
 </html>

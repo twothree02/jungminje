@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>등록금 관리</title>
 <style type="text/css">
  div{/* border: 1px solid black; */}
  .content{width:90%; height: 12%; margin: auto; margin-top: 20px;}

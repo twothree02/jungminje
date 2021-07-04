@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>종합 정보 조회_성적</title>
 
 <script type="text/javascript">
 function detailGrade(semester){

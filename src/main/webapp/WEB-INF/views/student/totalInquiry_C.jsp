@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>종합 정보 조회_수강</title>
 <style type="text/css">
 div {
 	/* border: 1px solid black; */

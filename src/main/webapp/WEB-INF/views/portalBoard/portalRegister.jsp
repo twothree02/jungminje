@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>포털공지</title>
 <style type="text/css">
 table {
 	width: 70%;

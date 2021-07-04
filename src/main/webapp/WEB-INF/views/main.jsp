@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>YW University_Main</title>
 </head>
 <body>
 	<c:import url="default/header.jsp" />

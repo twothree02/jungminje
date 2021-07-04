@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>학생 세부 정보</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	function showDetail(seme){
@@ -33,8 +33,8 @@
 				for(var i=0;i<list.length;i++){
 				html += "<tbody style='text-align: center;'><tr><td>"+(i+1)+"</td><td>"+list[i].gradeSeme+"</td>"
 				html += "<td>"+list[i].subjectName+"</td>"
-				html += "<td>"+list[i].score+"</td>"
-				html += "<td>"+list[i].grade+"</td>" //나중에 수정 받은 평점으로 
+				html += "<td>"+list[i].receivedCred+"</td>"
+				html += "<td>"+list[i].score+"</td>" //나중에 수정 받은 평점으로 
 				html += "<td>"+list[i].grade+"</td></tr></tbody>"
 				}
 				html += "</table>"
@@ -94,9 +94,9 @@
 		<!-- varStatus로 인덱스를 매기면 하나 하나 개별적으로 값을 전달하는 것이 가능하다. -->
 		<c:forEach var="sGrade" items="${semeGradeInfo}" varStatus="status">
 			<input type="hidden" id="idNum" value="${sGrade.idNum }"/>
-			<input type="hidden" id=seme${status.index} value="${sGrade.gradeSeme }"/>
+			<input type="hidden" id=seme${status.index} value="${sGrade.mjSeme }"/>
 			<tr>
-				<td><input type="button" value="${sGrade.gradeSeme}" onclick="showDetail($('#seme${status.index}').val())"/></td>
+				<td><input type="button" value="${sGrade.mjSeme}" onclick="showDetail($('#seme${status.index}').val())"/></td>
 				<td>${sGrade.appCred}</td>
 				<td>${sGrade.receivedCred}</td> <td>${sGrade.aveGrade}</td> <td>${sGrade.rank}</td>
 			</tr>
@@ -140,6 +140,6 @@
 	</tbody>
 </table>
 </div>
-
+<c:import url="../default/footer.jsp" />
 </body>
 </html>

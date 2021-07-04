@@ -16,9 +16,9 @@ import com.care.root.board.portaldto.portalDTO;
 import com.care.root.member.dto.MemberDTO;
 
 public interface MemberService {
-	public int loginChk(HttpServletRequest request, HttpSession session);
+	public int loginChk(HttpServletResponse response, HttpServletRequest request, HttpSession session);
 	public String findId(String name, String phone);
-	public String findPw(String id, String email, HttpServletRequest request, HttpServletResponse response);
+	public String findPw(String id, String email, String domain, HttpServletRequest request, HttpServletResponse response);
 	public void logout(HttpSession session, HttpServletResponse response);
 	public ArrayList<MemberDTO> getInfo(String id);
 	public String modify(MultipartHttpServletRequest mul, HttpServletRequest request);

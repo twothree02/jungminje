@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>수강신청</title>
 <style type="text/css">
  div{ /* border: 1px solid black; */ }
  .title{}

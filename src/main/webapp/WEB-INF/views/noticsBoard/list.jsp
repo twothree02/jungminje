@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지사항</title>
 </head>
 <body>
 	<c:import url="../default/header.jsp" />
@@ -19,7 +19,7 @@
 		<option VALUE =""${boardPage.vN.type ==null?"selected":""}>----</option>
 		<option VALUE ="T"${boardPage.vN.type eq 'T'?"selected":""}>제목</option>
 		<option VALUE ="N"${boardPage.vN.type eq 'N'?"selected":""}>작성자</option>
-		<option VALUE ="NC"${boardPage.vN.type eq 'TN'?"selected":""}>제목+작성자</option>
+		<option VALUE ="TN"${boardPage.vN.type eq 'TN'?"selected":""}>제목+작성자</option>
 		</select>
 		<input type ="text" name = "keyword" value ="${boardPage.vN.keyword }">
 		<input type ="hidden" name = "pageNum" value ="${boardPage.vN.pageNum }">

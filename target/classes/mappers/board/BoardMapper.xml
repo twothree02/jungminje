@@ -83,7 +83,7 @@
 					title like '%'||#{keyword}||'%'
 				</if>
 				<if test="type == 'N'.toString()">
-					content like '%'||#{keyword}||'%'
+					name like '%'||#{keyword}||'%'
 				</if>
 			</foreach>
 		</trim>

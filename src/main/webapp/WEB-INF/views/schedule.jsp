@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>학사일정</title>
 </head>
 <body>
 	<c:import url="default/header.jsp" />
