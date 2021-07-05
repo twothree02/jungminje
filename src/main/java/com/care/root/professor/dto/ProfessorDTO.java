@@ -25,6 +25,7 @@ public class ProfessorDTO {
 	private String teachSub;
 	private String firstLogin;
 	private String semester;
+	private String inputPeriod;
 	
 	public String getFirstLogin() {
 		return firstLogin;

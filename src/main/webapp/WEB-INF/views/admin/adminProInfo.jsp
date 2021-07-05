@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>교수/관리자 상세 정보</title>
 <style type="text/css">
 .title {
 	width: 90%;

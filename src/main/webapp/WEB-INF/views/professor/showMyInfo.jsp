@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>종합 정보 조회</title>
 <style type="text/css">
 div {
 	/* border: 1px solid black; */
@@ -57,8 +57,9 @@ div {
 	<c:import url="../default/professorHeader.jsp" />
 	<div class="wrap">
 		<div class="title" style="align-content: center">
-			<h1 style="margin-left: 30px; margin-bottom: 25px;">종합정보 조회</h1>
+			<h1 style="margin-left: 30px; margin-bottom: 25px;">종합 정보 조회</h1>
 		</div>
+		<hr style="border: inset 5px lightgray">
 		<div class="memberInfo">
 			<div class="imgDiv">
 				<img class="navbar-brand rounded-circle"
@@ -162,5 +163,6 @@ div {
 			</div>
 		</div>
 	</div>
+	<c:import url="../default/footer.jsp" />
 </body>
 </html>

@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<<<<<<< HEAD
 <title>Insert title here</title>
 <script type="text/javascript">
 function classInfo(semester){
@@ -47,6 +48,9 @@ function classInfo(semester){
 
 </script>
 
+=======
+<title>종합 정보 조회_수강</title>
+>>>>>>> 73a1c963e707316b219ec0169e449e93152b3f62
 <style type="text/css">
 div {
 	/* border: 1px solid black; */

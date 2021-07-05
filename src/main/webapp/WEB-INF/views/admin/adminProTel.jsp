@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>성적/장학 관리</title>
+<title>연락망</title>
 <style type="text/css">
 .title {
 	width: 90%;
@@ -286,11 +286,6 @@
 			style="margin-top: 7px; margin-left: 25px; margin-bottom: 7px; padding-left: 80%;">
 			<button type="button" class="btn btn-secondary"
 				onclick="location.href='adminProTel'">조회</button>
-		</div>
-		<div class="btn-group" role="group" aria-label="Basic example"
-			style="margin-top: 7px; margin-bottom: 7px;">
-			<button type="button" class="btn btn-secondary"
-				onclick="location.href='adminProInsert'">등록</button>
 		</div>
 	</div>
 	<div class="container">

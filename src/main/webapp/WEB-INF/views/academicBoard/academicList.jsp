@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>학사공지</title>
 </head>
 <body>
 	<c:import url="../default/header.jsp" />
@@ -57,10 +57,13 @@
 			</tbody>
 		</table>
 	</div>
+		<c:if test="${position =='관리자' }">
+	
 	<div align="right" style="margin-right: 300px;">
 		<button type="button" class="btn btn-secondary"
 			onclick="location.href='academicRegister'" style ="margin-top: 20px; margin-bottom: 20px;">등록</button>	
 	</div>
+	</c:if>
 		
 	
 	

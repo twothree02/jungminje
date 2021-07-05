@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>YW University_정보수정</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/daumpost.js"></script>
 
@@ -63,6 +63,10 @@
 		})
 	}
 	--%>
+	
+	function deleteFile() {
+		$("#imageFile").val('nan');
+	}
 </script>
 
 <style type="text/css">
@@ -186,6 +190,7 @@
 										<td style="display: flex;">
 											<input class="form-control form-control-sm" id="imageFile" name="imageFile" type="text" value="${mem.imageFile }" style="width: 70%;" readonly>
 											&nbsp;&nbsp;<button type="button" class="btn btn-secondary btn-sm" onclick="document.all.file.click()">파일 선택</button>
+											<button type="button" class="btn btn-secondary btn-sm" onclick="deleteFile()">파일 삭제</button>
 											<input type="file" name="file" id="file" style="display:none" onchange="javascript:document.getElementById('imageFile').value = this.value.split('\\')[this.value.split('\\').length-1]">
 										</td>
 									</tr>

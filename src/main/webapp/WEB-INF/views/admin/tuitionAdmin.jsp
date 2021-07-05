@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>성적/장학 관리</title>
+<title>등록 관리</title>
 <style type="text/css">
 .title {
 	width: 90%;

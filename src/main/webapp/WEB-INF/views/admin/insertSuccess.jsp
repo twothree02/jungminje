@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	alert('성공적으로 입력되었습니다.')
-	location.href='adminMain'
+	location.href='/root/officer/adminMain'
 </script>
 </head>
 <body>

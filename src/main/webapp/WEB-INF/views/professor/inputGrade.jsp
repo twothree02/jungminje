@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>성적 입력</title>
 
 </head>
 <body>
@@ -54,7 +54,7 @@
 			<input type="submit" class="btn btn-secondary" value="성적 저장">
 		</form>
 	</div>
-
+	<c:import url="../default/footer.jsp" />
 
 
 

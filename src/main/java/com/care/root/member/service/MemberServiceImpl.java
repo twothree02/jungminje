@@ -35,16 +35,31 @@ public class MemberServiceImpl implements MemberService{
 	@Autowired JavaMailSender mailSender;	//config에 설정한 bean 얻어오기
 
 	@Override
-	public int loginChk(HttpServletRequest request, HttpSession session) {
+	public int loginChk(HttpServletResponse response, HttpServletRequest request, HttpSession session) {
 		MemberDTO dto = mapper.loginChk(request.getParameter("inputId"));
 		if(dto != null) {
 			// 암호화 되기 전 코드, 암호화 완료 시 수정 필요!
 			if(request.getParameter("inputPwd").equals(dto.getPw())) {
 				session.setAttribute(MemberSessionName.POSITION, dto.getPosition());
 				return 0;
+			} else {
+				try {
+					PrintWriter out = response.getWriter();
+					out.print("<script>alert('비밀번호가 일치하지 않습니다. 다시 확인해 주세요.')</script>");
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+				return 1;
 			}
+		} else {
+			try {
+				PrintWriter out = response.getWriter();
+				out.print("<script>alert('존재하지 않는 아이디입니다. 다시 확인해 주세요.')</script>");
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return 1;
 		}
-		return 1;
 	}
 
 	public String findId(String name, String phone) {
@@ -53,7 +68,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public String findPw(String id, String email, HttpServletRequest request, HttpServletResponse response) {
+	public String findPw(String id, String email, String domain, HttpServletRequest request, HttpServletResponse response) {
 		// 암호화 되기 전 코드, 암호화 완료 시 수정 필요!
 		System.out.println("서비스");
 		System.out.println(id);
