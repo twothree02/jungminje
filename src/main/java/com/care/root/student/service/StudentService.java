@@ -23,4 +23,5 @@ public interface StudentService {
 	public void classReqChk(String id);
 	public void gradeInquiry(Model model, String id);
 	public List<GradeDTO> detailGrade(int semester, String id);
+	public List<SubjectDTO> classInfo(int semester, String id);
 }

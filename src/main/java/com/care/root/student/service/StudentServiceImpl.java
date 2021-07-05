@@ -440,4 +440,16 @@ public class StudentServiceImpl implements StudentService {
 		return list;
 	}
 
+	@Override
+	public List<SubjectDTO> classInfo(int semester, String id) {
+		StudentInfoDTO infoDTO = mapper.studentInfo(id);
+		List<SubjectDTO> list = null; 
+		if(semester <= 4) {
+			list = mapper.subjectInfoC(semester, infoDTO.getMajor());
+		}else {
+			list = mapper.subjectInfoA(infoDTO.getClassReq(), infoDTO.getMajor());
+		}
+		return list;
+	}
+
 }

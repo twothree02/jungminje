@@ -117,12 +117,17 @@ public class StudentController implements MemberSessionName{
 		@ResponseBody
 		@GetMapping(value="detailGrade/{semester}", produces="application/json;charset=utf-8")
 		public List<GradeDTO> detailGrade(@PathVariable int semester, HttpSession session){
-			//String id = "20201234";
-			//int semester = 101;
+
 			String id = (String) session.getAttribute(LOGIN);
-			
-			
 			return ss.detailGrade(semester, id);
+		}
+		
+		@ResponseBody
+		@GetMapping(value="classInfo/{semester}", produces="application/json;charset=utf-8")
+		public List<SubjectDTO> classInfo(@PathVariable int semester, HttpSession session){
+
+			String id = (String) session.getAttribute(LOGIN);
+			return ss.classInfo(semester, id);
 		}
 		
 		
