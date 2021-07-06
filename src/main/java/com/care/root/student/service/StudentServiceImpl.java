@@ -231,19 +231,16 @@ public class StudentServiceImpl implements StudentService {
 		try {
 			StudentInfoDTO infoDTO = mapper.studentInfo(id);
 			List<GradeDTO> list = mapper.gradeInfo(id, infoDTO.getGradeSemester());
-			RegisterInfoDTO RegDTO = mapper.registerInfo(id, infoDTO.getGradeSemester());
 			
+			RegisterInfoDTO RegDTO = mapper.registerInfo(id, infoDTO.getGradeSemester());
+			int repeat = 0;
 			if(RegDTO != null) {
-				model.addAttribute("period", RegDTO.getChkPeriod());
+				model.addAttribute("period", "Y");
+				repeat = list.size();
+				
 			}else {
 				model.addAttribute("period", "N");
-			}
-			
-			int repeat = 0;
-			if (RegDTO == null || RegDTO.getChkPeriod() != "Y") {		
-					repeat = 1;
-			}else{
-					repeat = list.size();
+				repeat = 1;
 			}
 			model.addAttribute("repeat", repeat);
 			
@@ -266,23 +263,7 @@ public class StudentServiceImpl implements StudentService {
 		
 	}
 
-	@Override
-	public List<GradeDTO> detailGrade(int semester, String id) {
-		List<GradeDTO> list = mapper.gradeInfo(id, semester);
-		for (GradeDTO dto : list) {
-			if(dto.getSemester() == 1) {
-				dto.setSemester(101);
-			}else if(dto.getSemester() == 2) {
-				dto.setSemester(102);
-			}else if(dto.getSemester() == 3) {
-				dto.setSemester(201);
-			}else if(dto.getSemester() == 4) {
-				dto.setSemester(202);
-			}
-		}
-		
-		return list;
-	}
+
 
 	@Override
 	public void totalInquiry_G(Model model, String id) {
@@ -439,6 +420,36 @@ public class StudentServiceImpl implements StudentService {
 		}
 		
 		
+	}
+	
+	@Override
+	public List<GradeDTO> detailGrade(int semester, String id) {
+		List<GradeDTO> list = mapper.gradeInfo(id, semester);
+		for (GradeDTO dto : list) {
+			if(dto.getSemester() == 1) {
+				dto.setSemester(101);
+			}else if(dto.getSemester() == 2) {
+				dto.setSemester(102);
+			}else if(dto.getSemester() == 3) {
+				dto.setSemester(201);
+			}else if(dto.getSemester() == 4) {
+				dto.setSemester(202);
+			}
+		}
+		
+		return list;
+	}
+
+	@Override
+	public List<SubjectDTO> classInfo(int semester, String id) {
+		StudentInfoDTO infoDTO = mapper.studentInfo(id);
+		List<SubjectDTO> list = null; 
+		if(semester <= 4) {
+			list = mapper.subjectInfoC(semester, infoDTO.getMajor());
+		}else {
+			list = mapper.subjectInfoA(infoDTO.getClassReq(), infoDTO.getMajor());
+		}
+		return list;
 	}
 
 }

@@ -5,7 +5,52 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<<<<<<< HEAD
+<title>Insert title here</title>
+<script type="text/javascript">
+function classInfo(semester){
+	$.ajax({
+		url:"classInfo/"+semester, type:"GET", dataType:"json",
+		contentType:"application/json;charset=utf-8",
+		success: function(rep){
+			let num = 1;
+			let html='<table class="table" style="margin-top: 7px; text-align: center;"><thead class="thead-dark">';
+			html += '<tr><th>번호</th><th>학과/학기</th><th>교과목</th><th>강의실</th><th>교수</th></tr></thead><tbody>'
+
+			rep.forEach(function(data){
+				
+				html += "<tr><td>"+num+"</td>";
+				
+				if(data.gradeSemester == 1){
+				html += "<td>"+data.major+"-"+101+"</td>";
+				}else if(data.gradeSemester == 2){
+				html += "<td>"+data.major+"-"+102+"</td>";	
+				}else if(data.gradeSemester == 3){
+				html += "<td>"+data.major+"-"+201+"</td>";	
+				}else if(data.gradeSemester == 4){
+				html += "<td>"+data.major+"-"+202+"</td>";	
+				}
+				
+				html += "<td>"+data.subjectName+"</td>";
+				html += "<td>"+data.classRoom+"</td>";
+				html += "<td>"+data.professor+"</td></tr>";
+				num += 1;
+			})
+			html += "</tbody></table>";
+			$("#content").html(html)
+			
+		}, error:function(){
+			alert('문제 발생')
+		}
+		
+	})
+}
+
+</script>
+
+=======
 <title>종합 정보 조회_수강</title>
+>>>>>>> 73a1c963e707316b219ec0169e449e93152b3f62
 <style type="text/css">
 div {
 	/* border: 1px solid black; */
@@ -41,6 +86,7 @@ div {
 	height: 50%;
 	margin :auto;
 	overflow: auto;
+	display: flex;
 }
 
 .infoTable{width: 35%; margin-left: 10px; margin-right: 30px;}
@@ -49,6 +95,7 @@ div {
 </head>
 <body>
 	<c:import url="../default/studentheader.jsp" />
+
 	<div class="wrap">
 		<div class="title">
 			<h1>종합정보 조회</h1>
@@ -110,7 +157,7 @@ div {
 						</tr>
 						<tr>
 							<th scope="row">국   적</th>
-							<td>${info.country }</td>
+							<td>${info.country}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -126,7 +173,24 @@ div {
 				<button type="button" class="btn btn-secondary" onclick="location.href='${contextPath }/root/student/totalInquiry_T'">등록/장학</button>
 			</div>
 		</div>
-			<div class="content" style="display: flex;">
+		<div style="margin-top: 10px; padding-left: 50px;">
+		<c:if test="${info.classReq >= 1}">
+		<button type="button" class="btn btn-outline-secondary" onclick="classInfo(5)">전체</button>
+		</c:if>
+		<c:if test="${info.classReq >= 1}">
+		<button type="button" class="btn btn-outline-secondary" onclick="classInfo(1)">101</button>
+		</c:if>
+		<c:if test="${info.classReq >= 2}">
+		<button type="button" class="btn btn-outline-secondary" onclick="classInfo(2)">102</button>
+		</c:if>
+		<c:if test="${info.classReq >= 3}">
+		<button type="button" class="btn btn-outline-secondary" onclick="classInfo(3)">201</button>
+		</c:if>
+		<c:if test="${info.classReq >= 4}">
+		<button type="button" class="btn btn-outline-secondary" onclick="classInfo(4)">202</button>
+		</c:if>
+		</div>
+			<div class="content" id="content">
 		<table class="table" style="margin-top: 7px; text-align: center; width: 80px;">
 			<thead class="thead-dark">
 				<tr>
@@ -189,5 +253,7 @@ div {
 		</div>
 	</div>
 	  <c:import url="../default/footer.jsp" />
+
 </body>
+
 </html>

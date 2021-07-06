@@ -12,8 +12,8 @@
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="resources/asset/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="resources/cs/styles.css" rel="stylesheet" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link href="<%=request.getContextPath()%>/resources/cs/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -44,6 +44,7 @@
             	</div>
             <div>
             	<a class="nav-link" href="<%=request.getContextPath()%>/logout" style="color: white; float: right;">로그아웃</a>
+       		</div>
        		</div>
         </nav>
 </body>

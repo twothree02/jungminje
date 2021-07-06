@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.care.root.common.session.MemberSessionName;
 import com.care.root.member.service.MemberFileService;
 import com.care.root.student.dto.GradeDTO;
+import com.care.root.student.dto.SubjectDTO;
 import com.care.root.student.service.StudentService;
 
 @Controller
@@ -116,18 +117,25 @@ public class StudentController implements MemberSessionName{
 		@ResponseBody
 		@GetMapping(value="detailGrade/{semester}", produces="application/json;charset=utf-8")
 		public List<GradeDTO> detailGrade(@PathVariable int semester, HttpSession session){
-			//String id = "20201234";
-			//int semester = 101;
+
 			String id = (String) session.getAttribute(LOGIN);
-			
-			
 			return ss.detailGrade(semester, id);
 		}
+		
+		@ResponseBody
+		@GetMapping(value="classInfo/{semester}", produces="application/json;charset=utf-8")
+		public List<SubjectDTO> classInfo(@PathVariable int semester, HttpSession session){
+
+			String id = (String) session.getAttribute(LOGIN);
+			return ss.classInfo(semester, id);
+		}
+		
 		
 		@GetMapping("download")
 		public void download(@RequestParam("file") String fileName, HttpServletResponse response) throws Exception{
 			//final String IMAGE_REPO = "C:\\Users\\Hyunwoo\\spring\\image_repo";
 			final String IMAGE_REPO = MemberFileService.IMAGE_REPO;
+
 			//Content-disposition(http 헤더중 하나) : 파일 다운로드 할떄 http 헤더에 추가해야 한다.
 			//attachment : 파일을 다운로드 하여 브라우저로 표현하는 의미
 			response.addHeader("Content-disposition", "attachment; fileName="+fileName);

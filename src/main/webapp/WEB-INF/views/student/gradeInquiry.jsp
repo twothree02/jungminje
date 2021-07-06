@@ -36,8 +36,8 @@
 				</tr>
 				</c:forEach>
 			</tbody>
-		</table>
-
+		</table> 
+	
 	<table class="table" style="text-align: center; ">
 						<thead class="thead-dark">
 							<tr>
@@ -50,6 +50,7 @@
 						<tbody>
 						<c:choose>
 						<c:when test="${period == 'Y' }">
+						<c:set var="num" value="0" />
 						<c:forEach var="list" items="${grade}">
 						<tr>
 							<td>${list.subjectName }</td>
