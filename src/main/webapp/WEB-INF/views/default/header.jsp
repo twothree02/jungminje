@@ -36,7 +36,7 @@
 					<li class="nav-item"><a class="nav-link" href="professorMain">종합시스템</a></li>
 				</c:when>
 				<c:when test="${position == '관리자' }">
-					<li class="nav-item"><a class="nav-link"  href="adminMain">종한관리시스템</a></li>
+					<li class="nav-item"><a class="nav-link"  href="adminMain">종합관리시스템</a></li>
 				</c:when>
 				<c:otherwise>
 					<li class="nav-item"><a class="nav-link" href="/root/">비회원으로 사용 중입니다. 로그인을 진행하려면 클릭해 주세요.</a></li>

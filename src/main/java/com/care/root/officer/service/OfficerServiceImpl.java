@@ -576,6 +576,8 @@ public class OfficerServiceImpl implements OfficerService{
 	public int finalProcess() {
 		RegisterDTO dto = new RegisterDTO();
 		ArrayList<OfficerDTO> set = new ArrayList<OfficerDTO>();
+		
+		String inputPeriod = mapper.getInputPeriod().get(0);
 
 		set = mapper.getAllMember();
 		
@@ -584,39 +586,48 @@ public class OfficerServiceImpl implements OfficerService{
 		String year = cal.get(cal.YEAR)+"";
 		int cnt = 0;
 		
-		for(int i = 0; i<set.size(); i++) {
-			if(set.get(i).getCurRank() > 0 && set.get(i).getCurRank() < 4) {
-				dto.setScholarship(300);
+		if(inputPeriod.equals("Y")) {
+			for(int i = 0; i<set.size(); i++) {
+				if(set.get(i).getCurRank() > 0 && set.get(i).getCurRank() < 4) {
+					dto.setScholarship(300);
+				}
+				else {
+					dto.setScholarship(0); 
+				}
+				dto.setMajor(set.get(i).getMajor());
+				dto.setName(set.get(i).getName());
+				dto.setRank(set.get(i).getCurRank());
+				dto.setTotalScore(set.get(i).getCurTotalGrade());
+				dto.setIdNum(set.get(i).getIdNum());
+				dto.setYear(year);
+				if(set.get(i).getGrade() == 1 && set.get(i).getSemester().equals("1")) {
+					dto.setGradeSemester(1);
+					dto.setMjSemester(101);
+					dto.setSemester("1");
+				}
+				else if(set.get(i).getGrade() == 1 && set.get(i).getSemester().equals("2")) {
+					dto.setGradeSemester(2);
+					dto.setMjSemester(102);
+					dto.setSemester("2");
+				}
+				else if(set.get(i).getGrade() == 2 && set.get(i).getSemester().equals("1")) {
+					dto.setGradeSemester(3);
+					dto.setMjSemester(201);
+					dto.setSemester("1");
+				}
+				else {
+					dto.setGradeSemester(4);
+					dto.setMjSemester(202);
+					dto.setSemester("2");
+				}
+				dto.setApplicationCred(mapper.getApplicationCred(set.get(i).getIdNum(), year, set.get(i).getSemester()));
+				dto.setReceivedCred(mapper.getApplicationCred(set.get(i).getIdNum(), year, set.get(i).getSemester()));
+				mapper.finalProcess(dto);
+				cnt++;
 			}
-			else {
-				dto.setScholarship(0); 
-			}
-			dto.setMajor(set.get(i).getMajor());
-			dto.setName(set.get(i).getName());
-			dto.setRank(set.get(i).getCurRank());
-			dto.setTotalScore(set.get(i).getCurTotalGrade());
-			dto.setIdNum(set.get(i).getIdNum());
-			dto.setYear(year);
-			if(set.get(i).getGrade() == 1 && set.get(i).getSemester().equals("1")) {
-				dto.setGradeSemester(1);
-				dto.setMjSemester(101);
-			}
-			else if(set.get(i).getGrade() == 1 && set.get(i).getSemester().equals("2")) {
-				dto.setGradeSemester(2);
-				dto.setMjSemester(102);
-			}
-			else if(set.get(i).getGrade() == 2 && set.get(i).getSemester().equals("1")) {
-				dto.setGradeSemester(3);
-				dto.setMjSemester(201);
-			}
-			else {
-				dto.setGradeSemester(4);
-				dto.setMjSemester(202);
-			}
-			dto.setApplicationCred(mapper.getApplicationCred(set.get(i).getIdNum(), year, set.get(i).getSemester()));
-			dto.setReceivedCred(mapper.getApplicationCred(set.get(i).getIdNum(), year, set.get(i).getSemester()));
-			mapper.finalProcess(dto);
-			cnt++;
+		}
+		else {
+			return 2;
 		}
 		if(cnt == set.size()) {
 			return 1;

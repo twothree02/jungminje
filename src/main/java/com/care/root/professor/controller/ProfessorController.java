@@ -92,8 +92,6 @@ public class ProfessorController implements MemberSessionName {
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		String tYear = Integer.toString(year); //올해의 연도
-		System.out.println(tYear);
-		System.out.println(lecName); //잘 가져오나 test
 		
 		ps.showGrade(model, lecName, tYear);
 		return "professor/inputGrade";
@@ -152,7 +150,7 @@ public class ProfessorController implements MemberSessionName {
 	@PostMapping(value="admin_list", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public Map<String, Object> adminList(@RequestParam(value="num", defaultValue="1", required=false)int num){
-		String position = "교직원"; 
+		String position = "관리자"; 
 		
 		return ps.getAdminList(position, num);
 	}

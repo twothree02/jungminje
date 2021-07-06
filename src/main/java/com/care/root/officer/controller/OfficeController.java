@@ -206,6 +206,9 @@ public class OfficeController implements MemberSessionName{
 		if(os.finalProcess() == 1) {
 			return "admin/finalProcessSuccess";
 		}
+		else if (os.finalProcess() == 2) {
+			return "admin/noFinalProcess";
+		}
 		else {
 			return "admin/finalProcessFail";
 		}

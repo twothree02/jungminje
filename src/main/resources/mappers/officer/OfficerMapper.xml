@@ -294,8 +294,8 @@
 	</select>
 	
 	<insert id="finalProcess">
-		insert into register_Info (major, id_num, name, scholarship, rank, year, semester, total_score) values
-		(#{major}, #{idNum}, #{name}, #{scholarship}, #{rank}, #{year}, #{semester}, #{totalScore})
+		insert into register_Info (major, id_num, name, scholarship, rank, year, grade_semester, application_cred, received_cred, ave_grade, semester, total_score, mj_semester) values
+		(#{major}, #{idNum}, #{name}, #{scholarship}, #{rank}, #{year}, #{gradeSemester}, #{applicationCred}, #{receivedCred} , #{aveGrade}, #{semester}, #{totalScore}, #{mjSemester})
 	</insert>
 	
 	<select id="getApplicationCred" resultType="Integer">
@@ -311,11 +311,11 @@
 	</update>
 	
 	<select id = "getInputPeriod" resultType="String">
-		select input_period from member_info where position = '학생'
+		select input_period from member_info where position = '교수' or position = '관리자'
 	</select>
 	
 	<update id = "setInputPeriod">
-		update member_info set input_period = #{yn} where position = '학생'
+		update member_info set input_period = #{yn} where position = '교수' or position = '관리자'
 	</update>
 	
 	<select id = "getChkPeriod" resultType="String">

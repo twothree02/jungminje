@@ -25,7 +25,7 @@ public class ProfessorServiceImpl implements ProfessorService{
 	@Autowired ProfessorDAO pm;
 	@Override
 	public Map<String, Object> getJuniorList(String major,int num) {
-		int pageLetter = 10; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
+		int pageLetter = 10; //데이터를 몇 개씩 보여줄건가
 		int grade = 1; //1학년 학생들에서 학생수를 정의
 		int allCount = pm.selectStuCount(grade, major);
 		
@@ -43,7 +43,7 @@ public class ProfessorServiceImpl implements ProfessorService{
 		return result;
 	}
 	public Map<String, Object> getSeniorList(String major,int num) {
-		int pageLetter = 10; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
+		int pageLetter = 10; 
 		int grade = 2; //2학년 학생들에서 학생수를 정의
 		int allCount = pm.selectStuCount(grade, major);
 		
@@ -62,7 +62,7 @@ public class ProfessorServiceImpl implements ProfessorService{
 	}
 	@Override
 	public Map<String, Object> getSearchStu(String searchSel, String searchInp, int num) {
-		int pageLetter = 10; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
+		int pageLetter = 10; 
 		int allCount = pm.searchStuCount(searchSel, searchInp);
 		
 		int repeat = allCount / pageLetter;	// 총 페이지 수
@@ -86,7 +86,7 @@ public class ProfessorServiceImpl implements ProfessorService{
 	}
 	@Override
 	public Map<String, Object> getBProfessorList(int num) {
-		int pageLetter = 10; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
+		int pageLetter = 10; 
 		int allCount = pm.searchBProfCnt();
 		
 		int repeat = allCount / pageLetter;	// 총 페이지 수
@@ -105,7 +105,7 @@ public class ProfessorServiceImpl implements ProfessorService{
 	}
 	@Override
 	public Map<String, Object> getIProfessorList(int num) {
-		int pageLetter = 10; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
+		int pageLetter = 10; 
 		int allCount = pm.searchIProfCnt();
 		
 		int repeat = allCount / pageLetter;	// 총 페이지 수
@@ -124,7 +124,7 @@ public class ProfessorServiceImpl implements ProfessorService{
 	}
 	@Override
 	public Map<String, Object> getCProfessorList(int num) {
-		int pageLetter = 10; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
+		int pageLetter = 10; 
 		int allCount = pm.searchCProfCnt();
 		
 		int repeat = allCount / pageLetter;	// 총 페이지 수
@@ -143,7 +143,7 @@ public class ProfessorServiceImpl implements ProfessorService{
 	}
 	@Override
 	public Map<String, Object> getAdminList(String position, int num) {
-		int pageLetter = 10; //나중에 수정할 것!!! 현재는 한 페이지에 2개씩 보임.
+		int pageLetter = 10; 
 		int allCount = pm.searchAdminCnt(position);
 		
 		int repeat = allCount / pageLetter;	// 총 페이지 수
@@ -215,22 +215,10 @@ public class ProfessorServiceImpl implements ProfessorService{
 		GradeInfoDTO dto = new GradeInfoDTO();
 		
 		Map<String, String> mapScore = new HashMap<String,String>();
-	
-		//여기서부터 다시 해야함. 스코어가 안 들어감. 자바 콘솔에는 찍히는 데 안 들어간다. inputNumGrade
+
 		String[] arrScore = mul.getParameterValues("inputScore");
 		String[] arrId = mul.getParameterValues("keyId");
-		/* 값은 잘 넘어옴
-		System.out.println(arrId[0]);
-		System.out.println(arrId[1]);
-		System.out.println(arrId[2]);
-		System.out.println(arrScore[0]);
-		System.out.println(arrScore[1]);
-		System.out.println(arrScore[2]);
 		
-		Calendar cal = Calendar.getInstance();
-		int year = cal.get(Calendar.YEAR);
-		String tYear = Integer.toString(year);
-		*/
 		String subName = pm.getLecCheck(pId);
 		
 		Calendar cal = Calendar.getInstance();
@@ -246,8 +234,6 @@ public class ProfessorServiceImpl implements ProfessorService{
 			System.out.println(mapScore);
 			int test01 = Integer.parseInt(arrScore[i]);
 			System.out.println(test01);
-//			dto.setScore(80);
-//			dto.setGrade(convertGrade(80));
 				
 			dto.setSubjectName(subName);
 			dto.setYear(tYear);
@@ -266,17 +252,13 @@ public class ProfessorServiceImpl implements ProfessorService{
 			pm.saveScore(dto);
 		}
 		
-		// 지역변수를 전역변수로 바꾸는 것, 클래스를 다시 만들어 호출하는 것 안 됨(안 되는 거 같음)
-		//따라서 마지막 하나만 빼서 넣어주는 걸로 했다.
 		dto.setIdNum(arrId[arrId.length-1]);
 		dto.setScore(Integer.parseInt(arrScore[arrScore.length-1]));
 		dto.setGrade(convertGrade(Integer.parseInt(arrScore[arrScore.length-1])));
 		dto.setNumGrade(convertNumGrade(Integer.parseInt(arrScore[arrScore.length-1])));
-//		System.out.println(arrId[arrId.length-1]);
-//		System.out.println(arrScore[arrScore.length-1]);
-		
+
 		int result = pm.saveScore(dto);
-		//int result = 1;
+
 		MessageDTO mDTO = new MessageDTO();
 		mDTO.setResult(result);
 		System.out.println(result); //test용

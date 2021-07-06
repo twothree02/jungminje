@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<script type="text/javascript">
-		alert('설정에 실패했습니다. 확인 후 다시 시도해주세요')
+		alert('성적 정정 기간이 아닙니다.')
 		location.href='grade'
 	</script>
 </head>

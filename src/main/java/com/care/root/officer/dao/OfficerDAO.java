@@ -59,8 +59,8 @@ public interface OfficerDAO {
 	public int searchAllGradeCount(@Param("searchS") String searchS, @Param("searchT") String searchT);
 	public int finalProcess(RegisterDTO dto);
 	public ArrayList<OfficerDTO> getAllMember();
-	public int getApplicationCred(@Param("idNum") String idNum, @Param("year") String year, @Param("semester") String semester);
-	public int getReceivedCred(@Param("idNum") String idNum, @Param("year") String year, @Param("semester") String semester);
+	public Integer getApplicationCred(@Param("idNum") String idNum, @Param("year") String year, @Param("semester") String semester);
+	public Integer getReceivedCred(@Param("idNum") String idNum, @Param("year") String year, @Param("semester") String semester);
 	public int tuition(@Param("startDate") String startDate, @Param("endDate") String endDate);
 	public ArrayList<String> getInputPeriod();
 	public ArrayList<String> getChkPeriod();
