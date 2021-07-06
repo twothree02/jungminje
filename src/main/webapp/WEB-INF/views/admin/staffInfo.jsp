@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>종합 정보 조회</title>
 <style type="text/css">
 .title {
 	width: 90%;
@@ -51,7 +51,7 @@
 	<c:import url="../default/adminHeader.jsp" />
 	<div class="wrap">
 		<div class="title" style="text-align: center;">
-			<h1 style="margin-left: 30px; margin-bottom: 25px;">내 정보</h1>
+			<h1 style="margin-left: 30px; margin-bottom: 25px;">종합 정보 조회</h1>
 		</div>
 		<div class="officerInfo">
 			<div class="imgDiv">

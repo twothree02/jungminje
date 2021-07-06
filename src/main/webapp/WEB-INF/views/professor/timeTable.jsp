@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>시간표</title>
 </head>
 <body>
  <c:import url="../default/professorHeader.jsp" />
@@ -49,6 +49,6 @@
 			</tbody>
 			</table>
 	</div>
-
+	<c:import url="../default/footer.jsp" />
 </body>
 </html>

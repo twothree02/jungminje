@@ -83,6 +83,7 @@ public class ProfessorController implements MemberSessionName {
 	@GetMapping("show_grade")
 	public String showGrade(Model model, HttpSession session) {
 		String pId = (String)session.getAttribute(LOGIN);
+		if(ps.chkPeriod(pId).equals("Y")) {
 		System.out.println(pId);
 		//resultMap이 아니라 resultType으로 해주니 반환 잘 됨.
 		String lecName = ps.lecCheck(pId); //세션 아이디를 넣어서 얻어온 교수가 가르치는 과목
@@ -96,6 +97,9 @@ public class ProfessorController implements MemberSessionName {
 		
 		ps.showGrade(model, lecName, tYear);
 		return "professor/inputGrade";
+		}else {
+			return "professor/notInputPeriod";
+		}
 	}
 	@GetMapping("time_table")
 	public String timeTable(Model model, HttpSession session) {

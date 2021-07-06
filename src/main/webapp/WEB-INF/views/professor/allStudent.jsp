@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>학생 정보</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	function juniorList(num) {
@@ -186,5 +186,6 @@
 		<input type="hidden" value="1" id="firstNum">
 		<div id="stuList"></div>
 	</div>
+	<c:import url="../default/footer.jsp" />
 </body>
 </html>

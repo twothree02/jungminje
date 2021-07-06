@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>연락망</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	function adminList(num) {
@@ -247,5 +247,6 @@
 		<input type="hidden" value="1" id="firstNum">
 		<div id="adminProfList"></div>
 	</div>
+	<c:import url="../default/footer.jsp" />
 </body>
 </html>

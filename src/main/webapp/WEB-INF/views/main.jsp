@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>YW University_Main</title>
 </head>
 <body>
 	<c:import url="default/header.jsp" />
@@ -117,21 +117,36 @@
 						<thead class="thead-dark">
 							<tr>
 								<th>학사일정</th>
-								<th style="text-align: right;"><a href="#">more</a></th>
+								<th style="text-align: right;"><a href="board/schedule">more</a></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td rowspan="2">
-									<ul>
-										<li>1</li>
-										<li>2</li>
-										<li>3</li>
-										<li>3</li>
-										<li>3</li>
-									</ul>
-								</td>
-							</tr>
+									<tr>
+										<td>2021년도</td>
+										<td>3월달 학사일정</td>
+								</tr>
+									<tr>
+										<td>2021년도</td>
+										<td>4월달 학사일정</td>
+								</tr>
+							
+									<tr>
+										<td>2021년도</td>
+										<td>5월달 학사일정</td>
+								</tr>
+							
+									<tr>
+										<td>2021년도</td>
+										<td>6월달 학사일정</td>
+								</tr>
+							
+									<tr>
+										<td>2021년도</td>
+										<td>7월달 학사일정</td>
+								</tr>
+							
+							
+							
 						</tbody>
 					</table>
 				</div>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>학생 관리 시스템</title>
+<title>학생 관리_조회</title>
 <style type="text/css">
 .title {
 	width: 90%;

@@ -6,10 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>종합시스템</title>
 </head>
 <body>
 <c:import url="../default/professorHeaderMain.jsp" />
-
+<c:import url="../default/footer.jsp" />
 </body>
 </html>

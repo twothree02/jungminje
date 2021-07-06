@@ -46,8 +46,8 @@ public class MemberController implements MemberSessionName {
 	}
 
 	@PostMapping("loginChk")
-	public String loginChk(HttpServletRequest request, HttpSession session, RedirectAttributes ra) {
-		int result = ms.loginChk(request, session);
+	public String loginChk(HttpServletResponse response, HttpServletRequest request, HttpSession session, RedirectAttributes ra) {
+		int result = ms.loginChk(response, request, session);
 		if(result == 0) {
 			ra.addAttribute("id", request.getParameter("inputId"));
 			ra.addAttribute("rememberId", request.getParameter("rememberId"));
@@ -102,7 +102,7 @@ public class MemberController implements MemberSessionName {
 	@PostMapping(value="findPw", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public String findPw(@RequestBody Map <String,Object> map, HttpServletRequest request,  HttpServletResponse response) {
-		String tempPw = ms.findPw((String)map.get("inputId"), (String)map.get("inputEmail"), request, response);
+		String tempPw = ms.findPw((String)map.get("inputId"), (String)map.get("inputEmail"), (String)map.get("domain"), request, response);
 		return "{\"result\":\"" + tempPw + "\"}";
 	}
 	

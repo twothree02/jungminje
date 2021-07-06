@@ -70,19 +70,21 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-13" style="margin-left: 0;">
+						<div class="col-lg-13" style="margin-left: 0; width: 30%; height: 100%;">
 							<div class="card shadow-lg border-0 rounded-lg mt-5">
 								<div class="card-header">
 									<h3 class="text-center font-weight-light my-4">학 사 일 정</h3>
 								</div>
 								<div class="card-body">
 									<ul
-										style="font-size: 18pt; padding-top: 3%; padding-bottom: 3%;">
-										<li style="padding-bottom: 2%;">체 육 대 회</li>
-										<li style="padding-bottom: 2%;">동 아 리 발 표 회</li>
-										<li style="padding-bottom: 2%;">없 음</li>
-										<li style="padding-bottom: 2%;">없 음</li>
-										<li>없 음</li>
+										style="font-size: 13pt; padding-top: 3%;">
+										<li style="padding-bottom: 1.5%;">8/2 하계 계절수업 종강</li>
+										<li style="padding-bottom: 1.5%;">8/12 대학원 후기모집 신입생 등록</li>
+										<li style="padding-bottom: 1.5%;">8/9 하계 계절수업 성적제출</li>
+										<li style="padding-bottom: 1.5%;">8/10~17 2학기 수강신청</li>
+										<li style="padding-bottom: 1.5%;">8/23~27 2학기 재학생 등록</li>
+										<li style="padding-bottom: 1.5%;">8/27 후기 학위수여식</li>
+										<li style="padding-bottom: 1.5%; list-style: none;"><a href="/root/board/schedule">more</a></li>
 									</ul>
 								</div>
 							</div>
@@ -92,10 +94,7 @@
 
 			</main>
 		</div>
-		<div id="layoutAuthentication_footer">
-			           <c:import url="../default/footer.jsp" />
-
-		</div>
+		<c:import url="../default/footer.jsp" />
 	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"

@@ -28,7 +28,12 @@
 			data:JSON.stringify(form),
 			contentType:"application/json; charset=utf-8",
 			success:function(rep){
-				alert($("#inputName").val() + ' 님의 아이디는 ' + rep.result + ' 입니다.')
+				if($.trim(rep.result) == 'null') {
+					alert("회원이 아니거나 이름 또는 전화번호를 잘못 입력하셨습니다. 다시 한 번 확인해 주세요.");
+				}
+				else {
+					alert($("#inputName").val() + ' 님의 아이디는 ' + rep.result + ' 입니다.');
+				}
 			},
 			error:function(request,status,error){
 				alert("회원이 아니거나 이름 또는 전화번호를 잘못 입력하셨습니다. 다시 한 번 확인해 주세요.");
@@ -38,7 +43,7 @@
 	}
 	
 	function findPw(){
-		let form = {"inputId" : $("#inputId").val(), "inputEmail" : $("#inputEmail").val() + "@" + $("#address").val()}
+		let form = {"inputId" : $("#inputId").val(), "inputEmail" : $("#inputEmail").val() + "@" + $("#domain").val()}
 		//let arr = $("#findPw").serializeArray()
 		//for(i=0; i<arr.length; i++){
 		//	form[arr[i].name] = arr[i].value
@@ -108,12 +113,22 @@
 												placeholder="abc@aaa.com" style="width: 50%;"> <label for="inputEmail">E-mail 입력</label>
 											<font style="padding-top: 15px;">@</font>
 											<div class="form-floating">
-												<select class="form-select" id="floatingSelect" aria-label="Floating label select example" style="width: 200%;">
+												<select class="form-select" id="domain" aria-label="Floating label select example" style="width: 180%;">
 													<option value="none" selected>== 선택 ==</option>
-													<option value="naver.com">naver.com</option>
-													<option value="daum.net">daum.net</option>
-													<option value="gmail.com">gamil.com</option>
-													<option value="nate.com">nate.com</option>
+													<option value='gmail.com'>gmail.com</option>
+											        <option value='naver.com'>naver.com</option>
+											        <option value='nate.com'>nate.com</option>
+											        <option value='daum.net'>daum.net</option>
+											        <option value='dreamwiz.com'>dreamwiz.com</option>
+											        <option value='yahoo.co.kr'>yahoo.co.kr</option>
+											        <option value='empal.com'>empal.com</option>
+											        <option value='chollian.net'>chollian.net</option>
+											        <option value='korea.com'>korea.com</option>
+											        <option value='paran.com'>paran.com</option>
+											        <option value='freechal.com'>freechal.com</option>
+											        <option value='hotmail.com'>hotmail.com</option>
+											        <option value='hanafos.com'>hanafos.com</option>
+											        <option value='hanmail.net'>hanmail.net</option>
 												</select> <label for="floatingSelect" style="width: 100%;">Domain</label>
 											</div>
 										</div>

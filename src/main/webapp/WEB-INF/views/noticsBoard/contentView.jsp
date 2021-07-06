@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지사항</title>
 <style type="text/css">
 #modal_wrap {
 	display: none;
@@ -159,6 +159,7 @@ function rep(){
 		contentType:"application/json; charset=utf-8",
 		success: function(list){
 			abcd(1)
+			document.getElementById("textarea1").value='';
 			alert("성공적으로 답글이 달렸습니다");
 		}, error:function(){
 			alert('문제가 발생했습니다')

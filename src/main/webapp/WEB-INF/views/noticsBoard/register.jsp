@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지사항</title>
 <style type="text/css">
 table {
 	width: 70%;
@@ -38,11 +38,13 @@ table {
 		</div>
 </div>
 
-
+		
 		<div align="center">
 			<input type="submit" class="btn btn-secondary" value="저장">
 			<button type="reset" class="btn btn-secondary" onclick="history.back()">취소</button>
 		</div>
+		
+		
 	</form>
 	</div>
 	<c:import url="../default/footer.jsp"></c:import>

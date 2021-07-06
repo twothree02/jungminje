@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>종합 정보 조회_기본 정보</title>
 <style type="text/css">
 div {
 	 /*border: 1px solid black;*/
@@ -50,7 +50,7 @@ div {
 	<c:import url="../default/studentheader.jsp" />
 	<div class="wrap" style="overflow: auto;">
 		<div class="title">
-			<h1>종합정보 조회</h1>
+			<h1>종합 정보 조회</h1>
 		</div>
 		<div class="memberInfo">
 			<div class="imgDiv">

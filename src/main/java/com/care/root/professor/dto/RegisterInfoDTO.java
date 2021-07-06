@@ -13,10 +13,16 @@ public class RegisterInfoDTO {
 	private double aveGrade;
 	private int appCred;
 	private int receivedCred;
-	
+	private int mjSeme;
 
 
 	
+	public int getMjSeme() {
+		return mjSeme;
+	}
+	public void setMjSeme(int mjSeme) {
+		this.mjSeme = mjSeme;
+	}
 	public double getTotalScore() {
 		return totalScore;
 	}

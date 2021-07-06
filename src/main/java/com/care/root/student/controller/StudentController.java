@@ -132,9 +132,10 @@ public class StudentController implements MemberSessionName{
 		
 		
 		@GetMapping("download")
-		public void download(@RequestParam("file") String fileName, HttpServletResponse response) throws Exception {
+		public void download(@RequestParam("file") String fileName, HttpServletResponse response) throws Exception{
 			//final String IMAGE_REPO = "C:\\Users\\Hyunwoo\\spring\\image_repo";
-			final String IMAGE_REPO = "C:\\Users\\User\\Desktop\\Programs\\Micro_SW\\image_repo";
+			final String IMAGE_REPO = MemberFileService.IMAGE_REPO;
+
 			//Content-disposition(http 헤더중 하나) : 파일 다운로드 할떄 http 헤더에 추가해야 한다.
 			//attachment : 파일을 다운로드 하여 브라우저로 표현하는 의미
 			response.addHeader("Content-disposition", "attachment; fileName="+fileName);

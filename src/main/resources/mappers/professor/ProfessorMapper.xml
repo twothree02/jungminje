@@ -28,6 +28,7 @@
 		<result property="teachSub" column="teach_sub"/>
 		<result property="firstLogin" column="first_login"/>
 		<result property="semester" column="semester"/>
+		<result property="inputPeriod" column="input_period"/>
 	</resultMap>
 	
 	<resultMap type="com.care.root.professor.dto.GradeInfoDTO" id="gradeInfo">
@@ -70,6 +71,7 @@
 		<result property="aveGrade" column="ave_grade"/>
 		<result property="appCred" column="application_cred"/>
 		<result property="receivedCred" column="received_cred"/>
+		<result property="mjSeme" column="mj_semester"/>
 	</resultMap>
 	
 	<select id="getMyInfo" resultMap="professor">
@@ -170,7 +172,7 @@
 	</select>
 	
 	<select id="getNetAveGrade" resultType="double">
-		select sum(ave_grade) from register_info where id_num=#{id}
+	select sum(ave_grade) from register_info where id_num=#{id}
 	</select>
 	
 	<select id="getNetTotalScore" resultType="double">
@@ -182,7 +184,7 @@
 	</select>
 	
 	<select id="semeGradeInfo" resultMap="register">
-		select * from register_info where id_num = #{id} order by grade_semester asc
+		select * from register_info where id_num = #{id} order by mj_semester asc
 	</select>
 	
 	<select id="getTimeTable" resultMap="timeTable">
@@ -191,6 +193,10 @@
 	
 	<select id="getLecCheck" resultType="string">
 		select teach_sub from member_info where id_Num = #{pId}
+	</select>
+	
+	<select id="getChkPeriod" resultType="string">
+		select input_period from member_info where id_Num = #{pId}
 	</select>
 	
 	<select id="getMajorCheck" resultType="string">
